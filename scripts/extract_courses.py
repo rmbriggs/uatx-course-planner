@@ -74,6 +74,10 @@ def fix_title(t: str) -> str:
     t = re.sub(r"(?<=[a-z]) ([lI|]{2,3})(?=[ :,])", lambda m: " " + "I" * len(m.group(1)), t)
     t = re.sub(r"\bAl\b", "AI", t)
     t = re.sub(r"\bAl-(?=[A-Z])", "AI-", t)
+    # Justified type sometimes leaves a word's last letter stranded
+    # ("Entrepreneurshi p"). Rejoin a lone lowercase letter, excluding the two
+    # that are real English words on their own.
+    t = re.sub(r"(?<=[a-z]{3}) ([b-hj-z])(?=\s|$)", r"\1", t)
     return t
 
 

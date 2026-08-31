@@ -695,6 +695,62 @@ textarea {
   border-top: 1px solid #f0f3f6;
 }
 
+/* One grid for the whole group so the code column lines up down the list. */
+.slot-list {
+  display: grid;
+  grid-template-columns: 1rem minmax(5rem, max-content) minmax(0, 1fr);
+  gap: 0 0.7rem;
+  font-size: var(--step--1);
+}
+
+.slot-list .slot-row {
+  display: contents;
+}
+
+.slot-list .slot-row > * {
+  padding: 0.3rem 0;
+  border-top: 1px solid #f0f3f6;
+}
+
+.slot-code {
+  font-size: 0.78rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.slot-row.is-open .slot-code {
+  color: var(--slate-light);
+}
+
+@media (max-width: 560px) {
+  .slot-list {
+    display: block;
+  }
+
+  .slot-list .slot-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.1rem 0.5rem;
+    padding: 0.3rem 0;
+    border-top: 1px solid #f0f3f6;
+  }
+
+  .slot-list .slot-row > * {
+    padding: 0;
+    border-top: 0;
+  }
+
+  .slot-list .slot-code {
+    flex: none;
+  }
+
+  .slot-list .slot-body {
+    flex: 1 1 100%;
+    padding-left: 1.7rem;
+  }
+}
+
 .slot-row .tick {
   font-family: var(--font-mono), monospace;
   color: var(--line-strong);
@@ -716,6 +772,42 @@ textarea {
   align-items: baseline;
   gap: 0.15rem 0.5rem;
   min-width: 0;
+}
+
+/* Code beside name, so a list of options can actually be read. */
+.course-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0 1.1rem;
+  font-size: var(--step--1);
+}
+
+.course-list li {
+  display: grid;
+  grid-template-columns: 4.8rem minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 0.16rem 0;
+}
+
+.course-code {
+  font-size: 0.76rem;
+  color: var(--slate-light);
+}
+
+.course-name {
+  color: var(--slate);
+  overflow-wrap: anywhere;
+}
+
+.course-list.is-done .course-code {
+  color: var(--brass);
+}
+
+.course-list.is-done .course-name {
+  color: var(--ink);
 }
 
 .slot-label {

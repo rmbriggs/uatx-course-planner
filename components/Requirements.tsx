@@ -1,43 +1,75 @@
 "use client";
 
-import { creditsOf, titleOf } from "@/lib/catalog";
+import { titleOf } from "@/lib/catalog";
 import type { ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
 import type { Holding } from "@/lib/equivalency";
 
 const MARK = { done: "●", pending: "◐", open: "○" } as const;
 
+/** Code and course name together, so a bare "MATH 220" never stands alone. */
+function CourseList({ codes, done }: { codes: string[]; done?: boolean }) {
+  return (
+    <ul className={`course-list${done ? " is-done" : ""}`}>
+      {codes.map((c) => (
+        <li key={c}>
+          <span className="mono course-code">{c}</span>
+          <span className="course-name">{titleOf(c)}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** The slot's name, with any course code stripped out of it now that the code
+ *  has a column of its own. */
+function displayName(slot: SlotResult): string {
+  const fallback = slot.options[0].map(titleOf).join(" + ");
+  const label = slot.label;
+  if (!label) return fallback;
+  // Most labels are plain requirement names ("Epic and Tragedy") and must be
+  // left exactly as they are. Only a label that spells out course codes needs
+  // cleaning, now that the codes have a column of their own.
+  if (!/[A-Z]{3,4} ?\d{3,4}/.test(label)) return label;
+  const stripped = label
+    .replace(/[A-Z]{3,4} ?\d{3,4}[A-Z]?/g, " ")
+    .replace(/(^|\s)(or|and)(\s|$)/gi, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  return stripped || fallback;
+}
+
 function SlotRow({ slot }: { slot: SlotResult }) {
   const state = slot.filled ? (slot.pendingOnly ? "pending" : "done") : "open";
-  const sources = slot.filledBy.filter((f) => f.source !== f.requirement);
+  const sources = [...new Set(slot.filledBy.filter((f) => f.source !== f.requirement).map((f) => f.source))];
   const provisional = slot.filledBy.some((f) => f.via === "inferred");
+
+  const codes = slot.filled
+    ? [slot.filledBy.map((f) => f.requirement).join(" + ")]
+    : slot.options.map((opt) => opt.join(" + "));
+
+  // "MATH 220" alone says nothing; "MATH 220 Probability" does. Where a slot
+  // has no name of its own, the course title becomes the name.
+  const name = displayName(slot);
 
   return (
     <div className={`slot-row is-${state}`}>
       <span className="tick">{MARK[state]}</span>
+      <span className="slot-code mono">
+        {codes.map((c, i) => (
+          <span key={i}>
+            {i > 0 && <span className="slot-or"> or </span>}
+            {c}
+          </span>
+        ))}
+      </span>
       <span className="slot-body">
-        {slot.label && <span className="slot-label">{slot.label}</span>}
-        <span className="slot-codes">
-          {slot.filled ? (
-            <>
-              <span className="mono">{slot.filledBy.map((f) => f.requirement).join(" + ")}</span>
-              {sources.length > 0 && (
-                <span className="slot-source">
-                  {" "}from your <span className="mono">{[...new Set(sources.map((f) => f.source))].join(", ")}</span>
-                </span>
-              )}
-              {provisional && <span className="mark mark-inferred">Provisional</span>}
-            </>
-          ) : (
-            slot.options.map((opt, i) => (
-              <span key={i}>
-                {i > 0 && <span className="slot-or"> or </span>}
-                <span className="mono" title={opt.map(titleOf).join(" + ")}>
-                  {opt.join(" + ")}
-                </span>
-              </span>
-            ))
-          )}
-        </span>
+        <span className="slot-label">{name}</span>
+        {sources.length > 0 && (
+          <span className="slot-source">
+            from your <span className="mono">{sources.join(", ")}</span>
+          </span>
+        )}
+        {provisional && <span className="mark mark-inferred">Provisional</span>}
       </span>
     </div>
   );
@@ -58,7 +90,7 @@ export function GroupBlock({ group }: { group: GroupResult }) {
       {group.note && <p className="group-note">{group.note}</p>}
 
       {group.slots ? (
-        <div>
+        <div className="slot-list">
           {group.slots.map((s, i) => (
             <SlotRow key={i} slot={s} />
           ))}
@@ -69,13 +101,7 @@ export function GroupBlock({ group }: { group: GroupResult }) {
           {(group.held ?? []).length > 0 ? (
             <>
               <p className="group-note">You have taken:</p>
-              <ul className="code-list">
-                {(group.held ?? []).map((c) => (
-                  <li key={c} className="chip chip-done" title={`${titleOf(c)} · ${creditsOf(c)} cr`}>
-                    {c}
-                  </li>
-                ))}
-              </ul>
+              <CourseList codes={group.held ?? []} done />
             </>
           ) : (
             <p className="group-note">Nothing counted toward this yet.</p>
@@ -85,13 +111,7 @@ export function GroupBlock({ group }: { group: GroupResult }) {
               <summary className="more">
                 {remaining} more to choose, from {group.options?.length ?? 0} courses
               </summary>
-              <ul className="code-list" style={{ marginTop: "0.45rem" }}>
-                {(group.options ?? []).map((c) => (
-                  <li key={c} className="chip" title={`${titleOf(c)} · ${creditsOf(c)} cr`}>
-                    {c}
-                  </li>
-                ))}
-              </ul>
+              <CourseList codes={group.options ?? []} />
             </details>
           )}
         </>
@@ -179,7 +199,9 @@ export function ConcentrationDetail({ conc }: { conc: ConcentrationResult }) {
             </span>
           </div>
           <p className="group-note">These sit outside the 36 credits, but the concentration assumes them.</p>
-          {conc.prerequisites.map((p) => p.slots?.map((s, i) => <SlotRow key={`${p.id}-${i}`} slot={s} />))}
+          <div className="slot-list">
+            {conc.prerequisites.map((p) => p.slots?.map((s, i) => <SlotRow key={`${p.id}-${i}`} slot={s} />))}
+          </div>
         </div>
       )}
 
