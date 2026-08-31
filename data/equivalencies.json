@@ -1565,6 +1565,75 @@
     },
     {
       "from": [
+        "INF 1100"
+      ],
+      "grants": [
+        [
+          "LITR 102",
+          "LITR 103"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Chaos and Civilization",
+      "confidence": "strong",
+      "reason": "INF 1100 asks 'what roles do the heroes of Homer, Plato, the Greek tragedies, and the Bible play in the beginning of civilization?', and the catalog says INF 1102 Epic and Tragedy 'counts as an equivalent towards completion of INF 1100' - so the newer 3-credit course was carved out of this one. INF 1103/1104 Bible I and II cover its other half and are already accepted for LITR 103. Note 4.5 credits are being read as covering two 3-credit courses, which is the registrar's call.",
+      "inferred": true,
+      "raw": "INF 1100 asks 'what roles do the heroes of Homer, Plato, the Greek tragedies, and the Bible play in the beginning of civilization?', and the catalog says INF 1102 Epic and Tragedy 'counts as an equivalent towards completion of INF 1100' - so the newer 3-credit course was carved out of this one. INF 1103/1104 Bible I and II cover its other half and are already accepted for LITR 103. Note 4.5 credits are being read as covering two 3-credit courses, which is the registrar's call."
+    },
+    {
+      "from": [
+        "INF 2121"
+      ],
+      "grants": [
+        [
+          "HIST 131"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Early Modernity",
+      "confidence": "strong",
+      "reason": "INF 2121 covers 'Machiavelli, the Protestant Reformation, the European Wars of Religion, and the English Civil War'. HIST 131 Making of the Modern World covers exactly that and reads Machiavelli's Prince. This replaces an earlier reading of the catalog's 'Prerequisite: AMCV 200 or INF 2121' line, which names an acceptable background course rather than an equivalent.",
+      "inferred": true,
+      "raw": "INF 2121 covers 'Machiavelli, the Protestant Reformation, the European Wars of Religion, and the English Civil War'. HIST 131 Making of the Modern World covers exactly that and reads Machiavelli's Prince. This replaces an earlier reading of the catalog's 'Prerequisite: AMCV 200 or INF 2121' line, which names an acceptable background course rather than an equivalent."
+    },
+    {
+      "from": [
+        "INF 2120"
+      ],
+      "grants": [
+        [
+          "HIST 131"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Modernity and the West",
+      "confidence": "strong",
+      "reason": "The catalog says INF 2121 Early Modernity 'counts towards the completion of INF 2120', so the larger seminar contains the material that matches HIST 131.",
+      "inferred": true,
+      "raw": "The catalog says INF 2121 Early Modernity 'counts towards the completion of INF 2120', so the larger seminar contains the material that matches HIST 131."
+    },
+    {
+      "from": [
+        "INF 1300"
+      ],
+      "grants": [
+        [
+          "HIST 130"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Christianity and Islam, Europe and the East",
+      "confidence": "strong",
+      "reason": "INF 1300 asks how Christianity and Islam 'relate to the European identity'. HIST 130 Rise of the West covers late antiquity and medieval Europe, asking how 'Christianity, and the encounter with Islam shape British and European culture'.",
+      "inferred": true,
+      "raw": "INF 1300 asks how Christianity and Islam 'relate to the European identity'. HIST 130 Rise of the West covers late antiquity and medieval Europe, asking how 'Christianity, and the encounter with Islam shape British and European culture'."
+    },
+    {
+      "from": [
         "INF 2300"
       ],
       "grants": [
@@ -1575,9 +1644,10 @@
       "kind": "satisfies",
       "center": "IF",
       "title": "Ideological Experiments of the 20th Century",
-      "reason": "Identical course title to HIST 111 in the 2026-2027 Intellectual Foundations.",
+      "confidence": "strong",
+      "reason": "Same title, and both study the philosophical roots and practical consequences of Nazism and Soviet Communism.",
       "inferred": true,
-      "raw": "Identical course title to HIST 111 in the 2026-2027 Intellectual Foundations."
+      "raw": "Same title, and both study the philosophical roots and practical consequences of Nazism and Soviet Communism."
     },
     {
       "from": [
@@ -1591,41 +1661,10 @@
       "kind": "satisfies",
       "center": "IF",
       "title": "The Uses and Abuses of Technology",
-      "reason": "PHIL 430 is titled 'Uses and Abuses of Technology'. Note this would count a former Intellectual Foundations course as 300-level work, so confirm it with your advisor.",
+      "confidence": "moderate",
+      "reason": "PHIL 430 is titled 'Uses and Abuses of Technology' and asks the same questions. It is not an Intellectual Foundations course in the new curriculum, so this counts toward a concentration - and it would count 200-level work as 300-level, so confirm it.",
       "inferred": true,
-      "raw": "PHIL 430 is titled 'Uses and Abuses of Technology'. Note this would count a former Intellectual Foundations course as 300-level work, so confirm it with your advisor."
-    },
-    {
-      "from": [
-        "INF 2121"
-      ],
-      "grants": [
-        [
-          "AMCV 200"
-        ]
-      ],
-      "kind": "satisfies",
-      "center": "IF",
-      "title": "Early Modernity",
-      "reason": "The catalog lists 'Prerequisite: AMCV 200 or INF 2121', treating the two as interchangeable.",
-      "inferred": true,
-      "raw": "The catalog lists 'Prerequisite: AMCV 200 or INF 2121', treating the two as interchangeable."
-    },
-    {
-      "from": [
-        "INF 2200"
-      ],
-      "grants": [
-        [
-          "AMCV 201"
-        ]
-      ],
-      "kind": "satisfies",
-      "center": "IF",
-      "title": "The American Experiment",
-      "reason": "The catalog lists 'Prerequisite: AMCV 201 or INF 2200', treating the two as interchangeable.",
-      "inferred": true,
-      "raw": "The catalog lists 'Prerequisite: AMCV 201 or INF 2200', treating the two as interchangeable."
+      "raw": "PHIL 430 is titled 'Uses and Abuses of Technology' and asks the same questions. It is not an Intellectual Foundations course in the new curriculum, so this counts toward a concentration - and it would count 200-level work as 300-level, so confirm it."
     }
   ]
 }

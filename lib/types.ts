@@ -33,6 +33,8 @@ export interface EquivalencyRule {
   note?: string;
   inferred?: boolean;
   reason?: string;
+  /** How well the two catalogs support a proposed mapping. */
+  confidence?: "strong" | "moderate";
 }
 
 export interface EquivalenciesFile {

@@ -1,4 +1,4 @@
-import { creditsOf, levelOf, requirements, titleOf } from "./catalog";
+import { creditsOf, levelOf, requirementCodes, requirements, titleOf } from "./catalog";
 import { normalizeRecord, type Holding, type NormalizeOptions, type NormalizeResult } from "./equivalency";
 import {
   earnsCredit,
@@ -85,6 +85,8 @@ export interface AuditResult {
   excluded: Holding[];
   /** Failed courses; required ones must be retaken. */
   retakeNeeded: Holding[];
+  /** Legacy courses with no equivalent and no place in the new curriculum. */
+  noEquivalent: Holding[];
   intellectualFoundations: {
     groups: GroupResult[];
     creditsRequired: number;
@@ -191,6 +193,9 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
   const limit = choose ?? slots.length;
   const pool = [...available];
   const consumed: Holding[] = [];
+  // A course that maps to two of the new courses fills both requirements, but
+  // its credits are counted once. INF 1100 is both LITR 102 and LITR 103.
+  const spent = new Set<Holding>();
   let filledCount = 0;
   let creditsEarned = 0;
   let creditsInProgress = 0;
@@ -206,8 +211,8 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
       const pendingOnly = used.some((h) => isPending(h.status));
       if (consume) {
         for (const h of used) {
-          const idx = pool.indexOf(h);
-          if (idx >= 0) pool.splice(idx, 1);
+          if (spent.has(h)) continue;
+          spent.add(h);
           consumed.push(h);
           if (earnsCredit(h.status)) creditsEarned += h.credits;
           else creditsInProgress += h.credits;
@@ -439,6 +444,9 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   const totalPending = holdings.filter((h) => isPending(h.status)).reduce((n, h) => n + h.credits, 0);
   const excluded = holdings.filter((h) => !canCount(h));
   const retakeNeeded = holdings.filter((h) => needsRetake(h.status));
+  // A course the new requirements name by its own code is accepted directly,
+  // so it is not lacking an equivalent even though no rule mentions it.
+  const noEquivalent = normalization.unmapped.filter((h) => !requirementCodes.has(h.code));
 
   const pillars: PillarResult[] = [
     {
@@ -471,6 +479,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
     normalization,
     excluded,
     retakeNeeded,
+    noEquivalent,
     intellectualFoundations: {
       groups: ifGroups,
       creditsRequired: req.intellectualFoundations.credits,

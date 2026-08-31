@@ -40,17 +40,43 @@ describe("equivalency mapping", () => {
     expect(satisfiesOf([done("ALT 4500", "Socrates")], "ALT 4500")).toEqual(["PHIL 380"]);
   });
 
-  it("keeps inferred mappings out when they are switched off", () => {
+  it("keeps proposed mappings out when they are switched off", () => {
     const on = normalizeRecord([done("INF 2121")], { useInferred: true });
     const off = normalizeRecord([done("INF 2121")], { useInferred: false });
-    expect(on.holdings[0].satisfies).toEqual(["AMCV 200"]);
+    expect(on.holdings[0].satisfies).toEqual(["HIST 131"]);
     expect(on.holdings[0].via).toBe("inferred");
     expect(off.holdings[0].satisfies).toEqual(["INF 2121"]);
   });
 
-  it("still counts a legacy course with no stated equivalent", () => {
+  it("does not read a prerequisite line as an equivalence", () => {
+    // "Prerequisite: AMCV 200 or INF 2121" names acceptable background, not an
+    // equivalent: INF 2121 is Machiavelli and the Reformation, not the Founding.
+    const r = normalizeRecord([done("INF 2121")]);
+    expect(r.holdings[0].satisfies).not.toContain("AMCV 200");
+  });
+
+  it("lets one old seminar fill two Foundations slots without double-counting", () => {
+    const a = auditDegree([done("INF 1100")]);
+    const humanities = a.intellectualFoundations.groups.find((g) => g.id === "if-humanities")!;
+    expect(humanities.slots!.find((s) => s.label === "Epic and Tragedy")!.filled).toBe(true);
+    expect(humanities.slots!.find((s) => s.label === "The Bible")!.filled).toBe(true);
+    // 4.5 credits earned once, not 9.
+    expect(a.intellectualFoundations.creditsEarned).toBe(4.5);
+    expect(a.totals.earned).toBe(4.5);
+  });
+
+  it("reads one big old seminar as covering two of the new courses", () => {
+    // INF 1102 "counts as an equivalent towards completion of INF 1100", so the
+    // newer courses were carved out of it.
     const r = normalizeRecord([done("INF 1100")]);
-    expect(r.unmapped.map((u) => u.code)).toEqual(["INF 1100"]);
+    expect(r.holdings[0].satisfies.sort()).toEqual(["LITR 102", "LITR 103"]);
+  });
+
+  it("still counts a legacy course with no equivalent at all", () => {
+    // INF 1110 Knowing, Doing, Making, Wisdom has no counterpart in the new
+    // curriculum, so it earns elective credit and fills nothing.
+    const r = normalizeRecord([done("INF 1110")]);
+    expect(r.unmapped.map((u) => u.code)).toEqual(["INF 1110"]);
     expect(r.holdings[0].credits).toBe(4.5);
   });
 });

@@ -64,21 +64,19 @@ IF_GROUPS = [
             slot("The Enlightenment", ["HIST 210"]),
             slot("Making of the Modern World", ["HIST 131"]),
             slot("The American Century", ["AMCV 110"]),
-            slot("The American Founding", ["AMCV 200"], ["INF 2121"]),
-            slot("American Frontiers", ["AMCV 201"], ["INF 2200"]),
+            slot("The American Founding", ["AMCV 200"]),
+            slot("American Frontiers", ["AMCV 201"]),
             slot("Ideological Experiments of the 20th Century", ["HIST 111"]),
         ],
     },
 ]
 
-# Catalog prerequisite lines treat these as interchangeable ("Prerequisite:
-# AMCV 200 or INF 2121", "Prerequisite: AMCV 201 or INF 2200"). The equivalency
-# document does not list a formal course equivalence, so the substitution is
-# flagged for the student rather than presented as settled.
-INFERRED_IF_OPTIONS = {
-    "INF 2121": "Accepted for AMCV 200 on the strength of the catalog prerequisite 'AMCV 200 or INF 2121'. Confirm with your advisor.",
-    "INF 2200": "Accepted for AMCV 201 on the strength of the catalog prerequisite 'AMCV 201 or INF 2200'. Confirm with your advisor.",
-}
+# The catalog's "Prerequisite: AMCV 200 or INF 2121" and "AMCV 201 or INF 2200"
+# lines name an acceptable background course, not an equivalent: INF 2121 Early
+# Modernity is Machiavelli and the Reformation, which is HIST 131's subject, not
+# the American Founding. Proposed INF equivalences live in
+# scripts/extract_equivalencies.py, where each carries its evidence.
+INFERRED_IF_OPTIONS: dict[str, str] = {}
 
 
 def conc(cid, name, center, kind, groups, prereqs=None, page=None):

@@ -55,6 +55,36 @@ export function titleOf(code: string): string {
   return getCourse(code)?.title ?? code;
 }
 
+/**
+ * Every course code the 2026-2027 requirements name. A legacy course whose own
+ * code appears here is accepted directly and needs no equivalency rule.
+ */
+export const requirementCodes: Set<string> = (() => {
+  const out = new Set<string>();
+  const walk = (node: unknown): void => {
+    if (Array.isArray(node)) {
+      node.forEach(walk);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    const obj = node as Record<string, unknown>;
+    if (obj.type === "pick") (obj.pool as string[]).forEach((c) => out.add(c));
+    if (obj.type === "oneOf")
+      (obj.pools as { pool: string[] }[]).forEach((p) => p.pool.forEach((c) => out.add(c)));
+    for (const [key, value] of Object.entries(obj)) {
+      if (key === "slots" || key === "prerequisites" || key === "required") {
+        for (const slot of value as { options: string[][] }[]) {
+          for (const option of slot.options) option.forEach((c) => out.add(c));
+        }
+      } else walk(value);
+    }
+  };
+  walk(requirements);
+  for (const c of requirements.polaris.buildCourses) out.add(c);
+  for (const c of requirements.polaris.buildEquivalents) out.add(c);
+  return out;
+})();
+
 /** Comparable form of a course title, for matching transcript rows to rules. */
 export function titleKey(title: string): string {
   return title

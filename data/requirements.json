@@ -233,9 +233,6 @@
             "options": [
               [
                 "AMCV 200"
-              ],
-              [
-                "INF 2121"
               ]
             ]
           },
@@ -244,9 +241,6 @@
             "options": [
               [
                 "AMCV 201"
-              ],
-              [
-                "INF 2200"
               ]
             ]
           },
@@ -261,10 +255,7 @@
         ]
       }
     ],
-    "inferredOptions": {
-      "INF 2121": "Accepted for AMCV 200 on the strength of the catalog prerequisite 'AMCV 200 or INF 2121'. Confirm with your advisor.",
-      "INF 2200": "Accepted for AMCV 201 on the strength of the catalog prerequisite 'AMCV 201 or INF 2200'. Confirm with your advisor."
-    },
+    "inferredOptions": {},
     "legacyProvision": {
       "note": "The equivalency document states the new Intellectual Foundations is satisfied by the old Intellectual Foundations plus one course.",
       "legacyCourses": [

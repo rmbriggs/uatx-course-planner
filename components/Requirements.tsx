@@ -69,7 +69,7 @@ function SlotRow({ slot }: { slot: SlotResult }) {
             from your <span className="mono">{sources.join(", ")}</span>
           </span>
         )}
-        {provisional && <span className="mark mark-inferred">Provisional</span>}
+        {provisional && <span className="mark mark-inferred">Proposed</span>}
       </span>
     </div>
   );

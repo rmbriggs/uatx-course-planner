@@ -131,10 +131,11 @@ export default function Page() {
                   checked={state.useInferred}
                   onChange={(e) => update({ useInferred: e.target.checked })}
                 />
-                Use provisional mappings
+                Use proposed equivalencies
               </label>
               <p style={{ margin: "0.3rem 0 0", fontSize: "0.78rem", color: "var(--slate-light)" }}>
-                Four mappings the two catalogs imply but the equivalency document does not state.
+                The equivalency document has no table for INF courses, so these are read from the two catalogs&rsquo;
+                own course descriptions. Each says why on the mapping table below.
                 {inferredCount > 0 ? ` ${inferredCount} of your courses rely on one.` : ""}
               </p>
             </div>
@@ -400,7 +401,7 @@ export default function Page() {
                             {m.via === "inferred" && (
                               <>
                                 <br />
-                                <span className="mark mark-inferred">Provisional</span>
+                                <span className="mark mark-inferred">Proposed</span>
                               </>
                             )}
                           </td>
@@ -409,11 +410,11 @@ export default function Page() {
                       ))}
                     </tbody>
                   </table>
-                  {audit.normalization.unmapped.length > 0 && (
+                  {audit.noEquivalent.length > 0 && (
                     <p className="note" style={{ marginTop: "0.7rem" }}>
-                      No published equivalent for{" "}
-                      <span className="mono">{audit.normalization.unmapped.map((u) => u.code).join(", ")}</span>. These
-                      still count as elective credit toward the 180.
+                      No counterpart in the new curriculum for{" "}
+                      <span className="mono">{audit.noEquivalent.map((u) => u.code).join(", ")}</span>. These still count
+                      as elective credit toward the 180.
                     </p>
                   )}
                 </section>
