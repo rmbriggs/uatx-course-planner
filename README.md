@@ -18,8 +18,14 @@ then edit their own copy.
   equivalency tables, including the combined cases (`ALT 1100` + `ALT 1120`
   together satisfy `PHIL 130`) and the one-to-many ones (`STM 2102` is both
   `MATH 230` and `MATH 231`).
-- **Scores every concentration at once**, sorted by how close you are, and
-  shows exactly which requirements remain.
+- **Scores every concentration at once**, sorted by how close you are. Every
+  pillar and every concentration group lists its requirements one by one,
+  marked done, under way, or still open, and names the course of yours that
+  filled each — "Ancient Rome, HIST 115 from your ALT 1010".
+- **Reads your grades.** Courses are scored 0-100 and anything below 60 fails,
+  so failed work earns no credit and fills no requirement. W, I, AU, U, P and S
+  are handled too. Your cumulative CSA is checked against the 73 needed to
+  graduate.
 - **Paces the rest of the degree.** Tell it how many terms you have left and it
   reports the credits per term you need to average.
 
@@ -66,6 +72,12 @@ what you actually earned, so the totals match your transcript; requirement
 satisfaction comes from the course your work maps to. That is why a 4.5-credit
 `STM 2102` stays worth 4.5 credits even though it maps to two 1.5-credit
 courses.
+
+**A failed course looks exactly like one in progress on a transcript** — both
+show 0.00 earned credits. Status is therefore read from the grade column
+against the catalog's scale (pp. 19-20), not from the credit column. A D
+(60-72) is "poor" by the catalog's own descriptor but still passes, so it is
+not treated as a failure.
 
 **Inferred mappings are marked and optional.** Four mappings are implied by the
 two catalogs but not stated in the equivalency document — for example the
