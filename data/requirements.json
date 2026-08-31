@@ -1,0 +1,1348 @@
+{
+  "program": "2026-2027",
+  "source": "UATX 2026-2027 Academic Catalog, Section 07 (pp. 56-77)",
+  "totalCredits": 180,
+  "pillars": [
+    {
+      "id": "if",
+      "name": "Intellectual Foundations",
+      "credits": 57
+    },
+    {
+      "id": "major",
+      "name": "Liberal Studies Major",
+      "credits": 96
+    },
+    {
+      "id": "polaris",
+      "name": "Polaris",
+      "credits": 27
+    }
+  ],
+  "intellectualFoundations": {
+    "credits": 57,
+    "groups": [
+      {
+        "id": "if-humanities",
+        "name": "Humanities and Fine Arts",
+        "type": "slots",
+        "page": 58,
+        "slots": [
+          {
+            "label": "Epic and Tragedy",
+            "options": [
+              [
+                "LITR 102"
+              ],
+              [
+                "INF 1102"
+              ]
+            ]
+          },
+          {
+            "label": "The Bible",
+            "options": [
+              [
+                "LITR 103"
+              ],
+              [
+                "INF 1103",
+                "INF 1104"
+              ]
+            ]
+          },
+          {
+            "label": "Plato and Aristotle",
+            "options": [
+              [
+                "PHIL 120"
+              ]
+            ]
+          },
+          {
+            "label": "The Scientific Revolution",
+            "options": [
+              [
+                "PHIL 130"
+              ]
+            ]
+          },
+          {
+            "label": "Writing and the English Language",
+            "options": [
+              [
+                "WRIT 120"
+              ],
+              [
+                "INF 1210"
+              ]
+            ]
+          },
+          {
+            "label": "Ancient Greece",
+            "options": [
+              [
+                "HIST 110"
+              ]
+            ]
+          },
+          {
+            "label": "Ancient Rome",
+            "options": [
+              [
+                "HIST 115"
+              ]
+            ]
+          },
+          {
+            "label": "Rise of the West",
+            "options": [
+              [
+                "HIST 130"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "if-science",
+        "name": "Natural Sciences, Mathematics, and Technology",
+        "type": "slots",
+        "choose": 3,
+        "page": 58,
+        "note": "Choose three from among SCIM 101, 102, 110, and 210.",
+        "slots": [
+          {
+            "label": "Quantitative Reasoning - Analysis",
+            "options": [
+              [
+                "SCIM 101"
+              ],
+              [
+                "INF 1130"
+              ],
+              [
+                "MATH 101"
+              ]
+            ]
+          },
+          {
+            "label": "Quantitative Reasoning - Data",
+            "options": [
+              [
+                "SCIM 102"
+              ],
+              [
+                "INF 1220"
+              ],
+              [
+                "MATH 220"
+              ]
+            ]
+          },
+          {
+            "label": "Introduction to Physics",
+            "options": [
+              [
+                "SCIM 110"
+              ],
+              [
+                "INF 1330"
+              ]
+            ]
+          },
+          {
+            "label": "Life Sciences, Ethics, and Policy",
+            "options": [
+              [
+                "SCIM 210"
+              ],
+              [
+                "INF 2110"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "if-econ",
+        "name": "Applied Economics",
+        "type": "slots",
+        "page": 58,
+        "note": "Take both.",
+        "slots": [
+          {
+            "label": "Applied Issues and Perspectives in Economics I",
+            "options": [
+              [
+                "ECON 101"
+              ],
+              [
+                "ECON 111"
+              ],
+              [
+                "INF 1320"
+              ]
+            ]
+          },
+          {
+            "label": "Applied Issues and Perspectives in Economics II",
+            "options": [
+              [
+                "ECON 102"
+              ],
+              [
+                "ECON 112"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "if-social",
+        "name": "Social and Behavioral Sciences",
+        "type": "slots",
+        "page": 58,
+        "slots": [
+          {
+            "label": "The Enlightenment",
+            "options": [
+              [
+                "HIST 210"
+              ]
+            ]
+          },
+          {
+            "label": "Making of the Modern World",
+            "options": [
+              [
+                "HIST 131"
+              ]
+            ]
+          },
+          {
+            "label": "The American Century",
+            "options": [
+              [
+                "AMCV 110"
+              ]
+            ]
+          },
+          {
+            "label": "The American Founding",
+            "options": [
+              [
+                "AMCV 200"
+              ],
+              [
+                "INF 2121"
+              ]
+            ]
+          },
+          {
+            "label": "American Frontiers",
+            "options": [
+              [
+                "AMCV 201"
+              ],
+              [
+                "INF 2200"
+              ]
+            ]
+          },
+          {
+            "label": "Ideological Experiments of the 20th Century",
+            "options": [
+              [
+                "HIST 111"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "inferredOptions": {
+      "INF 2121": "Accepted for AMCV 200 on the strength of the catalog prerequisite 'AMCV 200 or INF 2121'. Confirm with your advisor.",
+      "INF 2200": "Accepted for AMCV 201 on the strength of the catalog prerequisite 'AMCV 201 or INF 2200'. Confirm with your advisor."
+    },
+    "legacyProvision": {
+      "note": "The equivalency document states the new Intellectual Foundations is satisfied by the old Intellectual Foundations plus one course.",
+      "legacyCourses": [
+        "INF 1100",
+        "INF 1110",
+        "INF 1130",
+        "INF 1200",
+        "INF 1210",
+        "INF 1220",
+        "INF 1300",
+        "INF 1320",
+        "INF 1330",
+        "INF 2100",
+        "INF 2110",
+        "INF 2120",
+        "INF 2200",
+        "INF 2210",
+        "INF 2300"
+      ],
+      "additionalCredits": 3
+    }
+  },
+  "major": {
+    "credits": 96,
+    "page": 59,
+    "rules": [
+      {
+        "id": "major-200",
+        "label": "200-level coursework",
+        "minCredits": 18,
+        "levels": [
+          200
+        ]
+      },
+      {
+        "id": "major-300plus",
+        "label": "300/400-level coursework",
+        "minCredits": 45,
+        "levels": [
+          300,
+          400
+        ]
+      }
+    ],
+    "note": "Remaining credits are electives selected in consultation with a Faculty Advisor."
+  },
+  "polaris": {
+    "credits": 27,
+    "page": 76,
+    "required": [
+      {
+        "label": "Polaris Launch (first course)",
+        "options": [
+          [
+            "POLR 110"
+          ]
+        ]
+      },
+      {
+        "label": "Polaris Gateway (final course)",
+        "options": [
+          [
+            "POLR 490"
+          ]
+        ]
+      }
+    ],
+    "buildCredits": 21,
+    "buildCourses": [
+      "POLR 310",
+      "POLR 311"
+    ],
+    "buildEquivalents": [
+      "POLR 210",
+      "POLR 211",
+      "POLR 212",
+      "POLR 312",
+      "POLR 313"
+    ],
+    "buildEquivalentCap": 6,
+    "note": "A minimum of 21 credit hours of Polaris Build is required. Of those 21, up to 6 credits can be Build equivalents (Polaris courses, bootcamps, exams, or approved experiences such as internships and apprenticeships)."
+  },
+  "concentrations": [
+    {
+      "id": "philosophy",
+      "name": "Philosophy",
+      "center": "Arts",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "phil-core",
+          "name": "Lower Division - complete all 5",
+          "type": "slots",
+          "page": 62,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "PHIL 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "PHIL 215"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "PHIL 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "PHIL 225"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "PHIL 230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phil-lower-choice",
+          "name": "Lower Division - complete 1 from",
+          "type": "pick",
+          "choose": 1,
+          "pool": [
+            "LITR 220",
+            "AMCV 225",
+            "AMCV 230"
+          ],
+          "page": 62
+        },
+        {
+          "id": "phil-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "PHIL 310",
+            "PHIL 315",
+            "PHIL 320",
+            "PHIL 325",
+            "PHIL 330",
+            "PHIL 335",
+            "PHIL 340",
+            "PHIL 345",
+            "PHIL 350",
+            "PHIL 355",
+            "PHIL 360",
+            "PHIL 365",
+            "PHIL 370",
+            "PHIL 410",
+            "PHIL 415",
+            "PHIL 420",
+            "PHIL 425",
+            "PHIL 430",
+            "PHIL 435",
+            "HIST 310",
+            "HIST 320",
+            "HIST 335",
+            "HIST 340",
+            "HIST 345",
+            "HIST 350",
+            "HIST 355",
+            "HIST 370",
+            "HIST 375",
+            "HIST 380",
+            "LITR 335",
+            "LITR 340",
+            "LITR 341",
+            "LITR 430",
+            "AMCV 340",
+            "AMCV 350",
+            "AMCV 355",
+            "AMCV 360",
+            "AMCV 365",
+            "AMCV 370",
+            "AMCV 420"
+          ],
+          "page": 63
+        }
+      ],
+      "page": 62
+    },
+    {
+      "id": "history",
+      "name": "History",
+      "center": "Arts",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "hist-core",
+          "name": "Lower Division - complete all 3",
+          "type": "slots",
+          "page": 64,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "HIST 211"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "HIST 215"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "HIST 220"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hist-lower-choice",
+          "name": "Lower Division - complete 3 from",
+          "type": "pick",
+          "choose": 3,
+          "pool": [
+            "LITR 210",
+            "LITR 220",
+            "AMCV 210",
+            "AMCV 225"
+          ],
+          "page": 65
+        },
+        {
+          "id": "hist-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "HIST 310",
+            "HIST 315",
+            "HIST 320",
+            "HIST 325",
+            "HIST 330",
+            "HIST 335",
+            "HIST 340",
+            "HIST 345",
+            "HIST 350",
+            "HIST 355",
+            "HIST 360",
+            "HIST 361",
+            "HIST 365",
+            "HIST 370",
+            "HIST 375",
+            "HIST 380",
+            "HIST 410",
+            "HIST 415",
+            "HIST 420",
+            "HIST 425",
+            "HIST 430",
+            "HIST 435",
+            "LITR 340",
+            "LITR 341",
+            "LITR 345",
+            "AMCV 310",
+            "AMCV 325",
+            "AMCV 330",
+            "AMCV 340",
+            "AMCV 345",
+            "AMCV 370",
+            "AMCV 375",
+            "AMCV 415"
+          ],
+          "page": 65
+        }
+      ],
+      "page": 64
+    },
+    {
+      "id": "literature",
+      "name": "Literature",
+      "center": "Arts",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "litr-core",
+          "name": "Lower Division - complete all 5",
+          "type": "slots",
+          "page": 66,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "LITR 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "LITR 215"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "LITR 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "LITR 225"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "LITR 230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "litr-lower-choice",
+          "name": "Lower Division - complete 1 from",
+          "type": "pick",
+          "choose": 1,
+          "pool": [
+            "AMCV 215",
+            "HIST 211",
+            "HIST 215",
+            "HIST 220"
+          ],
+          "page": 67
+        },
+        {
+          "id": "litr-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "PHIL 335",
+            "PHIL 340",
+            "PHIL 350",
+            "PHIL 370",
+            "HIST 310",
+            "HIST 320",
+            "HIST 325",
+            "HIST 330",
+            "HIST 335",
+            "HIST 360",
+            "HIST 361",
+            "HIST 380",
+            "HIST 410",
+            "HIST 415",
+            "HIST 430",
+            "LITR 310",
+            "LITR 315",
+            "LITR 320",
+            "LITR 325",
+            "LITR 330",
+            "LITR 335",
+            "LITR 340",
+            "LITR 341",
+            "LITR 345",
+            "LITR 350",
+            "LITR 355",
+            "LITR 360",
+            "LITR 365",
+            "LITR 410",
+            "LITR 415",
+            "LITR 420",
+            "LITR 425",
+            "LITR 430",
+            "WRIT 310",
+            "WRIT 410",
+            "AMCV 315",
+            "AMCV 410",
+            "AMCV 425",
+            "AMCV 430",
+            "AMCV 435"
+          ],
+          "page": 67
+        }
+      ],
+      "page": 66
+    },
+    {
+      "id": "american-civilization",
+      "name": "American Civilization",
+      "center": "Arts",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "amcv-core",
+          "name": "Lower Division - complete all 5",
+          "type": "slots",
+          "page": 68,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "AMCV 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "AMCV 215"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "AMCV 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "AMCV 225"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "AMCV 230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "amcv-lower-choice",
+          "name": "Lower Division - complete 1 from",
+          "type": "pick",
+          "choose": 1,
+          "pool": [
+            "HIST 215",
+            "HIST 220",
+            "LITR 225"
+          ],
+          "page": 69
+        },
+        {
+          "id": "amcv-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "PHIL 325",
+            "PHIL 330",
+            "PHIL 335",
+            "PHIL 370",
+            "PHIL 430",
+            "PHIL 435",
+            "HIST 310",
+            "HIST 315",
+            "HIST 320",
+            "HIST 325",
+            "HIST 330",
+            "HIST 335",
+            "HIST 360",
+            "HIST 365",
+            "HIST 370",
+            "HIST 375",
+            "HIST 380",
+            "LITR 345",
+            "LITR 360",
+            "LITR 365",
+            "AMCV 310",
+            "AMCV 315",
+            "AMCV 320",
+            "AMCV 325",
+            "AMCV 330",
+            "AMCV 340",
+            "AMCV 345",
+            "AMCV 350",
+            "AMCV 355",
+            "AMCV 360",
+            "AMCV 365",
+            "AMCV 370",
+            "AMCV 375",
+            "AMCV 410",
+            "AMCV 415",
+            "AMCV 420",
+            "AMCV 425",
+            "AMCV 430",
+            "AMCV 435"
+          ],
+          "page": 69
+        }
+      ],
+      "page": 68
+    },
+    {
+      "id": "mathematics",
+      "name": "Mathematics",
+      "center": "Sciences",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [
+        {
+          "options": [
+            [
+              "MATH 101"
+            ]
+          ],
+          "label": "MATH 101 Single-Variable Calculus",
+          "note": "Satisfies SCIM 101 in the Intellectual Foundations."
+        }
+      ],
+      "groups": [
+        {
+          "id": "math-core",
+          "name": "Lower Division - complete all 7",
+          "type": "slots",
+          "page": 70,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 230"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 231"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 240"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 250"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "MATH 310",
+            "MATH 311",
+            "MATH 320",
+            "MATH 321",
+            "MATH 325",
+            "MATH 330",
+            "MATH 335",
+            "MATH 340",
+            "MATH 360",
+            "MATH 361",
+            "MATH 365",
+            "MATH 415",
+            "MATH 420",
+            "MATH 430",
+            "MATH 435",
+            "MATH 440",
+            "MATH 460",
+            "MATH 465",
+            "MATH 470"
+          ],
+          "page": 71
+        }
+      ],
+      "page": 70
+    },
+    {
+      "id": "csai",
+      "name": "Computer Science and Artificial Intelligence",
+      "center": "Sciences",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [
+        {
+          "options": [
+            [
+              "MATH 101"
+            ]
+          ],
+          "label": "MATH 101 Single-Variable Calculus",
+          "note": "Satisfies SCIM 101 in the Intellectual Foundations."
+        },
+        {
+          "options": [
+            [
+              "MATH 240"
+            ]
+          ],
+          "label": "MATH 240 Applied Mathematical Methods"
+        },
+        {
+          "options": [
+            [
+              "CSAI 110"
+            ]
+          ],
+          "label": "CSAI 110 Introduction to Programming"
+        }
+      ],
+      "groups": [
+        {
+          "id": "csai-core",
+          "name": "Lower Division - complete all 7",
+          "type": "slots",
+          "page": 72,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 230"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 210"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 230"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 235"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "csai-upper-core",
+          "name": "Upper Division - complete both",
+          "type": "slots",
+          "page": 72,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "CSAI 350"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "csai-subtopic",
+          "name": "Upper Division - complete 4 from one subtopic",
+          "type": "oneOf",
+          "choose": 4,
+          "page": 72,
+          "pools": [
+            {
+              "name": "Computer Science and Systems",
+              "pool": [
+                "CSAI 310",
+                "CSAI 320",
+                "CSAI 330",
+                "CSAI 340",
+                "CSAI 400",
+                "CSAI 410",
+                "CSAI 420"
+              ]
+            },
+            {
+              "name": "Machine Learning",
+              "pool": [
+                "CSAI 360",
+                "CSAI 370",
+                "CSAI 380",
+                "CSAI 401",
+                "CSAI 411",
+                "CSAI 421"
+              ]
+            }
+          ]
+        }
+      ],
+      "page": 71
+    },
+    {
+      "id": "economics",
+      "name": "Economics",
+      "center": "Sciences",
+      "kind": "concentration",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [
+        {
+          "options": [
+            [
+              "MATH 101"
+            ]
+          ],
+          "label": "MATH 101 Single-Variable Calculus",
+          "note": "Satisfies SCIM 101 in the Intellectual Foundations."
+        },
+        {
+          "options": [
+            [
+              "MATH 240"
+            ]
+          ],
+          "label": "MATH 240 Applied Mathematical Methods"
+        },
+        {
+          "options": [
+            [
+              "ECON 111"
+            ],
+            [
+              "ECON 101"
+            ]
+          ],
+          "label": "ECON 111 or ECON 101"
+        },
+        {
+          "options": [
+            [
+              "ECON 112"
+            ],
+            [
+              "ECON 102"
+            ]
+          ],
+          "label": "ECON 112 or ECON 102"
+        }
+      ],
+      "groups": [
+        {
+          "id": "econ-core",
+          "name": "Lower Division - complete all 7",
+          "type": "slots",
+          "page": 73,
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ECON 201"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ECON 202"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ECON 203"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ECON 204"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "MATH 230"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ECON 230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "econ-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "ECON 300",
+            "ECON 301",
+            "ECON 302",
+            "ECON 306",
+            "ECON 332",
+            "ECON 340",
+            "ECON 351",
+            "ECON 353",
+            "ECON 360",
+            "ECON 361",
+            "ECON 362",
+            "ECON 370",
+            "ECON 371",
+            "ECON 372",
+            "ECON 373",
+            "ECON 390",
+            "ECON 391",
+            "ECON 396",
+            "ECON 405",
+            "ECON 420",
+            "ECON 421",
+            "ECON 422",
+            "ECON 423",
+            "ECON 430",
+            "ECON 431",
+            "ECON 435",
+            "ECON 440"
+          ],
+          "page": 74
+        }
+      ],
+      "page": 73
+    },
+    {
+      "id": "business-innovation",
+      "name": "Business Innovation",
+      "center": "Sciences",
+      "kind": "applied track",
+      "credits": 36,
+      "lowerCredits": 18,
+      "upperCredits": 18,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "busi-core",
+          "name": "Lower Division - complete all 6",
+          "type": "slots",
+          "page": 75,
+          "slots": [
+            {
+              "label": "Entrepreneurial Strategy",
+              "options": [
+                [
+                  "BUSI 210"
+                ],
+                [
+                  "EPH 2900J"
+                ]
+              ]
+            },
+            {
+              "label": "Business Foundations for Builders",
+              "options": [
+                [
+                  "BUSI 215"
+                ],
+                [
+                  "EPH 2900K"
+                ]
+              ]
+            },
+            {
+              "label": "Leading with Principles",
+              "options": [
+                [
+                  "BUSI 230"
+                ]
+              ]
+            },
+            {
+              "label": "Technology and AI for Builders",
+              "options": [
+                [
+                  "BUSI 235"
+                ]
+              ]
+            },
+            {
+              "label": "Law for Builders",
+              "options": [
+                [
+                  "BUSI 240"
+                ]
+              ]
+            },
+            {
+              "label": "Building & Product Design",
+              "options": [
+                [
+                  "BUSI 245"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "busi-upper",
+          "name": "Upper Division - complete 6 from",
+          "type": "pick",
+          "choose": 6,
+          "pool": [
+            "BUSI 310",
+            "BUSI 315",
+            "BUSI 320",
+            "BUSI 330",
+            "BUSI 335",
+            "BUSI 340",
+            "BUSI 350",
+            "BUSI 355",
+            "BUSI 360",
+            "BUSI 410",
+            "BUSI 415",
+            "BUSI 420",
+            "BUSI 430",
+            "BUSI 435",
+            "BUSI 440",
+            "BUSI 450",
+            "BUSI 455",
+            "BUSI 460",
+            "BUSI 465"
+          ],
+          "page": 75
+        }
+      ],
+      "page": 74
+    }
+  ]
+}

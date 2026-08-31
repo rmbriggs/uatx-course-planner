@@ -1,0 +1,230 @@
+"""Turn the UATX equivalency tables (.docx) into machine-checkable rules.
+
+Each rule says: holding every course in `from` grants the student one of the
+alternatives in `grants` (each alternative is a set of new-catalog courses that
+are all awarded together), or generic elective credit at a given level.
+
+Anything the parser cannot resolve confidently is reported and must be added to
+OVERRIDES by hand rather than guessed at.
+"""
+import json, re, sys
+from pathlib import Path
+
+import docx
+
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "data" / "raw"
+OUT = ROOT / "data"
+
+CODE = re.compile(r"\b([A-Z]{3,4})\s?(\d{3})\b")
+OLD_CODE = re.compile(r"^([A-Z]{3})\s?(\d{4}[A-Z]?)")
+
+# Table index -> which former center the courses came from.
+CENTER_BY_TABLE = {2: "Polaris", 3: "CAL", 4: "CEPH", 5: "STEM"}
+
+# The equivalency document names two codes that do not exist in the 2026-2027
+# catalog. Both are unambiguous and are corrected here, with the correction
+# surfaced on the rule so a student can see it was interpreted.
+CODE_CORRECTIONS = {
+    # The doc says "HIST 380 Special Topic in History (1.5)". HIST 380 is
+    # "Postmodernism and Postcolonialism" (3 cr); the 1.5 cr upper-division
+    # special topic in History is HIST 379.
+    "HIST 380 Special Topic in History": ("HIST 379", "Catalog lists HIST 380 as Postmodernism and Postcolonialism; the 1.5 cr Special Topic in History is HIST 379."),
+    # The Law subject code is LAWS in the 2026-2027 catalog.
+    "LAW 380": ("LAWS 380", "The Law subject code is LAWS in the 2026-2027 catalog."),
+}
+
+# Rows whose prose encodes conditional or multi-course logic. Keyed by
+# (original code, original title) because ALT 4500 is reused for three courses.
+OVERRIDES = {
+    ("ALT 1100", "Faith, Reason, and Science I: Medieval and Early Modern (1.5)"):
+        [{"from": ["ALT 1100", "ALT 1120"], "grants": [["PHIL 130"]], "kind": "satisfies"}],
+    ("ALT 1120", "Faith, Reason, and Science II: Modern and Contemporary (1.5)"):
+        [],  # same combined rule as ALT 1100, recorded once
+    ("ALT 4510L", "Kant"): [
+        {"from": ["ALT 4510L"], "grants": [["PHIL 410"]], "kind": "equals"},
+        {"from": ["ALT 4510L", "ALT 4510B"], "grants": [["PHIL 225"]], "kind": "satisfies"},
+        {"from": ["ALT 4510L", "ALT 4510M"], "grants": [["PHIL 225"]], "kind": "satisfies"},
+    ],
+    ("ALT 4510M", "Hegel"): [
+        {"from": ["ALT 4510M"], "grants": [["PHIL 410"]], "kind": "equals"},
+    ],
+    ("STM 1001 & 1002", "Calculus I & II (4.5 each)"): [
+        {"from": ["STM 1001", "STM 1002"], "grants": [["MATH 101"]], "kind": "satisfies"},
+    ],
+    ("STM 2102", "Statistics (4.5)"): [
+        {"from": ["STM 2102"], "grants": [["MATH 230", "MATH 231"]], "kind": "equals"},
+    ],
+    ("STM 3910A", "Statistical Modeling"): [
+        {"from": ["STM 3910A"], "grants": [["MATH 230", "MATH 231"]], "kind": "equals"},
+    ],
+    ("STM 3900A & B", "Artificial Intelligence I & II (1.5 each)"): [
+        {"from": ["STM 3900A"], "grants": [["CSAI 379"]], "kind": "equals"},
+        {"from": ["STM 3900B"], "grants": [["CSAI 379"]], "kind": "equals"},
+        {"from": ["STM 3900A", "STM 3900B"], "grants": [["CSAI 385"]], "kind": "equals"},
+    ],
+    ("STM 3910B/C", "Intro/Accelerated Intro to Programming"): [
+        {"from": ["STM 3910B"], "grants": [["CSAI 110"]], "kind": "equals"},
+        {"from": ["STM 3910C"], "grants": [["CSAI 110"]], "kind": "equals"},
+    ],
+}
+
+
+# Mappings the equivalency document does not state, but that the two catalogs
+# imply strongly enough to be worth offering. Every one is labelled `inferred`
+# so the site can show it as provisional and let a student switch it off; none
+# is presented as settled policy.
+INFERRED = [
+    {
+        "from": ["INF 2300"], "grants": [["HIST 111"]], "kind": "satisfies", "center": "IF",
+        "title": "Ideological Experiments of the 20th Century",
+        "reason": "Identical course title to HIST 111 in the 2026-2027 Intellectual Foundations.",
+    },
+    {
+        "from": ["INF 2100"], "grants": [["PHIL 430"]], "kind": "satisfies", "center": "IF",
+        "title": "The Uses and Abuses of Technology",
+        "reason": "PHIL 430 is titled 'Uses and Abuses of Technology'. Note this would count a former Intellectual Foundations course as 300-level work, so confirm it with your advisor.",
+    },
+    {
+        "from": ["INF 2121"], "grants": [["AMCV 200"]], "kind": "satisfies", "center": "IF",
+        "title": "Early Modernity",
+        "reason": "The catalog lists 'Prerequisite: AMCV 200 or INF 2121', treating the two as interchangeable.",
+    },
+    {
+        "from": ["INF 2200"], "grants": [["AMCV 201"]], "kind": "satisfies", "center": "IF",
+        "title": "The American Experiment",
+        "reason": "The catalog lists 'Prerequisite: AMCV 201 or INF 2200', treating the two as interchangeable.",
+    },
+]
+
+
+def norm(s: str) -> str:
+    s = s.replace("’", "'").replace("–", "-").replace("—", "-")
+    s = re.sub(r"\s+", " ", s).strip()
+    # the doc frequently loses the space before a parenthesised credit value
+    s = re.sub(r"([A-Za-z])\((\d)", r"\1 (\2", s)
+    return s
+
+
+def load_known_codes():
+    data = json.loads((OUT / "courses.json").read_text())
+    return {c["code"] for c in data["courses"]} | {c["code"] for c in data["legacyCourses"]}
+
+
+def apply_corrections(text: str):
+    notes = []
+    for wrong, (right, why) in CODE_CORRECTIONS.items():
+        if wrong in text:
+            text = text.replace(wrong, right)
+            notes.append(why)
+    return text, notes
+
+
+def parse_text(text: str):
+    """Return (grants, electiveGrant, kind) or None when the prose is not routine."""
+    t = norm(text)
+    low = t.lower()
+
+    m = re.search(r"satisfies (\d)00-level elective", low)
+    if m:
+        return None, {"level": int(m.group(1)) * 100}, "elective"
+
+    if "combined with" in low or "if combined" in low or "(one only)" in low or "(both)" in low:
+        return None  # conditional logic belongs in OVERRIDES
+
+    kind = "equals" if t.lstrip().startswith("=") else (
+        "replaced" if "replaced" in low else "satisfies")
+
+    # split alternatives on "(or)" / " or " that sit between course codes
+    parts = re.split(r"\s*\(or\)\s*|\s+or\s+", t)
+    grants = []
+    for part in parts:
+        codes = [f"{a} {b}" for a, b in CODE.findall(part)]
+        if codes:
+            grants.append(codes)
+    if not grants:
+        return None
+    return grants, None, kind
+
+
+def main():
+    known = load_known_codes()
+    doc = docx.Document(RAW / "equivalency_tables.docx")
+    rules, unresolved = [], []
+
+    for ti, table in enumerate(doc.tables):
+        center = CENTER_BY_TABLE.get(ti)
+        if center is None:
+            continue
+        for row in table.rows:
+            cells = [norm(c.text) for c in row.cells]
+            if len(cells) < 3:
+                continue
+            code, title, text = cells[0], cells[1], cells[2]
+            if not OLD_CODE.match(code) or not text:
+                continue
+
+            key = (code, title)
+            if key in OVERRIDES:
+                for spec in OVERRIDES[key]:
+                    rules.append({**spec, "center": center, "title": title, "raw": text})
+                continue
+
+            text, notes = apply_corrections(text)
+            parsed = parse_text(text)
+            if parsed is None:
+                unresolved.append((code, title, text))
+                continue
+            grants, elective, kind = parsed
+            rule = {
+                "from": [code],
+                "kind": kind,
+                "center": center,
+                "title": title,
+                "raw": text,
+            }
+            if elective:
+                rule["electiveGrant"] = elective
+                rule["grants"] = []
+            else:
+                rule["grants"] = grants
+            if notes:
+                rule["note"] = " ".join(notes)
+            rules.append(rule)
+
+    for spec in INFERRED:
+        rules.append({**spec, "inferred": True, "raw": spec["reason"]})
+
+    # validate every referenced code
+    bad_from, bad_to = set(), set()
+    for r in rules:
+        for c in r["from"]:
+            if c not in known:
+                bad_from.add(c)
+        for alt in r.get("grants", []):
+            for c in alt:
+                if c not in known:
+                    bad_to.add(c)
+
+    (OUT / "equivalencies.json").write_text(
+        json.dumps({"source": "UATX Equivalency document TABLES.docx", "rules": rules}, indent=2) + "\n"
+    )
+
+    print(f"rules: {len(rules)}")
+    print(f"  inferred           : {sum(1 for r in rules if r.get('inferred'))}")
+    print(f"  direct/alternative : {sum(1 for r in rules if r.get('grants'))}")
+    print(f"  elective-only      : {sum(1 for r in rules if r.get('electiveGrant'))}")
+    print(f"  multi-course 'from': {sum(1 for r in rules if len(r['from']) > 1)}")
+    if unresolved:
+        print(f"\nUNRESOLVED ({len(unresolved)}) - add to OVERRIDES:")
+        for c, t, x in unresolved:
+            print(f"  {c} | {t} | {x}")
+    if bad_from:
+        print(f"\nUNKNOWN legacy codes ({len(bad_from)}): {sorted(bad_from)}")
+    if bad_to:
+        print(f"\nUNKNOWN target codes ({len(bad_to)}): {sorted(bad_to)}")
+    return 1 if (unresolved or bad_to) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

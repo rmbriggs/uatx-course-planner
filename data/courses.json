@@ -1,0 +1,6870 @@
+{
+  "source": {
+    "current": "UATX 2026-2027 Academic Catalog (pp. 78-160)",
+    "legacy": "UATX 2026-2027 Academic Catalog (pp. 161-191) + UATX 2024-2025 Academic Catalog (pp. 44-64)"
+  },
+  "courses": [
+    {
+      "code": "AMCV 110",
+      "subject": "AMCV",
+      "number": "110",
+      "title": "The American Century",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 78
+    },
+    {
+      "code": "AMCV 200",
+      "subject": "AMCV",
+      "number": "200",
+      "title": "The American Founding",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 78
+    },
+    {
+      "code": "AMCV 201",
+      "subject": "AMCV",
+      "number": "201",
+      "title": "American Frontiers",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 79
+    },
+    {
+      "code": "AMCV 210",
+      "subject": "AMCV",
+      "number": "210",
+      "title": "American History I: Colonial Period to Civil War",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 79,
+      "prerequisite": "AMCV 200 or INF 2121"
+    },
+    {
+      "code": "AMCV 215",
+      "subject": "AMCV",
+      "number": "215",
+      "title": "American Literature I: Eighteenth and Nineteenth Centuries",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 79,
+      "prerequisite": "AMCV 201 or INF 2200"
+    },
+    {
+      "code": "AMCV 220",
+      "subject": "AMCV",
+      "number": "220",
+      "title": "American Politics I: Ideas and Institutions",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 80
+    },
+    {
+      "code": "AMCV 225",
+      "subject": "AMCV",
+      "number": "225",
+      "title": "Tocqueville, Democracy in America",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 80,
+      "prerequisite": "AMCV 200 or INF 2121"
+    },
+    {
+      "code": "AMCV 230",
+      "subject": "AMCV",
+      "number": "230",
+      "title": "American Philosophy: From Puritans to Pragmatists",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 80
+    },
+    {
+      "code": "AMCV 280",
+      "subject": "AMCV",
+      "number": "280",
+      "title": "Special Topic in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 80
+    },
+    {
+      "code": "AMCV 281",
+      "subject": "AMCV",
+      "number": "281",
+      "title": "Independent Study in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 80
+    },
+    {
+      "code": "AMCV 285",
+      "subject": "AMCV",
+      "number": "285",
+      "title": "Special Topic in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 81
+    },
+    {
+      "code": "AMCV 286",
+      "subject": "AMCV",
+      "number": "286",
+      "title": "Independent Study in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 81
+    },
+    {
+      "code": "AMCV 290",
+      "subject": "AMCV",
+      "number": "290",
+      "title": "Special Topic in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 81
+    },
+    {
+      "code": "AMCV 291",
+      "subject": "AMCV",
+      "number": "291",
+      "title": "Independent Study in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 81
+    },
+    {
+      "code": "AMCV 310",
+      "subject": "AMCV",
+      "number": "310",
+      "title": "American History II: Civil War to Cold War",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 81,
+      "prerequisite": "AMCV 210"
+    },
+    {
+      "code": "AMCV 315",
+      "subject": "AMCV",
+      "number": "315",
+      "title": "American Literature II: Twentieth and Twenty-First Century",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 82,
+      "prerequisite": "AMCV 110"
+    },
+    {
+      "code": "AMCV 320",
+      "subject": "AMCV",
+      "number": "320",
+      "title": "American Politics II: Rights and Duties",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 82,
+      "prerequisite": "AMCV 220"
+    },
+    {
+      "code": "AMCV 325",
+      "subject": "AMCV",
+      "number": "325",
+      "title": "The U.S. Presidency",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 82,
+      "prerequisite": "AMCV 310"
+    },
+    {
+      "code": "AMCV 330",
+      "subject": "AMCV",
+      "number": "330",
+      "title": "U.S. Foreign Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 82,
+      "prerequisite": "AMCV 315"
+    },
+    {
+      "code": "AMCV 340",
+      "subject": "AMCV",
+      "number": "340",
+      "title": "Religion and Politics in America",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 83,
+      "prerequisite": "AMCV 201 or INF 2200"
+    },
+    {
+      "code": "AMCV 345",
+      "subject": "AMCV",
+      "number": "345",
+      "title": "The Legacy of Slavery",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 83,
+      "prerequisite": "AMCV 201 or INF 2200"
+    },
+    {
+      "code": "AMCV 350",
+      "subject": "AMCV",
+      "number": "350",
+      "title": "American Political Philosophy after WWI",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 83
+    },
+    {
+      "code": "AMCV 355",
+      "subject": "AMCV",
+      "number": "355",
+      "title": "Liberalism and Conservatism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 84,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "AMCV 360",
+      "subject": "AMCV",
+      "number": "360",
+      "title": "Political Theology",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 84,
+      "prerequisite": "HIST 130 or INF 2121"
+    },
+    {
+      "code": "AMCV 365",
+      "subject": "AMCV",
+      "number": "365",
+      "title": "Philosophers of Political Economy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 84,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "AMCV 370",
+      "subject": "AMCV",
+      "number": "370",
+      "title": "Capitalism and its Critics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 84,
+      "prerequisite": "HIST 111 or INF 2300"
+    },
+    {
+      "code": "AMCV 375",
+      "subject": "AMCV",
+      "number": "375",
+      "title": "Statesmanship and American Greatness",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 85,
+      "prerequisite": "AMCV 201 or INF 2200"
+    },
+    {
+      "code": "AMCV 380",
+      "subject": "AMCV",
+      "number": "380",
+      "title": "Special Topic in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 85
+    },
+    {
+      "code": "AMCV 381",
+      "subject": "AMCV",
+      "number": "381",
+      "title": "Independent Study in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 85
+    },
+    {
+      "code": "AMCV 385",
+      "subject": "AMCV",
+      "number": "385",
+      "title": "Special Topic in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 85
+    },
+    {
+      "code": "AMCV 386",
+      "subject": "AMCV",
+      "number": "386",
+      "title": "Independent Study in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 85
+    },
+    {
+      "code": "AMCV 390",
+      "subject": "AMCV",
+      "number": "390",
+      "title": "Special Topic in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 85
+    },
+    {
+      "code": "AMCV 391",
+      "subject": "AMCV",
+      "number": "391",
+      "title": "Independent Study in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 86
+    },
+    {
+      "code": "AMCV 410",
+      "subject": "AMCV",
+      "number": "410",
+      "title": "Oratory and Rhetoric",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 86,
+      "prerequisite": "AMCV 201 or INF 2200"
+    },
+    {
+      "code": "AMCV 415",
+      "subject": "AMCV",
+      "number": "415",
+      "title": "Great Events of American History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 86
+    },
+    {
+      "code": "AMCV 420",
+      "subject": "AMCV",
+      "number": "420",
+      "title": "Great American Thinkers",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 86
+    },
+    {
+      "code": "AMCV 425",
+      "subject": "AMCV",
+      "number": "425",
+      "title": "The American Novel",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 86
+    },
+    {
+      "code": "AMCV 430",
+      "subject": "AMCV",
+      "number": "430",
+      "title": "American Cinema",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 86
+    },
+    {
+      "code": "AMCV 435",
+      "subject": "AMCV",
+      "number": "435",
+      "title": "American Poetry",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 480",
+      "subject": "AMCV",
+      "number": "480",
+      "title": "Special Topic in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 481",
+      "subject": "AMCV",
+      "number": "481",
+      "title": "Independent Study in American Civilization",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 485",
+      "subject": "AMCV",
+      "number": "485",
+      "title": "Special Topic in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 486",
+      "subject": "AMCV",
+      "number": "486",
+      "title": "Independent Study in American Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 490",
+      "subject": "AMCV",
+      "number": "490",
+      "title": "Special Topic in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "AMCV 491",
+      "subject": "AMCV",
+      "number": "491",
+      "title": "Independent Study in American Civilization",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 87
+    },
+    {
+      "code": "BUSI 210",
+      "subject": "BUSI",
+      "number": "210",
+      "title": "Entrepreneurial Strategy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 215",
+      "subject": "BUSI",
+      "number": "215",
+      "title": "Business Foundations for Builders",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 230",
+      "subject": "BUSI",
+      "number": "230",
+      "title": "Leading with Principles",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 235",
+      "subject": "BUSI",
+      "number": "235",
+      "title": "Technology and AI for Builders",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 240",
+      "subject": "BUSI",
+      "number": "240",
+      "title": "Law for Builders",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 245",
+      "subject": "BUSI",
+      "number": "245",
+      "title": "Building & Product Design",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 280",
+      "subject": "BUSI",
+      "number": "280",
+      "title": "Special Topic in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 281",
+      "subject": "BUSI",
+      "number": "281",
+      "title": "Independent Study in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 285",
+      "subject": "BUSI",
+      "number": "285",
+      "title": "Special Topic in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 286",
+      "subject": "BUSI",
+      "number": "286",
+      "title": "Independent Study in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 290",
+      "subject": "BUSI",
+      "number": "290",
+      "title": "Special Topic in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 291",
+      "subject": "BUSI",
+      "number": "291",
+      "title": "Independent Study in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 310",
+      "subject": "BUSI",
+      "number": "310",
+      "title": "AI-Native Company Building",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 315",
+      "subject": "BUSI",
+      "number": "315",
+      "title": "Entrepreneurial Finance",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 89
+    },
+    {
+      "code": "BUSI 320",
+      "subject": "BUSI",
+      "number": "320",
+      "title": "Venture Law & Deal-Making",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 330",
+      "subject": "BUSI",
+      "number": "330",
+      "title": "New Venture Creation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 335",
+      "subject": "BUSI",
+      "number": "335",
+      "title": "Venture Capital & Fundraising",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 340",
+      "subject": "BUSI",
+      "number": "340",
+      "title": "Regulation, Antitrust & Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 350",
+      "subject": "BUSI",
+      "number": "350",
+      "title": "Product-Market Fit & Validation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 355",
+      "subject": "BUSI",
+      "number": "355",
+      "title": "Financial Modeling & Valuation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 360",
+      "subject": "BUSI",
+      "number": "360",
+      "title": "Talent, Hiring & Compensation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 380",
+      "subject": "BUSI",
+      "number": "380",
+      "title": "Special Topic in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 381",
+      "subject": "BUSI",
+      "number": "381",
+      "title": "Independent Study in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 385",
+      "subject": "BUSI",
+      "number": "385",
+      "title": "\u2022 Special Topic in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 90
+    },
+    {
+      "code": "BUSI 386",
+      "subject": "BUSI",
+      "number": "386",
+      "title": "Independent Study in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 390",
+      "subject": "BUSI",
+      "number": "390",
+      "title": "Special Topic in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 391",
+      "subject": "BUSI",
+      "number": "391",
+      "title": "Independent Study in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 410",
+      "subject": "BUSI",
+      "number": "410",
+      "title": "Go-to-Market & Growth",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 415",
+      "subject": "BUSI",
+      "number": "415",
+      "title": "Behavioral Economics for Bulders",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 420",
+      "subject": "BUSI",
+      "number": "420",
+      "title": "Negotiation & Influence",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 430",
+      "subject": "BUSI",
+      "number": "430",
+      "title": "Scaling & Competitive Moats",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 88
+    },
+    {
+      "code": "BUSI 435",
+      "subject": "BUSI",
+      "number": "435",
+      "title": "Markets & Market Design",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 440",
+      "subject": "BUSI",
+      "number": "440",
+      "title": "Building & Scaling Culture",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 450",
+      "subject": "BUSI",
+      "number": "450",
+      "title": "Technology Innovation & Disruption",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 455",
+      "subject": "BUSI",
+      "number": "455",
+      "title": "Mergers, Acquisitions & Exits",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 91
+    },
+    {
+      "code": "BUSI 460",
+      "subject": "BUSI",
+      "number": "460",
+      "title": "Virtue, Ethics & the Founder",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 465",
+      "subject": "BUSI",
+      "number": "465",
+      "title": "Applied AI for Startups",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 480",
+      "subject": "BUSI",
+      "number": "480",
+      "title": "Special Topic in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 481",
+      "subject": "BUSI",
+      "number": "481",
+      "title": "Independent Study in Business Innovation",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 485",
+      "subject": "BUSI",
+      "number": "485",
+      "title": "Special Topic in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 486",
+      "subject": "BUSI",
+      "number": "486",
+      "title": "Independent Study in Business Innovation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 490",
+      "subject": "BUSI",
+      "number": "490",
+      "title": "Special Topic in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "BUSI 491",
+      "subject": "BUSI",
+      "number": "491",
+      "title": "Independent Study in Business Innovation",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "CSAI 110",
+      "subject": "CSAI",
+      "number": "110",
+      "title": "Introduction to Programming",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 92
+    },
+    {
+      "code": "CSAI 210",
+      "subject": "CSAI",
+      "number": "210",
+      "title": "Data Structures",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 93,
+      "prerequisite": "CSAI 110"
+    },
+    {
+      "code": "CSAI 220",
+      "subject": "CSAI",
+      "number": "220",
+      "title": "Databases",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 93,
+      "prerequisite": "CSAI 210"
+    },
+    {
+      "code": "CSAI 230",
+      "subject": "CSAI",
+      "number": "230",
+      "title": "AI-Enabled Software Engineering",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 93,
+      "prerequisite": "CSAI 220"
+    },
+    {
+      "code": "CSAI 235",
+      "subject": "CSAI",
+      "number": "235",
+      "title": "AI-Enabled Software Engineering Lab",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 93
+    },
+    {
+      "code": "CSAI 280",
+      "subject": "CSAI",
+      "number": "280",
+      "title": "Special Topic in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 93
+    },
+    {
+      "code": "CSAI 281",
+      "subject": "CSAI",
+      "number": "281",
+      "title": "Independent Study in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 93
+    },
+    {
+      "code": "CSAI 285",
+      "subject": "CSAI",
+      "number": "285",
+      "title": "Special Topic in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 93
+    },
+    {
+      "code": "CSAI 286",
+      "subject": "CSAI",
+      "number": "286",
+      "title": "Independent Study in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 93
+    },
+    {
+      "code": "CSAI 290",
+      "subject": "CSAI",
+      "number": "290",
+      "title": "Special Topic in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 94
+    },
+    {
+      "code": "CSAI 291",
+      "subject": "CSAI",
+      "number": "291",
+      "title": "Independent Study in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 94
+    },
+    {
+      "code": "CSAI 300",
+      "subject": "CSAI",
+      "number": "300",
+      "title": "Programming Languages and Software Design",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 94,
+      "prerequisite": "CSAI 235"
+    },
+    {
+      "code": "CSAI 310",
+      "subject": "CSAI",
+      "number": "310",
+      "title": "Computer Architecture and OS",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 94,
+      "prerequisite": "CSAI 300"
+    },
+    {
+      "code": "CSAI 320",
+      "subject": "CSAI",
+      "number": "320",
+      "title": "Computer Networks",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 94,
+      "prerequisite": "CSAI 300"
+    },
+    {
+      "code": "CSAI 330",
+      "subject": "CSAI",
+      "number": "330",
+      "title": "CyberSecurity",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 94,
+      "prerequisite": "CSAI 320"
+    },
+    {
+      "code": "CSAI 340",
+      "subject": "CSAI",
+      "number": "340",
+      "title": "Computer Graphics and Physical Simulation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95,
+      "prerequisite": "CSAI 300"
+    },
+    {
+      "code": "CSAI 350",
+      "subject": "CSAI",
+      "number": "350",
+      "title": "Introduction to Machine Learning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95,
+      "prerequisite": "CSAI 220, MATH 240"
+    },
+    {
+      "code": "CSAI 360",
+      "subject": "CSAI",
+      "number": "360",
+      "title": "Math of AI",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95,
+      "prerequisite": "CSAI 350"
+    },
+    {
+      "code": "CSAI 370",
+      "subject": "CSAI",
+      "number": "370",
+      "title": "Machine Learning Engineering",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95,
+      "prerequisite": "CSAI 350"
+    },
+    {
+      "code": "CSAI 379",
+      "subject": "CSAI",
+      "number": "379",
+      "title": "Special Topic in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 95
+    },
+    {
+      "code": "CSAI 380",
+      "subject": "CSAI",
+      "number": "380",
+      "title": "Transformers and Diffusion Models",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95,
+      "prerequisite": "CSAI 360"
+    },
+    {
+      "code": "CSAI 381",
+      "subject": "CSAI",
+      "number": "381",
+      "title": "Independent Study in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 95
+    },
+    {
+      "code": "CSAI 385",
+      "subject": "CSAI",
+      "number": "385",
+      "title": "Special Topic in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 95
+    },
+    {
+      "code": "CSAI 386",
+      "subject": "CSAI",
+      "number": "386",
+      "title": "Independent Study in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96
+    },
+    {
+      "code": "CSAI 390",
+      "subject": "CSAI",
+      "number": "390",
+      "title": "Special Topic in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 96
+    },
+    {
+      "code": "CSAI 391",
+      "subject": "CSAI",
+      "number": "391",
+      "title": "Independent Study in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 96
+    },
+    {
+      "code": "CSAI 400",
+      "subject": "CSAI",
+      "number": "400",
+      "title": "Advanced Algorithms",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96,
+      "prerequisite": "CSAI 300"
+    },
+    {
+      "code": "CSAI 401",
+      "subject": "CSAI",
+      "number": "401",
+      "title": "Reinforcement Learning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96,
+      "prerequisite": "CSAI 350"
+    },
+    {
+      "code": "CSAI 410",
+      "subject": "CSAI",
+      "number": "410",
+      "title": "Compilers",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96,
+      "prerequisite": "CSAI 300"
+    },
+    {
+      "code": "CSAI 411",
+      "subject": "CSAI",
+      "number": "411",
+      "title": "Physical AI and Computer Vision",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96,
+      "prerequisite": "CSAI 350"
+    },
+    {
+      "code": "CSAI 420",
+      "subject": "CSAI",
+      "number": "420",
+      "title": "Automata and Computing Theory",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 96
+    },
+    {
+      "code": "CSAI 421",
+      "subject": "CSAI",
+      "number": "421",
+      "title": "Advanced Topics in Machine Learning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 97,
+      "prerequisite": "CSAI 360"
+    },
+    {
+      "code": "CSAI 480",
+      "subject": "CSAI",
+      "number": "480",
+      "title": "Special Topic in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "CSAI 481",
+      "subject": "CSAI",
+      "number": "481",
+      "title": "Independent Study in Computer Science",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "CSAI 485",
+      "subject": "CSAI",
+      "number": "485",
+      "title": "Special Topic in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "CSAI 486",
+      "subject": "CSAI",
+      "number": "486",
+      "title": "Independent Study in Computer Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "CSAI 490",
+      "subject": "CSAI",
+      "number": "490",
+      "title": "Special Topic in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "CSAI 491",
+      "subject": "CSAI",
+      "number": "491",
+      "title": "Independent Study in Computer Science",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "ECON 101",
+      "subject": "ECON",
+      "number": "101",
+      "title": "Applied Issues and Perspectives in Economics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "ECON 102",
+      "subject": "ECON",
+      "number": "102",
+      "title": "Applied Issues and Perspectives in Economics II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 97
+    },
+    {
+      "code": "ECON 111",
+      "subject": "ECON",
+      "number": "111",
+      "title": "Accelerated Applied Economics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98
+    },
+    {
+      "code": "ECON 112",
+      "subject": "ECON",
+      "number": "112",
+      "title": "Accelerated Applied Economics II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98
+    },
+    {
+      "code": "ECON 201",
+      "subject": "ECON",
+      "number": "201",
+      "title": "Microeconomic Theory I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98,
+      "prerequisite": "ECON 101, ECON 102"
+    },
+    {
+      "code": "ECON 202",
+      "subject": "ECON",
+      "number": "202",
+      "title": "Macroeconomic Theory I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98,
+      "prerequisite": "ECON 101, ECON 102"
+    },
+    {
+      "code": "ECON 203",
+      "subject": "ECON",
+      "number": "203",
+      "title": "Microeconomic Theory !",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98,
+      "prerequisite": "ECON 201"
+    },
+    {
+      "code": "ECON 204",
+      "subject": "ECON",
+      "number": "204",
+      "title": "Macroeconomic Theory II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98,
+      "prerequisite": "ECON 202"
+    },
+    {
+      "code": "ECON 220",
+      "subject": "ECON",
+      "number": "220",
+      "title": "Probability and Statistics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 98
+    },
+    {
+      "code": "ECON 230",
+      "subject": "ECON",
+      "number": "230",
+      "title": "Mathematical Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 251",
+      "subject": "ECON",
+      "number": "251",
+      "title": "Principles of Microeconomics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 252",
+      "subject": "ECON",
+      "number": "252",
+      "title": "Principles of Macroeconomics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 271",
+      "subject": "ECON",
+      "number": "271",
+      "title": "History of Economic Thought",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 272",
+      "subject": "ECON",
+      "number": "272",
+      "title": "Economic History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 280",
+      "subject": "ECON",
+      "number": "280",
+      "title": "Special Topic in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 281",
+      "subject": "ECON",
+      "number": "281",
+      "title": "Independent Study in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 99
+    },
+    {
+      "code": "ECON 285",
+      "subject": "ECON",
+      "number": "285",
+      "title": "Special Topic in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100
+    },
+    {
+      "code": "ECON 286",
+      "subject": "ECON",
+      "number": "286",
+      "title": "Independent Study in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100
+    },
+    {
+      "code": "ECON 289",
+      "subject": "ECON",
+      "number": "289",
+      "title": "Special Topic in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 100
+    },
+    {
+      "code": "ECON 290",
+      "subject": "ECON",
+      "number": "290",
+      "title": "Political Economy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100,
+      "prerequisite": "ECON 101"
+    },
+    {
+      "code": "ECON 291",
+      "subject": "ECON",
+      "number": "291",
+      "title": "Independent Study in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 100
+    },
+    {
+      "code": "ECON 300",
+      "subject": "ECON",
+      "number": "300",
+      "title": "Public Choice",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100,
+      "prerequisite": "ECON 101"
+    },
+    {
+      "code": "ECON 301",
+      "subject": "ECON",
+      "number": "301",
+      "title": "Topics in Microeconomics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 302",
+      "subject": "ECON",
+      "number": "302",
+      "title": "Topics in Macroeconomics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 100,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 306",
+      "subject": "ECON",
+      "number": "306",
+      "title": "Economic Growth",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 101,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 332",
+      "subject": "ECON",
+      "number": "332",
+      "title": "Behavioral and Experimental Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 101,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 340",
+      "subject": "ECON",
+      "number": "340",
+      "title": "Fiscal Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 101,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 351",
+      "subject": "ECON",
+      "number": "351",
+      "title": "International Trade and Finance",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 101,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 353",
+      "subject": "ECON",
+      "number": "353",
+      "title": "Comparative Economic Systems",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 102,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 360",
+      "subject": "ECON",
+      "number": "360",
+      "title": "Corporate Finance, Accounting, and Business Planning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 102,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 361",
+      "subject": "ECON",
+      "number": "361",
+      "title": "Entrepreneurshi p and Entrepreneurial Finance",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 102,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 362",
+      "subject": "ECON",
+      "number": "362",
+      "title": "Household Finance",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 102,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 370",
+      "subject": "ECON",
+      "number": "370",
+      "title": "Monetary Economics and Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 102,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 371",
+      "subject": "ECON",
+      "number": "371",
+      "title": "Money, Banking, and the Financial System",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 103,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 372",
+      "subject": "ECON",
+      "number": "372",
+      "title": "Crypto Currencies",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 103,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 373",
+      "subject": "ECON",
+      "number": "373",
+      "title": "Financial Crises",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 103,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 380",
+      "subject": "ECON",
+      "number": "380",
+      "title": "Special Topic in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 103
+    },
+    {
+      "code": "ECON 381",
+      "subject": "ECON",
+      "number": "381",
+      "title": "Independent Study in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 103
+    },
+    {
+      "code": "ECON 385",
+      "subject": "ECON",
+      "number": "385",
+      "title": "Special Topic in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 103
+    },
+    {
+      "code": "ECON 386",
+      "subject": "ECON",
+      "number": "386",
+      "title": "Independent Study in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 103
+    },
+    {
+      "code": "ECON 389",
+      "subject": "ECON",
+      "number": "389",
+      "title": "Special Topic in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 103
+    },
+    {
+      "code": "ECON 390",
+      "subject": "ECON",
+      "number": "390",
+      "title": "Labor Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 104,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 391",
+      "subject": "ECON",
+      "number": "391",
+      "title": "Economics of Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 104,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 392",
+      "subject": "ECON",
+      "number": "392",
+      "title": "Independent Study in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 104
+    },
+    {
+      "code": "ECON 396",
+      "subject": "ECON",
+      "number": "396",
+      "title": "Law and Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 104,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 401",
+      "subject": "ECON",
+      "number": "401",
+      "title": "Advanced Topics in Microeconomics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 104,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 402",
+      "subject": "ECON",
+      "number": "402",
+      "title": "\u2022Advanced Topics in Macroeconomics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 104,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 405",
+      "subject": "ECON",
+      "number": "405",
+      "title": "Game Theory",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 105,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 410",
+      "subject": "ECON",
+      "number": "410",
+      "title": "Capstone Microeconomics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 105,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 411",
+      "subject": "ECON",
+      "number": "411",
+      "title": "Capstone Macroeconomics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 105,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 412",
+      "subject": "ECON",
+      "number": "412",
+      "title": "Capstone in Quantitative Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 105,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 420",
+      "subject": "ECON",
+      "number": "420",
+      "title": "Advanced Probability and Statistics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 105,
+      "prerequisite": "ECON 220"
+    },
+    {
+      "code": "ECON 421",
+      "subject": "ECON",
+      "number": "421",
+      "title": "Causality",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 106,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 422",
+      "subject": "ECON",
+      "number": "422",
+      "title": "Time Series Econometrics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 106,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 423",
+      "subject": "ECON",
+      "number": "423",
+      "title": "Econometrics of Panel Data",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 106,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 430",
+      "subject": "ECON",
+      "number": "430",
+      "title": "Advanced Mathematical Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 106,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 431",
+      "subject": "ECON",
+      "number": "431",
+      "title": "Advanced Quantitative Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 107,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 435",
+      "subject": "ECON",
+      "number": "435",
+      "title": "Applied Dynamic Programming",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 107,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 440",
+      "subject": "ECON",
+      "number": "440",
+      "title": "Industrial Organization and Competition Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 107,
+      "prerequisite": "ECON 230"
+    },
+    {
+      "code": "ECON 480",
+      "subject": "ECON",
+      "number": "480",
+      "title": "Special Topic in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 107
+    },
+    {
+      "code": "ECON 481",
+      "subject": "ECON",
+      "number": "481",
+      "title": "Independent Study in Economics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 107
+    },
+    {
+      "code": "ECON 485",
+      "subject": "ECON",
+      "number": "485",
+      "title": "Special Topic in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 107
+    },
+    {
+      "code": "ECON 486",
+      "subject": "ECON",
+      "number": "486",
+      "title": "Independent Study in Economics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 107
+    },
+    {
+      "code": "ECON 490",
+      "subject": "ECON",
+      "number": "490",
+      "title": "Special Topic in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "ECON 491",
+      "subject": "ECON",
+      "number": "491",
+      "title": "Independent Study in Economics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 280",
+      "subject": "EDUC",
+      "number": "280",
+      "title": "Special Topic in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 281",
+      "subject": "EDUC",
+      "number": "281",
+      "title": "Independent Study in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 285",
+      "subject": "EDUC",
+      "number": "285",
+      "title": "Special Topic in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 286",
+      "subject": "EDUC",
+      "number": "286",
+      "title": "Independent Study in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 290",
+      "subject": "EDUC",
+      "number": "290",
+      "title": "Special Topic in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 291",
+      "subject": "EDUC",
+      "number": "291",
+      "title": "Independent Study in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 380",
+      "subject": "EDUC",
+      "number": "380",
+      "title": "Special Topic in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 381",
+      "subject": "EDUC",
+      "number": "381",
+      "title": "Independent Study in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 108
+    },
+    {
+      "code": "EDUC 385",
+      "subject": "EDUC",
+      "number": "385",
+      "title": "Special Topic in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 386",
+      "subject": "EDUC",
+      "number": "386",
+      "title": "Independent Study in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 390",
+      "subject": "EDUC",
+      "number": "390",
+      "title": "Special Topic in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 391",
+      "subject": "EDUC",
+      "number": "391",
+      "title": "Independent Study in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 480",
+      "subject": "EDUC",
+      "number": "480",
+      "title": "Special Topic in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 481",
+      "subject": "EDUC",
+      "number": "481",
+      "title": "Independent Study in Education",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 485",
+      "subject": "EDUC",
+      "number": "485",
+      "title": "Special Topic in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 486",
+      "subject": "EDUC",
+      "number": "486",
+      "title": "Independent Study in Education",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 490",
+      "subject": "EDUC",
+      "number": "490",
+      "title": "Special Topic in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "EDUC 491",
+      "subject": "EDUC",
+      "number": "491",
+      "title": "Independent Study in Education",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 109
+    },
+    {
+      "code": "HIST 110",
+      "subject": "HIST",
+      "number": "110",
+      "title": "Ancient Greece",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 110
+    },
+    {
+      "code": "HIST 111",
+      "subject": "HIST",
+      "number": "111",
+      "title": "Ideological Experiments of the 20th Century",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 110
+    },
+    {
+      "code": "HIST 115",
+      "subject": "HIST",
+      "number": "115",
+      "title": "Ancient Rome",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 110
+    },
+    {
+      "code": "HIST 130",
+      "subject": "HIST",
+      "number": "130",
+      "title": "Rise of the West",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 111
+    },
+    {
+      "code": "HIST 131",
+      "subject": "HIST",
+      "number": "131",
+      "title": "Making of the Modern World",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 111
+    },
+    {
+      "code": "HIST 210",
+      "subject": "HIST",
+      "number": "210",
+      "title": "The Enlightenment",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 111
+    },
+    {
+      "code": "HIST 211",
+      "subject": "HIST",
+      "number": "211",
+      "title": "Renaissance and Reformation",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 112,
+      "prerequisite": "HIST 130 or ALT 1030"
+    },
+    {
+      "code": "HIST 215",
+      "subject": "HIST",
+      "number": "215",
+      "title": "Romanticism and Realism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 112,
+      "prerequisite": "HIST 210 or ALT 1040"
+    },
+    {
+      "code": "HIST 220",
+      "subject": "HIST",
+      "number": "220",
+      "title": "Decadence, Modernism, and the Great War",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 112,
+      "prerequisite": "HIST 215 or INF 2200"
+    },
+    {
+      "code": "HIST 280",
+      "subject": "HIST",
+      "number": "280",
+      "title": "Special Topic in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 112
+    },
+    {
+      "code": "HIST 281",
+      "subject": "HIST",
+      "number": "281",
+      "title": "Independent Study in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 113
+    },
+    {
+      "code": "HIST 285",
+      "subject": "HIST",
+      "number": "285",
+      "title": "Special Topic in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 113
+    },
+    {
+      "code": "HIST 286",
+      "subject": "HIST",
+      "number": "286",
+      "title": "Independent Study in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 113
+    },
+    {
+      "code": "HIST 290",
+      "subject": "HIST",
+      "number": "290",
+      "title": "Special Topic in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 113
+    },
+    {
+      "code": "HIST 291",
+      "subject": "HIST",
+      "number": "291",
+      "title": "Independent Study in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 113
+    },
+    {
+      "code": "HIST 310",
+      "subject": "HIST",
+      "number": "310",
+      "title": "The Hebrew Bible",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 113,
+      "prerequisite": "LITR 103 or INF 1100"
+    },
+    {
+      "code": "HIST 315",
+      "subject": "HIST",
+      "number": "315",
+      "title": "Classical Historiography",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 114,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "HIST 320",
+      "subject": "HIST",
+      "number": "320",
+      "title": "The New Testament",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 114,
+      "prerequisite": "LITR 103 or INF 1300"
+    },
+    {
+      "code": "HIST 325",
+      "subject": "HIST",
+      "number": "325",
+      "title": "The Roman Republic",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 114,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "HIST 330",
+      "subject": "HIST",
+      "number": "330",
+      "title": "The Roman Empire",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 115,
+      "prerequisite": "HIST 325"
+    },
+    {
+      "code": "HIST 335",
+      "subject": "HIST",
+      "number": "335",
+      "title": "Plutarch",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 115,
+      "prerequisite": "HIST 330 or ALT 1010"
+    },
+    {
+      "code": "HIST 340",
+      "subject": "HIST",
+      "number": "340",
+      "title": "Late Antiquity",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 115,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "HIST 345",
+      "subject": "HIST",
+      "number": "345",
+      "title": "Early Christian Thought",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 116,
+      "prerequisite": "LITR 103 or INF 1300"
+    },
+    {
+      "code": "HIST 350",
+      "subject": "HIST",
+      "number": "350",
+      "title": "Judaism in Antiquity",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 116,
+      "prerequisite": "LITR 103 or INF 1100"
+    },
+    {
+      "code": "HIST 355",
+      "subject": "HIST",
+      "number": "355",
+      "title": "Modern Judaism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 116,
+      "prerequisite": "HIST 350"
+    },
+    {
+      "code": "HIST 360",
+      "subject": "HIST",
+      "number": "360",
+      "title": "Shakespeare: English History Plays I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 117,
+      "prerequisite": "HIST 130 or ALT 1020"
+    },
+    {
+      "code": "HIST 361",
+      "subject": "HIST",
+      "number": "361",
+      "title": "Shakespeare: English History Plays II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 117,
+      "prerequisite": "HIST 360"
+    },
+    {
+      "code": "HIST 365",
+      "subject": "HIST",
+      "number": "365",
+      "title": "The French Revolution",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 117,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "HIST 370",
+      "subject": "HIST",
+      "number": "370",
+      "title": "Historiography and the Philosophy of History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 118,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "HIST 375",
+      "subject": "HIST",
+      "number": "375",
+      "title": "The Changing Structure of Civilization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 118,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "HIST 379",
+      "subject": "HIST",
+      "number": "379",
+      "title": "Special Topic in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 118
+    },
+    {
+      "code": "HIST 380",
+      "subject": "HIST",
+      "number": "380",
+      "title": "Postmodernism and Postcolonialism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 119,
+      "prerequisite": "HIST 111 or INF 2300"
+    },
+    {
+      "code": "HIST 381",
+      "subject": "HIST",
+      "number": "381",
+      "title": "Independent Study in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 119
+    },
+    {
+      "code": "HIST 385",
+      "subject": "HIST",
+      "number": "385",
+      "title": "Special Topic in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 119
+    },
+    {
+      "code": "HIST 386",
+      "subject": "HIST",
+      "number": "386",
+      "title": "Independent Study in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 119
+    },
+    {
+      "code": "HIST 390",
+      "subject": "HIST",
+      "number": "390",
+      "title": "Special Topic in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 119
+    },
+    {
+      "code": "HIST 391",
+      "subject": "HIST",
+      "number": "391",
+      "title": "Independent Study in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 119
+    },
+    {
+      "code": "HIST 410",
+      "subject": "HIST",
+      "number": "410",
+      "title": "History of Western Art",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 415",
+      "subject": "HIST",
+      "number": "415",
+      "title": "History of Western Music",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 420",
+      "subject": "HIST",
+      "number": "420",
+      "title": "Great Classical Historians",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 425",
+      "subject": "HIST",
+      "number": "425",
+      "title": "Great Modern Historians",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 430",
+      "subject": "HIST",
+      "number": "430",
+      "title": "Great Artists and Architects",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 435",
+      "subject": "HIST",
+      "number": "435",
+      "title": "Great Events of History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 480",
+      "subject": "HIST",
+      "number": "480",
+      "title": "Special Topic in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 481",
+      "subject": "HIST",
+      "number": "481",
+      "title": "Independent Study in History",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 120
+    },
+    {
+      "code": "HIST 485",
+      "subject": "HIST",
+      "number": "485",
+      "title": "Special Topic in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "HIST 486",
+      "subject": "HIST",
+      "number": "486",
+      "title": "Independent Study in History",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "HIST 490",
+      "subject": "HIST",
+      "number": "490",
+      "title": "Special Topic in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "HIST 491",
+      "subject": "HIST",
+      "number": "491",
+      "title": "Independent Study in History",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "JOUR 280",
+      "subject": "JOUR",
+      "number": "280",
+      "title": "Special Topic in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "JOUR 281",
+      "subject": "JOUR",
+      "number": "281",
+      "title": "Independent Study in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "JOUR 285",
+      "subject": "JOUR",
+      "number": "285",
+      "title": "Special Topic in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "JOUR 286",
+      "subject": "JOUR",
+      "number": "286",
+      "title": "Independent Study in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 121
+    },
+    {
+      "code": "JOUR 290",
+      "subject": "JOUR",
+      "number": "290",
+      "title": "Special Topic in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 291",
+      "subject": "JOUR",
+      "number": "291",
+      "title": "Independent Study in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 380",
+      "subject": "JOUR",
+      "number": "380",
+      "title": "Special Topic in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 381",
+      "subject": "JOUR",
+      "number": "381",
+      "title": "Independent Study in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 385",
+      "subject": "JOUR",
+      "number": "385",
+      "title": "Special Topic in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 386",
+      "subject": "JOUR",
+      "number": "386",
+      "title": "Independent Study in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 390",
+      "subject": "JOUR",
+      "number": "390",
+      "title": "Special Topic in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 391",
+      "subject": "JOUR",
+      "number": "391",
+      "title": "Independent Study in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 480",
+      "subject": "JOUR",
+      "number": "480",
+      "title": "Special Topic in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 481",
+      "subject": "JOUR",
+      "number": "481",
+      "title": "Independent Study in Journalism",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 485",
+      "subject": "JOUR",
+      "number": "485",
+      "title": "Special Topic in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 122
+    },
+    {
+      "code": "JOUR 486",
+      "subject": "JOUR",
+      "number": "486",
+      "title": "Independent Study in Journalism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 123
+    },
+    {
+      "code": "JOUR 490",
+      "subject": "JOUR",
+      "number": "490",
+      "title": "Special Topic in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 123
+    },
+    {
+      "code": "JOUR 491",
+      "subject": "JOUR",
+      "number": "491",
+      "title": "Independent Study in Journalism",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 123
+    },
+    {
+      "code": "LANG 310",
+      "subject": "LANG",
+      "number": "310",
+      "title": "Ancient Greek I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 123
+    },
+    {
+      "code": "LANG 311",
+      "subject": "LANG",
+      "number": "311",
+      "title": "Ancient Greek II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 123,
+      "prerequisite": "LANG 310"
+    },
+    {
+      "code": "LANG 312",
+      "subject": "LANG",
+      "number": "312",
+      "title": "Ancient Greek III",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 123,
+      "prerequisite": "LANG 311"
+    },
+    {
+      "code": "LANG 319",
+      "subject": "LANG",
+      "number": "319",
+      "title": "Directed Readings in Ancient Greek",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 123,
+      "prerequisite": "LANG 312"
+    },
+    {
+      "code": "LANG 320",
+      "subject": "LANG",
+      "number": "320",
+      "title": "Latin I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124
+    },
+    {
+      "code": "LANG 321",
+      "subject": "LANG",
+      "number": "321",
+      "title": "Latin II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124,
+      "prerequisite": "LANG 320"
+    },
+    {
+      "code": "LANG 322",
+      "subject": "LANG",
+      "number": "322",
+      "title": "Latin III",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124,
+      "prerequisite": "LANG 321"
+    },
+    {
+      "code": "LANG 329",
+      "subject": "LANG",
+      "number": "329",
+      "title": "Directed Readings in Latin",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124,
+      "prerequisite": "LANG 322"
+    },
+    {
+      "code": "LANG 330",
+      "subject": "LANG",
+      "number": "330",
+      "title": "German I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124
+    },
+    {
+      "code": "LANG 331",
+      "subject": "LANG",
+      "number": "331",
+      "title": "German II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 124,
+      "prerequisite": "LANG 330"
+    },
+    {
+      "code": "LANG 332",
+      "subject": "LANG",
+      "number": "332",
+      "title": "German III",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 125,
+      "prerequisite": "LANG 331"
+    },
+    {
+      "code": "LANG 339",
+      "subject": "LANG",
+      "number": "339",
+      "title": "Directed Readings in German",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 125,
+      "prerequisite": "LANG 332"
+    },
+    {
+      "code": "LAWS 280",
+      "subject": "LAWS",
+      "number": "280",
+      "title": "Special Topic in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 281",
+      "subject": "LAWS",
+      "number": "281",
+      "title": "Independent Study in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 285",
+      "subject": "LAWS",
+      "number": "285",
+      "title": "Special Topic in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 286",
+      "subject": "LAWS",
+      "number": "286",
+      "title": "Independent Study in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 290",
+      "subject": "LAWS",
+      "number": "290",
+      "title": "Special Topic in Law",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 291",
+      "subject": "LAWS",
+      "number": "291",
+      "title": "Independent Study in Law",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 380",
+      "subject": "LAWS",
+      "number": "380",
+      "title": "Special Topic in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 125
+    },
+    {
+      "code": "LAWS 381",
+      "subject": "LAWS",
+      "number": "381",
+      "title": "Independent Study in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 385",
+      "subject": "LAWS",
+      "number": "385",
+      "title": "Special Topic in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 386",
+      "subject": "LAWS",
+      "number": "386",
+      "title": "Independent Study in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 391",
+      "subject": "LAWS",
+      "number": "391",
+      "title": "Independent Study in Law",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 480",
+      "subject": "LAWS",
+      "number": "480",
+      "title": "Special Topic in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 481",
+      "subject": "LAWS",
+      "number": "481",
+      "title": "Independent Study in Law",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 485",
+      "subject": "LAWS",
+      "number": "485",
+      "title": "Special Topic in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 486",
+      "subject": "LAWS",
+      "number": "486",
+      "title": "Independent Study in Law",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 490",
+      "subject": "LAWS",
+      "number": "490",
+      "title": "Special Topic in Law",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LAWS 491",
+      "subject": "LAWS",
+      "number": "491",
+      "title": "Independent Study in Law",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 126
+    },
+    {
+      "code": "LITR 102",
+      "subject": "LITR",
+      "number": "102",
+      "title": "Epic and Tragedy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 127
+    },
+    {
+      "code": "LITR 103",
+      "subject": "LITR",
+      "number": "103",
+      "title": "The Bible",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 127
+    },
+    {
+      "code": "LITR 210",
+      "subject": "LITR",
+      "number": "210",
+      "title": "Medieval Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 127
+    },
+    {
+      "code": "LITR 215",
+      "subject": "LITR",
+      "number": "215",
+      "title": "Shakespeare",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 127
+    },
+    {
+      "code": "LITR 220",
+      "subject": "LITR",
+      "number": "220",
+      "title": "Milton",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 128,
+      "prerequisite": "HIST 130 or INF 2121"
+    },
+    {
+      "code": "LITR 225",
+      "subject": "LITR",
+      "number": "225",
+      "title": "Eighteenth-Cent ury Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 128,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "LITR 230",
+      "subject": "LITR",
+      "number": "230",
+      "title": "Literary Criticism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 128
+    },
+    {
+      "code": "LITR 280",
+      "subject": "LITR",
+      "number": "280",
+      "title": "Special Topic in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 128
+    },
+    {
+      "code": "LITR 281",
+      "subject": "LITR",
+      "number": "281",
+      "title": "Independent Study in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 128
+    },
+    {
+      "code": "LITR 285",
+      "subject": "LITR",
+      "number": "285",
+      "title": "Special Topic in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 286",
+      "subject": "LITR",
+      "number": "286",
+      "title": "Independent Study in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 290",
+      "subject": "LITR",
+      "number": "290",
+      "title": "Special Topic in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 291",
+      "subject": "LITR",
+      "number": "291",
+      "title": "Independent Study in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 310",
+      "subject": "LITR",
+      "number": "310",
+      "title": "The Trojan War",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 315",
+      "subject": "LITR",
+      "number": "315",
+      "title": "Hesiod and Ovid",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 129
+    },
+    {
+      "code": "LITR 320",
+      "subject": "LITR",
+      "number": "320",
+      "title": "Comedy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 130
+    },
+    {
+      "code": "LITR 325",
+      "subject": "LITR",
+      "number": "325",
+      "title": "Tragedy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 130
+    },
+    {
+      "code": "LITR 330",
+      "subject": "LITR",
+      "number": "330",
+      "title": "Lyric Poetry",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 130
+    },
+    {
+      "code": "LITR 335",
+      "subject": "LITR",
+      "number": "335",
+      "title": "Classical Aesthetics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 130,
+      "prerequisite": "PHIL 120 or INF 1110"
+    },
+    {
+      "code": "LITR 340",
+      "subject": "LITR",
+      "number": "340",
+      "title": "Dante, Divine Comedy I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 131,
+      "prerequisite": "HIST 130 or ALT 1020"
+    },
+    {
+      "code": "LITR 341",
+      "subject": "LITR",
+      "number": "341",
+      "title": "Dante, Divine Comedy II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 131,
+      "prerequisite": "LITR 340"
+    },
+    {
+      "code": "LITR 345",
+      "subject": "LITR",
+      "number": "345",
+      "title": "Shakespeare: Roman Plays",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 131,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "LITR 350",
+      "subject": "LITR",
+      "number": "350",
+      "title": "Shakespeare: Comedies and Problem Plays",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 131
+    },
+    {
+      "code": "LITR 355",
+      "subject": "LITR",
+      "number": "355",
+      "title": "Early Modern Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 132,
+      "prerequisite": "HIST 130 or INF 2121"
+    },
+    {
+      "code": "LITR 360",
+      "subject": "LITR",
+      "number": "360",
+      "title": "Victorian Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 132,
+      "prerequisite": "PHIL 130 or INF 2121"
+    },
+    {
+      "code": "LITR 365",
+      "subject": "LITR",
+      "number": "365",
+      "title": "Modern Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 132,
+      "prerequisite": "PHIL 130 or INF 2121"
+    },
+    {
+      "code": "LITR 380",
+      "subject": "LITR",
+      "number": "380",
+      "title": "Special Topic in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 132
+    },
+    {
+      "code": "LITR 381",
+      "subject": "LITR",
+      "number": "381",
+      "title": "Independent Study in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 132
+    },
+    {
+      "code": "LITR 385",
+      "subject": "LITR",
+      "number": "385",
+      "title": "Special Topic in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 386",
+      "subject": "LITR",
+      "number": "386",
+      "title": "Independent Study in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 390",
+      "subject": "LITR",
+      "number": "390",
+      "title": "Special Topic in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 391",
+      "subject": "LITR",
+      "number": "391",
+      "title": "Independent Study in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 410",
+      "subject": "LITR",
+      "number": "410",
+      "title": "Great Poets",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 415",
+      "subject": "LITR",
+      "number": "415",
+      "title": "The Novel",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 420",
+      "subject": "LITR",
+      "number": "420",
+      "title": "The Narrative Poem",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 133
+    },
+    {
+      "code": "LITR 425",
+      "subject": "LITR",
+      "number": "425",
+      "title": "The Essay",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 134
+    },
+    {
+      "code": "LITR 430",
+      "subject": "LITR",
+      "number": "430",
+      "title": "The Theory Wars",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 134,
+      "prerequisite": "LITR 230"
+    },
+    {
+      "code": "LITR 480",
+      "subject": "LITR",
+      "number": "480",
+      "title": "Special Topic in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 134
+    },
+    {
+      "code": "LITR 481",
+      "subject": "LITR",
+      "number": "481",
+      "title": "Independent Study in Literature",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 134
+    },
+    {
+      "code": "LITR 485",
+      "subject": "LITR",
+      "number": "485",
+      "title": "Special Topic in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 134
+    },
+    {
+      "code": "LITR 486",
+      "subject": "LITR",
+      "number": "486",
+      "title": "Independent Study in Literature",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 134
+    },
+    {
+      "code": "LITR 490",
+      "subject": "LITR",
+      "number": "490",
+      "title": "Special Topic in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 135
+    },
+    {
+      "code": "LITR 491",
+      "subject": "LITR",
+      "number": "491",
+      "title": "Independent Study in Literature",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 135
+    },
+    {
+      "code": "MATH 101",
+      "subject": "MATH",
+      "number": "101",
+      "title": "Single-Variable Calculus",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 135
+    },
+    {
+      "code": "MATH 200",
+      "subject": "MATH",
+      "number": "200",
+      "title": "Mathematical Reasoning & Proof",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 135
+    },
+    {
+      "code": "MATH 210",
+      "subject": "MATH",
+      "number": "210",
+      "title": "Linear Algebra",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 135
+    },
+    {
+      "code": "MATH 220",
+      "subject": "MATH",
+      "number": "220",
+      "title": "Probability",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 135,
+      "prerequisite": "MATH 101"
+    },
+    {
+      "code": "MATH 230",
+      "subject": "MATH",
+      "number": "230",
+      "title": "Applied Data Science I",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 136,
+      "prerequisite": "MATH 220"
+    },
+    {
+      "code": "MATH 231",
+      "subject": "MATH",
+      "number": "231",
+      "title": "Applied Data Science II",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 136,
+      "prerequisite": "MATH 230"
+    },
+    {
+      "code": "MATH 240",
+      "subject": "MATH",
+      "number": "240",
+      "title": "Applied Mathematical Methods",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 136,
+      "prerequisite": "MATH 101"
+    },
+    {
+      "code": "MATH 250",
+      "subject": "MATH",
+      "number": "250",
+      "title": "Differential Equations",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 136,
+      "prerequisite": "MATH 101"
+    },
+    {
+      "code": "MATH 260",
+      "subject": "MATH",
+      "number": "260",
+      "title": "Discrete Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 136
+    },
+    {
+      "code": "MATH 280",
+      "subject": "MATH",
+      "number": "280",
+      "title": "Special Topic in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 136
+    },
+    {
+      "code": "MATH 281",
+      "subject": "MATH",
+      "number": "281",
+      "title": "Independent Study in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 136
+    },
+    {
+      "code": "MATH 285",
+      "subject": "MATH",
+      "number": "285",
+      "title": "Special Topic in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 136
+    },
+    {
+      "code": "MATH 286",
+      "subject": "MATH",
+      "number": "286",
+      "title": "Independent Study in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 137
+    },
+    {
+      "code": "MATH 290",
+      "subject": "MATH",
+      "number": "290",
+      "title": "Special Topic in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 137
+    },
+    {
+      "code": "MATH 291",
+      "subject": "MATH",
+      "number": "291",
+      "title": "Independent Study in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 137
+    },
+    {
+      "code": "MATH 310",
+      "subject": "MATH",
+      "number": "310",
+      "title": "Real Analysis",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 137,
+      "prerequisite": "MATH 200, MATH 240"
+    },
+    {
+      "code": "MATH 311",
+      "subject": "MATH",
+      "number": "311",
+      "title": "Complex Analysis",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 137,
+      "prerequisite": "MATH 200, MATH 240"
+    },
+    {
+      "code": "MATH 320",
+      "subject": "MATH",
+      "number": "320",
+      "title": "Intermediate Linear Algebra",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 137,
+      "prerequisite": "MATH 210"
+    },
+    {
+      "code": "MATH 321",
+      "subject": "MATH",
+      "number": "321",
+      "title": "Abstract Algebra",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 137,
+      "prerequisite": "MATH 200"
+    },
+    {
+      "code": "MATH 325",
+      "subject": "MATH",
+      "number": "325",
+      "title": "Number Theory",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 200"
+    },
+    {
+      "code": "MATH 330",
+      "subject": "MATH",
+      "number": "330",
+      "title": "Numerical Methods & Scientific Computing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 101, MATH 210"
+    },
+    {
+      "code": "MATH 335",
+      "subject": "MATH",
+      "number": "335",
+      "title": "Optimization",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 101, MATH 210"
+    },
+    {
+      "code": "MATH 340",
+      "subject": "MATH",
+      "number": "340",
+      "title": "Partial Differential Equations",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 250"
+    },
+    {
+      "code": "MATH 360",
+      "subject": "MATH",
+      "number": "360",
+      "title": "Intermediate Probability",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 220, MATH 240"
+    },
+    {
+      "code": "MATH 361",
+      "subject": "MATH",
+      "number": "361",
+      "title": "Mathematical Statistics & Inference",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 138,
+      "prerequisite": "MATH 220, MATH 231"
+    },
+    {
+      "code": "MATH 365",
+      "subject": "MATH",
+      "number": "365",
+      "title": "Regression & Linear Models",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 139,
+      "prerequisite": "MATH 231"
+    },
+    {
+      "code": "MATH 380",
+      "subject": "MATH",
+      "number": "380",
+      "title": "Special Topic in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 381",
+      "subject": "MATH",
+      "number": "381",
+      "title": "Independent Study in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 385",
+      "subject": "MATH",
+      "number": "385",
+      "title": "Special Topic in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 386",
+      "subject": "MATH",
+      "number": "386",
+      "title": "Independent Study in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 390",
+      "subject": "MATH",
+      "number": "390",
+      "title": "Special Topic in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 391",
+      "subject": "MATH",
+      "number": "391",
+      "title": "Independent Study in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 139
+    },
+    {
+      "code": "MATH 415",
+      "subject": "MATH",
+      "number": "415",
+      "title": "Topology",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 139,
+      "prerequisite": "MATH 200"
+    },
+    {
+      "code": "MATH 420",
+      "subject": "MATH",
+      "number": "420",
+      "title": "Differential Geometry",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 139,
+      "prerequisite": "MATH 200, MATH 240"
+    },
+    {
+      "code": "MATH 430",
+      "subject": "MATH",
+      "number": "430",
+      "title": "Fourier Analysis & Signal Processing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 101, MATH 210"
+    },
+    {
+      "code": "MATH 435",
+      "subject": "MATH",
+      "number": "435",
+      "title": "Dynamical Systems & Chaos",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 250"
+    },
+    {
+      "code": "MATH 440",
+      "subject": "MATH",
+      "number": "440",
+      "title": "Mathematics of Machine Learning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 210, MATH 240"
+    },
+    {
+      "code": "MATH 460",
+      "subject": "MATH",
+      "number": "460",
+      "title": "Bayesian Statistics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 231"
+    },
+    {
+      "code": "MATH 465",
+      "subject": "MATH",
+      "number": "465",
+      "title": "Stochastic Processes & Time Series",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 220"
+    },
+    {
+      "code": "MATH 470",
+      "subject": "MATH",
+      "number": "470",
+      "title": "Statistical Learning",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 140,
+      "prerequisite": "MATH 210"
+    },
+    {
+      "code": "MATH 480",
+      "subject": "MATH",
+      "number": "480",
+      "title": "Special Topic in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 140
+    },
+    {
+      "code": "MATH 481",
+      "subject": "MATH",
+      "number": "481",
+      "title": "Independent Study in Mathematics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "MATH 485",
+      "subject": "MATH",
+      "number": "485",
+      "title": "Special Topic in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "MATH 486",
+      "subject": "MATH",
+      "number": "486",
+      "title": "Independent Study in Mathematics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "MATH 490",
+      "subject": "MATH",
+      "number": "490",
+      "title": "Special Topic in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "MATH 491",
+      "subject": "MATH",
+      "number": "491",
+      "title": "Independent Study in Mathematics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "PHIL 120",
+      "subject": "PHIL",
+      "number": "120",
+      "title": "Plato and Aristotle",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 141
+    },
+    {
+      "code": "PHIL 130",
+      "subject": "PHIL",
+      "number": "130",
+      "title": "The Scientific Revolution",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 142
+    },
+    {
+      "code": "PHIL 210",
+      "subject": "PHIL",
+      "number": "210",
+      "title": "Hellenistic and Roman Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 142,
+      "prerequisite": "PHIL 120 or INF 1110"
+    },
+    {
+      "code": "PHIL 215",
+      "subject": "PHIL",
+      "number": "215",
+      "title": "Medieval Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 142
+    },
+    {
+      "code": "PHIL 220",
+      "subject": "PHIL",
+      "number": "220",
+      "title": "Early Modern Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 143,
+      "prerequisite": "PHIL 130 or INF 1110"
+    },
+    {
+      "code": "PHIL 225",
+      "subject": "PHIL",
+      "number": "225",
+      "title": "German Idealism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 143,
+      "prerequisite": "PHIL 220 or ALT 4510B"
+    },
+    {
+      "code": "PHIL 230",
+      "subject": "PHIL",
+      "number": "230",
+      "title": "Twentieth- Century Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 143,
+      "prerequisite": "PHIL 225"
+    },
+    {
+      "code": "PHIL 280",
+      "subject": "PHIL",
+      "number": "280",
+      "title": "Special Topic in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 143
+    },
+    {
+      "code": "PHIL 281",
+      "subject": "PHIL",
+      "number": "281",
+      "title": "Independent Study in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 143
+    },
+    {
+      "code": "PHIL 285",
+      "subject": "PHIL",
+      "number": "285",
+      "title": "Special Topic in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 144
+    },
+    {
+      "code": "PHIL 286",
+      "subject": "PHIL",
+      "number": "286",
+      "title": "Independent Study in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 144
+    },
+    {
+      "code": "PHIL 290",
+      "subject": "PHIL",
+      "number": "290",
+      "title": "Special Topic in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 144
+    },
+    {
+      "code": "PHIL 291",
+      "subject": "PHIL",
+      "number": "291",
+      "title": "Independent Study in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 144
+    },
+    {
+      "code": "PHIL 310",
+      "subject": "PHIL",
+      "number": "310",
+      "title": "Plato's Dialogues I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 144
+    },
+    {
+      "code": "PHIL 315",
+      "subject": "PHIL",
+      "number": "315",
+      "title": "Plato's Dialogues II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 144,
+      "prerequisite": "PHIL 310 or INF 1200"
+    },
+    {
+      "code": "PHIL 320",
+      "subject": "PHIL",
+      "number": "320",
+      "title": "Neoplatonism and Mysticism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 145,
+      "prerequisite": "HIST 110 or INF 1200"
+    },
+    {
+      "code": "PHIL 325",
+      "subject": "PHIL",
+      "number": "325",
+      "title": "Classical Political Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 145,
+      "prerequisite": "HIST 115 or ALT 1010"
+    },
+    {
+      "code": "PHIL 330",
+      "subject": "PHIL",
+      "number": "330",
+      "title": "Early Modern Political Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 145,
+      "prerequisite": "HIST 130 or INF 2121"
+    },
+    {
+      "code": "PHIL 335",
+      "subject": "PHIL",
+      "number": "335",
+      "title": "Rousseau",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 145,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "PHIL 340",
+      "subject": "PHIL",
+      "number": "340",
+      "title": "Existentialism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 146
+    },
+    {
+      "code": "PHIL 345",
+      "subject": "PHIL",
+      "number": "345",
+      "title": "Nietzsche",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 146,
+      "prerequisite": "PHIL 120 or INF 1200"
+    },
+    {
+      "code": "PHIL 350",
+      "subject": "PHIL",
+      "number": "350",
+      "title": "Modern Aesthetics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 146,
+      "prerequisite": "PHIL 225 or ALT 4510B"
+    },
+    {
+      "code": "PHIL 355",
+      "subject": "PHIL",
+      "number": "355",
+      "title": "Heidegger",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 146,
+      "prerequisite": "PHIL 130 or ALT 4510B"
+    },
+    {
+      "code": "PHIL 360",
+      "subject": "PHIL",
+      "number": "360",
+      "title": "Phenomenology",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 147,
+      "prerequisite": "PHIL 225 or ALT 4510B"
+    },
+    {
+      "code": "PHIL 365",
+      "subject": "PHIL",
+      "number": "365",
+      "title": "Philosophy of Religion",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 147,
+      "prerequisite": "LITR 103 or INF 1300"
+    },
+    {
+      "code": "PHIL 370",
+      "subject": "PHIL",
+      "number": "370",
+      "title": "Critical Theory",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 147,
+      "prerequisite": "HIST 210 or INF 2121"
+    },
+    {
+      "code": "PHIL 380",
+      "subject": "PHIL",
+      "number": "380",
+      "title": "Special Topic in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 147
+    },
+    {
+      "code": "PHIL 381",
+      "subject": "PHIL",
+      "number": "381",
+      "title": "Independent Study in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 147
+    },
+    {
+      "code": "PHIL 385",
+      "subject": "PHIL",
+      "number": "385",
+      "title": "Special Topic in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 386",
+      "subject": "PHIL",
+      "number": "386",
+      "title": "Independent Study in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 390",
+      "subject": "PHIL",
+      "number": "390",
+      "title": "Special Topic in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 391",
+      "subject": "PHIL",
+      "number": "391",
+      "title": "Independent Study in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 410",
+      "subject": "PHIL",
+      "number": "410",
+      "title": "Great Philosophers",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 415",
+      "subject": "PHIL",
+      "number": "415",
+      "title": "Great Theologians",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 148
+    },
+    {
+      "code": "PHIL 420",
+      "subject": "PHIL",
+      "number": "420",
+      "title": "Analytic Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 149,
+      "prerequisite": "PHIL 230"
+    },
+    {
+      "code": "PHIL 425",
+      "subject": "PHIL",
+      "number": "425",
+      "title": "Applied Ethics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 149,
+      "prerequisite": "PHIL 120 or INF 1110"
+    },
+    {
+      "code": "PHIL 430",
+      "subject": "PHIL",
+      "number": "430",
+      "title": "Uses and Abuses of Technology",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 149,
+      "prerequisite": "PHIL 130 or INF 2121"
+    },
+    {
+      "code": "PHIL 435",
+      "subject": "PHIL",
+      "number": "435",
+      "title": "Philosophy of Social Science",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 149
+    },
+    {
+      "code": "PHIL 480",
+      "subject": "PHIL",
+      "number": "480",
+      "title": "Special Topic in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 149
+    },
+    {
+      "code": "PHIL 481",
+      "subject": "PHIL",
+      "number": "481",
+      "title": "Independent Study in Philosophy",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 150
+    },
+    {
+      "code": "PHIL 485",
+      "subject": "PHIL",
+      "number": "485",
+      "title": "Special Topic in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 150
+    },
+    {
+      "code": "PHIL 486",
+      "subject": "PHIL",
+      "number": "486",
+      "title": "Independent Study in Philosophy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 150
+    },
+    {
+      "code": "PHIL 490",
+      "subject": "PHIL",
+      "number": "490",
+      "title": "Special Topic in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 150
+    },
+    {
+      "code": "PHIL 491",
+      "subject": "PHIL",
+      "number": "491",
+      "title": "Independent Study in Philosophy",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 150
+    },
+    {
+      "code": "PHYS 101",
+      "subject": "PHYS",
+      "number": "101",
+      "title": "Physics - Mechanics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 150,
+      "prerequisite": "MATH 101"
+    },
+    {
+      "code": "PHYS 102",
+      "subject": "PHYS",
+      "number": "102",
+      "title": "Physics - Electromagnetics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151,
+      "prerequisite": "PHYS 101"
+    },
+    {
+      "code": "PHYS 200",
+      "subject": "PHYS",
+      "number": "200",
+      "title": "Advanced Survey",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151,
+      "prerequisite": "PHYS 102"
+    },
+    {
+      "code": "PHYS 201",
+      "subject": "PHYS",
+      "number": "201",
+      "title": "Advanced Physics Survey",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151,
+      "prerequisite": "PHYS 102"
+    },
+    {
+      "code": "PHYS 215",
+      "subject": "PHYS",
+      "number": "215",
+      "title": "Quantum Mechanics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151,
+      "prerequisite": "PHYS 102, MATH 210, MATH 220, MATH 240"
+    },
+    {
+      "code": "PHYS 220",
+      "subject": "PHYS",
+      "number": "220",
+      "title": "Waves",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151,
+      "prerequisite": "PHYS 102"
+    },
+    {
+      "code": "PHYS 280",
+      "subject": "PHYS",
+      "number": "280",
+      "title": "Special Topic in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 151
+    },
+    {
+      "code": "PHYS 281",
+      "subject": "PHYS",
+      "number": "281",
+      "title": "Independent Study in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 151
+    },
+    {
+      "code": "PHYS 285",
+      "subject": "PHYS",
+      "number": "285",
+      "title": "Special Topic in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 151
+    },
+    {
+      "code": "PHYS 286",
+      "subject": "PHYS",
+      "number": "286",
+      "title": "Independent Study in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 152
+    },
+    {
+      "code": "PHYS 290",
+      "subject": "PHYS",
+      "number": "290",
+      "title": "Special Topic in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 152
+    },
+    {
+      "code": "PHYS 291",
+      "subject": "PHYS",
+      "number": "291",
+      "title": "Independent Study in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 152
+    },
+    {
+      "code": "PHYS 310",
+      "subject": "PHYS",
+      "number": "310",
+      "title": "Mechanics 1",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 152,
+      "prerequisite": "PHYS 220 MATH 240"
+    },
+    {
+      "code": "PHYS 315",
+      "subject": "PHYS",
+      "number": "315",
+      "title": "Electricity and Magnetism I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 152,
+      "prerequisite": "PHYS 220, MATH 240"
+    },
+    {
+      "code": "PHYS 320",
+      "subject": "PHYS",
+      "number": "320",
+      "title": "Thermodynamic s and Statistical Mechanics I",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 152,
+      "prerequisite": "PHYS 200, MATH 220"
+    },
+    {
+      "code": "PHYS 325",
+      "subject": "PHYS",
+      "number": "325",
+      "title": "Special Relativity",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 152,
+      "prerequisite": "PHYS 102, MATH 210"
+    },
+    {
+      "code": "PHYS 380",
+      "subject": "PHYS",
+      "number": "380",
+      "title": "Special Topic in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 152
+    },
+    {
+      "code": "PHYS 381",
+      "subject": "PHYS",
+      "number": "381",
+      "title": "Independent Study in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 153
+    },
+    {
+      "code": "PHYS 385",
+      "subject": "PHYS",
+      "number": "385",
+      "title": "Special Topic in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 153
+    },
+    {
+      "code": "PHYS 386",
+      "subject": "PHYS",
+      "number": "386",
+      "title": "Independent Study in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 153
+    },
+    {
+      "code": "PHYS 390",
+      "subject": "PHYS",
+      "number": "390",
+      "title": "Special Topic in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 153
+    },
+    {
+      "code": "PHYS 391",
+      "subject": "PHYS",
+      "number": "391",
+      "title": "Independent Study in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 153
+    },
+    {
+      "code": "PHYS 410",
+      "subject": "PHYS",
+      "number": "410",
+      "title": "Mechanics II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 153,
+      "prerequisite": "PHYS 310"
+    },
+    {
+      "code": "PHYS 415",
+      "subject": "PHYS",
+      "number": "415",
+      "title": "Electricity and Magnetism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 153,
+      "prerequisite": "PHYS 315"
+    },
+    {
+      "code": "PHYS 425",
+      "subject": "PHYS",
+      "number": "425",
+      "title": "Quantum Mechanics II",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 153,
+      "prerequisite": "PHYS 215"
+    },
+    {
+      "code": "PHYS 430",
+      "subject": "PHYS",
+      "number": "430",
+      "title": "Statistical Mechanics and Condensed Matter",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 154,
+      "prerequisite": "PHYS 320"
+    },
+    {
+      "code": "PHYS 435",
+      "subject": "PHYS",
+      "number": "435",
+      "title": "Computational Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 154,
+      "prerequisite": "PHYS 200, MATH 240"
+    },
+    {
+      "code": "PHYS 480",
+      "subject": "PHYS",
+      "number": "480",
+      "title": "Special Topic in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "PHYS 481",
+      "subject": "PHYS",
+      "number": "481",
+      "title": "Independent Study in Physics",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "PHYS 485",
+      "subject": "PHYS",
+      "number": "485",
+      "title": "Special Topic in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "PHYS 486",
+      "subject": "PHYS",
+      "number": "486",
+      "title": "Independent Study in Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "PHYS 490",
+      "subject": "PHYS",
+      "number": "490",
+      "title": "Special Topic in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "PHYS 491",
+      "subject": "PHYS",
+      "number": "491",
+      "title": "Independent Study in Physics",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 154
+    },
+    {
+      "code": "POLR 110",
+      "subject": "POLR",
+      "number": "110",
+      "title": "Polaris Launch",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 155
+    },
+    {
+      "code": "POLR 120",
+      "subject": "POLR",
+      "number": "120",
+      "title": "Startup Theory",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 155
+    },
+    {
+      "code": "POLR 210",
+      "subject": "POLR",
+      "number": "210",
+      "title": "Vibecoding Hardware",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 155,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 211",
+      "subject": "POLR",
+      "number": "211",
+      "title": "Computing in Practice",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 155,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 212",
+      "subject": "POLR",
+      "number": "212",
+      "title": "Autodidacticism",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 156,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 310",
+      "subject": "POLR",
+      "number": "310",
+      "title": "Polaris Build",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 156,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 311",
+      "subject": "POLR",
+      "number": "311",
+      "title": "Polaris Build",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 156,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 312",
+      "subject": "POLR",
+      "number": "312",
+      "title": "From Prototype to Production",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 156,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 313",
+      "subject": "POLR",
+      "number": "313",
+      "title": "Polaris Skills",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 156,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "POLR 490",
+      "subject": "POLR",
+      "number": "490",
+      "title": "Polaris Gateway",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 157,
+      "prerequisite": "POLR 110"
+    },
+    {
+      "code": "SCIM 101",
+      "subject": "SCIM",
+      "number": "101",
+      "title": "Quantitative Reasoning - Analysis",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 157
+    },
+    {
+      "code": "SCIM 102",
+      "subject": "SCIM",
+      "number": "102",
+      "title": "Quantitative Reasoning - Data",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 157
+    },
+    {
+      "code": "SCIM 110",
+      "subject": "SCIM",
+      "number": "110",
+      "title": "Introduction to Physics",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 157
+    },
+    {
+      "code": "SCIM 210",
+      "subject": "SCIM",
+      "number": "210",
+      "title": "Life Sciences, Ethics, and Policy",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 157
+    },
+    {
+      "code": "WRIT 120",
+      "subject": "WRIT",
+      "number": "120",
+      "title": "Writing and the English Language",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 280",
+      "subject": "WRIT",
+      "number": "280",
+      "title": "Special Topic in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 281",
+      "subject": "WRIT",
+      "number": "281",
+      "title": "Independent Study in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 285",
+      "subject": "WRIT",
+      "number": "285",
+      "title": "Special Topic in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 286",
+      "subject": "WRIT",
+      "number": "286",
+      "title": "Independent Study in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 290",
+      "subject": "WRIT",
+      "number": "290",
+      "title": "Special Topic in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 291",
+      "subject": "WRIT",
+      "number": "291",
+      "title": "Independent Study in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 310",
+      "subject": "WRIT",
+      "number": "310",
+      "title": "Creative Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 380",
+      "subject": "WRIT",
+      "number": "380",
+      "title": "Special Topic in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 158
+    },
+    {
+      "code": "WRIT 381",
+      "subject": "WRIT",
+      "number": "381",
+      "title": "Independent Study in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 385",
+      "subject": "WRIT",
+      "number": "385",
+      "title": "Special Topic in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 386",
+      "subject": "WRIT",
+      "number": "386",
+      "title": "Independent Study in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 390",
+      "subject": "WRIT",
+      "number": "390",
+      "title": "Special Topic in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 391",
+      "subject": "WRIT",
+      "number": "391",
+      "title": "Independent Study in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 410",
+      "subject": "WRIT",
+      "number": "410",
+      "title": "Writing Studio",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 159,
+      "prerequisite": "WRIT 310"
+    },
+    {
+      "code": "WRIT 480",
+      "subject": "WRIT",
+      "number": "480",
+      "title": "Special Topic in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 481",
+      "subject": "WRIT",
+      "number": "481",
+      "title": "Independent Study in Writing",
+      "credits": 1.5,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 485",
+      "subject": "WRIT",
+      "number": "485",
+      "title": "Special Topic in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 486",
+      "subject": "WRIT",
+      "number": "486",
+      "title": "Independent Study in Writing",
+      "credits": 3.0,
+      "catalog": "2026-2027",
+      "page": 159
+    },
+    {
+      "code": "WRIT 490",
+      "subject": "WRIT",
+      "number": "490",
+      "title": "Special Topic in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 160
+    },
+    {
+      "code": "WRIT 491",
+      "subject": "WRIT",
+      "number": "491",
+      "title": "Independent Study in Writing",
+      "credits": 4.5,
+      "catalog": "2026-2027",
+      "page": 160
+    }
+  ],
+  "legacyCourses": [
+    {
+      "code": "ALT 1010",
+      "subject": "ALT",
+      "number": "1010",
+      "title": "The Rise and Fall of Ancient Rome",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 161
+    },
+    {
+      "code": "ALT 1020",
+      "subject": "ALT",
+      "number": "1020",
+      "title": "Crown, Cathedral, and Crusade",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 161
+    },
+    {
+      "code": "ALT 1030",
+      "subject": "ALT",
+      "number": "1030",
+      "title": "The Renaissance and the Reformation",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 161
+    },
+    {
+      "code": "ALT 1040",
+      "subject": "ALT",
+      "number": "1040",
+      "title": "Reason and Revolution",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 162
+    },
+    {
+      "code": "ALT 1050",
+      "subject": "ALT",
+      "number": "1050",
+      "title": "Romanticism and Realism",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 162
+    },
+    {
+      "code": "ALT 1060",
+      "subject": "ALT",
+      "number": "1060",
+      "title": "Decadence, Modernism, and Post- modernism",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 163
+    },
+    {
+      "code": "ALT 1100",
+      "subject": "ALT",
+      "number": "1100",
+      "title": "Faith, Reason, and Science I: Medieval, Contemporary, and Early Modern",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 163
+    },
+    {
+      "code": "ALT 1120",
+      "subject": "ALT",
+      "number": "1120",
+      "title": "Faith, Reason, and Science II: Modern and Contemporary",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 163,
+      "prerequisite": "ALT 1100"
+    },
+    {
+      "code": "ALT 1140",
+      "subject": "ALT",
+      "number": "1140",
+      "title": "Work, Leisure, and the Good Life",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 164
+    },
+    {
+      "code": "ALT 1160",
+      "subject": "ALT",
+      "number": "1160",
+      "title": "The Sublime and the Beautiful I: Classical, Medieval, and Early Modern",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 164
+    },
+    {
+      "code": "ALT 1180",
+      "subject": "ALT",
+      "number": "1180",
+      "title": "The Sublime and the Beautiful II: Modern and Contemporary",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 164,
+      "prerequisite": "ALT 1160"
+    },
+    {
+      "code": "ALT 1200",
+      "subject": "ALT",
+      "number": "1200",
+      "title": "The Theory Wars",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 164,
+      "prerequisite": "ALT 1160, ALT 1180"
+    },
+    {
+      "code": "ALT 1220",
+      "subject": "ALT",
+      "number": "1220",
+      "title": "Postmodernis m and the End of History",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 164,
+      "prerequisite": "ALT 1060"
+    },
+    {
+      "code": "ALT 1240",
+      "subject": "ALT",
+      "number": "1240",
+      "title": "Colonialism, Decolonization and Post- colonialism",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 165
+    },
+    {
+      "code": "ALT 1260",
+      "subject": "ALT",
+      "number": "1260",
+      "title": "Critical Theory",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 165
+    },
+    {
+      "code": "ALT 1300",
+      "subject": "ALT",
+      "number": "1300",
+      "title": "Tragedy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 165
+    },
+    {
+      "code": "ALT 1400",
+      "subject": "ALT",
+      "number": "1400",
+      "title": "Comedy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 165
+    },
+    {
+      "code": "ALT 1500",
+      "subject": "ALT",
+      "number": "1500",
+      "title": "Medieval Literature",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 165
+    },
+    {
+      "code": "ALT 1600",
+      "subject": "ALT",
+      "number": "1600",
+      "title": "Early Modern Literature",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 1800",
+      "subject": "ALT",
+      "number": "1800",
+      "title": "Romantic and Victorian Literature",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 1900",
+      "subject": "ALT",
+      "number": "1900",
+      "title": "Modern and Contemporary Literature",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 1950",
+      "subject": "ALT",
+      "number": "1950",
+      "title": "American Literature",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 1951",
+      "subject": "ALT",
+      "number": "1951",
+      "title": "American Literature I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 2000",
+      "subject": "ALT",
+      "number": "2000",
+      "title": "Classical Ethics I: Plato, Aristotle, and the Hellenistic Philosophers",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 166
+    },
+    {
+      "code": "ALT 2020",
+      "subject": "ALT",
+      "number": "2020",
+      "title": "Classical Ethics II: Cicero, Seneca, and Plutarch",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 167,
+      "prerequisite": "ALT 2000"
+    },
+    {
+      "code": "ALT 2100",
+      "subject": "ALT",
+      "number": "2100",
+      "title": "Classical Political Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 167
+    },
+    {
+      "code": "ALT 2200",
+      "subject": "ALT",
+      "number": "2200",
+      "title": "Medieval and Early Modern Ethics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 167
+    },
+    {
+      "code": "ALT 2300",
+      "subject": "ALT",
+      "number": "2300",
+      "title": "Medieval and Early Modern Political Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 167
+    },
+    {
+      "code": "ALT 2400",
+      "subject": "ALT",
+      "number": "2400",
+      "title": "Modern and Contemporary Political Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 167
+    },
+    {
+      "code": "ALT 2420",
+      "subject": "ALT",
+      "number": "2420",
+      "title": "Work, Leisure, and the Good Life",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 167
+    },
+    {
+      "code": "ALT 2500",
+      "subject": "ALT",
+      "number": "2500",
+      "title": "Self and Other: The Ethics and Politics of Recognition",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 168,
+      "prerequisite": "ALT 3700"
+    },
+    {
+      "code": "ALT 2600",
+      "subject": "ALT",
+      "number": "2600",
+      "title": "Methodologica I Approaches to Political Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 168
+    },
+    {
+      "code": "ALT 2700",
+      "subject": "ALT",
+      "number": "2700",
+      "title": "Introduction to the History and Culture of China",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 168
+    },
+    {
+      "code": "ALT 3000",
+      "subject": "ALT",
+      "number": "3000",
+      "title": "Plato, Republic",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 168
+    },
+    {
+      "code": "ALT 3160",
+      "subject": "ALT",
+      "number": "3160",
+      "title": "Chaucer, The Canterbury Tales",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 168
+    },
+    {
+      "code": "ALT 3200",
+      "subject": "ALT",
+      "number": "3200",
+      "title": "Socrates and Montaigne",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 168,
+      "prerequisite": "ALT 2000, ALT 2020"
+    },
+    {
+      "code": "ALT 3220",
+      "subject": "ALT",
+      "number": "3220",
+      "title": "Machiavelli, Discourses on Livy",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169,
+      "prerequisite": "ALT 1010"
+    },
+    {
+      "code": "ALT 3300",
+      "subject": "ALT",
+      "number": "3300",
+      "title": "Shakespeare: Tragedies and Romances",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3310",
+      "subject": "ALT",
+      "number": "3310",
+      "title": "Dante, Inferno",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3315",
+      "subject": "ALT",
+      "number": "3315",
+      "title": "Dante, Purgatorio",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3320",
+      "subject": "ALT",
+      "number": "3320",
+      "title": "Dante, Paradiso",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3330",
+      "subject": "ALT",
+      "number": "3330",
+      "title": "Shakespeare: Comedies and Problem Plays",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3340",
+      "subject": "ALT",
+      "number": "3340",
+      "title": "Shakespeare: The Roman Plays",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169,
+      "prerequisite": "ALT 1010"
+    },
+    {
+      "code": "ALT 3360",
+      "subject": "ALT",
+      "number": "3360",
+      "title": "Shakespeare: The History Plays",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 169
+    },
+    {
+      "code": "ALT 3400",
+      "subject": "ALT",
+      "number": "3400",
+      "title": "Milton, Paradise Lost",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3500",
+      "subject": "ALT",
+      "number": "3500",
+      "title": "Austen",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3600",
+      "subject": "ALT",
+      "number": "3600",
+      "title": "Montesquieu, The Spirit of the Laws",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170,
+      "prerequisite": "ALT 2100"
+    },
+    {
+      "code": "ALT 3620",
+      "subject": "ALT",
+      "number": "3620",
+      "title": "Tocqueville, Democracy in America",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170,
+      "prerequisite": "ALT 3600"
+    },
+    {
+      "code": "ALT 3700",
+      "subject": "ALT",
+      "number": "3700",
+      "title": "Kant and Hegel",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3720",
+      "subject": "ALT",
+      "number": "3720",
+      "title": "Kierkegaard",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170,
+      "prerequisite": "ALT 3700"
+    },
+    {
+      "code": "ALT 3740",
+      "subject": "ALT",
+      "number": "3740",
+      "title": "Melville, Moby Dick",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3750",
+      "subject": "ALT",
+      "number": "3750",
+      "title": "Melville, Moby Dick",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3760",
+      "subject": "ALT",
+      "number": "3760",
+      "title": "Dostoyevsky",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 170
+    },
+    {
+      "code": "ALT 3780",
+      "subject": "ALT",
+      "number": "3780",
+      "title": "Nietzsche",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 170,
+      "prerequisite": "ALT 3760"
+    },
+    {
+      "code": "ALT 3800",
+      "subject": "ALT",
+      "number": "3800",
+      "title": "Arendt and Strauss",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 171,
+      "prerequisite": "ALT 3760"
+    },
+    {
+      "code": "ALT 3850",
+      "subject": "ALT",
+      "number": "3850",
+      "title": "MacIntyre",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 171,
+      "prerequisite": "ALT 2000, ALT 2020, ALT 2200"
+    },
+    {
+      "code": "ALT 3900",
+      "subject": "ALT",
+      "number": "3900",
+      "title": "Joyce, Ulysses",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4000",
+      "subject": "ALT",
+      "number": "4000",
+      "title": "Writing Studio",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4100",
+      "subject": "ALT",
+      "number": "4100",
+      "title": "Special Topics in Literature Pre 1800",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4100E",
+      "subject": "ALT",
+      "number": "4100E",
+      "title": "The Trojan War",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110",
+      "subject": "ALT",
+      "number": "4110",
+      "title": "Special Topics in Literature Pre 1800",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4110A",
+      "subject": "ALT",
+      "number": "4110A",
+      "title": "Ancient Greek I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110B",
+      "subject": "ALT",
+      "number": "4110B",
+      "title": "Ancient Greek II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110C",
+      "subject": "ALT",
+      "number": "4110C",
+      "title": "Ancient Greek III",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110F",
+      "subject": "ALT",
+      "number": "4110F",
+      "title": "Directed Readings in Ancient Greek",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110G",
+      "subject": "ALT",
+      "number": "4110G",
+      "title": "Latin I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4110H",
+      "subject": "ALT",
+      "number": "4110H",
+      "title": "German I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4200",
+      "subject": "ALT",
+      "number": "4200",
+      "title": "Special Topics in Literature Post 1800",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4210",
+      "subject": "ALT",
+      "number": "4210",
+      "title": "Special Topics in Literature Post 1800",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4210A",
+      "subject": "ALT",
+      "number": "4210A",
+      "title": "Early Austen",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4300",
+      "subject": "ALT",
+      "number": "4300",
+      "title": "Independent Study Pre 1800",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 171
+    },
+    {
+      "code": "ALT 4310",
+      "subject": "ALT",
+      "number": "4310",
+      "title": "Independent Study Pre 1800",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4400",
+      "subject": "ALT",
+      "number": "4400",
+      "title": "Independent Study Post 1800",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4410",
+      "subject": "ALT",
+      "number": "4410",
+      "title": "Independent Study Post 1800",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4500",
+      "subject": "ALT",
+      "number": "4500",
+      "title": "Special Topics in Ethics and Politics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4500A",
+      "subject": "ALT",
+      "number": "4500A",
+      "title": "The Founding of Israel",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4500B",
+      "subject": "ALT",
+      "number": "4500B",
+      "title": "The Founding Before the Founding",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510",
+      "subject": "ALT",
+      "number": "4510",
+      "title": "Special Topics in Ethics and Politics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4510A",
+      "subject": "ALT",
+      "number": "4510A",
+      "title": "Hellenistic and Roman Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510B",
+      "subject": "ALT",
+      "number": "4510B",
+      "title": "Modern Philosophy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510C",
+      "subject": "ALT",
+      "number": "4510C",
+      "title": "Early Modern Republicanism",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510D",
+      "subject": "ALT",
+      "number": "4510D",
+      "title": "Montaigne and Rousseau",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510E",
+      "subject": "ALT",
+      "number": "4510E",
+      "title": "Judaism in Antiquity",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510G",
+      "subject": "ALT",
+      "number": "4510G",
+      "title": "Lincoln's Democratic Statesmanship",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510J",
+      "subject": "ALT",
+      "number": "4510J",
+      "title": "Neoplatonism and Mysticism",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510K",
+      "subject": "ALT",
+      "number": "4510K",
+      "title": "Patristics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510L",
+      "subject": "ALT",
+      "number": "4510L",
+      "title": "Kant",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4510M",
+      "subject": "ALT",
+      "number": "4510M",
+      "title": "Hegel",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4600",
+      "subject": "ALT",
+      "number": "4600",
+      "title": "Independent Study Ethics and Politics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4610",
+      "subject": "ALT",
+      "number": "4610",
+      "title": "Independent Study in Ethics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4700",
+      "subject": "ALT",
+      "number": "4700",
+      "title": "Special Topics in Film",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4700A",
+      "subject": "ALT",
+      "number": "4700A",
+      "title": "Facing the Mad Soul: Werner Herzog and Klaus Kinski",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "ALT 4710",
+      "subject": "ALT",
+      "number": "4710",
+      "title": "Special Topics in Film",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "ALT 4710B",
+      "subject": "ALT",
+      "number": "4710B",
+      "title": "Film Studio",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EDU 2900",
+      "subject": "EDU",
+      "number": "2900",
+      "title": "Special Topics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 172
+    },
+    {
+      "code": "EDU 2910",
+      "subject": "EDU",
+      "number": "2910",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 173
+    },
+    {
+      "code": "EDU 2920",
+      "subject": "EDU",
+      "number": "2920",
+      "title": "Special Topics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 173
+    },
+    {
+      "code": "EDU 4900",
+      "subject": "EDU",
+      "number": "4900",
+      "title": "Special Topics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 173
+    },
+    {
+      "code": "EDU 4910",
+      "subject": "EDU",
+      "number": "4910",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 173
+    },
+    {
+      "code": "EDU 4920",
+      "subject": "EDU",
+      "number": "4920",
+      "title": "Special Topics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 173
+    },
+    {
+      "code": "EPH 1100",
+      "subject": "EPH",
+      "number": "1100",
+      "title": "Analytical Tools for Economics and Political Science",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 52
+    },
+    {
+      "code": "EPH 1200",
+      "subject": "EPH",
+      "number": "1200",
+      "title": "Introduction to American Politics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 52
+    },
+    {
+      "code": "EPH 1300",
+      "subject": "EPH",
+      "number": "1300",
+      "title": "Foundations of Micro- economics I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 174
+    },
+    {
+      "code": "EPH 1400",
+      "subject": "EPH",
+      "number": "1400",
+      "title": "Foundations of Macro- economics I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 174
+    },
+    {
+      "code": "EPH 1500",
+      "subject": "EPH",
+      "number": "1500",
+      "title": "History, Historiography and the Philosophy of History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 175
+    },
+    {
+      "code": "EPH 1600",
+      "subject": "EPH",
+      "number": "1600",
+      "title": "American Legal System",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 175
+    },
+    {
+      "code": "EPH 2000",
+      "subject": "EPH",
+      "number": "2000",
+      "title": "Introduction To Applied Econometrics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 175,
+      "prerequisite": "EPH 1100"
+    },
+    {
+      "code": "EPH 2010",
+      "subject": "EPH",
+      "number": "2010",
+      "title": "Data Science for Social Scientists",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 175,
+      "prerequisite": "EPH 1100"
+    },
+    {
+      "code": "EPH 2040",
+      "subject": "EPH",
+      "number": "2040",
+      "title": "Introduction to 20th Century History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 176
+    },
+    {
+      "code": "EPH 2100",
+      "subject": "EPH",
+      "number": "2100",
+      "title": "Political Theories of Democracy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 176
+    },
+    {
+      "code": "EPH 2200",
+      "subject": "EPH",
+      "number": "2200",
+      "title": "Foundations of Political Science I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 176
+    },
+    {
+      "code": "EPH 2250",
+      "subject": "EPH",
+      "number": "2250",
+      "title": "Introduction to Political Science",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 176
+    },
+    {
+      "code": "EPH 2300",
+      "subject": "EPH",
+      "number": "2300",
+      "title": "Foundations of Political Science II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 177,
+      "prerequisite": "EPH 1410"
+    },
+    {
+      "code": "EPH 2351",
+      "subject": "EPH",
+      "number": "2351",
+      "title": "Applied Politics and Policy: U.S. Immigration",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2353",
+      "subject": "EPH",
+      "number": "2353",
+      "title": "Applied Politics and Policy: Education and Family",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2354",
+      "subject": "EPH",
+      "number": "2354",
+      "title": "Applied Politics and Policy: U.S. and Israeli Defense",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2400",
+      "subject": "EPH",
+      "number": "2400",
+      "title": "Philosophers of Political Economy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2900",
+      "subject": "EPH",
+      "number": "2900",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2900A",
+      "subject": "EPH",
+      "number": "2900A",
+      "title": "Pathocracy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900B",
+      "subject": "EPH",
+      "number": "2900B",
+      "title": "Legacy of Slavery",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900C",
+      "subject": "EPH",
+      "number": "2900C",
+      "title": "Writing and Speaking",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900D",
+      "subject": "EPH",
+      "number": "2900D",
+      "title": "Bitcoin, Blockchain, and Cryptocurrency",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900E",
+      "subject": "EPH",
+      "number": "2900E",
+      "title": "American History I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900F",
+      "subject": "EPH",
+      "number": "2900F",
+      "title": "Journalism Tradecraft",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900G",
+      "subject": "EPH",
+      "number": "2900G",
+      "title": "After the End of History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900J",
+      "subject": "EPH",
+      "number": "2900J",
+      "title": "Entrepreneurial Strategy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900K",
+      "subject": "EPH",
+      "number": "2900K",
+      "title": "Business Foundations for Builders",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900N",
+      "subject": "EPH",
+      "number": "2900N",
+      "title": "Investigating, Reporting, and Persuasion",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2900P",
+      "subject": "EPH",
+      "number": "2900P",
+      "title": "What is the Left? Contemporary US Politics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2910",
+      "subject": "EPH",
+      "number": "2910",
+      "title": "On Capitalism",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2910A",
+      "subject": "EPH",
+      "number": "2910A",
+      "title": "Executive Power",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2910B",
+      "subject": "EPH",
+      "number": "2910B",
+      "title": "Political Psychology",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2910E",
+      "subject": "EPH",
+      "number": "2910E",
+      "title": "US Supreme Court History",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2910F",
+      "subject": "EPH",
+      "number": "2910F",
+      "title": "Nature and Morality of Capitalism",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "EPH 2920",
+      "subject": "EPH",
+      "number": "2920",
+      "title": "Special Topics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 178,
+      "prerequisite": "EPH 1300"
+    },
+    {
+      "code": "EPH 3010",
+      "subject": "EPH",
+      "number": "3010",
+      "title": "Foundations of Microeconomics II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 55,
+      "prerequisite": "EPH 1300"
+    },
+    {
+      "code": "EPH 3020",
+      "subject": "EPH",
+      "number": "3020",
+      "title": "Foundations of Macro- economics II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 178,
+      "prerequisite": "EPH 1400"
+    },
+    {
+      "code": "EPH 3030",
+      "subject": "EPH",
+      "number": "3030",
+      "title": "Corporate Finance, Accounting, and Business Planning",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 178
+    },
+    {
+      "code": "EPH 3040",
+      "subject": "EPH",
+      "number": "3040",
+      "title": "Introduction to World Economic and Political History",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 179
+    },
+    {
+      "code": "EPH 3050",
+      "subject": "EPH",
+      "number": "3050",
+      "title": "Public Choice",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 179
+    },
+    {
+      "code": "EPH 3060",
+      "subject": "EPH",
+      "number": "3060",
+      "title": "Advanced Topics in Panel Data Analysis",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 179,
+      "prerequisite": "\u0415\u0420H 2000, \u0415PH 2010"
+    },
+    {
+      "code": "EPH 3070",
+      "subject": "EPH",
+      "number": "3070",
+      "title": "Advanced Topics in Time Series Analysis",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 179,
+      "prerequisite": "EPH 2000, EPH 2010"
+    },
+    {
+      "code": "EPH 3080",
+      "subject": "EPH",
+      "number": "3080",
+      "title": "Advanced Topics in Data Science for Social Sciences",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 179,
+      "prerequisite": "EPH 2000, EPH 2010"
+    },
+    {
+      "code": "EPH 3090",
+      "subject": "EPH",
+      "number": "3090",
+      "title": "Advanced Micro- economics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 179,
+      "prerequisite": "\u0415\u0420H 2000, \u0415\u0420H 2300, \u0415\u0420\u041d 3010, \u0415\u0420\u041d 3020, \u0415\u0420\u041d 3030"
+    },
+    {
+      "code": "EPH 3100",
+      "subject": "EPH",
+      "number": "3100",
+      "title": "Advanced Macro-economics, Public Finance and Growth Theory",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 180,
+      "prerequisite": "\u0415\u0420\u041d 2000, \u0415\u0420\u041d 2300, \u0415\u0420\u041d 3010, \u0415\u0420\u041d 3020, \u0415\u0420\u041d 3040"
+    },
+    {
+      "code": "EPH 3110",
+      "subject": "EPH",
+      "number": "3110",
+      "title": "Advanced Topics in American Political History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 56
+    },
+    {
+      "code": "EPH 3120",
+      "subject": "EPH",
+      "number": "3120",
+      "title": "Voting, Political Parties and Electoral Politics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 180
+    },
+    {
+      "code": "EPH 3130",
+      "subject": "EPH",
+      "number": "3130",
+      "title": "Business Structures and Governance",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 56,
+      "prerequisite": "\u0415PH 1110, \u0415PH 1120, \u0415PH 1210, \u0415PH 1220, EPH 1310, EPH"
+    },
+    {
+      "code": "EPH 3140",
+      "subject": "EPH",
+      "number": "3140",
+      "title": "Capitalism, Its Critics, and the History of Growth, Poverty and Inequality",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 180
+    },
+    {
+      "code": "EPH 3150",
+      "subject": "EPH",
+      "number": "3150",
+      "title": "How Political Revolutions Happen",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 180,
+      "prerequisite": "\u0415\u0420H 1610, \u0415\u0420H 1710, EPH 1810"
+    },
+    {
+      "code": "EPH 3160",
+      "subject": "EPH",
+      "number": "3160",
+      "title": "Advanced Topics in American Economic History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 180,
+      "prerequisite": "\u0415\u0420H 1500"
+    },
+    {
+      "code": "EPH 3170",
+      "subject": "EPH",
+      "number": "3170",
+      "title": "Advanced Topics in World Economic History",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181,
+      "prerequisite": "EPH 1500"
+    },
+    {
+      "code": "EPH 3190",
+      "subject": "EPH",
+      "number": "3190",
+      "title": "International Trade",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3200",
+      "subject": "EPH",
+      "number": "3200",
+      "title": "Rationality and its Limits: \"From Becker to Thaler and Beyond\"",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3210",
+      "subject": "EPH",
+      "number": "3210",
+      "title": "International Finance",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3220",
+      "subject": "EPH",
+      "number": "3220",
+      "title": "Money, Banking, and the Financial System",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3230",
+      "subject": "EPH",
+      "number": "3230",
+      "title": "Finance and Economic Development",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3240",
+      "subject": "EPH",
+      "number": "3240",
+      "title": "International Relations",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
+    },
+    {
+      "code": "EPH 3250",
+      "subject": "EPH",
+      "number": "3250",
+      "title": "Entre- preneurship and Entre- preneurial Finance",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "EPH 3900",
+      "subject": "EPH",
+      "number": "3900",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "EPH 4000",
+      "subject": "EPH",
+      "number": "4000",
+      "title": "Independent Study",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "EPH 4900",
+      "subject": "EPH",
+      "number": "4900",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "EPH 4910",
+      "subject": "EPH",
+      "number": "4910",
+      "title": "Special Topics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "INF 1100",
+      "subject": "INF",
+      "number": "1100",
+      "title": "Chaos and Civilization",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "INF 1102",
+      "subject": "INF",
+      "number": "1102",
+      "title": "Epic and Tragedy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "INF 1103",
+      "subject": "INF",
+      "number": "1103",
+      "title": "Bible I",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "INF 1104",
+      "subject": "INF",
+      "number": "1104",
+      "title": "Bible II",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 58,
+      "note": "Listed only in the 2026-2027 Intellectual Foundations requirements (p. 58)."
+    },
+    {
+      "code": "INF 1110",
+      "subject": "INF",
+      "number": "1110",
+      "title": "Knowing, Doing, Making, Wisdom",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 183
+    },
+    {
+      "code": "INF 1130",
+      "subject": "INF",
+      "number": "1130",
+      "title": "Quantitative Reasoning I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 183
+    },
+    {
+      "code": "INF 1200",
+      "subject": "INF",
+      "number": "1200",
+      "title": "The Beginning of Politics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 183
+    },
+    {
+      "code": "INF 1210",
+      "subject": "INF",
+      "number": "1210",
+      "title": "Writing and the English Language",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 183
+    },
+    {
+      "code": "INF 1220",
+      "subject": "INF",
+      "number": "1220",
+      "title": "Quantitative Reasoning II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 183,
+      "prerequisite": "INF1130"
+    },
+    {
+      "code": "INF 1300",
+      "subject": "INF",
+      "number": "1300",
+      "title": "Christianity and Islam, Europe and the East",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 184
+    },
+    {
+      "code": "INF 1320",
+      "subject": "INF",
+      "number": "1320",
+      "title": "Intellectual Foundations of Economics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 184
+    },
+    {
+      "code": "INF 1330",
+      "subject": "INF",
+      "number": "1330",
+      "title": "Foundations of Science I",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 184
+    },
+    {
+      "code": "INF 2100",
+      "subject": "INF",
+      "number": "2100",
+      "title": "The Uses and Abuses of Technology",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 184
+    },
+    {
+      "code": "INF 2110",
+      "subject": "INF",
+      "number": "2110",
+      "title": "Foundations of Science II",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 184,
+      "prerequisite": "INF 1330"
+    },
+    {
+      "code": "INF 2120",
+      "subject": "INF",
+      "number": "2120",
+      "title": "Modernity and the West",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 185
+    },
+    {
+      "code": "INF 2121",
+      "subject": "INF",
+      "number": "2121",
+      "title": "Early Modernity",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 185
+    },
+    {
+      "code": "INF 2200",
+      "subject": "INF",
+      "number": "2200",
+      "title": "The American Experiment",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 185
+    },
+    {
+      "code": "INF 2210",
+      "subject": "INF",
+      "number": "2210",
+      "title": "Mortality and Meaning in Art and Music",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 185
+    },
+    {
+      "code": "INF 2300",
+      "subject": "INF",
+      "number": "2300",
+      "title": "Ideological Experiments of the 20th Century",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 185
+    },
+    {
+      "code": "ORNT 101",
+      "subject": "ORNT",
+      "number": "101",
+      "title": "Freshmen Orientation",
+      "credits": 0.0,
+      "catalog": "legacy",
+      "page": 186
+    },
+    {
+      "code": "POL 1110",
+      "subject": "POL",
+      "number": "1110",
+      "title": "Polaris Ideas",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 186
+    },
+    {
+      "code": "POL 2100",
+      "subject": "POL",
+      "number": "2100",
+      "title": "Polaris Inspirations",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 186
+    },
+    {
+      "code": "POL 2110",
+      "subject": "POL",
+      "number": "2110",
+      "title": "Polaris Frame",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 186,
+      "prerequisite": "POL 2100"
+    },
+    {
+      "code": "POL 3100",
+      "subject": "POL",
+      "number": "3100",
+      "title": "Polaris Pitch",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 187,
+      "prerequisite": "POL 2110"
+    },
+    {
+      "code": "POL 3110",
+      "subject": "POL",
+      "number": "3110",
+      "title": "Polaris Build",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 187,
+      "prerequisite": "POL 3100"
+    },
+    {
+      "code": "POL 4150",
+      "subject": "POL",
+      "number": "4150",
+      "title": "Polaris Launch",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 187
+    },
+    {
+      "code": "STM 1001",
+      "subject": "STM",
+      "number": "1001",
+      "title": "Calculus I",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 187
+    },
+    {
+      "code": "STM 1002",
+      "subject": "STM",
+      "number": "1002",
+      "title": "Calculus II",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 187,
+      "prerequisite": "STM 1001"
+    },
+    {
+      "code": "STM 1003",
+      "subject": "STM",
+      "number": "1003",
+      "title": "Calculus III",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188
+    },
+    {
+      "code": "STM 1004",
+      "subject": "STM",
+      "number": "1004",
+      "title": "Differential Equations",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188,
+      "prerequisite": "STM 1002"
+    },
+    {
+      "code": "STM 1005",
+      "subject": "STM",
+      "number": "1005",
+      "title": "Discrete Mathematics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188
+    },
+    {
+      "code": "STM 2101",
+      "subject": "STM",
+      "number": "2101",
+      "title": "Probability",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188,
+      "prerequisite": "STM 1002"
+    },
+    {
+      "code": "STM 2102",
+      "subject": "STM",
+      "number": "2102",
+      "title": "Statistics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188,
+      "prerequisite": "STM 2101"
+    },
+    {
+      "code": "STM 2103",
+      "subject": "STM",
+      "number": "2103",
+      "title": "Linear Algebra",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188
+    },
+    {
+      "code": "STM 2104",
+      "subject": "STM",
+      "number": "2104",
+      "title": "Linear Optimization",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 188,
+      "prerequisite": "STM 2103"
+    },
+    {
+      "code": "STM 2300",
+      "subject": "STM",
+      "number": "2300",
+      "title": "Data Wrangling and Visualization",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 189
+    },
+    {
+      "code": "STM 2301",
+      "subject": "STM",
+      "number": "2301",
+      "title": "Programming I",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 189
+    },
+    {
+      "code": "STM 2302",
+      "subject": "STM",
+      "number": "2302",
+      "title": "Programming II",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 189,
+      "prerequisite": "STM 2301"
+    },
+    {
+      "code": "STM 2501",
+      "subject": "STM",
+      "number": "2501",
+      "title": "Physics I",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 189,
+      "prerequisite": "STM 1002"
+    },
+    {
+      "code": "STM 2502",
+      "subject": "STM",
+      "number": "2502",
+      "title": "Physics II",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 189,
+      "prerequisite": "STM 1002, STM 2501"
+    },
+    {
+      "code": "STM 3301",
+      "subject": "STM",
+      "number": "3301",
+      "title": "Data Structures and Scalability",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 190,
+      "prerequisite": "STM 2301"
+    },
+    {
+      "code": "STM 3302",
+      "subject": "STM",
+      "number": "3302",
+      "title": "Data Storage",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 190,
+      "prerequisite": "STM 3301"
+    },
+    {
+      "code": "STM 3303",
+      "subject": "STM",
+      "number": "3303",
+      "title": "Machine Learning",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 190,
+      "prerequisite": "STM 3301"
+    },
+    {
+      "code": "STM 3304",
+      "subject": "STM",
+      "number": "3304",
+      "title": "Computer Architecture and Organization",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 190,
+      "prerequisite": "STM 2301"
+    },
+    {
+      "code": "STM 3305",
+      "subject": "STM",
+      "number": "3305",
+      "title": "Machine Learning",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 190
+    },
+    {
+      "code": "STM 3900",
+      "subject": "STM",
+      "number": "3900",
+      "title": "Special Topics 1.50 STM 3910 Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 190
+    },
+    {
+      "code": "STM 3900A",
+      "subject": "STM",
+      "number": "3900A",
+      "title": "Artificial Intelligence I & II",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3900B",
+      "subject": "STM",
+      "number": "3900B",
+      "title": "Artificial Intelligence I & II",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3900C",
+      "subject": "STM",
+      "number": "3900C",
+      "title": "Statistical Learning",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3900D",
+      "subject": "STM",
+      "number": "3900D",
+      "title": "Bioastronautics",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3900E",
+      "subject": "STM",
+      "number": "3900E",
+      "title": "Bioinformatics Algorithms",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910",
+      "subject": "STM",
+      "number": "3910",
+      "title": "Special Topics",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 64
+    },
+    {
+      "code": "STM 3910A",
+      "subject": "STM",
+      "number": "3910A",
+      "title": "Statistical Modeling",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910B",
+      "subject": "STM",
+      "number": "3910B",
+      "title": "Intro/Accelerated Intro to Programming",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910C",
+      "subject": "STM",
+      "number": "3910C",
+      "title": "Intro/Accelerated Intro to Programming",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910D",
+      "subject": "STM",
+      "number": "3910D",
+      "title": "Industry Immersion Practicum",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910E",
+      "subject": "STM",
+      "number": "3910E",
+      "title": "Game Theory and Decision Making",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910F",
+      "subject": "STM",
+      "number": "3910F",
+      "title": "Analysis of Circuits",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910G",
+      "subject": "STM",
+      "number": "3910G",
+      "title": "Build an LLM from Scratch",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3910H",
+      "subject": "STM",
+      "number": "3910H",
+      "title": "Applied Engineering",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3911",
+      "subject": "STM",
+      "number": "3911",
+      "title": "Data Structures",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3912B",
+      "subject": "STM",
+      "number": "3912B",
+      "title": "Software Engineering",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "source": "equivalency document"
+    },
+    {
+      "code": "STM 3915",
+      "subject": "STM",
+      "number": "3915",
+      "title": "Special Topics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191
+    },
+    {
+      "code": "STM 4101",
+      "subject": "STM",
+      "number": "4101",
+      "title": "Nonparametric Statistics",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191,
+      "prerequisite": "STM 2101"
+    },
+    {
+      "code": "STM 4102",
+      "subject": "STM",
+      "number": "4102",
+      "title": "Statistical Learning",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191,
+      "prerequisite": "STM 2102"
+    },
+    {
+      "code": "STM 4301",
+      "subject": "STM",
+      "number": "4301",
+      "title": "Human Data Interaction",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191,
+      "prerequisite": "STM 3301"
+    },
+    {
+      "code": "STM 4302",
+      "subject": "STM",
+      "number": "4302",
+      "title": "Big Data Computing",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191,
+      "prerequisite": "STM 3302"
+    },
+    {
+      "code": "STM 4303",
+      "subject": "STM",
+      "number": "4303",
+      "title": "Computer Algorithms",
+      "credits": 4.5,
+      "catalog": "legacy",
+      "page": 191,
+      "prerequisite": "STM 3301"
+    }
+  ]
+}

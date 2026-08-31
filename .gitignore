@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.vercel
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# Personal academic records used for local parser testing. Never committed.
+.local/

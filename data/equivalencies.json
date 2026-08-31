@@ -1,0 +1,1631 @@
+{
+  "source": "UATX Equivalency document TABLES.docx",
+  "rules": [
+    {
+      "from": [
+        "POL 2110"
+      ],
+      "kind": "satisfies",
+      "center": "Polaris",
+      "title": "Polaris Frame",
+      "raw": "Counts as POLR 110 Polaris Launch",
+      "grants": [
+        [
+          "POLR 110"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "POL 1110"
+      ],
+      "kind": "satisfies",
+      "center": "Polaris",
+      "title": "Polaris Ideas",
+      "raw": "Satisfies POLR 311 Polaris Build",
+      "grants": [
+        [
+          "POLR 311"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "POL 2100"
+      ],
+      "kind": "satisfies",
+      "center": "Polaris",
+      "title": "Polaris Inspirations",
+      "raw": "Satisfies POLR 311 Polaris Build",
+      "grants": [
+        [
+          "POLR 311"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "POL 4150"
+      ],
+      "kind": "replaced",
+      "center": "Polaris",
+      "title": "Polaris Launch",
+      "raw": "Replaced w/POLR 490 Polaris Gateway",
+      "grants": [
+        [
+          "POLR 490"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1010"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Rise and Fall of Ancient Rome",
+      "raw": "= HIST 115 Ancient Rome",
+      "grants": [
+        [
+          "HIST 115"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1100",
+        "ALT 1120"
+      ],
+      "grants": [
+        [
+          "PHIL 130"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Faith, Reason, and Science I: Medieval and Early Modern (1.5)",
+      "raw": "Combined with ALT 1120 satisfies PHIL 130 The Scientific Revolution"
+    },
+    {
+      "from": [
+        "ALT 1020"
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Crown, Cathedral, and Crusade",
+      "raw": "Satisfies HIST 131 The Making of the Modern World",
+      "grants": [
+        [
+          "HIST 131"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1030"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Renaissance and the Reformation",
+      "raw": "= HIST 211",
+      "grants": [
+        [
+          "HIST 211"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1040"
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Reason and Revolution",
+      "raw": "Satisfies HIST 210 The Enlightenment",
+      "grants": [
+        [
+          "HIST 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1050"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Romanticism and Realism",
+      "raw": "= HIST 220",
+      "grants": [
+        [
+          "HIST 220"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1160"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Sublime and Beautiful I: Classical, Medieval, and Early Modern (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5) (or) PHIL 380 Special Topic in Philosophy (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ],
+        [
+          "PHIL 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1180"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Sublime and Beautiful II: Modern and Contemporary (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5) (or) PHIL 380 Special Topic in Philosophy (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ],
+        [
+          "PHIL 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1400"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Comedy",
+      "raw": "= LITR 320",
+      "grants": [
+        [
+          "LITR 320"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1800"
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Romantic and Victorian Literature",
+      "raw": "Satisfies LITR 225 Eighteenth-Century Literature (or) LITR 385 Special Topic in Literature",
+      "grants": [
+        [
+          "LITR 225"
+        ],
+        [
+          "LITR 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 1951"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "American Literature I: Eighteenth and Nineteenth Century",
+      "raw": "= AMCV 215",
+      "grants": [
+        [
+          "AMCV 215"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3000"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Plato, Republic (1.5)",
+      "raw": "= PHIL 380 Special Topic in Philosophy (1.5)",
+      "grants": [
+        [
+          "PHIL 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3310"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Dante, Inferno (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3315"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Dante, Purgatorio (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3320"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Dante, Paradiso (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3220"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Machiavelli, Discourses on Livy (1.5)",
+      "raw": "= PHIL 380 Special Topic in Philosophy (1.5)",
+      "grants": [
+        [
+          "PHIL 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 3750"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Melville, Moby Dick",
+      "raw": "= AMCV 425 The American Novel",
+      "grants": [
+        [
+          "AMCV 425"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Shakespeare's History Plays",
+      "raw": "= LITR 385 Special Topic in Literature",
+      "grants": [
+        [
+          "LITR 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4000"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Writing Studio",
+      "raw": "= WRIT 410",
+      "grants": [
+        [
+          "WRIT 410"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110A"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Ancient Greek I",
+      "raw": "= LANG 310",
+      "grants": [
+        [
+          "LANG 310"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110B"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Ancient Greek II",
+      "raw": "= LANG 311",
+      "grants": [
+        [
+          "LANG 311"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110C"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Ancient Greek III",
+      "raw": "= LANG 312",
+      "grants": [
+        [
+          "LANG 312"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4100E"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Trojan War",
+      "raw": "= LITR 310",
+      "grants": [
+        [
+          "LITR 310"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110F"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Directed Readings in Ancient Greek",
+      "raw": "= LANG 319",
+      "grants": [
+        [
+          "LANG 319"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110G"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Latin I",
+      "raw": "= LANG 320",
+      "grants": [
+        [
+          "LANG 320"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4110H"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "German I",
+      "raw": "= LANG 330",
+      "grants": [
+        [
+          "LANG 330"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4210A"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Early Austen",
+      "raw": "= LITR 415 The Novel",
+      "grants": [
+        [
+          "LITR 415"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4410"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Stendhal",
+      "raw": "= LITR 415 The Novel",
+      "grants": [
+        [
+          "LITR 415"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4500"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Socrates (1.5)",
+      "raw": "= PHIL 380 Special Topic in Philosophy (1.5)",
+      "grants": [
+        [
+          "PHIL 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4500"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Liberalism and Conservatism (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4500"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Political Theology (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4500A"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Founding of Israel (1.5)",
+      "raw": "= HIST 379 (1.5) or AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "HIST 379"
+        ],
+        [
+          "AMCV 380"
+        ]
+      ],
+      "note": "Catalog lists HIST 380 as Postmodernism and Postcolonialism; the 1.5 cr Special Topic in History is HIST 379."
+    },
+    {
+      "from": [
+        "ALT 4500B"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "The Founding Before the Founding (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5) or HIST 379 (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ],
+        [
+          "HIST 379"
+        ]
+      ],
+      "note": "Catalog lists HIST 380 as Postmodernism and Postcolonialism; the 1.5 cr Special Topic in History is HIST 379."
+    },
+    {
+      "from": [
+        "ALT 4510A"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Hellenistic and Roman Philosophy",
+      "raw": "= PHIL 210",
+      "grants": [
+        [
+          "PHIL 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510B"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Modern Philosophy",
+      "raw": "= PHIL 385 Special Topic in Philosophy",
+      "grants": [
+        [
+          "PHIL 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510C"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Early Modern Republicanism",
+      "raw": "= PHIL 385 Special Topic in Philosophy",
+      "grants": [
+        [
+          "PHIL 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510D"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Montaigne and Rousseau",
+      "raw": "= PHIL 410 Great Philosophers",
+      "grants": [
+        [
+          "PHIL 410"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510E"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Judaism in Antiquity",
+      "raw": "= HIST 350",
+      "grants": [
+        [
+          "HIST 350"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510G"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Lincoln's Democratic Statesmanship (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5) or HIST 379 (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ],
+        [
+          "HIST 379"
+        ]
+      ],
+      "note": "Catalog lists HIST 380 as Postmodernism and Postcolonialism; the 1.5 cr Special Topic in History is HIST 379."
+    },
+    {
+      "from": [
+        "ALT 4510J"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Neoplatonism and Mysticism",
+      "raw": "= PHIL 320",
+      "grants": [
+        [
+          "PHIL 320"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510K"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Patristics",
+      "raw": "= HIST 345 Early Christian Thought",
+      "grants": [
+        [
+          "HIST 345"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4510L"
+      ],
+      "grants": [
+        [
+          "PHIL 410"
+        ]
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Kant",
+      "raw": "= PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT4510M Hegel satisfies PHIL 225 German Idealism"
+    },
+    {
+      "from": [
+        "ALT 4510L",
+        "ALT 4510B"
+      ],
+      "grants": [
+        [
+          "PHIL 225"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Kant",
+      "raw": "= PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT4510M Hegel satisfies PHIL 225 German Idealism"
+    },
+    {
+      "from": [
+        "ALT 4510L",
+        "ALT 4510M"
+      ],
+      "grants": [
+        [
+          "PHIL 225"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "CAL",
+      "title": "Kant",
+      "raw": "= PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT4510M Hegel satisfies PHIL 225 German Idealism"
+    },
+    {
+      "from": [
+        "ALT 4510M"
+      ],
+      "grants": [
+        [
+          "PHIL 410"
+        ]
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Hegel",
+      "raw": "= PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT410L Kant satisfies PHIL 225 German Idealism"
+    },
+    {
+      "from": [
+        "ALT 4700A"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Facing the Mad Soul: Werner Herzog and Klaus Kinski (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "ALT 4710B"
+      ],
+      "kind": "equals",
+      "center": "CAL",
+      "title": "Film Studio (1.5)",
+      "raw": "= LITR 380 Special Topic in Literature (1.5)",
+      "grants": [
+        [
+          "LITR 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 1100"
+      ],
+      "kind": "elective",
+      "center": "CEPH",
+      "title": "Analytical Tools for Economics and Political Science",
+      "raw": "satisfies 200-level elective",
+      "electiveGrant": {
+        "level": 200
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "EPH 1200"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Introduction to American Politics",
+      "raw": "= AMCV 220 American Politics I: Ideas and Institutions",
+      "grants": [
+        [
+          "AMCV 220"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 1300"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Foundations of Microeconomics I",
+      "raw": "= ECON 201 Microeconomic Theory I",
+      "grants": [
+        [
+          "ECON 201"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 1400"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Foundations of Macroeconomics I",
+      "raw": "= ECON 202 Macroeconomic Theory I",
+      "grants": [
+        [
+          "ECON 202"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 1500"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "History, Historiography, and the Philosophy of History",
+      "raw": "= HIST 370",
+      "grants": [
+        [
+          "HIST 370"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2040"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Introduction to 20th Century History",
+      "raw": "= AMCV 110 The American Century or HIST 385 Special Topic in History",
+      "grants": [
+        [
+          "AMCV 110"
+        ],
+        [
+          "HIST 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2250"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Introduction to Political Science (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2351"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Applied Politics and Policy: US Immigration (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2353"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Applied Politics and Policy: Education and Family (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2354"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Applied Politics and Policy: US and Israeli Defense (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900A"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Pathocracy",
+      "raw": "= AMCV 385 Special Topic in American Civilization",
+      "grants": [
+        [
+          "AMCV 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900B"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Legacy of Slavery",
+      "raw": "= AMCV 345",
+      "grants": [
+        [
+          "AMCV 345"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900C"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Writing and Speaking",
+      "raw": "= WRIT 385 Special Topic in American Civilization",
+      "grants": [
+        [
+          "WRIT 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900D"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Bitcoin, Blockchain, and Cryptocurrency",
+      "raw": "= ECON 372 Cryptocurrencies",
+      "grants": [
+        [
+          "ECON 372"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900E"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "American History I",
+      "raw": "= AMCV 210 American History I: Colonial Period to Civil War",
+      "grants": [
+        [
+          "AMCV 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900F"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Journalism Tradecraft",
+      "raw": "= JOUR 285 Special Topic in Journalism",
+      "grants": [
+        [
+          "JOUR 285"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900G"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "After the End of History",
+      "raw": "= AMCV 385 Special Topic in American Civilization",
+      "grants": [
+        [
+          "AMCV 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900J"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Entrepreneurial Strategy",
+      "raw": "= BUSI 210",
+      "grants": [
+        [
+          "BUSI 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900K"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Business Foundations for Builders",
+      "raw": "= BUSI 215",
+      "grants": [
+        [
+          "BUSI 215"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900N"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Investigating, Reporting, and Persuasion",
+      "raw": "= JOUR 285 Special Topic in Journalism",
+      "grants": [
+        [
+          "JOUR 285"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2900P"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "What is the Left? Contemporary US Politics",
+      "raw": "= AMCV 385 Special Topic in American Civilization",
+      "grants": [
+        [
+          "AMCV 385"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2910"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "On Capitalism (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5) or ECON 380 Special Topic in Economics (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ],
+        [
+          "ECON 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2910A"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Executive Power (1.5)",
+      "raw": "= LAWS 380 Special Topic in Law (1.5)",
+      "grants": [
+        [
+          "LAWS 380"
+        ]
+      ],
+      "note": "The Law subject code is LAWS in the 2026-2027 catalog."
+    },
+    {
+      "from": [
+        "EPH 2910B"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Political Psychology (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 2910E"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "US Supreme Court History (1.5)",
+      "raw": "= LAWS 380 Special Topic in Law (1.5)",
+      "grants": [
+        [
+          "LAWS 380"
+        ]
+      ],
+      "note": "The Law subject code is LAWS in the 2026-2027 catalog."
+    },
+    {
+      "from": [
+        "EPH 2910F"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Nature and Morality of Capitalism (1.5)",
+      "raw": "= AMCV 380 Special Topic in American Civilization (1.5) or ECON 380 Special Topic in Economics (1.5)",
+      "grants": [
+        [
+          "AMCV 380"
+        ],
+        [
+          "ECON 380"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 3010"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Foundations of Microeconomics II",
+      "raw": "= ECON 203 Microeconomic Theory II",
+      "grants": [
+        [
+          "ECON 203"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 3050"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Public Choice",
+      "raw": "= ECON 300",
+      "grants": [
+        [
+          "ECON 300"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 3150"
+      ],
+      "kind": "satisfies",
+      "center": "CEPH",
+      "title": "How Political Revolutions Happen",
+      "raw": "Satisfies HIST 365 The French Revolution",
+      "grants": [
+        [
+          "HIST 365"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "EPH 3030"
+      ],
+      "kind": "equals",
+      "center": "CEPH",
+      "title": "Corporate Finance, Accounting, and Business Planning",
+      "raw": "= ECON 360",
+      "grants": [
+        [
+          "ECON 360"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 1001",
+        "STM 1002"
+      ],
+      "grants": [
+        [
+          "MATH 101"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "STEM",
+      "title": "Calculus I & II (4.5 each)",
+      "raw": "satisfy MATH101 Single-Variable Calculus"
+    },
+    {
+      "from": [
+        "STM 1004"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Differential Equations (4.5)",
+      "raw": "= MATH 250",
+      "grants": [
+        [
+          "MATH 250"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 1005"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Discrete Mathematics (4.5)",
+      "raw": "= MATH 260",
+      "grants": [
+        [
+          "MATH 260"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 2101"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Probability (4.5)",
+      "raw": "= MATH 220",
+      "grants": [
+        [
+          "MATH 220"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 2102"
+      ],
+      "grants": [
+        [
+          "MATH 230",
+          "MATH 231"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Statistics (4.5)",
+      "raw": "= MATH 230 Applied Data Science I (1.5) + MATH 231 Applied Data Science II (1.5)"
+    },
+    {
+      "from": [
+        "STM 2103"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Linear Algebra (4.5)",
+      "raw": "= MATH 210",
+      "grants": [
+        [
+          "MATH 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 2300"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Data Wrangling and Visualization (4.5)",
+      "raw": "= MATH 290 Special Topic in Mathematics (4.5) or CSAI 290 Special Topic in Computer Science (4.5)",
+      "grants": [
+        [
+          "MATH 290"
+        ],
+        [
+          "CSAI 290"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 2501"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Physics I (4.5)",
+      "raw": "= PHYS 101 Physics - Mechanics",
+      "grants": [
+        [
+          "PHYS 101"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 2502"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Physics II (4.5)",
+      "raw": "= PHYS 102 Physics - Electromagnetics",
+      "grants": [
+        [
+          "PHYS 102"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3305"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Machine Learning",
+      "raw": "= CSAI 350 Introduction to Machine Learning",
+      "grants": [
+        [
+          "CSAI 350"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3900"
+      ],
+      "kind": "satisfies",
+      "center": "STEM",
+      "title": "Data-Based Weather Forecasting Using Machine Learning (1.5)",
+      "raw": "satisfies CSAI 379 Special Topic in Computer Science (1.5)",
+      "grants": [
+        [
+          "CSAI 379"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3900A"
+      ],
+      "grants": [
+        [
+          "CSAI 379"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Artificial Intelligence I & II (1.5 each)",
+      "raw": "= CSAI 379 Special Topic in Computer Science (1.5) (one only) or CSAI 385 Special Topic in Computer Science (both)"
+    },
+    {
+      "from": [
+        "STM 3900B"
+      ],
+      "grants": [
+        [
+          "CSAI 379"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Artificial Intelligence I & II (1.5 each)",
+      "raw": "= CSAI 379 Special Topic in Computer Science (1.5) (one only) or CSAI 385 Special Topic in Computer Science (both)"
+    },
+    {
+      "from": [
+        "STM 3900A",
+        "STM 3900B"
+      ],
+      "grants": [
+        [
+          "CSAI 385"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Artificial Intelligence I & II (1.5 each)",
+      "raw": "= CSAI 379 Special Topic in Computer Science (1.5) (one only) or CSAI 385 Special Topic in Computer Science (both)"
+    },
+    {
+      "from": [
+        "STM 3900C"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Statistical Learning (1.5)",
+      "raw": "= MATH 480 Special Topic in Mathematics (1.5)",
+      "grants": [
+        [
+          "MATH 480"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3900D"
+      ],
+      "kind": "elective",
+      "center": "STEM",
+      "title": "Bioastronautics (1.5)",
+      "raw": "satisfies 300-level elective",
+      "electiveGrant": {
+        "level": 300
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "STM 3900E"
+      ],
+      "kind": "elective",
+      "center": "STEM",
+      "title": "Bioinformatics Algorithms (1.5)",
+      "raw": "satisfies 300-level elective",
+      "electiveGrant": {
+        "level": 300
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "STM 3910A"
+      ],
+      "grants": [
+        [
+          "MATH 230",
+          "MATH 231"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Statistical Modeling",
+      "raw": "= MATH 230 Applied Data Science I (1.5) + MATH 231 Applied Data Science II (1.5)"
+    },
+    {
+      "from": [
+        "STM 3910B"
+      ],
+      "grants": [
+        [
+          "CSAI 110"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Intro/Accelerated Intro to Programming",
+      "raw": "= CSAI 110 Introduction to Programming"
+    },
+    {
+      "from": [
+        "STM 3910C"
+      ],
+      "grants": [
+        [
+          "CSAI 110"
+        ]
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Intro/Accelerated Intro to Programming",
+      "raw": "= CSAI 110 Introduction to Programming"
+    },
+    {
+      "from": [
+        "STM 3910D"
+      ],
+      "kind": "elective",
+      "center": "STEM",
+      "title": "Industry Immersion Practicum",
+      "raw": "satisfies 300-level elective",
+      "electiveGrant": {
+        "level": 300
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "STM 3910E"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Game Theory and Decision Making",
+      "raw": "= ECON 405 Game Theory",
+      "grants": [
+        [
+          "ECON 405"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3910F"
+      ],
+      "kind": "elective",
+      "center": "STEM",
+      "title": "Analysis of Circuits",
+      "raw": "satisfies 300-level elective",
+      "electiveGrant": {
+        "level": 300
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "STM 3910G"
+      ],
+      "kind": "satisfies",
+      "center": "STEM",
+      "title": "Build an LLM from Scratch",
+      "raw": "satisfies CSAI 379 Special Topic in Computer Science",
+      "grants": [
+        [
+          "CSAI 379"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3910H"
+      ],
+      "kind": "elective",
+      "center": "STEM",
+      "title": "Applied Engineering",
+      "raw": "satisfies 300-level elective",
+      "electiveGrant": {
+        "level": 300
+      },
+      "grants": []
+    },
+    {
+      "from": [
+        "STM 3911"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Data Structures",
+      "raw": "= CSAI 210",
+      "grants": [
+        [
+          "CSAI 210"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3912B"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Software Engineering",
+      "raw": "= CSAI 230 AI-Enabled Software Engineering",
+      "grants": [
+        [
+          "CSAI 230"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "STM 3915"
+      ],
+      "kind": "equals",
+      "center": "STEM",
+      "title": "Mathematics of Machine Learning (4.5)",
+      "raw": "= MATH 440",
+      "grants": [
+        [
+          "MATH 440"
+        ]
+      ]
+    },
+    {
+      "from": [
+        "INF 2300"
+      ],
+      "grants": [
+        [
+          "HIST 111"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Ideological Experiments of the 20th Century",
+      "reason": "Identical course title to HIST 111 in the 2026-2027 Intellectual Foundations.",
+      "inferred": true,
+      "raw": "Identical course title to HIST 111 in the 2026-2027 Intellectual Foundations."
+    },
+    {
+      "from": [
+        "INF 2100"
+      ],
+      "grants": [
+        [
+          "PHIL 430"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "The Uses and Abuses of Technology",
+      "reason": "PHIL 430 is titled 'Uses and Abuses of Technology'. Note this would count a former Intellectual Foundations course as 300-level work, so confirm it with your advisor.",
+      "inferred": true,
+      "raw": "PHIL 430 is titled 'Uses and Abuses of Technology'. Note this would count a former Intellectual Foundations course as 300-level work, so confirm it with your advisor."
+    },
+    {
+      "from": [
+        "INF 2121"
+      ],
+      "grants": [
+        [
+          "AMCV 200"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "Early Modernity",
+      "reason": "The catalog lists 'Prerequisite: AMCV 200 or INF 2121', treating the two as interchangeable.",
+      "inferred": true,
+      "raw": "The catalog lists 'Prerequisite: AMCV 200 or INF 2121', treating the two as interchangeable."
+    },
+    {
+      "from": [
+        "INF 2200"
+      ],
+      "grants": [
+        [
+          "AMCV 201"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "The American Experiment",
+      "reason": "The catalog lists 'Prerequisite: AMCV 201 or INF 2200', treating the two as interchangeable.",
+      "inferred": true,
+      "raw": "The catalog lists 'Prerequisite: AMCV 201 or INF 2200', treating the two as interchangeable."
+    }
+  ]
+}

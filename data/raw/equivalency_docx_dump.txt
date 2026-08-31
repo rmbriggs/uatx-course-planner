@@ -1,0 +1,150 @@
+### PARAGRAPHS ###
+[normal] Overview
+[normal] The UATX 2026-2027 Academic Catalog includes several changes that afford students additional program clarity, flexibility, and opportunity. Students in Classes 2028 and 2029 may elect to this new 2026-2027 Bachelor’s of Arts in Liberal Studies program to gain the benefits of the new program design, or they may continue with the program in their original catalog.
+[normal] The new program has three main pillars (same as previous):
+[normal] Intellectual Foundations,
+[normal] Liberal Studies Major (which includes Centers/concentrations and electives), and
+[normal] Polaris
+[normal] The following table below outlines some of the differences:
+[normal] Regarding Centers and concentrations:
+[normal] The old program requires students to elect a Center (CAL, CEPH, or CSTEM) and to complete a Center core. Students may (but are not required to) choose a concentration within that Center (4 total concentrations).
+[normal] The new program requires neither Center election nor completion of a Center core.  Students may (but are not required to) choose from 7 different different academic concentrations and 1 applied track. The number of credits required to complete a concentration (36) makes the possibility of completing more than one concentration feasible.
+[normal] More details about these differences, as well as mappings that show how old-program courses
+[normal] will count for credit in the new program, are in the full-length document..
+[normal] Intellectual Foundations
+[Heading 1] Polaris Equivalencies
+[normal] Center equivalences
+[normal] Note: courses listed in bold count as a 100- or 200-level course in the new curriculum.
+
+### TABLES: 6 ###
+
+--- TABLE 0 (4 rows x 4 cols) ---
+Pillar || Old || New || Note
+Intellectual Foundations || 54 quarter credits || 57 quarter credits || New IF is satisfied by old IF plus one course.
+Liberal Studies Major || 105 quarter credits || 96 quarter credits || New program: | does not require Center election or completion of a Center core | offers more concentration options
+Polaris || 21 quarter credits || 27 quarter credits || More time to build. More ways to explore. |  | Old program(~⅓ project work):  | 6 credits of project work | 15 credits of required courses | 0 specialized classes | New Program( >¾ project work): | up to 21 credits of Build/project work | Only 2 required courses | Polaris electives and specialized classes
+
+--- TABLE 1 (3 rows x 2 cols) ---
+Student Group || Course Requirements & Notes
+Junior Requirements || Standard Requirements: | • INF 2100 The Uses and Abuses of Technology | • INF 2210 Mortality and Meaning in Art and Music
+Sophomore Requirements || Completed Courses: INF 1100, INF 1110, INF 1130, INF 1210, INF 1300, INF 1330, INF 2300. |  | Fall Term (Required if not yet taken): | • INF 2121 Early Modernity | • INF 1220 Quantitative Reasoning II | • INF 1320 Intellectual Foundations of Economics | • INF 2110 Foundations of Science II |  | Near-Future Requirements (Equivalents): | • HIST 115 Ancient Rome (= ALT 1010) | • HIST 210 Enlightenment (= ALT 1040) | • AMCV 200 American Founding | • AMCV 201 American Frontiers |  | New Curriculum Switch (Take one course form this list): | • Business/Econ: Any 100- or 200-level ECON/BUSI course, or original curriculum tools (EPH 1100, 1300, 1400).
+
+--- TABLE 2 (5 rows x 3 cols) ---
+Original Course Code || Course Title || New Curriculum Equivalent
+POL 2110 || Polaris Frame || Counts as POLR 110 Polaris Launch
+POL 1110 || Polaris Ideas || Satisfies POLR 311 Polaris Build
+POL 2100 || Polaris Inspirations || Satisfies POLR 311 Polaris Build
+POL 4150 || Polaris Launch || Replaced w/POLR 490 Polaris Gateway
+
+--- TABLE 3 (48 rows x 3 cols) ---
+Courses in the former Center for Arts and Letters (CAL) || Courses in the former Center for Arts and Letters (CAL) || Courses in the former Center for Arts and Letters (CAL)
+Original Course Code || Course Title || New Curriculum Equivalent
+ALT 1010 || Rise and Fall of Ancient Rome || = HIST 115 Ancient Rome
+ALT 1100 || Faith, Reason, and Science I: Medieval and Early Modern (1.5) || Combined with ALT 1120 satisfies PHIL 130 The Scientific Revolution
+ALT 1120 || Faith, Reason, and Science II: Modern and Contemporary (1.5) || Combined with ALT 1100 satisfies PHIL 130 The Scientific Revolution
+ALT 1020 || Crown, Cathedral, and Crusade || Satisfies HIST 131 The Making of the Modern World
+ALT 1030 || The Renaissance and the Reformation || = HIST 211
+ALT 1040 || Reason and Revolution || Satisfies HIST 210 The Enlightenment
+ALT 1050 || Romanticism and Realism || = HIST 220
+ALT 1160 || The Sublime and Beautiful I: Classical, Medieval, and Early Modern (1.5) || = LITR 380 Special Topic in Literature (1.5) (or) PHIL 380 Special Topic in Philosophy (1.5)
+ALT 1180 || The Sublime and Beautiful II: Modern and Contemporary (1.5) || = LITR 380 Special Topic in Literature (1.5) (or) PHIL 380 Special Topic in Philosophy (1.5)
+ALT 1400 || Comedy || = LITR 320
+ALT 1800 || Romantic and Victorian Literature || Satisfies LITR 225 Eighteenth-Century Literature (or) LITR 385 Special Topic in Literature
+ALT 1951 || American Literature I: Eighteenth and Nineteenth Century || = AMCV 215
+ALT 3000 || Plato, Republic (1.5) || = PHIL 380 Special Topic in Philosophy (1.5)
+ALT 3310 || Dante, Inferno (1.5) || = LITR 380 Special Topic in Literature (1.5)
+ALT 3315 || Dante, Purgatorio (1.5) || = LITR 380 Special Topic in Literature (1.5)
+ALT 3320 || Dante, Paradiso (1.5) || = LITR 380 Special Topic in Literature (1.5)
+ALT 3220 || Machiavelli, Discourses on Livy (1.5) || = PHIL 380 Special Topic in Philosophy (1.5)
+ALT 3750 || Melville, Moby Dick || = AMCV 425 The American Novel
+ALT 4110 || Shakespeare’s History Plays || = LITR 385 Special Topic in Literature
+ALT 4000 || Writing Studio || = WRIT 410
+ALT 4110A || Ancient Greek I || = LANG 310
+ALT 4110B || Ancient Greek II || = LANG 311
+ALT 4110C || Ancient Greek III || = LANG 312
+ALT 4100E || The Trojan War || = LITR 310
+ALT 4110F || Directed Readings in Ancient Greek || = LANG 319
+ALT 4110G || Latin I || = LANG 320
+ALT 4110H || German I || = LANG 330
+ALT 4210A || Early Austen || = LITR 415 The Novel
+ALT 4410 || Stendhal || = LITR 415 The Novel
+ALT 4500 || Socrates (1.5) || = PHIL 380 Special Topic in Philosophy (1.5)
+ALT 4500 || Liberalism and Conservatism (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+ALT 4500 || Political Theology (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+ALT 4500A || The Founding of Israel (1.5) || = HIST 380 Special Topic in History (1.5) or AMCV 380 Special Topic in American Civilization (1.5)
+ALT 4500B || The Founding Before the Founding (1.5) || = AMCV 380 Special Topic in American Civilization (1.5) or HIST 380 Special Topic in History (1.5)
+ALT 4510A || Hellenistic and Roman Philosophy || = PHIL 210
+ALT 4510B || Modern Philosophy || = PHIL 385 Special Topic in Philosophy
+ALT 4510C || Early Modern Republicanism || = PHIL 385 Special Topic in Philosophy
+ALT 4510D || Montaigne and Rousseau || = PHIL 410 Great Philosophers
+ALT 4510E || Judaism in Antiquity || = HIST 350
+ALT 4510G || Lincoln’s Democratic Statesmanship (1.5) || = AMCV 380 Special Topic in American Civilization (1.5) or HIST 380 Special Topic in History (1.5)
+ALT 4510J || Neoplatonism and Mysticism || = PHIL 320
+ALT 4510K || Patristics || = HIST 345 Early Christian Thought
+ALT 4510L || Kant || = PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT4510M Hegel satisfies PHIL 225 German Idealism
+ALT 4510M || Hegel || = PHIL 410 or if combined with (either) ALT 4510B Modern Philosophy (or) ALT410L Kant satisfies PHIL 225 German Idealism
+ALT 4700A || Facing the Mad Soul: Werner Herzog and Klaus Kinski (1.5) || = LITR 380 Special Topic in Literature (1.5)
+ALT 4710B || Film Studio (1.5) || = LITR 380 Special Topic in Literature (1.5)
+
+--- TABLE 4 (32 rows x 3 cols) ---
+Courses in the former Center for Economics, Politics, and History (CEPH) || Courses in the former Center for Economics, Politics, and History (CEPH) || Courses in the former Center for Economics, Politics, and History (CEPH)
+Original Course Code || Course Title || New Curriculum Equivalent
+EPH 1100 || Analytical Tools for Economics and Political Science || satisfies 200-level elective
+EPH 1200 || Introduction to American Politics || = AMCV 220 American Politics I: Ideas and Institutions
+EPH 1300 || Foundations of Microeconomics I || = ECON 201 Microeconomic Theory I
+EPH 1400 || Foundations of Macroeconomics I || = ECON 202 Macroeconomic Theory I
+EPH 1500 || History, Historiography, and the Philosophy of History || = HIST 370
+EPH 2040 || Introduction to 20th Century History || = AMCV 110 The American Century or HIST 385 Special Topic in History
+EPH 2250 || Introduction to Political Science (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+EPH 2351 || Applied Politics and Policy: US Immigration (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+EPH 2353 || Applied Politics and Policy: Education and Family (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+EPH 2354 || Applied Politics and Policy: US and Israeli Defense (1.5) || = AMCV 380 Special Topic in American Civilization(1.5)
+EPH 2900A || Pathocracy || = AMCV 385 Special Topic in American Civilization
+EPH 2900B || Legacy of Slavery || = AMCV 345
+EPH 2900C || Writing and Speaking || = WRIT 385 Special Topic in American Civilization
+EPH 2900D || Bitcoin, Blockchain, and Cryptocurrency || = ECON 372 Cryptocurrencies
+EPH 2900E || American History I || = AMCV 210 American History I: Colonial Period to Civil War
+EPH 2900F || Journalism Tradecraft || = JOUR 285 Special Topic in Journalism
+EPH 2900G || After the End of History || = AMCV 385 Special Topic in American Civilization
+EPH 2900J || Entrepreneurial Strategy || = BUSI 210
+EPH 2900K || Business Foundations for Builders || = BUSI 215
+EPH 2900N || Investigating, Reporting, and Persuasion || = JOUR 285 Special Topic in Journalism
+EPH 2900P || What is the Left? Contemporary US Politics || = AMCV 385 Special Topic in American Civilization
+EPH 2910 || On Capitalism (1.5) || = AMCV 380 Special Topic in American Civilization (1.5) or ECON 380 Special Topic in Economics (1.5)
+EPH 2910A || Executive Power (1.5) || = LAW 380 Special Topic in Law (1.5)
+EPH 2910B || Political Psychology (1.5) || = AMCV 380 Special Topic in American Civilization (1.5)
+EPH 2910E || US Supreme Court History (1.5) || = LAW 380 Special Topic in Law (1.5)
+EPH 2910F || Nature and Morality of Capitalism (1.5) || = AMCV 380 Special Topic in American Civilization (1.5) or ECON 380 Special Topic in Economics (1.5)
+EPH 3010 || Foundations of Microeconomics II || = ECON 203 Microeconomic Theory II
+EPH 3050 || Public Choice || = ECON 300
+EPH 3150 || How Political Revolutions Happen || Satisfies HIST 365 The French Revolution
+EPH 3030 || Corporate Finance, Accounting, and Business Planning || = ECON 360
+
+--- TABLE 5 (27 rows x 3 cols) ---
+Courses in the former Center for Science, Technology, Engineering, and Mathematics (STEM) || Courses in the former Center for Science, Technology, Engineering, and Mathematics (STEM) || Courses in the former Center for Science, Technology, Engineering, and Mathematics (STEM)
+Original Course Code || Course Title || New Curriculum Equivalent
+STM 1001 & 1002 || Calculus I & II (4.5 each) || satisfy MATH101 Single-Variable Calculus
+STM 1004 || Differential Equations (4.5) || = MATH 250
+STM 1005 || Discrete Mathematics (4.5) || = MATH 260
+STM 2101 || Probability (4.5) || = MATH 220
+STM 2102 || Statistics (4.5) || = MATH 230 Applied Data Science I (1.5) + MATH 231 Applied Data Science II (1.5)
+STM 2103 || Linear Algebra (4.5) || = MATH 210
+STM 2300 || Data Wrangling and Visualization (4.5) || = MATH 290 Special Topic in Mathematics (4.5) or CSAI 290 Special Topic in Computer Science (4.5)
+STM 2501 || Physics I (4.5) || = PHYS 101 Physics – Mechanics
+STM 2502 || Physics II (4.5) || = PHYS 102 Physics – Electromagnetics
+STM 3305 || Machine Learning || = CSAI 350 Introduction to Machine Learning
+STM 3900 || Data-Based Weather Forecasting Using Machine Learning (1.5) || satisfies CSAI 379 Special Topic in Computer Science (1.5)
+STM 3900A & B || Artificial Intelligence I & II (1.5 each) || = CSAI 379 Special Topic in Computer Science (1.5) (one only) or CSAI 385 Special Topic in Computer Science (both)
+STM 3900C || Statistical Learning (1.5) || = MATH 480 Special Topic in Mathematics (1.5)
+STM 3900D || Bioastronautics (1.5) || satisfies 300-level elective
+STM 3900E || Bioinformatics Algorithms (1.5) || satisfies 300-level elective
+STM 3910A || Statistical Modeling || = MATH 230 Applied Data Science I (1.5) + MATH 231 Applied Data Science II (1.5)
+STM 3910B/C || Intro/Accelerated Intro to Programming || = CSAI 110 Introduction to Programming
+STM 3910D || Industry Immersion Practicum || satisfies 300-level elective
+STM 3910E || Game Theory and Decision Making || = ECON 405 Game Theory
+STM 3910F || Analysis of Circuits || satisfies 300-level elective
+STM 3910G || Build an LLM from Scratch || satisfies CSAI 379 Special Topic in Computer Science
+STM 3910H || Applied Engineering || satisfies 300-level elective
+STM 3911 || Data Structures || = CSAI 210
+STM 3912B || Software Engineering || = CSAI 230 AI-Enabled Software Engineering
+STM 3915 || Mathematics of Machine Learning (4.5) || = MATH 440
