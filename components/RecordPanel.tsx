@@ -4,13 +4,13 @@ import { useMemo, useRef, useState } from "react";
 import { allCourses, getCourse } from "@/lib/catalog";
 import { extractPdfText } from "@/lib/pdf";
 import { parseCodeList, parseTranscript } from "@/lib/transcript";
-import type { TakenCourse } from "@/lib/types";
+import { isPending, type CourseStatus, type TakenCourse } from "@/lib/types";
 
 type Mode = "upload" | "paste" | "search";
 
 interface Props {
   taken: TakenCourse[];
-  onReplace: (courses: TakenCourse[]) => void;
+  onReplace: (courses: TakenCourse[], meta?: { csa?: number }) => void;
   onAdd: (course: TakenCourse) => void;
   onRemove: (index: number) => void;
   onToggleStatus: (index: number) => void;
@@ -62,16 +62,26 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
       });
       return;
     }
-    onReplace(parsed.rows.map(({ code, title, credits, term, status }) => ({ code, title, credits, term, status })));
+    onReplace(
+      parsed.rows.map(({ code, title, credits, term, status, grade }) => ({
+        code,
+        title,
+        credits,
+        term,
+        status,
+        grade,
+      })),
+      { csa: parsed.cumulativeCsa },
+    );
     const completed = parsed.rows.filter((r) => r.status === "completed").length;
-    const pending = parsed.rows.length - completed;
+    const pending = parsed.rows.filter((r) => isPending(r.status)).length;
+    const notCounting = parsed.rows.length - completed - pending;
     setMessage({
       tone: parsed.warnings.length ? "warn" : "ok",
       text:
-        `Read ${parsed.rows.length} courses (${completed} completed, ${pending} in progress)` +
-        (parsed.reportedEarnedCredits !== undefined
-          ? `, ${parsed.reportedEarnedCredits} earned credits.`
-          : ".") +
+        `Read ${parsed.rows.length} courses: ${completed} completed, ${pending} in progress` +
+        (notCounting > 0 ? `, ${notCounting} not counting` : "") +
+        (parsed.reportedEarnedCredits !== undefined ? `, ${parsed.reportedEarnedCredits} earned credits.` : ".") +
         (parsed.warnings.length ? ` ${parsed.warnings.join(" ")}` : ""),
     });
   }
@@ -237,6 +247,15 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
   );
 }
 
+const STATUS_DISPLAY: Record<CourseStatus, { label: string; className: string }> = {
+  completed: { label: "Done", className: "" },
+  "in-progress": { label: "In progress", className: " mark-progress" },
+  incomplete: { label: "Incomplete", className: " mark-progress" },
+  failed: { label: "Failed", className: " mark-failed" },
+  withdrawn: { label: "Withdrawn", className: " mark-neutral" },
+  audit: { label: "Audited", className: " mark-neutral" },
+};
+
 function RecordList({
   taken,
   onRemove,
@@ -259,11 +278,13 @@ function RecordList({
   const totalEarned = taken
     .filter((t) => t.status === "completed")
     .reduce((n, t) => n + (t.credits ?? getCourse(t.code)?.credits ?? 3), 0);
+  const notCounting = taken.filter((t) => t.status !== "completed" && !isPending(t.status)).length;
 
   return (
     <div style={{ marginTop: "1.4rem" }}>
       <p className="eyebrow" style={{ marginBottom: "0.2rem" }}>
         {taken.length} courses · {totalEarned} credits earned
+        {notCounting > 0 ? ` · ${notCounting} not counting` : ""}
       </p>
       {[...groups.entries()].map(([term, rows]) => (
         <div className="term-group" key={term}>
@@ -278,12 +299,17 @@ function RecordList({
                 <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
                   <button
                     type="button"
-                    className={`mark${course.status === "in-progress" ? " mark-progress" : ""}`}
+                    className={`mark${STATUS_DISPLAY[course.status].className}`}
                     style={{ cursor: "pointer", background: "none" }}
                     onClick={() => onToggleStatus(index)}
-                    title="Switch between completed and in progress"
+                    title={
+                      course.grade
+                        ? `Grade ${course.grade}. Click to change how this counts.`
+                        : "Click to cycle: done, in progress, failed"
+                    }
                   >
-                    {course.status === "in-progress" ? "In progress" : "Done"}
+                    {STATUS_DISPLAY[course.status].label}
+                    {course.grade && course.grade !== "IP" ? ` ${course.grade}` : ""}
                   </button>
                   <button
                     type="button"

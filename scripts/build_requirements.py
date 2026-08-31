@@ -221,6 +221,37 @@ POLARIS = {
              "experiences such as internships and apprenticeships)."),
 }
 
+# UATX 2026-2027 Academic Catalog, pp. 19-20 (Grading System) and p. 38
+# (Requirements for Graduation / Repetition of Work).
+GRADING = {
+    "page": 19,
+    "scale": "Courses are scored 0-100. The Course Score Average (CSA) replaces a GPA.",
+    "passingScore": 60,
+    "minimumCsa": 73,
+    "bands": [
+        {"min": 90, "max": 100, "letters": ["A-", "A", "A+"], "descriptor": "Excellent"},
+        {"min": 80, "max": 89, "letters": ["B-", "B", "B+"], "descriptor": "Above average, with some room to improve"},
+        {"min": 73, "max": 79, "letters": ["C", "C+"], "descriptor": "Satisfactory, with significant room to improve"},
+        {"min": 60, "max": 72, "letters": ["D-", "D", "D+", "C-"], "descriptor": "Poor, fails to meet basic standards"},
+        {"min": 0, "max": 59, "letters": ["F"], "descriptor": "Unsatisfactory / Failing"},
+    ],
+    # Verified against the printed table on catalog p. 20.
+    "notations": {
+        "P": {"meaning": "Pass", "earnsCredit": True},
+        "I": {"meaning": "Incomplete", "earnsCredit": False},
+        "S": {"meaning": "Satisfactory", "earnsCredit": True},
+        "U": {"meaning": "Unsatisfactory", "earnsCredit": False,
+              "note": "Required courses marked Unsatisfactory must be retaken to earn credit."},
+        "W": {"meaning": "Withdrawn", "earnsCredit": False},
+        "AU": {"meaning": "Audit", "earnsCredit": False,
+               "note": "Participated but did not earn credit or a grade."},
+    },
+    "retake": ("A student who scores below 60 may repeat that course once. If the course is "
+               "required, it must be retaken to satisfy degree requirements. Only the higher "
+               "of the two scores counts toward the CSA, and both appear on the transcript."),
+    "withdrawalLimits": {"perYear": 2, "total": 8, "page": 38},
+}
+
 MAJOR = {
     "credits": 96, "page": 59,
     "rules": [
@@ -276,6 +307,7 @@ def main():
                 "additionalCredits": 3,
             },
         },
+        "grading": GRADING,
         "major": MAJOR,
         "polaris": POLARIS,
         "concentrations": CONCENTRATIONS,

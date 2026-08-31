@@ -535,6 +535,10 @@ textarea {
   color: var(--warn);
 }
 
+.slot-codes .mark {
+  margin-left: 0.4rem;
+}
+
 .mark-done {
   border-color: var(--good);
   color: var(--good);
@@ -686,23 +690,181 @@ textarea {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  padding: 0.25rem 0;
+  padding: 0.28rem 0;
   font-size: var(--step--1);
+  border-top: 1px solid #f0f3f6;
 }
 
 .slot-row .tick {
   font-family: var(--font-mono), monospace;
   color: var(--line-strong);
   flex: none;
-  width: 1.1rem;
+  width: 1rem;
 }
 
 .slot-row.is-done .tick {
   color: var(--brass);
 }
 
-.slot-row.is-progress .tick {
+.slot-row.is-pending .tick {
   color: var(--marine);
+}
+
+.slot-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+  min-width: 0;
+}
+
+.slot-label {
+  font-weight: 500;
+}
+
+.slot-codes {
+  color: var(--slate);
+  font-size: 0.78rem;
+}
+
+.slot-row.is-open .slot-codes {
+  color: var(--slate-light);
+}
+
+.slot-source {
+  color: var(--slate);
+}
+
+.slot-or {
+  color: var(--line-strong);
+}
+
+.group-count {
+  font-size: 0.78rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.pending-note {
+  color: var(--marine);
+}
+
+.group-note {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--slate);
+}
+
+.more {
+  cursor: pointer;
+  font-size: 0.78rem;
+  color: var(--slate);
+  margin-top: 0.35rem;
+}
+
+.more:hover {
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ pillars */
+.pillar {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.1rem;
+}
+
+.pillar + .pillar {
+  margin-top: 0.8rem;
+}
+
+.pillar-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.pillar-head h3 {
+  font-size: 1.25rem;
+}
+
+.pillar-count {
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+.pillar-sub {
+  color: var(--slate-light);
+}
+
+.counted {
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.counted-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-size: var(--step--1);
+}
+
+.counted-list li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr auto;
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+  border-top: 1px solid #f0f3f6;
+}
+
+.counted-title {
+  color: var(--slate);
+  overflow-wrap: anywhere;
+}
+
+.counted-cr {
+  color: var(--slate-light);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .counted-list li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
+
+/* Courses that cannot count as they stand. */
+.excluded-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-size: var(--step--1);
+}
+
+.excluded-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.mark-failed {
+  border-color: #a6402f;
+  color: #a6402f;
+}
+
+.mark-neutral {
+  border-color: var(--line-strong);
+  color: var(--slate-light);
 }
 
 /* --------------------------------------------------------------- next table */

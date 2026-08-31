@@ -77,8 +77,20 @@ export interface Concentration {
   page?: number;
 }
 
+export interface GradingPolicy {
+  page?: number;
+  scale: string;
+  passingScore: number;
+  minimumCsa: number;
+  bands: { min: number; max: number; letters: string[]; descriptor: string }[];
+  notations: Record<string, { meaning: string; earnsCredit: boolean; note?: string }>;
+  retake: string;
+  withdrawalLimits: { perYear: number; total: number; page?: number };
+}
+
 export interface Requirements {
   program: string;
+  grading: GradingPolicy;
   source: string;
   totalCredits: number;
   pillars: { id: string; name: string; credits: number }[];
@@ -107,7 +119,37 @@ export interface Requirements {
   concentrations: Concentration[];
 }
 
-export type CourseStatus = "completed" | "in-progress";
+/**
+ * What a course on the record is currently worth.
+ *   completed   - passed and earned its credits
+ *   in-progress - being taken now
+ *   incomplete  - graded I; no credit until the work is finished
+ *   failed      - scored below 60, or graded U; must be retaken to count
+ *   withdrawn   - graded W; no credit, no CSA impact
+ *   audit       - graded AU; participated without earning credit
+ */
+export type CourseStatus =
+  | "completed"
+  | "in-progress"
+  | "incomplete"
+  | "failed"
+  | "withdrawn"
+  | "audit";
+
+/** Only completed work earns credit toward the 180. */
+export function earnsCredit(status: CourseStatus): boolean {
+  return status === "completed";
+}
+
+/** Work that may yet earn credit, so it shows as pending rather than missing. */
+export function isPending(status: CourseStatus): boolean {
+  return status === "in-progress" || status === "incomplete";
+}
+
+/** Work that cannot count as it stands. */
+export function needsRetake(status: CourseStatus): boolean {
+  return status === "failed";
+}
 
 /** A course the student has on their record. */
 export interface TakenCourse {
@@ -115,6 +157,8 @@ export interface TakenCourse {
   /** Transcript title, used to disambiguate reused special-topic codes. */
   title?: string;
   credits?: number;
+  /** Credits the course was worth, even when none were earned. */
+  attempted?: number;
   term?: string;
   grade?: string;
   status: CourseStatus;

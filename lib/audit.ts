@@ -1,14 +1,38 @@
 import { creditsOf, levelOf, requirements, titleOf } from "./catalog";
 import { normalizeRecord, type Holding, type NormalizeOptions, type NormalizeResult } from "./equivalency";
-import type { Concentration, CourseStatus, RequirementGroup, Slot, TakenCourse } from "./types";
+import {
+  earnsCredit,
+  isPending,
+  needsRetake,
+  type Concentration,
+  type CourseStatus,
+  type RequirementGroup,
+  type Slot,
+  type TakenCourse,
+} from "./types";
+
+/** A requirement, and the course of the student's that filled it. */
+export interface SlotFillSource {
+  /** The catalog course the slot asked for. */
+  requirement: string;
+  /** The course on the student's record that provided it. */
+  source: string;
+  via: Holding["via"];
+  status: CourseStatus;
+}
+
+/** Work that can still count: passed, or not finished yet. */
+function canCount(h: Holding): boolean {
+  return earnsCredit(h.status) || isPending(h.status);
+}
 
 export interface SlotResult {
   label: string | null;
   options: string[][];
   filled: boolean;
-  /** True when only in-progress coursework fills it. */
+  /** True when only unfinished coursework fills it. */
   pendingOnly: boolean;
-  filledBy: string[];
+  filledBy: SlotFillSource[];
 }
 
 export interface GroupResult {
@@ -57,12 +81,18 @@ export interface PillarResult {
 
 export interface AuditResult {
   normalization: NormalizeResult;
+  /** Courses that cannot count as they stand, and why. */
+  excluded: Holding[];
+  /** Failed courses; required ones must be retaken. */
+  retakeNeeded: Holding[];
   intellectualFoundations: {
     groups: GroupResult[];
     creditsRequired: number;
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
+    /** The courses making up this pillar's credit total. */
+    countedCourses: Holding[];
     legacyProvision: { applies: boolean; note: string; additionalCredits: number };
   };
   polaris: {
@@ -70,6 +100,7 @@ export interface AuditResult {
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
+    countedCourses: Holding[];
     required: SlotResult[];
     buildCreditsRequired: number;
     buildCreditsEarned: number;
@@ -82,6 +113,7 @@ export interface AuditResult {
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
+    countedCourses: Holding[];
     rules: { id: string; label: string; minCredits: number; earned: number; inProgress: number; satisfied: boolean }[];
     note?: string;
   };
@@ -108,10 +140,10 @@ function coverage(holdings: Holding[]): Map<string, Holding[]> {
   return map;
 }
 
-function coveredCodes(holdings: Holding[], status?: CourseStatus): Set<string> {
+function coveredCodes(holdings: Holding[], keep: (h: Holding) => boolean): Set<string> {
   const out = new Set<string>();
   for (const h of holdings) {
-    if (status && h.status !== status) continue;
+    if (!keep(h)) continue;
     for (const c of h.satisfies) out.add(c);
   }
   return out;
@@ -122,21 +154,30 @@ function coveredCodes(holdings: Holding[], status?: CourseStatus): Set<string> {
  * cover several codes at once, which is how STM 2102 fills both MATH 230 and
  * MATH 231 without being spent twice.
  */
-function fillOption(option: string[], available: Holding[]): Holding[] | null {
+function fillOption(option: string[], available: Holding[]): { code: string; holding: Holding }[] | null {
+  const picks: { code: string; holding: Holding }[] = [];
   const used: Holding[] = [];
   for (const code of option) {
-    if (used.some((h) => h.satisfies.includes(code))) continue;
-    const candidates = available.filter((h) => !used.includes(h) && h.satisfies.includes(code));
+    const already = used.find((h) => h.satisfies.includes(code));
+    if (already) {
+      picks.push({ code, holding: already });
+      continue;
+    }
+    // Failed, withdrawn and audited work cannot fill a requirement.
+    const candidates = available.filter(
+      (h) => canCount(h) && !used.includes(h) && h.satisfies.includes(code),
+    );
     if (!candidates.length) return null;
     candidates.sort((a, b) => {
-      const byStatus = Number(a.status === "in-progress") - Number(b.status === "in-progress");
+      const byStatus = Number(isPending(a.status)) - Number(isPending(b.status));
       if (byStatus) return byStatus;
       const cov = (h: Holding) => option.filter((c) => h.satisfies.includes(c)).length;
       return cov(b) - cov(a);
     });
     used.push(candidates[0]);
+    picks.push({ code, holding: candidates[0] });
   }
-  return used;
+  return picks;
 }
 
 interface SlotFill {
@@ -159,20 +200,32 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
       return { label: s.label, options: s.options, filled: false, pendingOnly: false, filledBy: [] };
     }
     for (const option of s.options) {
-      const used = fillOption(option, pool);
-      if (!used) continue;
-      const pendingOnly = used.some((h) => h.status === "in-progress");
+      const picks = fillOption(option, pool);
+      if (!picks) continue;
+      const used = [...new Set(picks.map((p) => p.holding))];
+      const pendingOnly = used.some((h) => isPending(h.status));
       if (consume) {
         for (const h of used) {
           const idx = pool.indexOf(h);
           if (idx >= 0) pool.splice(idx, 1);
           consumed.push(h);
-          if (h.status === "completed") creditsEarned += h.credits;
+          if (earnsCredit(h.status)) creditsEarned += h.credits;
           else creditsInProgress += h.credits;
         }
       }
       filledCount++;
-      return { label: s.label, options: s.options, filled: true, pendingOnly, filledBy: option.slice() };
+      return {
+        label: s.label,
+        options: s.options,
+        filled: true,
+        pendingOnly,
+        filledBy: picks.map((p) => ({
+          requirement: p.code,
+          source: p.holding.code,
+          via: p.holding.via,
+          status: p.holding.status,
+        })),
+      };
     }
     return { label: s.label, options: s.options, filled: false, pendingOnly: false, filledBy: [] };
   });
@@ -203,8 +256,8 @@ function slotsToGroupResult(
 
 /** Non-destructive evaluation, used for concentrations. */
 function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
-  const done = coveredCodes(holdings, "completed");
-  const pendingSet = coveredCodes(holdings, "in-progress");
+  const done = coveredCodes(holdings, (h) => earnsCredit(h.status));
+  const pendingSet = coveredCodes(holdings, (h) => isPending(h.status));
 
   if (g.type === "slots") {
     // Non-consuming: one holding may legitimately fill more than one slot when
@@ -264,12 +317,14 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   };
 
   const ifGroups: GroupResult[] = [];
+  const ifCounted: Holding[] = [];
   let ifEarned = 0;
   let ifPending = 0;
   for (const g of req.intellectualFoundations.groups) {
     if (g.type !== "slots") continue;
     const fill = fillSlots(g.slots, available, g.choose);
     claim(fill.consumed);
+    ifCounted.push(...fill.consumed);
     ifGroups.push(slotsToGroupResult(g, fill.results));
     ifEarned += fill.creditsEarned;
     ifPending += fill.creditsInProgress;
@@ -281,6 +336,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
 
   const polarisFill = fillSlots(req.polaris.required, available);
   claim(polarisFill.consumed);
+  const polarisCounted: Holding[] = [...polarisFill.consumed];
 
   let buildEarned = 0;
   let buildPending = 0;
@@ -288,12 +344,13 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   const takeBuild = (codes: string[], cap?: number) => {
     for (const code of codes) {
       for (;;) {
-        const h = available.find((x) => x.satisfies.includes(code));
+        const h = available.find((x) => canCount(x) && x.satisfies.includes(code));
         if (!h) break;
         if (cap !== undefined && equivalentUsed + h.credits > cap) break;
         claim([h]);
+        polarisCounted.push(h);
         if (cap !== undefined) equivalentUsed += h.credits;
-        if (h.status === "completed") buildEarned += h.credits;
+        if (earnsCredit(h.status)) buildEarned += h.credits;
         else buildPending += h.credits;
       }
     }
@@ -307,23 +364,25 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
     polarisFill.results.every((s) => s.filled && !s.pendingOnly) && buildEarned >= req.polaris.buildCredits;
 
   // Everything still unclaimed counts toward the 96-credit major.
-  const sumBy = (status: CourseStatus, levels?: number[]) =>
-    available
-      .filter((h) => h.status === status && (!levels || levels.includes(h.level)))
+  // Failed, withdrawn and audited work never reaches the major's credit count.
+  const majorPool = available.filter(canCount);
+  const sumBy = (keep: (h: Holding) => boolean, levels?: number[]) =>
+    majorPool
+      .filter((h) => keep(h) && (!levels || levels.includes(h.level)))
       .reduce((n, h) => n + h.credits, 0);
 
-  const majorEarned = sumBy("completed");
-  const majorPending = sumBy("in-progress");
+  const majorEarned = sumBy((h) => earnsCredit(h.status));
+  const majorPending = sumBy((h) => isPending(h.status));
   const majorRules = req.major.rules.map((r) => {
-    const earned = sumBy("completed", r.levels);
-    const inProgress = sumBy("in-progress", r.levels);
+    const earned = sumBy((h) => earnsCredit(h.status), r.levels);
+    const inProgress = sumBy((h) => isPending(h.status), r.levels);
     return { ...r, earned, inProgress, satisfied: earned >= r.minCredits };
   });
   const majorSatisfied = majorEarned >= req.major.credits && majorRules.every((r) => r.satisfied);
 
   // Concentrations describe part of the major, so they are scored against the
   // whole record rather than against what the pillars already claimed.
-  const completedCodes = coveredCodes(holdings, "completed");
+  const completedCodes = coveredCodes(holdings, (h) => earnsCredit(h.status));
   const concentrations: ConcentrationResult[] = req.concentrations.map((c) => {
     const groups = c.groups.map((g) => evaluateGroup(g, holdings));
     const prerequisites = c.prerequisites.map((pre, i) => {
@@ -340,7 +399,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
       if (g.slots) {
         for (const s of g.slots) {
           if (!s.filled) continue;
-          const value = s.filledBy.reduce((n, code) => n + creditsOf(code), 0);
+          const value = s.filledBy.reduce((n, f) => n + creditsOf(f.requirement), 0);
           if (s.pendingOnly) pending += value;
           else earned += value;
         }
@@ -376,8 +435,10 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   });
 
   // Totals come straight from the record, so they always match the transcript.
-  const totalEarned = holdings.filter((h) => h.status === "completed").reduce((n, h) => n + h.credits, 0);
-  const totalPending = holdings.filter((h) => h.status === "in-progress").reduce((n, h) => n + h.credits, 0);
+  const totalEarned = holdings.filter((h) => earnsCredit(h.status)).reduce((n, h) => n + h.credits, 0);
+  const totalPending = holdings.filter((h) => isPending(h.status)).reduce((n, h) => n + h.credits, 0);
+  const excluded = holdings.filter((h) => !canCount(h));
+  const retakeNeeded = holdings.filter((h) => needsRetake(h.status));
 
   const pillars: PillarResult[] = [
     {
@@ -408,12 +469,15 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
 
   return {
     normalization,
+    excluded,
+    retakeNeeded,
     intellectualFoundations: {
       groups: ifGroups,
       creditsRequired: req.intellectualFoundations.credits,
       creditsEarned: ifEarned,
       creditsInProgress: ifPending,
       satisfied: ifGroups.every((g) => g.satisfied),
+      countedCourses: ifCounted,
       legacyProvision: {
         applies: legacyProvisionApplies,
         note: legacyIf.note,
@@ -425,6 +489,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
       creditsEarned: polarisEarned,
       creditsInProgress: polarisPending,
       satisfied: polarisSatisfied,
+      countedCourses: polarisCounted,
       required: polarisFill.results,
       buildCreditsRequired: req.polaris.buildCredits,
       buildCreditsEarned: buildEarned,
@@ -437,6 +502,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
       creditsEarned: majorEarned,
       creditsInProgress: majorPending,
       satisfied: majorSatisfied,
+      countedCourses: majorPool,
       rules: majorRules,
       note: req.major.note,
     },

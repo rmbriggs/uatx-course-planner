@@ -3,18 +3,17 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
-import { ConcentrationDetail, GroupBlock } from "@/components/Requirements";
+import { ConcentrationDetail, PillarBlock } from "@/components/Requirements";
 import { auditDegree, pacing, suggestNextCourses } from "@/lib/audit";
 import { requirements } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
-import type { TakenCourse } from "@/lib/types";
+import type { CourseStatus, TakenCourse } from "@/lib/types";
 
 export default function Page() {
   const [state, setState] = useState<SavedState>(emptyState);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
-  const [showIf, setShowIf] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // A shared link wins over whatever this browser had saved, so a link always
@@ -34,8 +33,8 @@ export default function Page() {
   }, []);
 
   const setTaken = useCallback(
-    (taken: TakenCourse[]) => {
-      update({ taken });
+    (taken: TakenCourse[], meta?: { csa?: number }) => {
+      update(meta && meta.csa !== undefined ? { taken, csa: meta.csa } : { taken });
     },
     [update],
   );
@@ -101,11 +100,7 @@ export default function Page() {
             onAdd={(course) => setTaken([...state.taken, course])}
             onRemove={(i) => setTaken(state.taken.filter((_, n) => n !== i))}
             onToggleStatus={(i) =>
-              setTaken(
-                state.taken.map((c, n) =>
-                  n === i ? { ...c, status: c.status === "completed" ? "in-progress" : "completed" } : c,
-                ),
-              )
+              setTaken(state.taken.map((c, n) => (n === i ? { ...c, status: nextStatus(c.status) } : c)))
             }
           />
 
@@ -251,48 +246,132 @@ export default function Page() {
               <section className="section">
                 <div className="section-head">
                   <h2>Degree requirements</h2>
-                  <button type="button" className="btn" onClick={() => setShowIf(!showIf)} aria-expanded={showIf}>
-                    {showIf ? "Hide the detail" : "Show the detail"}
-                  </button>
+                  <span className="aside">180 credits across three pillars</span>
                 </div>
 
-                <div className="note">
-                  <strong>Liberal Studies Major</strong> — {fmt(audit.major.creditsEarned)}/{audit.major.creditsRequired}{" "}
-                  credits outside Foundations and Polaris.{" "}
-                  {audit.major.rules
-                    .map((r) => `${r.label}: ${fmt(r.earned)}/${r.minCredits}`)
-                    .join(" · ")}
-                  . {audit.major.note}
-                </div>
-                <div className="note">
-                  <strong>Polaris</strong> — {fmt(audit.polaris.creditsEarned)}/{audit.polaris.creditsRequired} credits.
-                  Build: {fmt(audit.polaris.buildCreditsEarned)}/{audit.polaris.buildCreditsRequired}
-                  {audit.polaris.equivalentCreditsUsed > 0
-                    ? `, of which ${fmt(audit.polaris.equivalentCreditsUsed)} are Build equivalents (cap ${audit.polaris.equivalentCap}).`
-                    : "."}{" "}
-                  {audit.polaris.required.map((s) => `${s.label}: ${s.filled ? "done" : "still to take"}`).join(" · ")}.
-                </div>
-                {audit.intellectualFoundations.legacyProvision.applies && (
-                  <div className="note">
-                    You have the complete old Intellectual Foundations.{" "}
-                    {audit.intellectualFoundations.legacyProvision.note} That leaves{" "}
-                    {audit.intellectualFoundations.legacyProvision.additionalCredits} credits.
-                  </div>
-                )}
-
-                {showIf && (
-                  <div className="detail" style={{ marginTop: "0.8rem" }}>
-                    <h3 style={{ fontSize: "1.35rem", marginBottom: "0.3rem" }}>Intellectual Foundations</h3>
-                    <p style={{ margin: "0 0 0.6rem", color: "var(--slate)", fontSize: "0.85rem" }}>
-                      {fmt(audit.intellectualFoundations.creditsEarned)}/
-                      {audit.intellectualFoundations.creditsRequired} credits.
+                <PillarBlock
+                  name="Intellectual Foundations"
+                  creditsEarned={audit.intellectualFoundations.creditsEarned}
+                  creditsRequired={audit.intellectualFoundations.creditsRequired}
+                  creditsInProgress={audit.intellectualFoundations.creditsInProgress}
+                  groups={audit.intellectualFoundations.groups}
+                  counted={audit.intellectualFoundations.countedCourses}
+                >
+                  {audit.intellectualFoundations.legacyProvision.applies && (
+                    <p className="note" style={{ margin: "0.7rem 0 0" }}>
+                      You have the complete old Intellectual Foundations.{" "}
+                      {audit.intellectualFoundations.legacyProvision.note} That leaves{" "}
+                      {audit.intellectualFoundations.legacyProvision.additionalCredits} credits.
                     </p>
-                    {audit.intellectualFoundations.groups.map((g) => (
-                      <GroupBlock key={g.id} group={g} />
+                  )}
+                </PillarBlock>
+
+                <PillarBlock
+                  name="Liberal Studies Major"
+                  creditsEarned={audit.major.creditsEarned}
+                  creditsRequired={audit.major.creditsRequired}
+                  creditsInProgress={audit.major.creditsInProgress}
+                  counted={audit.major.countedCourses}
+                >
+                  <p className="group-note" style={{ marginTop: "0.7rem" }}>
+                    Credits outside Foundations and Polaris. {audit.major.note}
+                  </p>
+                  {audit.major.rules.map((r) => (
+                    <div key={r.id} className={`slot-row is-${r.satisfied ? "done" : r.inProgress > 0 ? "pending" : "open"}`}>
+                      <span className="tick">{r.satisfied ? "●" : r.inProgress > 0 ? "◐" : "○"}</span>
+                      <span className="slot-body">
+                        <span className="slot-label">{r.label}</span>
+                        <span className="slot-codes mono">
+                          {fmt(r.earned)}/{r.minCredits} credits
+                          {r.inProgress > 0 && <span className="pending-note"> +{fmt(r.inProgress)} under way</span>}
+                        </span>
+                      </span>
+                    </div>
+                  ))}
+                </PillarBlock>
+
+                <PillarBlock
+                  name="Polaris"
+                  creditsEarned={audit.polaris.creditsEarned}
+                  creditsRequired={audit.polaris.creditsRequired}
+                  creditsInProgress={audit.polaris.creditsInProgress}
+                  counted={audit.polaris.countedCourses}
+                >
+                  <div style={{ marginTop: "0.7rem" }}>
+                    {audit.polaris.required.map((s, i) => (
+                      <div key={i} className={`slot-row is-${s.filled ? (s.pendingOnly ? "pending" : "done") : "open"}`}>
+                        <span className="tick">{s.filled ? (s.pendingOnly ? "◐" : "●") : "○"}</span>
+                        <span className="slot-body">
+                          <span className="slot-label">{s.label}</span>
+                          <span className="slot-codes">
+                            <span className="mono">{s.options.flat().join(" or ")}</span>
+                            {s.filledBy.some((f) => f.source !== f.requirement) && (
+                              <span className="slot-source">
+                                {" "}from your{" "}
+                                <span className="mono">
+                                  {[...new Set(s.filledBy.filter((f) => f.source !== f.requirement).map((f) => f.source))].join(", ")}
+                                </span>
+                              </span>
+                            )}
+                          </span>
+                        </span>
+                      </div>
                     ))}
+                    <div className={`slot-row is-${audit.polaris.buildCreditsEarned >= audit.polaris.buildCreditsRequired ? "done" : "open"}`}>
+                      <span className="tick">
+                        {audit.polaris.buildCreditsEarned >= audit.polaris.buildCreditsRequired ? "●" : "○"}
+                      </span>
+                      <span className="slot-body">
+                        <span className="slot-label">Polaris Build</span>
+                        <span className="slot-codes mono">
+                          {fmt(audit.polaris.buildCreditsEarned)}/{audit.polaris.buildCreditsRequired} credits
+                          {audit.polaris.equivalentCreditsUsed > 0 &&
+                            ` · ${fmt(audit.polaris.equivalentCreditsUsed)} from Build equivalents, cap ${audit.polaris.equivalentCap}`}
+                        </span>
+                      </span>
+                    </div>
                   </div>
-                )}
+                  <p className="group-note" style={{ marginTop: "0.6rem" }}>
+                    {audit.polaris.note}
+                  </p>
+                </PillarBlock>
+
+                <div className="note" style={{ marginTop: "0.8rem" }}>
+                  <strong>Course Score Average</strong> —{" "}
+                  {state.csa === undefined
+                    ? `graduation needs a cumulative CSA of at least ${requirements.grading.minimumCsa}. Upload a transcript and yours is read automatically.`
+                    : state.csa >= requirements.grading.minimumCsa
+                      ? `yours is ${state.csa}, above the ${requirements.grading.minimumCsa} needed to graduate.`
+                      : `yours is ${state.csa}, below the ${requirements.grading.minimumCsa} needed to graduate.`}
+                </div>
               </section>
+
+              {audit.excluded.length > 0 && (
+                <section className="section">
+                  <div className="section-head">
+                    <h2>Not counting toward your degree</h2>
+                    <span className="aside">
+                      {fmt(audit.excluded.reduce((n, h) => n + h.credits, 0))} credits attempted, none earned
+                    </span>
+                  </div>
+                  <ul className="excluded-list">
+                    {audit.excluded.map((h, i) => (
+                      <li key={`${h.code}-${i}`}>
+                        <span className="mono">{h.code}</span>
+                        <span style={{ color: "var(--slate)" }}>{h.title}</span>
+                        <span className={`mark ${h.status === "failed" ? "mark-failed" : "mark-neutral"}`}>
+                          {statusLabel(h.status)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  {audit.retakeNeeded.length > 0 && (
+                    <p className="note note-warn" style={{ marginTop: "0.7rem" }}>
+                      {requirements.grading.retake} These are not filling any requirement above.
+                    </p>
+                  )}
+                </section>
+              )}
 
               {mappings.length > 0 && (
                 <section className="section">
@@ -356,4 +435,26 @@ export default function Page() {
 
 function fmt(n: number) {
   return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
+/** Cycle the three statuses someone would set by hand. */
+function nextStatus(status: CourseStatus): CourseStatus {
+  if (status === "completed") return "in-progress";
+  if (status === "in-progress") return "failed";
+  return "completed";
+}
+
+function statusLabel(status: string) {
+  switch (status) {
+    case "failed":
+      return "Failed - retake";
+    case "withdrawn":
+      return "Withdrawn";
+    case "audit":
+      return "Audited";
+    case "incomplete":
+      return "Incomplete";
+    default:
+      return status;
+  }
 }

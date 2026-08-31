@@ -1,5 +1,5 @@
-import { getCourse, normalizeCode } from "./catalog";
-import type { TakenCourse } from "./types";
+import { getCourse, normalizeCode, requirements } from "./catalog";
+import { earnsCredit, needsRetake, type CourseStatus, type TakenCourse } from "./types";
 
 export interface ParsedRow extends TakenCourse {
   attempted?: number;
@@ -14,7 +14,40 @@ export interface TranscriptParseResult {
   terms: string[];
   /** Earned-credit totals the document itself reports, for cross-checking. */
   reportedEarnedCredits?: number;
+  /** Course Score Average, which UATX uses in place of a GPA. */
+  cumulativeCsa?: number;
   warnings: string[];
+}
+
+/**
+ * Read a transcript grade against the catalog's scale (pp. 19-20).
+ *
+ * Courses are scored 0-100 and anything below 60 is failing: "If a student
+ * fails a required course (grade of below 60), the student must retake it to
+ * satisfy degree requirements." A D (60-72) is poor but still passes, so it is
+ * not treated as a failure.
+ */
+export function classifyGrade(grade: string | undefined, earned: number, attempted: number): CourseStatus {
+  const g = (grade ?? "").trim().toUpperCase();
+
+  if (g === "IP") return "in-progress";
+  if (g === "W") return "withdrawn";
+  if (g === "AU") return "audit";
+  if (g === "I") return "incomplete";
+  if (g === "U" || g === "F" || g === "NC") return "failed";
+  if (g === "P" || g === "S") return "completed";
+
+  const score = Number(g);
+  if (Number.isFinite(score) && g !== "") {
+    return score < requirements.grading.passingScore ? "failed" : "completed";
+  }
+
+  // Letter grades, should a transcript ever carry them instead of scores.
+  if (/^[A-D][+-]?$/.test(g)) return "completed";
+
+  // Nothing usable in the grade column: fall back to whether credit was given.
+  if (earned > 0) return "completed";
+  return attempted > 0 ? "in-progress" : "completed";
 }
 
 // "INF 1100  Chaos and Civilization   4.50  4.50  91  409.50"
@@ -32,7 +65,9 @@ const ROW = new RegExp(
 const CONTINUATION = /^\s*(\d{3,4}[A-Z]?)\s*(.*?)\s*$/;
 const TERM = /^\s*(\d{4}\s*-\s*\d{4}):\s*(.+?)\s*(?:-\s*\d{1,2}\/\d{1,2}\/\d{4}.*)?$/;
 const SKIP = /^\s*(Course\b|Totals\b|Program Summary|Credits\s*$|Attempted|Produced by|RECIPIENT|Student:|Student ID|Birthdate|Enrolled:|Degrees|B\.A\.|Major:|Concentration:|University of Austin|Unofficial Transcript|Page \d)/i;
-const RESIDENT = /^\s*(?:Resident|Total)\s+([\d,]+\.\d{2})\s+([\d,]+\.\d{2})/;
+const RESIDENT = /^\s*(?:Resident|Total)\s+(.+)$/;
+const FIGURE_TOKEN = /[\d,]+\.\d{2}/g;
+const CUMULATIVE = /Cumulative\s*(?:GPA|CSA)\s*:?\s*([\d,]+\.\d{2})/i;
 
 function num(s: string): number {
   return Number(s.replace(/,/g, ""));
@@ -53,14 +88,21 @@ export function parseTranscript(text: string): TranscriptParseResult {
   const warnings: string[] = [];
   let currentTerm: string | undefined;
   let reportedEarnedCredits: number | undefined;
+  let cumulativeCsa: number | undefined;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (!line.trim()) continue;
 
+    const cumulative = CUMULATIVE.exec(line);
+    if (cumulative) cumulativeCsa = num(cumulative[1]);
+
     const resident = RESIDENT.exec(line);
-    if (resident) {
-      reportedEarnedCredits = num(resident[2]);
+    if (resident && !ROW.test(line)) {
+      // Program summary: attempted, earned, grade points, CSA.
+      const figures = resident[1].match(FIGURE_TOKEN) ?? [];
+      if (figures.length >= 2) reportedEarnedCredits = num(figures[1]);
+      if (figures.length >= 4) cumulativeCsa = num(figures[3]);
       continue;
     }
 
@@ -76,7 +118,7 @@ export function parseTranscript(text: string): TranscriptParseResult {
     const m = ROW.exec(line);
     if (!m) continue;
 
-    const [, subject, numberOnLine, namePart, attempted, earned, grade, ] = m;
+    const [, subject, numberOnLine, namePart, attempted, earned, grade] = m;
     let number = numberOnLine;
     let name = cleanName(namePart);
     let raw = line;
@@ -100,17 +142,19 @@ export function parseTranscript(text: string): TranscriptParseResult {
     }
 
     const code = normalizeCode(`${subject} ${number}`);
-    const isPending = /^ip$/i.test(grade) || num(earned) === 0;
     const known = getCourse(code);
+    const status = classifyGrade(grade, num(earned), num(attempted));
 
     rows.push({
       code,
       title: name || known?.title,
-      credits: num(isPending ? attempted : earned) || known?.credits,
+      // The credit value of the course, whether or not it was earned; `status`
+      // decides whether it counts.
+      credits: num(attempted) || known?.credits,
       attempted: num(attempted),
       term: currentTerm,
       grade,
-      status: isPending ? "in-progress" : "completed",
+      status,
       recognized: Boolean(known),
       raw,
     });
@@ -124,8 +168,17 @@ export function parseTranscript(text: string): TranscriptParseResult {
     );
   }
 
+  const failed = rows.filter((r) => needsRetake(r.status));
+  if (failed.length) {
+    warnings.push(
+      `${failed.length} course${failed.length === 1 ? " was" : "s were"} failed and earned no credit: ` +
+        failed.map((r) => `${r.code} (${r.grade})`).join(", ") +
+        ". Required courses below 60 must be retaken to satisfy degree requirements.",
+    );
+  }
+
   const earnedSum = rows
-    .filter((r) => r.status === "completed")
+    .filter((r) => earnsCredit(r.status))
     .reduce((n, r) => n + (r.credits ?? 0), 0);
   if (reportedEarnedCredits !== undefined && Math.abs(earnedSum - reportedEarnedCredits) > 0.01) {
     warnings.push(
@@ -133,7 +186,7 @@ export function parseTranscript(text: string): TranscriptParseResult {
     );
   }
 
-  return { rows, terms, reportedEarnedCredits, warnings };
+  return { rows, terms, reportedEarnedCredits, cumulativeCsa, warnings };
 }
 
 /** Accepts "INF 1100, ALT 1010; STM 2102" and newline-separated lists. */

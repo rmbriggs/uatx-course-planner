@@ -148,10 +148,16 @@ export function isAmbiguousCode(code: string): boolean {
   return sameCodeRuleCount(code) > 1;
 }
 
-/** Display helper: legacy course -> new courses it was credited as. */
+/**
+ * Display helper: legacy course -> new courses it was credited as.
+ *
+ * Work that cannot count (failed, withdrawn, audited) is left out; showing it
+ * here would claim credit the student does not have.
+ */
 export function mappedGrants(result: NormalizeResult) {
   return result.holdings
     .filter((h) => h.via === "equivalency" || h.via === "inferred")
+    .filter((h) => h.status === "completed" || h.status === "in-progress" || h.status === "incomplete")
     .map((h) => ({
       from: h.code,
       title: h.title,

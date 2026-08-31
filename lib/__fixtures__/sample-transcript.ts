@@ -45,3 +45,21 @@ Resident                                24.00                   18.00           
 
 Produced by Populi - 08/31/2026                Page 1 of 1
 `;
+
+/**
+ * A record exercising every grade notation the catalog defines (p. 20): a
+ * failing score, W, I, AU, and a pass. Only the passed course earns credit.
+ */
+export const SAMPLE_TRANSCRIPT_WITH_FAILURES = `
+2025-2026: Fall 2025 - 09/08/2025 - 11/21/2025
+Course    Name                                  Attempted Credits Earned Credits   Grade      Points
+LITR 210  Medieval Literature                              3.00           3.00         88     264.00
+MATH 210  Linear Algebra                                   3.00           0.00         54       0.00
+HIST 110  Ancient Greece                                   3.00           0.00          W       0.00
+PHIL 120  Plato and Aristotle                              3.00           0.00          I       0.00
+CSAI 110  Introduction to Programming                      3.00           0.00         AU       0.00
+Totals                                                    15.00           3.00 Term GPA: 71.00 Cumulative GPA: 71.00
+Program Summary
+                        Attempted Credits          Earned Credits    Grade Points     GPA
+Resident                           15.00                    3.00          264.00     71.00
+`;

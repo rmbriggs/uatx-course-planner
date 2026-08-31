@@ -4,11 +4,26 @@ import type { CourseStatus, TakenCourse } from "./types";
 
 const KEY = "uatx-degree-audit.v1";
 
+// Single letters keep a shared link short.
+const STATUS_CODE: Record<CourseStatus, string> = {
+  completed: "c",
+  "in-progress": "p",
+  incomplete: "n",
+  failed: "f",
+  withdrawn: "w",
+  audit: "a",
+};
+const CODE_STATUS: Record<string, CourseStatus> = Object.fromEntries(
+  Object.entries(STATUS_CODE).map(([k, v]) => [v, k as CourseStatus]),
+) as Record<string, CourseStatus>;
+
 export interface SavedState {
   taken: TakenCourse[];
   termsRemaining: number;
   useInferred: boolean;
   focus: string[];
+  /** Course Score Average, read from an uploaded transcript. */
+  csa?: number;
 }
 
 export const emptyState: SavedState = {
@@ -45,7 +60,7 @@ export function saveLocal(state: SavedState) {
  */
 export function encodeState(state: SavedState): string {
   const parts = state.taken.map((t) => {
-    const bits = [t.code.replace(/\s+/g, ""), t.credits ?? "", t.status === "in-progress" ? "p" : "c"];
+    const bits = [t.code.replace(/\s+/g, ""), t.credits ?? "", STATUS_CODE[t.status] ?? "c"];
     // The title is only needed where one code covers several courses.
     return t.title && isAmbiguousCode(t.code)
       ? `${bits.join(":")}:${encodeURIComponent(t.title.slice(0, 80))}`
@@ -55,6 +70,7 @@ export function encodeState(state: SavedState): string {
   params.set("c", parts.join(","));
   if (state.termsRemaining !== emptyState.termsRemaining) params.set("t", String(state.termsRemaining));
   if (!state.useInferred) params.set("i", "0");
+  if (state.csa !== undefined) params.set("g", String(state.csa));
   if (state.focus.length) params.set("f", state.focus.join("."));
   return params.toString();
 }
@@ -73,7 +89,7 @@ export function decodeState(search: string): SavedState | null {
     taken.push({
       code: normalized,
       credits: credits ? Number(credits) : undefined,
-      status: (status === "p" ? "in-progress" : "completed") as CourseStatus,
+      status: CODE_STATUS[status] ?? "completed",
       title: title ? decodeURIComponent(title) : undefined,
     });
   }
@@ -83,5 +99,6 @@ export function decodeState(search: string): SavedState | null {
     termsRemaining: Number(params.get("t") ?? emptyState.termsRemaining) || emptyState.termsRemaining,
     useInferred: params.get("i") !== "0",
     focus: (params.get("f") ?? "").split(".").filter(Boolean),
+    csa: params.get("g") ? Number(params.get("g")) : undefined,
   };
 }
