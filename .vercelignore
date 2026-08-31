@@ -1,0 +1,4 @@
+# Personal academic records used for local parser testing. Never deployed.
+.local
+node_modules
+.next
