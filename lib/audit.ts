@@ -456,7 +456,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
  * concentrations the student cares about.
  */
 export function suggestNextCourses(audit: AuditResult, concentrationIds: string[], limit = 12) {
-  const score = new Map<string, { code: string; count: number; forWhat: string[] }>();
+  const score = new Map<string, { code: string; count: number; forWhat: string[]; required: boolean }>();
   const pool = concentrationIds.length
     ? audit.concentrations.filter((c) => concentrationIds.includes(c.id))
     : audit.concentrations;
@@ -465,7 +465,7 @@ export function suggestNextCourses(audit: AuditResult, concentrationIds: string[
     for (const g of c.groups) {
       if (g.satisfied) continue;
       for (const code of g.options ?? []) {
-        const entry = score.get(code) ?? { code, count: 0, forWhat: [] };
+        const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
         entry.count++;
         entry.forWhat.push(`${c.name}: ${g.name}`);
         score.set(code, entry);
@@ -475,15 +475,30 @@ export function suggestNextCourses(audit: AuditResult, concentrationIds: string[
   for (const g of audit.intellectualFoundations.groups) {
     if (g.satisfied) continue;
     for (const code of g.options ?? []) {
-      const entry = score.get(code) ?? { code, count: 0, forWhat: [] };
-      entry.count += 2; // Intellectual Foundations is required of everyone
-      entry.forWhat.push(`Intellectual Foundations: ${g.name}`);
+      const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
+      entry.count++;
+      entry.required = true; // everyone must finish Foundations
+      entry.forWhat.unshift(`Intellectual Foundations: ${g.name}`);
       score.set(code, entry);
     }
   }
 
-  return [...score.values()]
-    .sort((a, b) => b.count - a.count || a.code.localeCompare(b.code))
+  const byCode = (a: { code: string }, b: { code: string }) => a.code.localeCompare(b.code);
+  const all = [...score.values()];
+  // A course that closes more than one requirement is worth the most.
+  const doubleDuty = all.filter((e) => e.count > 1).sort((a, b) => b.count - a.count || byCode(a, b));
+  const foundations = all.filter((e) => e.count === 1 && e.required).sort(byCode);
+  const elective = all.filter((e) => e.count === 1 && !e.required).sort(byCode);
+
+  // Alternate the two single-purpose lists so a concentration never gets
+  // crowded out by the Foundations backlog.
+  const mixed: typeof all = [];
+  for (let i = 0; i < Math.max(foundations.length, elective.length); i++) {
+    if (foundations[i]) mixed.push(foundations[i]);
+    if (elective[i]) mixed.push(elective[i]);
+  }
+
+  return [...doubleDuty, ...mixed]
     .slice(0, limit)
     .map((e) => ({ ...e, title: titleOf(e.code), credits: creditsOf(e.code), level: levelOf(e.code) }));
 }

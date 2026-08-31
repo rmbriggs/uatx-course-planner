@@ -6658,8 +6658,8 @@
       "code": "STM 3900",
       "subject": "STM",
       "number": "3900",
-      "title": "Special Topics 1.50 STM 3910 Special Topics",
-      "credits": 3.0,
+      "title": "Special Topics",
+      "credits": 1.5,
       "catalog": "legacy",
       "page": 190
     },
@@ -6715,7 +6715,7 @@
       "title": "Special Topics",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 64
+      "page": 190
     },
     {
       "code": "STM 3910A",

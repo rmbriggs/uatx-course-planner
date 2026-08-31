@@ -143,6 +143,11 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
   return { holdings, pending, unmapped, notes };
 }
 
+/** True when one legacy code covers several different courses (ALT 4500). */
+export function isAmbiguousCode(code: string): boolean {
+  return sameCodeRuleCount(code) > 1;
+}
+
 /** Display helper: legacy course -> new courses it was credited as. */
 export function mappedGrants(result: NormalizeResult) {
   return result.holdings

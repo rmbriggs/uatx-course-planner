@@ -29,6 +29,13 @@ OLD_RE = re.compile(
     r"(?P<title>\S.*?)\s{2,}(?P<cr>\d+(?:[.,]\d+)?)\s*credit\s*hours",
     re.UNICODE,
 )
+# Two entries from a two-column page that the OCR reflow put on one line:
+# "STM 3900  Special Topics 1.50 STM 3910 Special Topics    3 cr"
+MERGED_ROW = re.compile(
+    r"^(?P<t1>\S.*?)\s+(?P<cr1>\d+(?:\.\d+)?)\s+"
+    r"(?P<subj2>[A-Z]{3,4})\s?(?P<num2>\d{3,4}[A-Z]?)\s+(?P<t2>\S.*)$"
+)
+
 # a code+title with no credits on the line (title wrapped in OCR)
 BARE_RE = re.compile(r"^\s*(?P<subj>[A-Z]{3,4})\s?(?P<num>\d{3,4}[A-Z]?)\s+(?P<title>\S.*?)\s*$")
 PREREQ_RE = re.compile(r"^\s*Prerequisites?:\s*(?P<p>.+?)\s*$")
@@ -130,18 +137,30 @@ def scan(path: Path, lo: int, hi: int, rx, catalog: str, records: dict, wrapped_
                     and plausible_title_fragment(pending_title)
                 ):
                     title = fix_title(pending_title + " " + title)
-                rec = {
-                    "code": code,
-                    "subject": subject,
-                    "number": number,
-                    "title": title,
-                    "credits": credits(m.group("cr")),
-                    "catalog": catalog,
-                    "page": pageno,
-                }
-                # first occurrence wins; later pages repeat cross-listings
-                records.setdefault(code, rec)
-                last = code
+                line_credits = credits(m.group("cr"))
+                entries = [(code, title, line_credits)]
+
+                # Recover both courses when the OCR merged two columns.
+                split = MERGED_ROW.match(title)
+                if split:
+                    second = f"{split.group('subj2')} {split.group('num2')}"
+                    entries = [
+                        (code, fix_title(split.group("t1")), credits(split.group("cr1"))),
+                        (second, fix_title(split.group("t2")), line_credits),
+                    ]
+
+                for entry_code, entry_title, entry_credits in entries:
+                    entry_subject, entry_number = entry_code.split(" ", 1)
+                    records.setdefault(entry_code, {
+                        "code": entry_code,
+                        "subject": entry_subject,
+                        "number": entry_number,
+                        "title": entry_title,
+                        "credits": entry_credits,
+                        "catalog": catalog,
+                        "page": pageno,
+                    })
+                last = entries[-1][0]
                 pending_title = None
                 continue
             pm = PREREQ_RE.match(line)
