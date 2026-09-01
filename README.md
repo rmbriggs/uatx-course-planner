@@ -11,8 +11,8 @@ then edit their own copy.
 ## What it does
 
 - **Reads your transcript.** Drop the PDF in and it is parsed in the browser —
-  nothing is uploaded. You can also paste transcript text or a list of course
-  codes, or search the catalog and add courses one at a time.
+  nothing is uploaded. Or search the catalog and add courses one at a time. The
+  upload panel tells you where Populi hides the export.
 - **Audits against either catalog.** A switch at the top chooses between the
   2026-2027 program (Liberal Studies major with academic concentrations) and the
   2024-2025 one (elect a Center, then its Foundations and Core). The old program
@@ -31,6 +31,12 @@ then edit their own copy.
   so failed work earns no credit and fills no requirement. W, I, AU, U, P and S
   are handled too. Your cumulative CSA is checked against the 73 needed to
   graduate.
+- **Follows what you are aiming at.** Mark any Center or concentration
+  *Committed* or *Considering*. Committed work weighs as much as a graduation
+  requirement, considering counts but never displaces it, and both reorder
+  "what to take next" — each suggestion says which tier put it there.
+  Committing to a concentration also elects the Center it sits in, which is
+  what decides whose Core you owe.
 - **Paces the rest of the degree.** Tell it how many terms you have left and it
   reports the credits per term you need to average.
 
@@ -39,9 +45,15 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 44 tests
+npm test        # 130 tests
 npm run build
 ```
+
+## Deploying
+
+`main` is connected to the Vercel project, so a push deploys to production; a
+push to any other branch gets its own preview URL. `npx vercel deploy --prod
+--yes` still works if you want to ship without a commit.
 
 ## Where the data comes from
 
@@ -50,8 +62,8 @@ produced by OCR and is committed to `data/`. The site never reads the PDFs.
 
 | File | Contents |
 | --- | --- |
-| `data/courses.json` | 506 current + 231 legacy courses: code, title, credits, prerequisites |
-| `data/equivalencies.json` | 109 rules from the equivalency tables, plus 4 clearly labelled inferred ones |
+| `data/courses.json` | 506 current + 235 legacy courses: code, title, credits, prerequisites |
+| `data/equivalencies.json` | 123 rules: the equivalency tables, 14 clearly labelled inferred ones, 3 that refine an official rule, and 3 scoped to the old catalog alone |
 | `data/requirements.json` | 2026-2027: Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
 | `data/requirements-2024.json` | 2024-2025: Intellectual Foundations, 3 Centers, 4 concentrations, Polaris |
 
@@ -85,7 +97,7 @@ against the catalog's scale (pp. 19-20), not from the credit column. A D
 (60-72) is "poor" by the catalog's own descriptor but still passes, so it is
 not treated as a failure.
 
-**Inferred mappings are marked and optional.** Four mappings are implied by the
+**Inferred mappings are marked and optional.** Fourteen mappings are implied by the
 two catalogs but not stated in the equivalency document — for example the
 catalog's own `Prerequisite: AMCV 200 or INF 2121` implies those two are
 interchangeable. They are on by default, labelled "Provisional" wherever they
