@@ -74,6 +74,44 @@ OVERRIDES = {
 # imply strongly enough to be worth offering. Every one is labelled `inferred`
 # so the site can show it as provisional and let a student switch it off; none
 # is presented as settled policy.
+# Where the official table sends an old special-topics course to a new *Special
+# Topic* placeholder, even though the new catalog now carries a named course
+# with exactly that title. The placeholder appears in no concentration list, so
+# the credit lands somewhere no requirement can see it. These add the named
+# course alongside the placeholder rather than replacing it: the official
+# mapping stands, and this refines it.
+#
+# `title` must match the official rule's title exactly, which is checked below.
+REFINEMENTS = [
+    {
+        "from": ["ALT 4500"], "title": "Political Theology (1.5)", "adds": ["AMCV 360"],
+        "center": "CAL", "confidence": "strong",
+        "reason": (
+            "The table maps this to AMCV 380 Special Topic in American Civilization, but the "
+            "2026-2027 catalog lists AMCV 360 Political Theology by name, in the Upper Division "
+            "American Civilization list. The titles are identical, and the placeholder appears in "
+            "no concentration requirement, so on the table's reading the course can close nothing."
+        ),
+    },
+    {
+        "from": ["ALT 4500"], "title": "Liberalism and Conservatism (1.5)", "adds": ["AMCV 355"],
+        "center": "CAL", "confidence": "strong",
+        "reason": (
+            "Same case as Political Theology: mapped to the AMCV 380 placeholder, while the new "
+            "catalog names AMCV 355 Liberalism and Conservatism in the Upper Division American "
+            "Civilization list."
+        ),
+    },
+    {
+        "from": ["STM 3900C"], "title": "Statistical Learning (1.5)", "adds": ["MATH 470"],
+        "center": "STEM", "confidence": "strong",
+        "reason": (
+            "Mapped to MATH 480 Special Topic in Mathematics, while the new catalog names MATH 470 "
+            "Statistical Learning. Same title, and only the named course sits in a requirement list."
+        ),
+    },
+]
+
 INFERRED = [
     # --- Intellectual Foundations -------------------------------------------
     # The equivalency document has tables for CAL, CEPH, STEM and Polaris but
@@ -256,6 +294,24 @@ def main():
 
     for spec in INFERRED:
         rules.append({**spec, "inferred": True, "raw": spec["reason"]})
+
+    # Refinements name the official rule they extend, so that rule must exist.
+    official = {"+".join(r["from"]) + "|" + r["title"] for r in rules if not r.get("inferred")}
+    unmatched = []
+    for spec in REFINEMENTS:
+        key = "+".join(spec["from"]) + "|" + spec["title"]
+        if key not in official:
+            unmatched.append(key)
+            continue
+        rules.append({
+            "from": spec["from"], "title": spec["title"], "center": spec["center"],
+            "kind": "satisfies", "grants": [spec["adds"]], "refines": key,
+            "inferred": True, "confidence": spec["confidence"],
+            "reason": spec["reason"], "raw": spec["reason"],
+        })
+    if unmatched:
+        print("REFINEMENTS NAME NO OFFICIAL RULE: " + "; ".join(unmatched))
+        return 1
 
     # validate every referenced code
     bad_from, bad_to = set(), set()

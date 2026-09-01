@@ -145,6 +145,63 @@ POLARIS = {
 }
 
 
+def group_credits(g, credit):
+    if g["type"] == "slots":
+        return sum(credit[s["options"][0][0]] for s in g["slots"])
+    if g["type"] == "pick":
+        return sum(sorted(credit[x] for x in g["pool"])[: g["choose"]])
+    return g["minCredits"]
+
+
+def slug(name):
+    return "".join(ch if ch.isalnum() else "-" for ch in name.lower()).strip("-").replace("--", "-")
+
+
+def center_blocks(concs, credit):
+    """The Foundations and Core of each Center, lifted out of the concentrations.
+
+    Graduation requires the Foundations and Core of one Center; the
+    concentration inside it is optional. Deriving these from the concentration
+    definitions rather than restating them keeps the two from drifting apart.
+
+    The catalog prints a Center's Foundations and Core under each Area of
+    Concentration, and for Arts and Letters the two printings do not agree, so
+    a Center can end up with more than one published listing.
+    """
+    blocks = []
+    for c in concs:
+        groups = [g for g in c["groups"] if g["name"].startswith("Center ")]
+        assert groups, f"{c['id']} names no Center groups"
+        content = json.dumps([{k: v for k, v in g.items() if k != "id"} for g in groups], sort_keys=True)
+        match = next((b for b in blocks if b["name"] == c["center"] and b["content"] == content), None)
+        if match:
+            match["publishedUnder"].append(c["name"])
+            continue
+        blocks.append({"name": c["center"], "groups": groups, "content": content,
+                       "publishedUnder": [c["name"]], "page": c["page"]})
+
+    out = []
+    for b in blocks:
+        same = [x for x in blocks if x["name"] == b["name"]]
+        base = "center-" + slug(b["name"])
+        entry = {
+            "id": base if len(same) == 1 else f"{base}-{slug(b['publishedUnder'][0])}",
+            "name": b["name"],
+            "credits": sum(group_credits(g, credit) for g in b["groups"]),
+            "groups": b["groups"],
+            "publishedUnder": b["publishedUnder"],
+            "page": b["page"],
+        }
+        if len(same) > 1:
+            entry["note"] = (
+                "The catalog prints this Center's Foundations and Core under each Area of "
+                f"Concentration, and the listings differ. This is the one printed under "
+                f"{b['publishedUnder'][0]}."
+            )
+        out.append(entry)
+    return out
+
+
 def main():
     courses = json.loads((OUT / "courses.json").read_text())
     known = {c["code"] for c in courses["courses"]} | {c["code"] for c in courses["legacyCourses"]}
@@ -178,6 +235,7 @@ def main():
                      "elective credits instead."),
         },
         "polaris": POLARIS,
+        "centers": center_blocks(CONCENTRATIONS, credit),
         "concentrations": CONCENTRATIONS,
         "electives": {"credits": 24, "note": "To be discussed with your academic advisor."},
     }
@@ -223,6 +281,18 @@ def main():
             else:
                 parts.append(g["minCredits"])
         print(f"  {c['name']:34} {parts} -> {sum(parts)} (declared {c['credits']})")
+    print(f"centers: {len(payload['centers'])}")
+    bad = []
+    for b in payload["centers"]:
+        parts = [group_credits(g, credit) for g in b["groups"]]
+        under = ", ".join(b["publishedUnder"])
+        print(f"  {b['name'][:38]:38} {parts} -> {b['credits']} (as printed under {under})")
+        # Foundations plus Core is 54 credits in every Center the catalog lists.
+        if b["credits"] != 54:
+            bad.append(f"{b['id']} totals {b['credits']}, expected 54")
+    if bad:
+        print("\nCENTER CREDITS DO NOT RECONCILE: " + "; ".join(bad))
+        return 1
     if missing:
         print(f"\nCODES NOT IN CATALOG ({len(missing)}): {missing}")
         return 1

@@ -37,8 +37,42 @@ describe("equivalency mapping", () => {
 
   it("uses the transcript title to tell reused codes apart", () => {
     // ALT 4500 covers three different courses in the equivalency tables.
-    expect(satisfiesOf([done("ALT 4500", "Political Theology")], "ALT 4500")).toEqual(["AMCV 380"]);
+    expect(satisfiesOf([done("ALT 4500", "Political Theology")], "ALT 4500")).toContain("AMCV 380");
     expect(satisfiesOf([done("ALT 4500", "Socrates")], "ALT 4500")).toEqual(["PHIL 380"]);
+  });
+
+  it("adds the named course where the table only gave a Special Topic slot", () => {
+    // The table sends ALT 4500 Political Theology to AMCV 380 Special Topic in
+    // American Civilization, which no concentration names. The new catalog
+    // lists AMCV 360 Political Theology by name, in the very list this course
+    // should count toward.
+    const on = normalizeRecord([done("ALT 4500", "Political Theology")], { useInferred: true });
+    expect(on.holdings[0].satisfies.sort()).toEqual(["AMCV 360", "AMCV 380"]);
+    expect(on.holdings[0].via).toBe("inferred");
+  });
+
+  it("keeps the official mapping when proposals are switched off", () => {
+    const off = normalizeRecord([done("ALT 4500", "Political Theology")], { useInferred: false });
+    expect(off.holdings[0].satisfies).toEqual(["AMCV 380"]);
+    expect(off.holdings[0].via).toBe("equivalency");
+  });
+
+  it("closes the American Civilization requirement the named course sits in", () => {
+    const a = auditDegree([done("ALT 4500", "Political Theology")]);
+    const upper = a.concentrations
+      .find((c) => c.id === "american-civilization")!
+      .groups.find((g) => g.id === "amcv-upper")!;
+    expect(upper.held).toContain("AMCV 360");
+    expect(upper.completed).toBe(1);
+  });
+
+  it("leaves a special topic alone when no named course matches it", () => {
+    // Data-based Weather Forecasting has no counterpart in the new catalog, so
+    // the Special Topic placeholder is the right answer and must stay.
+    const h = normalizeRecord([done("STM 3900", "Data-Based Weather Forecasting Using Machine Learning")])
+      .holdings[0];
+    expect(h.satisfies).toEqual(["CSAI 379"]);
+    expect(h.via).toBe("equivalency");
   });
 
   it("keeps proposed mappings out when they are switched off", () => {
@@ -394,5 +428,52 @@ describe("waived requirements", () => {
       .slots!.find((s) => s.label === "Epic and Tragedy")!;
     expect(epic.waived).toBe(false);
     expect(a.intellectualFoundations.creditsEarned).toBe(3);
+  });
+});
+
+describe("2024-2025 Centers", () => {
+  const old = (taken: TakenCourse[] = []) => auditDegree(taken, { program: "2024-2025" });
+
+  it("scores a Center on its Foundations and Core alone", () => {
+    // The catalog: "Students must complete the Center Foundations and Center
+    // Core in any one Academic Center in order to graduate." The concentration
+    // inside it is optional, so the Center has to stand on its own.
+    const stem = old().centers.find((b) => b.name.startsWith("Science"))!;
+    expect(stem.creditsRequired).toBe(54);
+    expect(stem.groups.map((g) => g.name)).toEqual(["Center Foundations (18 credits)", "Center Core (36 credits)"]);
+  });
+
+  it("gives every Center the same 54 credits", () => {
+    expect(old().centers.map((b) => b.creditsRequired)).toEqual([54, 54, 54, 54]);
+  });
+
+  it("counts Core coursework toward the Center without electing a concentration", () => {
+    const a = old([done("STM 2102"), done("STM 2103"), done("STM 2501")]);
+    const stem = a.centers.find((b) => b.name.startsWith("Science"))!;
+    const core = stem.groups.find((g) => g.name.startsWith("Center Core"))!;
+    expect(core.completed).toBe(3);
+    expect(core.required).toBe(8);
+    expect(stem.creditsEarned).toBeGreaterThan(0);
+  });
+
+  it("keeps concentration requirements out of the Center", () => {
+    const stem = old().centers.find((b) => b.name.startsWith("Science"))!;
+    const codes = stem.groups.flatMap((g) => (g.slots ?? []).flatMap((s) => s.options.flat()));
+    // STM 3301 is Computing and Data Science concentration work, not Center Core.
+    expect(codes).not.toContain("STM 3301");
+    expect(codes).toContain("STM 2102");
+  });
+
+  it("keeps both of the listings the catalog prints for Arts and Letters", () => {
+    // The Center's Foundations and Core are printed under each Area of
+    // Concentration, and for Arts and Letters the two printings disagree.
+    const al = old().centers.filter((b) => b.name === "Arts and Letters");
+    expect(al.length).toBe(2);
+    expect(al.every((b) => b.creditsRequired === 54)).toBe(true);
+    expect(new Set(al.map((b) => b.id)).size).toBe(2);
+  });
+
+  it("has no Centers in the 2026-2027 program", () => {
+    expect(auditDegree([], { program: "2026-2027" }).centers).toEqual([]);
   });
 });

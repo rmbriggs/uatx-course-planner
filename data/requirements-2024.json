@@ -249,6 +249,665 @@
     "buildEquivalentCap": 0,
     "note": "All Polaris courses total 21 credits. A Polaris Retreat in year 1 carries no credit. Polaris Build is repeatable across years 3 and 4."
   },
+  "centers": [
+    {
+      "id": "center-arts-and-letters-literature-and-creative-writing",
+      "name": "Arts and Letters",
+      "credits": 54.0,
+      "groups": [
+        {
+          "id": "lcw-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1160"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1180"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lcw-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1240"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1260"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1400"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1500"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1600"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1800"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1900"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1950"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3330"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "publishedUnder": [
+        "Literature and Creative Writing"
+      ],
+      "page": 32,
+      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and the listings differ. This is the one printed under Literature and Creative Writing."
+    },
+    {
+      "id": "center-arts-and-letters-ethics-and-politics",
+      "name": "Arts and Letters",
+      "credits": 54.0,
+      "groups": [
+        {
+          "id": "ep-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1120"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3000"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1500"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ep-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2000"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2600"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2700"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3340"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3360"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "publishedUnder": [
+        "Ethics and Politics"
+      ],
+      "page": 35,
+      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and the listings differ. This is the one printed under Ethics and Politics."
+    },
+    {
+      "id": "center-economics-politics-and-history",
+      "name": "Economics, Politics, and History",
+      "credits": 54.0,
+      "groups": [
+        {
+          "id": "eph-foundations-core",
+          "name": "Center Foundations - required",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3040"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eph-foundations-choice",
+          "name": "Center Foundations - choose 3 of 5 (9 credits)",
+          "type": "pick",
+          "choose": 3,
+          "pool": [
+            "EPH 1300",
+            "EPH 1400",
+            "EPH 2000",
+            "EPH 2200",
+            "EPH 3010"
+          ]
+        },
+        {
+          "id": "eph-core",
+          "name": "Center Core (37.5 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1500"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2400"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3160"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eph-core-remainder",
+          "name": "Center Core - the two not taken in Foundations",
+          "type": "pick",
+          "choose": 2,
+          "pool": [
+            "EPH 1300",
+            "EPH 1400",
+            "EPH 2000",
+            "EPH 2200",
+            "EPH 3010"
+          ],
+          "note": "Whichever of the five are not used for Foundations must be taken here."
+        }
+      ],
+      "publishedUnder": [
+        "Economics, Politics, and History"
+      ],
+      "page": 37
+    },
+    {
+      "id": "center-science-technology-engineering-and-mathematics",
+      "name": "Science, Technology, Engineering, and Mathematics",
+      "credits": 54.0,
+      "groups": [
+        {
+          "id": "cds-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1001"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1002"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1004"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1005"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cds-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2101"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2102"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2103"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2104"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2301"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2501"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2502"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "publishedUnder": [
+        "Computing and Data Science"
+      ],
+      "page": 39
+    }
+  ],
   "concentrations": [
     {
       "id": "lit-creative-writing",

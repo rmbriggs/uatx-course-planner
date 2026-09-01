@@ -1699,6 +1699,60 @@
       "reason": "PHIL 430 is titled 'Uses and Abuses of Technology' and asks the same questions. It is not an Intellectual Foundations course in the new curriculum, so this counts toward a concentration - and it would count 200-level work as 300-level, so confirm it.",
       "inferred": true,
       "raw": "PHIL 430 is titled 'Uses and Abuses of Technology' and asks the same questions. It is not an Intellectual Foundations course in the new curriculum, so this counts toward a concentration - and it would count 200-level work as 300-level, so confirm it."
+    },
+    {
+      "from": [
+        "ALT 4500"
+      ],
+      "title": "Political Theology (1.5)",
+      "center": "CAL",
+      "kind": "satisfies",
+      "grants": [
+        [
+          "AMCV 360"
+        ]
+      ],
+      "refines": "ALT 4500|Political Theology (1.5)",
+      "inferred": true,
+      "confidence": "strong",
+      "reason": "The table maps this to AMCV 380 Special Topic in American Civilization, but the 2026-2027 catalog lists AMCV 360 Political Theology by name, in the Upper Division American Civilization list. The titles are identical, and the placeholder appears in no concentration requirement, so on the table's reading the course can close nothing.",
+      "raw": "The table maps this to AMCV 380 Special Topic in American Civilization, but the 2026-2027 catalog lists AMCV 360 Political Theology by name, in the Upper Division American Civilization list. The titles are identical, and the placeholder appears in no concentration requirement, so on the table's reading the course can close nothing."
+    },
+    {
+      "from": [
+        "ALT 4500"
+      ],
+      "title": "Liberalism and Conservatism (1.5)",
+      "center": "CAL",
+      "kind": "satisfies",
+      "grants": [
+        [
+          "AMCV 355"
+        ]
+      ],
+      "refines": "ALT 4500|Liberalism and Conservatism (1.5)",
+      "inferred": true,
+      "confidence": "strong",
+      "reason": "Same case as Political Theology: mapped to the AMCV 380 placeholder, while the new catalog names AMCV 355 Liberalism and Conservatism in the Upper Division American Civilization list.",
+      "raw": "Same case as Political Theology: mapped to the AMCV 380 placeholder, while the new catalog names AMCV 355 Liberalism and Conservatism in the Upper Division American Civilization list."
+    },
+    {
+      "from": [
+        "STM 3900C"
+      ],
+      "title": "Statistical Learning (1.5)",
+      "center": "STEM",
+      "kind": "satisfies",
+      "grants": [
+        [
+          "MATH 470"
+        ]
+      ],
+      "refines": "STM 3900C|Statistical Learning (1.5)",
+      "inferred": true,
+      "confidence": "strong",
+      "reason": "Mapped to MATH 480 Special Topic in Mathematics, while the new catalog names MATH 470 Statistical Learning. Same title, and only the named course sits in a requirement list.",
+      "raw": "Mapped to MATH 480 Special Topic in Mathematics, while the new catalog names MATH 470 Statistical Learning. Same title, and only the named course sits in a requirement list."
     }
   ]
 }

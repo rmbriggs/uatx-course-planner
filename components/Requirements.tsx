@@ -1,7 +1,7 @@
 "use client";
 
 import { titleOf } from "@/lib/catalog";
-import type { ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
+import type { CenterResult, ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
 import type { Holding } from "@/lib/equivalency";
 
 // Filled, half, empty - and struck through for a requirement excused rather
@@ -189,6 +189,24 @@ export function PillarBlock({
         </details>
       )}
     </section>
+  );
+}
+
+/** A Center's Foundations and Core, which stand on their own. */
+export function CenterDetail({ center }: { center: CenterResult }) {
+  return (
+    <div className="detail">
+      <div className="section-head" style={{ marginBottom: "0.4rem" }}>
+        <h3 style={{ fontSize: "1.35rem" }}>Center for {center.name}</h3>
+        <span className="aside">
+          Foundations and Core · {fmt(center.creditsEarned)}/{center.creditsRequired} credits
+        </span>
+      </div>
+      {center.note && <p className="group-note">{center.note}</p>}
+      {center.groups.map((g) => (
+        <GroupBlock key={g.id} group={g} />
+      ))}
+    </div>
   );
 }
 

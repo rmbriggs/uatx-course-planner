@@ -32,6 +32,11 @@ export interface EquivalencyRule {
   electiveGrant?: { level: number };
   note?: string;
   inferred?: boolean;
+  /**
+   * Key of the official rule this one extends, when it adds a course to that
+   * rule's outcome rather than standing on its own.
+   */
+  refines?: string;
   reason?: string;
   /** How well the two catalogs support a proposed mapping. */
   confidence?: "strong" | "moderate";
@@ -83,6 +88,21 @@ export interface Concentration {
   page?: number;
 }
 
+/**
+ * A Center's Foundations and Core, which the 2024-2025 program requires on
+ * their own: electing a concentration inside the Center is optional.
+ */
+export interface Center {
+  id: string;
+  name: string;
+  credits: number;
+  groups: RequirementGroup[];
+  /** The Areas of Concentration this listing is printed under. */
+  publishedUnder: string[];
+  page?: number;
+  note?: string;
+}
+
 export interface GradingPolicy {
   page?: number;
   scale: string;
@@ -127,6 +147,8 @@ export interface Requirements {
     note: string;
   };
   concentrations: Concentration[];
+  /** Present where the program requires a Center rather than a concentration. */
+  centers?: Center[];
 }
 
 /**

@@ -96,9 +96,13 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
   const notes: string[] = [];
   const claimed = new Set<number>(holdings.filter((h) => h.via === "direct").map((h) => h.id));
 
-  const rules = applyEquivalencies
+  const allRules = applyEquivalencies
     ? equivalencies.rules.filter((r) => useInferred || !r.inferred)
     : [];
+  // A refinement extends an official rule's outcome rather than claiming a
+  // course of its own, so it is applied after the main pass.
+  const rules = allRules.filter((r) => !r.refines);
+  const refinements = allRules.filter((r) => r.refines);
   // Longest `from` first so combined rules win; official rules ahead of inferred.
   const ordered = [...rules].sort((a, b) => {
     if (b.from.length !== a.from.length) return b.from.length - a.from.length;
@@ -156,6 +160,22 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
       h.ruleKey = key;
     }
     if (rule.note) notes.push(`${rule.from.join(" + ")}: ${rule.note}`);
+  }
+
+  // The official table sends some old special-topics courses to a new Special
+  // Topic placeholder that no requirement names, even where the new catalog now
+  // carries the course by name. These add the named course alongside it.
+  for (const rule of refinements) {
+    const granted = rule.grants[0] ?? [];
+    for (const h of holdings) {
+      if (h.ruleKey !== rule.refines) continue;
+      const added = granted.filter((c) => !h.satisfies.includes(c));
+      if (!added.length) continue;
+      h.satisfies = [...h.satisfies, ...added];
+      h.via = "inferred";
+      h.explanation = rule.reason ?? rule.raw;
+      notes.push(`${h.code}: also counted as ${added.join(", ")}.`);
+    }
   }
 
   const unmapped = holdings.filter((h) => h.via === "unmapped");

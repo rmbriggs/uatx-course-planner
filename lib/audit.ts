@@ -84,6 +84,22 @@ export interface ConcentrationResult {
   remainingCourseCount: number;
 }
 
+/** A Center's Foundations and Core, scored on their own. */
+export interface CenterResult {
+  id: string;
+  name: string;
+  publishedUnder: string[];
+  note?: string;
+  creditsRequired: number;
+  creditsWaived: number;
+  creditsEarned: number;
+  creditsInProgress: number;
+  percent: number;
+  satisfied: boolean;
+  groups: GroupResult[];
+  remainingCourseCount: number;
+}
+
 export interface PillarResult {
   id: string;
   name: string;
@@ -150,6 +166,11 @@ export interface AuditResult {
   };
   pillars: PillarResult[];
   concentrations: ConcentrationResult[];
+  /**
+   * The Centers, where the program has them. Graduation asks for one Center's
+   * Foundations and Core; the concentration inside it is optional.
+   */
+  centers: CenterResult[];
   totals: {
     required: number;
     earned: number;
@@ -383,6 +404,54 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
   return best!;
 }
 
+/**
+ * Credits a set of already-evaluated groups is worth, against what it declares.
+ *
+ * Credits come from the requirement rather than from the student's course,
+ * because a block like a concentration is defined as a list of courses with
+ * catalog values. A waiver contributes nothing and takes its requirement off
+ * the declared total, so the fraction stays reachable.
+ */
+function scoreGroups(
+  groups: GroupResult[],
+  declaredCredits: number,
+  codes: { completedCodes: Set<string>; waivedCodes: Set<string> },
+) {
+  let earned = 0;
+  let pending = 0;
+  let waivedCredits = 0;
+  for (const g of groups) {
+    if (g.slots) {
+      for (const s of g.slots) {
+        if (!s.filled) continue;
+        let value = 0;
+        for (const f of s.filledBy) {
+          if (isWaived(f.status)) waivedCredits += creditsOf(f.requirement);
+          else value += creditsOf(f.requirement);
+        }
+        if (s.pendingOnly) pending += value;
+        else earned += value;
+      }
+    } else if (g.unit === "credits") {
+      earned += g.completed;
+      pending += g.inProgress;
+    } else {
+      for (const code of (g.held ?? []).slice(0, g.required)) {
+        if (codes.completedCodes.has(code)) earned += creditsOf(code);
+        else if (codes.waivedCodes.has(code)) waivedCredits += creditsOf(code);
+        else pending += creditsOf(code);
+      }
+    }
+  }
+  const creditsRequired = Math.max(0, declaredCredits - waivedCredits);
+  return {
+    waivedCredits,
+    creditsRequired,
+    earned: Math.min(earned, creditsRequired),
+    pending: Math.min(pending, Math.max(0, creditsRequired - Math.min(earned, creditsRequired))),
+  };
+}
+
 export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): AuditResult {
   const program: ProgramId = opts.program ?? "2026-2027";
   const req = getRequirements(program);
@@ -493,37 +562,10 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       );
     });
 
-    let earned = 0;
-    let pending = 0;
-    let waivedCredits = 0;
-    for (const g of groups) {
-      if (g.slots) {
-        for (const s of g.slots) {
-          if (!s.filled) continue;
-          // A waived requirement is closed but paid for by nobody. It adds no
-          // credit, and the concentration stops asking for it.
-          let value = 0;
-          for (const f of s.filledBy) {
-            if (isWaived(f.status)) waivedCredits += creditsOf(f.requirement);
-            else value += creditsOf(f.requirement);
-          }
-          if (s.pendingOnly) pending += value;
-          else earned += value;
-        }
-      } else if (g.unit === "credits") {
-        earned += g.completed;
-        pending += g.inProgress;
-      } else {
-        for (const code of (g.held ?? []).slice(0, g.required)) {
-          if (completedCodes.has(code)) earned += creditsOf(code);
-          else if (waivedCodes.has(code)) waivedCredits += creditsOf(code);
-          else pending += creditsOf(code);
-        }
-      }
-    }
-    const creditsRequired = Math.max(0, c.credits - waivedCredits);
-    earned = Math.min(earned, creditsRequired);
-    pending = Math.min(pending, Math.max(0, creditsRequired - earned));
+    const { earned, pending, waivedCredits, creditsRequired } = scoreGroups(groups, c.credits, {
+      completedCodes,
+      waivedCodes,
+    });
 
     const openGroups = groups.filter((g) => !g.satisfied);
     const remainingOptions = [...new Set(openGroups.flatMap((g) => g.options ?? []))];
@@ -557,6 +599,28 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   // so it is not lacking an equivalent even though no rule mentions it.
   const requirementCodes = requirementCodesFor(program);
   const noEquivalent = normalization.unmapped.filter((h) => !requirementCodes.has(h.code));
+
+  // Graduation asks for one Center's Foundations and Core. A concentration
+  // inside the Center is optional, so the Center is scored on its own.
+  const centers: CenterResult[] = (req.centers ?? []).map((b) => {
+    const groups = b.groups.map((g) => evaluateGroup(g, holdings));
+    const scored = scoreGroups(groups, b.credits, { completedCodes, waivedCodes });
+    const openGroups = groups.filter((g) => !g.satisfied);
+    return {
+      id: b.id,
+      name: b.name,
+      publishedUnder: b.publishedUnder,
+      note: b.note,
+      creditsRequired: scored.creditsRequired,
+      creditsWaived: scored.waivedCredits,
+      creditsEarned: scored.earned,
+      creditsInProgress: scored.pending,
+      percent: scored.creditsRequired > 0 ? Math.round((scored.earned / scored.creditsRequired) * 100) : 100,
+      satisfied: groups.every((g) => g.satisfied),
+      groups,
+      remainingCourseCount: openGroups.reduce((n, g) => n + Math.max(0, g.required - g.completed), 0),
+    };
+  });
 
   const pillarName = (id: string, fallback: string) =>
     req.pillars.find((p) => p.id === id)?.name ?? fallback;
@@ -638,6 +702,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     },
     pillars,
     concentrations,
+    centers,
     totals: {
       required: req.totalCredits,
       earned: totalEarned,

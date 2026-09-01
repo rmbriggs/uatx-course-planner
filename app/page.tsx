@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
-import { ConcentrationDetail, PillarBlock } from "@/components/Requirements";
+import { CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
 import { auditDegree, pacing, suggestNextCourses } from "@/lib/audit";
 import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
@@ -14,6 +14,7 @@ export default function Page() {
   const [state, setState] = useState<SavedState>(emptyState);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
+  const [openCenter, setOpenCenter] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   // A shared link wins over whatever this browser had saved, so a link always
@@ -98,6 +99,39 @@ export default function Page() {
             : `${c.remainingCourseCount} ${c.remainingCourseCount === 1 ? "course" : "courses"} left`}
         </span>
       </div>
+    </button>
+  );
+
+  const renderCenterCard = (b: (typeof audit.centers)[number]) => (
+    <button
+      key={b.id}
+      type="button"
+      className="conc"
+      data-open={openCenter === b.id}
+      aria-expanded={openCenter === b.id}
+      onClick={() => setOpenCenter(openCenter === b.id ? null : b.id)}
+    >
+      <div className="conc-top">
+        <span className="conc-name">{b.name}</span>
+        <span className="conc-pct" data-zero={b.percent === 0}>
+          {b.percent}%
+        </span>
+      </div>
+      <div className="bar">
+        <i className="earned" style={{ width: `${(b.creditsEarned / b.creditsRequired) * 100}%` }} />
+        <i className="progress" style={{ width: `${(b.creditsInProgress / b.creditsRequired) * 100}%` }} />
+      </div>
+      <div className="conc-meta">
+        <span className="mono">
+          {fmt(b.creditsEarned)}/{b.creditsRequired} cr
+        </span>
+        <span>
+          {b.satisfied
+            ? "Complete"
+            : `${b.remainingCourseCount} ${b.remainingCourseCount === 1 ? "course" : "courses"} left`}
+        </span>
+      </div>
+      {b.note && <span className="conc-variant">as printed under {b.publishedUnder[0]}</span>}
     </button>
   );
 
@@ -225,9 +259,26 @@ export default function Page() {
             </div>
           ) : (
             <>
+              {audit.centers.length > 0 && (
+                <section className="section">
+                  <div className="section-head">
+                    <h2>Centers</h2>
+                    <span className="aside">Foundations and Core of any one Center · 54 credits</span>
+                  </div>
+                  <p className="note" style={{ marginBottom: "0.7rem" }}>
+                    To graduate you complete the Foundations and Core of a single Center. A concentration inside it is
+                    optional: without one you take{" "}
+                    {fmt(requirements.major.credits - (requirements.centers?.[0]?.credits ?? 54))} elective credits
+                    instead of {requirements.electives?.credits ?? 24}.
+                  </p>
+                  <div className="conc-grid">{audit.centers.map(renderCenterCard)}</div>
+                  {openCenter && <CenterDetail center={audit.centers.find((b) => b.id === openCenter)!} />}
+                </section>
+              )}
+
               <section className="section">
                 <div className="section-head">
-                  <h2>Where you stand</h2>
+                  <h2>{isLegacyProgram ? "Concentrations (optional)" : "Where you stand"}</h2>
                   <span className="aside">
                     {isLegacyProgram
                       ? "Foundations, Core and Concentration - 81 credits within one Center"

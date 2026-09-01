@@ -606,6 +606,14 @@ textarea {
   color: var(--good);
 }
 
+/* Which of a Center's two published listings a card stands for. */
+.conc-variant {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--slate-light);
+}
+
 /* ------------------------------------------------------- concentration grid */
 .conc-grid {
   display: grid;
