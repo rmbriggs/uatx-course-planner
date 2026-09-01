@@ -128,6 +128,25 @@ INFERRED = [
             "and Soviet Communism."
         ),
     },
+    {
+        "from": ["INF 1200"], "grants": [["PHIL 120"]], "kind": "satisfies", "center": "IF",
+        "title": "The Beginning of Politics", "confidence": "strong",
+        "reason": (
+            "INF 1200 asks 'are human beings political animals?', which is the question of Aristotle's "
+            "Politics, and compares 'Greek and biblical understandings of politics and leadership'. "
+            "PHIL 120 reads Plato's Republic and selections from Aristotle's Nicomachean Ethics and "
+            "Politics. A student who took the course reports it covered Plato and the New Testament."
+        ),
+    },
+    {
+        "from": ["INF 1110"], "grants": [["PHIL 120"]], "kind": "satisfies", "center": "IF",
+        "title": "Knowing, Doing, Making, Wisdom", "confidence": "strong",
+        "reason": (
+            "INF 1110 examines 'the relationship between knowledge and wisdom' and 'how knowledge is "
+            "manifested in doing and making', which is Aristotle's distinction between praxis and "
+            "poiesis. A student who took the course reports it covered both Plato and Aristotle."
+        ),
+    },
     # --- outside Intellectual Foundations ------------------------------------
     {
         "from": ["INF 2100"], "grants": [["PHIL 430"]], "kind": "satisfies", "center": "IF",

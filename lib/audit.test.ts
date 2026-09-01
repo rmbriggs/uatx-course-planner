@@ -65,6 +65,20 @@ describe("equivalency mapping", () => {
     expect(a.totals.earned).toBe(4.5);
   });
 
+  it("fills a slot once when two old courses both map to it", () => {
+    // INF 1200 and INF 1110 both map to PHIL 120. One fills the requirement;
+    // the other is not wasted, it counts toward the major.
+    const a = auditDegree([done("INF 1200"), done("INF 1110")]);
+    const plato = a.intellectualFoundations.groups
+      .find((g) => g.id === "if-humanities")!
+      .slots!.find((s) => s.label === "Plato and Aristotle")!;
+    expect(plato.filled).toBe(true);
+    expect(plato.filledBy).toHaveLength(1);
+    expect(a.intellectualFoundations.creditsEarned).toBe(4.5);
+    expect(a.major.creditsEarned).toBe(4.5);
+    expect(a.totals.earned).toBe(9);
+  });
+
   it("reads one big old seminar as covering two of the new courses", () => {
     // INF 1102 "counts as an equivalent towards completion of INF 1100", so the
     // newer courses were carved out of it.
@@ -73,11 +87,11 @@ describe("equivalency mapping", () => {
   });
 
   it("still counts a legacy course with no equivalent at all", () => {
-    // INF 1110 Knowing, Doing, Making, Wisdom has no counterpart in the new
-    // curriculum, so it earns elective credit and fills nothing.
-    const r = normalizeRecord([done("INF 1110")]);
-    expect(r.unmapped.map((u) => u.code)).toEqual(["INF 1110"]);
-    expect(r.holdings[0].credits).toBe(4.5);
+    // INF 2210 Mortality and Meaning in Art and Music has no counterpart in the
+    // new curriculum, so it earns elective credit and fills nothing.
+    const r = normalizeRecord([done("INF 2210")]);
+    expect(r.unmapped.map((u) => u.code)).toEqual(["INF 2210"]);
+    expect(auditDegree([done("INF 2210")]).noEquivalent.map((h) => h.code)).toEqual(["INF 2210"]);
   });
 });
 
