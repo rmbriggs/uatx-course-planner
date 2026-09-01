@@ -410,6 +410,20 @@ button, input, select {
   gap: 0.4rem;
 }
 
+/* The two ways into the panel, sized to the column so neither looks like the
+   afterthought. Equal halves rather than shrink-to-fit. */
+.mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.mode-tabs .btn {
+  padding: 0.7rem 0.4rem;
+  font-size: var(--step-0);
+  text-align: center;
+}
+
 .masthead-actions {
   display: flex;
   flex-wrap: wrap;

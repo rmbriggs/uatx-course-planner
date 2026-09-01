@@ -89,7 +89,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
     <div className="panel">
       <div className="panel-body">
         <p className="eyebrow">Your record</p>
-        <div className="btn-row" role="tablist" aria-label="How to add courses">
+        <div className="mode-tabs" role="tablist" aria-label="How to add courses">
           {(["upload", "search"] as Mode[]).map((m) => (
             <button
               key={m}
