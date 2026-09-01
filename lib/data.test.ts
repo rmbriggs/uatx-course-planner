@@ -8,6 +8,7 @@ import {
   grading,
   legacyCourses,
   levelOf,
+  PROGRAMS,
   requirements,
 } from "./catalog";
 import { auditDegree } from "./audit";
@@ -160,5 +161,17 @@ describe("both programs", () => {
     for (const c of req.concentrations) {
       expect(c.groups.some((g) => g.name.startsWith("Center ")), c.name).toBe(false);
     }
+  });
+});
+
+describe("target ids", () => {
+  it("gives Centers and concentrations one key space with no collisions", () => {
+    // A saved plan keys both by id in a single map, so a shared id would make
+    // targeting one silently target the other.
+    const ids = [
+      ...PROGRAMS.flatMap((p) => getRequirements(p.id).concentrations.map((c) => c.id)),
+      ...PROGRAMS.flatMap((p) => getRequirements(p.id).centers?.map((b) => b.id) ?? []),
+    ];
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });

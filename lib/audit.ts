@@ -12,6 +12,7 @@ import {
   type ProgramId,
   type Slot,
   type TakenCourse,
+  type Targets,
 } from "./types";
 
 export interface AuditOptions extends NormalizeOptions {
@@ -755,68 +756,152 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   };
 }
 
+/** Why a suggested course earns its place in the list. */
+export type SuggestionTier = "required" | "committed" | "considering" | "open";
+
 /**
- * Courses that would close the most still-open requirements, across the
- * concentrations the student cares about.
+ * What each tier is worth when scoring a course that closes several
+ * requirements. Required work and work inside a committed target weigh the
+ * same, because committing to something makes it required in everything but
+ * name. Considering counts for something but must never displace the plan, and
+ * untargeted work is only a tie-breaker.
  */
-export function suggestNextCourses(audit: AuditResult, concentrationIds: string[], limit = 12) {
-  const score = new Map<string, { code: string; count: number; forWhat: string[]; required: boolean }>();
-  const pool = concentrationIds.length
-    ? audit.concentrations.filter((c) => concentrationIds.includes(c.id))
-    : audit.concentrations;
+const TIER_WEIGHT: Record<SuggestionTier, number> = {
+  required: 3,
+  committed: 3,
+  considering: 1,
+  open: 0.5,
+};
 
-  for (const c of pool) {
-    for (const g of c.groups) {
+/**
+ * Which label wins when one course serves several targets at once, weakest
+ * first. Kept apart from the weights: required and committed score the same,
+ * but a course the student must take should still say so.
+ */
+const TIER_PRECEDENCE: SuggestionTier[] = ["open", "considering", "committed", "required"];
+
+const outranks = (a: SuggestionTier, b: SuggestionTier) =>
+  TIER_PRECEDENCE.indexOf(a) > TIER_PRECEDENCE.indexOf(b);
+
+interface Suggestion {
+  code: string;
+  /** How many still-open requirements this course would close. */
+  count: number;
+  forWhat: string[];
+  required: boolean;
+  tier: SuggestionTier;
+  score: number;
+  /** Whether Foundations is one of the requirements it closes. */
+  servesFoundations: boolean;
+}
+
+/** Take from two lists in turn, so neither one crowds the other out. */
+function interleave(a: Suggestion[], b: Suggestion[]): Suggestion[] {
+  const out: Suggestion[] = [];
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (a[i]) out.push(a[i]);
+    if (b[i]) out.push(b[i]);
+  }
+  return out;
+}
+
+/**
+ * Courses that would close the most still-open requirements, weighted by what
+ * the student is aiming at. Foundations are required of everyone; beyond that,
+ * a committed Center or concentration decides what counts as the plan, and
+ * anything only being considered ranks below it.
+ */
+export function suggestNextCourses(audit: AuditResult, targets: Targets = {}, limit = 12) {
+  const score = new Map<string, Suggestion>();
+
+  const add = (code: string, label: string, tier: SuggestionTier, foundations = false) => {
+    const entry =
+      score.get(code) ??
+      { code, count: 0, forWhat: [], required: false, tier: "open" as SuggestionTier, score: 0, servesFoundations: false };
+    entry.count++;
+    entry.score += TIER_WEIGHT[tier];
+    if (foundations) entry.servesFoundations = true;
+    if (outranks(tier, entry.tier)) entry.tier = tier;
+    if (tier === "required") {
+      entry.required = true;
+      entry.forWhat.unshift(label);
+    } else {
+      entry.forWhat.push(label);
+    }
+    score.set(code, entry);
+  };
+
+  const walk = (groups: GroupResult[], name: string, tier: SuggestionTier, foundations = false) => {
+    for (const g of groups) {
       if (g.satisfied) continue;
-      for (const code of g.options ?? []) {
-        const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
-        entry.count++;
-        entry.forWhat.push(`${c.name}: ${g.name}`);
-        score.set(code, entry);
-      }
+      for (const code of g.options ?? []) add(code, `${name}: ${g.name}`, tier, foundations);
     }
-  }
-  for (const g of audit.intellectualFoundations.groups) {
-    if (g.satisfied) continue;
-    for (const code of g.options ?? []) {
-      const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
-      entry.count++;
-      entry.required = true; // everyone must finish Foundations
-      entry.forWhat.unshift(`Intellectual Foundations: ${g.name}`);
-      score.set(code, entry);
-    }
-  }
-  // A Center's Foundations and Core are required too; the concentration inside
-  // it is the optional part.
+  };
+
+  // Everyone finishes Foundations, whatever they are aiming at.
+  walk(audit.intellectualFoundations.groups, "Intellectual Foundations", "required", true);
+
+  const chosen = audit.concentrations.filter((c) => targets[c.id]);
+  // Committing to a concentration commits you to the Center it sits inside.
+  const impliedCenters = new Set(
+    chosen
+      .filter((c) => targets[c.id] === "committed")
+      .map((c) => c.centerId)
+      .filter((id): id is string => Boolean(id)),
+  );
+  const anyCenterElected = impliedCenters.size > 0 || audit.centers.some((b) => targets[b.id]);
+
+  // A Center's Foundations and Core are required, but only for the one Center
+  // the student elects. Until they elect one, every Center still counts, since
+  // there is no way to tell which will be required.
   for (const b of audit.centers) {
-    for (const g of b.groups) {
-      if (g.satisfied) continue;
-      for (const code of g.options ?? []) {
-        const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
-        entry.count++;
-        entry.required = true;
-        entry.forWhat.unshift(`${b.name}: ${g.name}`);
-        score.set(code, entry);
-      }
-    }
+    const tier: SuggestionTier | null =
+      targets[b.id] === "committed" || impliedCenters.has(b.id)
+        ? "required"
+        : targets[b.id] === "considering"
+          ? "considering"
+          : anyCenterElected
+            ? null
+            : "required";
+    if (tier) walk(b.groups, b.name, tier);
   }
 
-  const byCode = (a: { code: string }, b: { code: string }) => a.code.localeCompare(b.code);
+  for (const c of chosen.length ? chosen : audit.concentrations) {
+    const tier: SuggestionTier = !chosen.length
+      ? "open"
+      : targets[c.id] === "committed"
+        ? "committed"
+        : "considering";
+    walk(c.groups, c.name, tier);
+  }
+
+  const byCode = (a: Suggestion, b: Suggestion) => a.code.localeCompare(b.code);
   const all = [...score.values()];
-  // A course that closes more than one requirement is worth the most.
-  const doubleDuty = all.filter((e) => e.count > 1).sort((a, b) => b.count - a.count || byCode(a, b));
-  const foundations = all.filter((e) => e.count === 1 && e.required).sort(byCode);
-  const elective = all.filter((e) => e.count === 1 && !e.required).sort(byCode);
 
-  // Alternate the two single-purpose lists so a concentration never gets
-  // crowded out by the Foundations backlog.
-  const mixed: typeof all = [];
-  for (let i = 0; i < Math.max(foundations.length, elective.length); i++) {
-    if (foundations[i]) mixed.push(foundations[i]);
-    if (elective[i]) mixed.push(elective[i]);
-  }
+  // A course that closes several requirements at once is worth the most, and
+  // the tiers break its ties: the plan ahead of the maybes.
+  const doubleDuty = all
+    .filter((e) => e.count > 1)
+    .sort((a, b) => b.score - a.score || b.count - a.count || byCode(a, b));
 
-  return [...doubleDuty, ...mixed]
+  const singles = all.filter((e) => e.count === 1);
+  // Required work splits two ways, and course codes sort the Center's Core
+  // behind the whole Foundations backlog, so the two take turns instead.
+  const required = interleave(
+    singles.filter((e) => e.tier === "required" && e.servesFoundations).sort(byCode),
+    singles.filter((e) => e.tier === "required" && !e.servesFoundations).sort(byCode),
+  );
+  const committed = singles.filter((e) => e.tier === "committed").sort(byCode);
+  const considering = singles.filter((e) => e.tier === "considering").sort(byCode);
+  const untargeted = singles.filter((e) => e.tier === "open").sort(byCode);
+
+  // The Foundations backlog must not crowd out the courses the student chose,
+  // so it alternates with them. Where nothing is chosen, every concentration
+  // takes that side of the alternation instead.
+  const plan = committed.length ? committed : untargeted;
+  const tail = committed.length ? [...considering, ...untargeted] : considering;
+
+  return [...doubleDuty, ...interleave(required, plan), ...tail]
     .slice(0, limit)
     .map((e) => ({ ...e, title: titleOf(e.code), credits: creditsOf(e.code), level: levelOf(e.code) }));
 }

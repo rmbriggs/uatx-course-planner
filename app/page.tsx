@@ -4,11 +4,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
 import { CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
-import { auditDegree, pacing, suggestNextCourses } from "@/lib/audit";
+import { auditDegree, pacing, suggestNextCourses, type SuggestionTier } from "@/lib/audit";
 import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
-import type { CourseStatus, TakenCourse } from "@/lib/types";
+import type { CourseStatus, Interest, TakenCourse } from "@/lib/types";
 
 export default function Page() {
   const [state, setState] = useState<SavedState>(emptyState);
@@ -48,10 +48,18 @@ export default function Page() {
     [state.taken, state.useInferred, state.program],
   );
 
-  const ranked = useMemo(
-    () => [...audit.concentrations].sort((a, b) => b.percent - a.percent || a.name.localeCompare(b.name)),
-    [audit],
+  // What the student is aiming at floats to the top of every grid; within a
+  // tier the closest to done leads.
+  const byInterest = useCallback(
+    (a: { id: string; percent: number; name: string }, b: { id: string; percent: number; name: string }) =>
+      INTEREST_ORDER[state.targets[a.id] ?? "none"] - INTEREST_ORDER[state.targets[b.id] ?? "none"] ||
+      b.percent - a.percent ||
+      a.name.localeCompare(b.name),
+    [state.targets],
   );
+
+  const ranked = useMemo(() => [...audit.concentrations].sort(byInterest), [audit, byInterest]);
+  const centers = useMemo(() => [...audit.centers].sort(byInterest), [audit, byInterest]);
 
   // The 2024-2025 program requires electing a Center, so its concentrations are
   // grouped by the Center that offers them rather than shown as a flat list.
@@ -65,14 +73,46 @@ export default function Page() {
     return [...map.entries()];
   }, [ranked]);
 
-  const next = useMemo(
-    () => suggestNextCourses(audit, state.focus, 10),
-    [audit, state.focus],
+  const next = useMemo(() => suggestNextCourses(audit, state.targets, 10), [audit, state.targets]);
+
+  /** Pressing the tier a target already has clears it. */
+  const setTarget = useCallback((id: string, tier: Interest) => {
+    setState((prev) => {
+      const targets = { ...prev.targets };
+      if (targets[id] === tier) delete targets[id];
+      else targets[id] = tier;
+      return { ...prev, targets };
+    });
+  }, []);
+
+  const aimingCount = Object.keys(state.targets).length;
+
+  const aiming = useMemo(() => {
+    const named = (tier: Interest) =>
+      [...audit.centers, ...audit.concentrations].filter((x) => state.targets[x.id] === tier).map((x) => x.name);
+    return { committed: named("committed"), considering: named("considering") };
+  }, [audit, state.targets]);
+
+  const targetStrip = (id: string) => (
+    <div className="target-row" role="group" aria-label="How seriously you are pursuing this">
+      {(["committed", "considering"] as Interest[]).map((tier) => (
+        <button
+          key={tier}
+          type="button"
+          className="target-btn"
+          data-tier={tier}
+          aria-pressed={state.targets[id] === tier}
+          onClick={() => setTarget(id, tier)}
+        >
+          {tier === "committed" ? "Committed" : "Considering"}
+        </button>
+      ))}
+    </div>
   );
 
   const renderCard = (c: (typeof ranked)[number]) => (
+    <div key={c.id} className="conc-cell" data-tier={state.targets[c.id] ?? "none"}>
     <button
-      key={c.id}
       type="button"
       className="conc"
       data-open={open === c.id}
@@ -96,11 +136,13 @@ export default function Page() {
         <span>{c.satisfied ? "Complete" : remainingLabel(c)}</span>
       </div>
     </button>
+      {targetStrip(c.id)}
+    </div>
   );
 
   const renderCenterCard = (b: (typeof audit.centers)[number]) => (
+    <div key={b.id} className="conc-cell" data-tier={state.targets[b.id] ?? "none"}>
     <button
-      key={b.id}
       type="button"
       className="conc"
       data-open={openCenter === b.id}
@@ -125,6 +167,8 @@ export default function Page() {
       </div>
       {b.note && <span className="conc-variant">as printed under {b.publishedUnder[0]}</span>}
     </button>
+      {targetStrip(b.id)}
+    </div>
   );
 
   // A block can ask for courses, for credits, or for both, and saying "courses"
@@ -273,7 +317,7 @@ export default function Page() {
                     {fmt(requirements.major.credits - (requirements.centers?.[0]?.credits ?? 54))} elective credits
                     instead of {requirements.electives?.credits ?? 24}.
                   </p>
-                  <div className="conc-grid">{audit.centers.map(renderCenterCard)}</div>
+                  <div className="conc-grid">{centers.map(renderCenterCard)}</div>
                   {openCenter && <CenterDetail center={audit.centers.find((b) => b.id === openCenter)!} />}
                 </section>
               )}
@@ -284,7 +328,9 @@ export default function Page() {
                   <span className="aside">
                     {isLegacyProgram
                       ? "27 credits each, on top of the Center they sit in"
-                      : "36 credits each · sorted by how close you are"}
+                      : aimingCount > 0
+                        ? "36 credits each · what you are aiming at first"
+                        : "36 credits each · sorted by how close you are"}
                   </span>
                 </div>
                 {isLegacyProgram && (
@@ -309,27 +355,40 @@ export default function Page() {
               <section className="section">
                 <div className="section-head">
                   <h2>What to take next</h2>
-                  <span className="aside">Ranked by how many open requirements each one closes</span>
+                  <span className="aside">
+                    {aimingCount > 0
+                      ? "Weighted by what you are aiming at"
+                      : "Ranked by how many open requirements each one closes"}
+                  </span>
                 </div>
-                <div className="btn-row" style={{ marginBottom: "0.7rem" }}>
-                  {ranked.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      className="btn"
-                      aria-pressed={state.focus.includes(c.id)}
-                      onClick={() =>
-                        update({
-                          focus: state.focus.includes(c.id)
-                            ? state.focus.filter((f) => f !== c.id)
-                            : [...state.focus, c.id],
-                        })
-                      }
-                    >
-                      {c.name}
+                {aimingCount > 0 ? (
+                  <p className="note aiming" style={{ marginBottom: "0.7rem" }}>
+                    {aiming.committed.length > 0 && (
+                      <span>
+                        <span className="tier-chip" data-tier="committed">
+                          Committed
+                        </span>{" "}
+                        {aiming.committed.join(", ")}.{" "}
+                      </span>
+                    )}
+                    {aiming.considering.length > 0 && (
+                      <span>
+                        <span className="tier-chip" data-tier="considering">
+                          Considering
+                        </span>{" "}
+                        {aiming.considering.join(", ")}.{" "}
+                      </span>
+                    )}
+                    <button type="button" className="btn btn-quiet" onClick={() => update({ targets: {} })}>
+                      Clear
                     </button>
-                  ))}
-                </div>
+                  </p>
+                ) : (
+                  <p className="note" style={{ marginBottom: "0.7rem" }}>
+                    Every concentration counts equally here. Mark one Committed or Considering above and this list
+                    follows it &mdash; committing also settles which Center&rsquo;s Core you need.
+                  </p>
+                )}
                 {next.length === 0 ? (
                   <p className="note">Nothing left to suggest — every requirement you are tracking is met.</p>
                 ) : (
@@ -348,7 +407,11 @@ export default function Page() {
                           <td className="mono">{c.code}</td>
                           <td>{c.title}</td>
                           <td className="mono">{c.credits}</td>
-                          <td className="why">{c.forWhat.slice(0, 3).join("; ")}
+                          <td className="why">
+                            <span className="tier-chip" data-tier={c.tier}>
+                              {TIER_LABEL[c.tier]}
+                            </span>{" "}
+                            {c.forWhat.slice(0, 3).join("; ")}
                             {c.forWhat.length > 3 ? ` +${c.forWhat.length - 3} more` : ""}
                           </td>
                         </tr>
@@ -599,6 +662,16 @@ export default function Page() {
     </main>
   );
 }
+
+/** Committed first, then considering, then everything else. */
+const INTEREST_ORDER: Record<string, number> = { committed: 0, considering: 1, none: 2 };
+
+const TIER_LABEL: Record<SuggestionTier, string> = {
+  required: "Required",
+  committed: "Committed",
+  considering: "Considering",
+  open: "Optional",
+};
 
 function fmt(n: number) {
   return Number.isInteger(n) ? String(n) : n.toFixed(1);

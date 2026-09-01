@@ -270,9 +270,134 @@ describe("polaris", () => {
 describe("planning helpers", () => {
   it("ranks courses that close the most open requirements", () => {
     const a = auditDegree([]);
-    const next = suggestNextCourses(a, ["philosophy"], 5);
+    const next = suggestNextCourses(a, { philosophy: "committed" }, 5);
     expect(next.length).toBe(5);
     expect(next[0].count).toBeGreaterThanOrEqual(next[4].count);
+  });
+
+  it("puts a committed concentration ahead of one only being considered", () => {
+    const a = auditDegree([]);
+    const next = suggestNextCourses(a, { philosophy: "committed", history: "considering" }, 200);
+    const tierOf = (name: string) =>
+      next.find((n) => n.forWhat.some((w) => w.startsWith(name)) && n.count === 1);
+    const committed = tierOf("Philosophy");
+    const considering = tierOf("History");
+    expect(committed).toBeDefined();
+    expect(considering).toBeDefined();
+    expect(committed!.tier).toBe("committed");
+    expect(considering!.tier).toBe("considering");
+    expect(next.indexOf(committed!)).toBeLessThan(next.indexOf(considering!));
+
+    // Nothing merely being considered may displace work that is required or
+    // already planned, so it lands after all of it.
+    const singles = next.filter((n) => n.count === 1);
+    const lastOf = (tier: string) => singles.reduce((at, n, i) => (n.tier === tier ? i : at), -1);
+    const firstConsidering = singles.findIndex((n) => n.tier === "considering");
+    expect(firstConsidering).toBeGreaterThan(lastOf("required"));
+    expect(firstConsidering).toBeGreaterThan(lastOf("committed"));
+  });
+
+  it("keeps work only being considered behind everything required", () => {
+    // With nothing committed, the whole Foundations backlog outranks a maybe.
+    const a = auditDegree([]);
+    const singles = suggestNextCourses(a, { history: "considering" }, 200).filter((n) => n.count === 1);
+    const lastRequired = singles.reduce((at, n, i) => (n.tier === "required" ? i : at), -1);
+    const firstConsidering = singles.findIndex((n) => n.tier === "considering");
+    expect(lastRequired).toBeGreaterThan(-1);
+    expect(firstConsidering).toBeGreaterThan(lastRequired);
+  });
+
+  it("scores the same course lower when one of its targets is only a maybe", () => {
+    const a = auditDegree([]);
+    const shared = (targets: Parameters<typeof suggestNextCourses>[1]) =>
+      suggestNextCourses(a, targets, 200).filter((n) => n.count > 1);
+    const bothCommitted = shared({ philosophy: "committed", history: "committed" });
+    expect(bothCommitted.length).toBeGreaterThan(0);
+    const code = bothCommitted[0].code;
+    const considered = shared({ philosophy: "committed", history: "considering" }).find((n) => n.code === code);
+    expect(considered).toBeDefined();
+    expect(bothCommitted[0].score).toBeGreaterThan(considered!.score);
+  });
+
+  it("labels a course serving both tiers by the stronger one", () => {
+    const a = auditDegree([]);
+    // History courses sit in the Philosophy pool too, so some serve both.
+    const next = suggestNextCourses(a, { philosophy: "committed", history: "considering" }, 200);
+    const shared = next.find(
+      (n) =>
+        n.forWhat.some((w) => w.startsWith("Philosophy")) && n.forWhat.some((w) => w.startsWith("History")),
+    );
+    expect(shared).toBeDefined();
+    expect(shared!.tier).toBe("committed");
+  });
+
+  it("drops the concentrations the student is not aiming at", () => {
+    const a = auditDegree([]);
+    const next = suggestNextCourses(a, { philosophy: "committed" }, 40);
+    const named = next.flatMap((n) => n.forWhat);
+    expect(named.some((w) => w.startsWith("Philosophy"))).toBe(true);
+    expect(named.some((w) => w.startsWith("Mathematics"))).toBe(false);
+  });
+
+  it("counts every concentration when nothing is targeted", () => {
+    const a = auditDegree([]);
+    const open = suggestNextCourses(a, {}, 40).filter((n) => !n.required);
+    expect(open.length).toBeGreaterThan(0);
+    expect(open.every((n) => n.tier === "open")).toBe(true);
+  });
+
+  it("keeps Foundations required whatever is targeted", () => {
+    const a = auditDegree([]);
+    const next = suggestNextCourses(a, { philosophy: "committed" }, 40);
+    expect(next.some((n) => n.tier === "required")).toBe(true);
+  });
+
+  it("weighs a course serving two committed targets above one serving a single target", () => {
+    const a = auditDegree([]);
+    const both = suggestNextCourses(a, { philosophy: "committed", history: "committed" }, 40);
+    const multi = both.find((n) => n.count > 1);
+    const single = both.find((n) => n.count === 1);
+    expect(multi).toBeDefined();
+    expect(single).toBeDefined();
+    expect(multi!.score).toBeGreaterThan(single!.score);
+    expect(both.indexOf(multi!)).toBeLessThan(both.indexOf(single!));
+  });
+
+  it("settles which Center is required from the concentration committed to", () => {
+    // Only one Center is ever required. Until a student elects one every Center
+    // has to be offered; committing to a concentration inside one settles it.
+    const a = auditDegree([], { program: "2024-2025" });
+    const undecided = suggestNextCourses(a, {}, 200).flatMap((n) => n.forWhat);
+    expect(undecided.some((w) => w.startsWith("Arts and Letters:"))).toBe(true);
+
+    const decided = suggestNextCourses(a, { "computing-data-science": "committed" }, 200);
+    const why = decided.flatMap((n) => n.forWhat);
+    expect(why.some((w) => w.startsWith("Science, Technology, Engineering, and Mathematics:"))).toBe(true);
+    expect(why.some((w) => w.startsWith("Arts and Letters:"))).toBe(false);
+    // The Center it settled on is required, not merely part of the plan.
+    const core = decided.find((n) =>
+      n.forWhat.some((w) => w.startsWith("Science, Technology, Engineering, and Mathematics:")),
+    )!;
+    expect(core.required).toBe(true);
+  });
+
+  it("shows the elected Center's Core alongside Foundations, not behind it", () => {
+    // Course codes alone would sort every INF ahead of every STM, hiding the
+    // Core of the Center the student just elected below a short list.
+    const a = auditDegree([], { program: "2024-2025" });
+    const shown = suggestNextCourses(a, { "computing-data-science": "committed" }, 10);
+    const from = (prefix: string) => shown.some((n) => n.forWhat.some((w) => w.startsWith(prefix)));
+    expect(from("Intellectual Foundations:")).toBe(true);
+    expect(from("Science, Technology, Engineering, and Mathematics:")).toBe(true);
+  });
+
+  it("keeps a Center that is only being considered out of the required work", () => {
+    const a = auditDegree([], { program: "2024-2025" });
+    const next = suggestNextCourses(a, { "center-economics-politics-and-history": "considering" }, 200);
+    const fromCenter = next.filter((n) => n.forWhat.some((w) => w.startsWith("Arts and Letters:")));
+    expect(fromCenter).toHaveLength(0);
+    const considered = next.find((n) => n.tier === "considering");
+    expect(considered).toBeDefined();
   });
 
   it("spreads the remaining credits over the terms left", () => {
@@ -419,7 +544,7 @@ describe("waived requirements", () => {
 
   it("is never suggested as a course still to take", () => {
     const a = auditDegree([waive("LITR 102")]);
-    expect(suggestNextCourses(a, [], 40).map((n) => n.code)).not.toContain("LITR 102");
+    expect(suggestNextCourses(a, {}, 40).map((n) => n.code)).not.toContain("LITR 102");
   });
 
   it("carries no credits of its own", () => {

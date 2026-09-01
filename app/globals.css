@@ -1240,3 +1240,111 @@ button, input, select {
 .hint-steps li::marker {
   color: var(--slate-light);
 }
+
+/* ---------------------------------------------------------------------------
+   Targets: what the student is aiming at. Brass is the palette's "earned", so
+   it marks the plan; marine, used elsewhere for information, marks a maybe.
+   --------------------------------------------------------------------------- */
+.conc-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.conc-cell .conc {
+  flex: 1;
+}
+
+/* Only the left edge, so the card keeps its own open-state border. */
+.conc-cell[data-tier="committed"] .conc,
+.conc-cell[data-tier="considering"] .conc {
+  border-left-width: 3px;
+}
+
+.conc-cell[data-tier="committed"] .conc {
+  border-left-color: var(--brass);
+}
+
+.conc-cell[data-tier="considering"] .conc {
+  border-left-color: var(--marine);
+}
+
+.target-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+}
+
+.target-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--slate);
+  border-radius: var(--radius);
+  padding: 0.32rem 0.2rem;
+  font: inherit;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.target-btn:hover {
+  border-color: var(--slate-light);
+  color: var(--ink);
+}
+
+.target-btn[aria-pressed="true"][data-tier="committed"] {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: #fff;
+}
+
+.target-btn[aria-pressed="true"][data-tier="considering"] {
+  background: var(--marine-soft);
+  border-color: var(--marine);
+  color: var(--ink);
+}
+
+/* Why a suggested course is on the list. */
+.tier-chip {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.06rem 0.34rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--slate);
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.tier-chip[data-tier="required"] {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.tier-chip[data-tier="committed"] {
+  border-color: var(--brass);
+  background: var(--brass-soft);
+  color: #6b4a10;
+}
+
+.tier-chip[data-tier="considering"] {
+  border-color: var(--marine);
+  background: var(--marine-soft);
+  color: var(--ink);
+}
+
+.tier-chip[data-tier="open"] {
+  color: var(--slate-light);
+}
+
+.aiming {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+}

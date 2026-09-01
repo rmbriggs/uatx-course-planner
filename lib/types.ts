@@ -212,6 +212,16 @@ export function fillsRequirement(status: CourseStatus): boolean {
   return earnsCredit(status) || isPending(status) || isWaived(status);
 }
 
+/**
+ * How seriously a student is pursuing a Center or a concentration.
+ * Committing says "this is the plan"; considering says "show me, but do not
+ * let it outrank the plan."
+ */
+export type Interest = "committed" | "considering";
+
+/** The Centers and concentrations a student is aiming at, by id. */
+export type Targets = Record<string, Interest>;
+
 /** A course the student has on their record. */
 export interface TakenCourse {
   code: string;
