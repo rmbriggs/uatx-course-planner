@@ -55,6 +55,13 @@ npm run build
 push to any other branch gets its own preview URL. `npx vercel deploy --prod
 --yes` still works if you want to ship without a commit.
 
+Every push and pull request runs `.github/workflows/ci.yml`: the tests, a
+production build, and a check that `data/` still reproduces from its sources.
+The data tests are what make an edit to `data/*.json` safe to accept from
+someone who cannot run the suite themselves — they check that every requirement
+names a course that exists, that the pillars still sum to 180, and that
+Foundations still adds to 57.
+
 ## Where the data comes from
 
 Both catalogs are image-only PDFs with no text layer, so the course data was
@@ -67,12 +74,18 @@ produced by OCR and is committed to `data/`. The site never reads the PDFs.
 | `data/requirements.json` | 2026-2027: Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
 | `data/requirements-2024.json` | 2024-2025: Intellectual Foundations, 3 Centers, 4 concentrations, Polaris |
 
-Regenerate with `npm run data`, which runs three scripts in `scripts/`:
+Regenerate with `npm run data` (once: `pip install -r scripts/requirements.txt`),
+which runs four scripts in `scripts/`:
 
 1. `extract_courses.py` parses the OCR text of both catalogs.
 2. `extract_equivalencies.py` turns the equivalency `.docx` tables into rules.
 3. `build_requirements.py` and `build_requirements_2024.py` emit the two
    programs' requirements and check every course code they name actually exists.
+
+The output is reproducible: regenerating from the committed sources produces
+`data/` byte for byte, and CI fails if it ever stops doing so. So a hand-edit to
+a generated file works and deploys, but is lost the next time anyone regenerates
+— a correction that needs to survive belongs in the script's `OVERRIDES` table.
 
 The OCR itself (`scripts/ocr.swift`, `scripts/reflow.py`) used Apple's Vision
 framework across all 335 pages, keeping bounding boxes so the multi-column

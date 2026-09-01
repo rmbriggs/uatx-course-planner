@@ -1,0 +1,2 @@
+# The equivalency tables are read straight out of the .docx.
+python-docx==1.2.0

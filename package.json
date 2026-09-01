@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "data": "python3 scripts/extract_courses.py && python3 scripts/extract_equivalencies.py && python3 scripts/build_requirements.py"
+    "data": "python3 scripts/extract_courses.py && python3 scripts/extract_equivalencies.py && python3 scripts/build_requirements.py && python3 scripts/build_requirements_2024.py"
   },
   "dependencies": {
     "next": "^15.5.25",

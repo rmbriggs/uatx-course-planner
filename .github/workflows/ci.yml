@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A newer commit makes an in-flight run pointless.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Matches the Node version the Vercel project builds with, so a green
+          # run here means the deploy will build too.
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # The data tests are the guard rails for an edit to data/*.json: they
+      # check that every requirement names a course that exists, that the three
+      # pillars still sum to 180, and that Foundations still adds to 57.
+      - run: npm test
+
+      # next build type-checks and lints, so this catches what tests do not.
+      - run: npm run build
+
+  data:
+    name: Generated data matches its sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -r scripts/requirements.txt
+
+      # Run the chain through npm so this workflow cannot drift from the
+      # definition in package.json.
+      - run: npm run data
+
+      - name: Fail if regenerating changed anything
+        run: |
+          if ! git diff --quiet -- data/; then
+            echo "::error::data/ no longer matches data/raw/ and scripts/. A hand-edit to a generated file is lost the next time anyone runs 'npm run data' — put the change in the script's override table instead, then run 'npm run data' and commit the result."
+            git diff --stat -- data/
+            git diff -- data/ | head -200
+            exit 1
+          fi
+          echo "data/ reproduces exactly from its sources."
