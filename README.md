@@ -37,6 +37,12 @@ then edit their own copy.
   "what to take next" — each suggestion says which tier put it there.
   Committing to a concentration also elects the Center it sits in, which is
   what decides whose Core you owe.
+- **Logs Polaris Build.** Build is a credit total rather than a class, so it is
+  logged instead of enrolled in: add credits in whatever amounts the work is
+  granted, label them, and mark them still under way until they are. The log is
+  kept apart from the course record, so re-uploading a transcript cannot wipe a
+  term of logging, and it warns you when your record already reports Build
+  credit that logged entries would sit on top of.
 - **Paces the rest of the degree.** Tell it how many terms you have left and it
   reports the credits per term you need to average.
 
@@ -45,7 +51,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 130 tests
+npm test        # 138 tests
 npm run build
 ```
 

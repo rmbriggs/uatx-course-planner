@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { titleOf } from "@/lib/catalog";
 import type { CenterResult, ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
 import type { Holding } from "@/lib/equivalency";
+import type { BuildEntry } from "@/lib/types";
 
 // Filled, half, empty - and struck through for a requirement excused rather
 // than earned. A dotted circle was indistinguishable from an open one at this
@@ -245,4 +247,133 @@ export function ConcentrationDetail({ conc }: { conc: ConcentrationResult }) {
 
 function fmt(n: number) {
   return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
+/** The amounts Build is normally granted in, so the common case is one click. */
+const BUILD_STEPS = [1.5, 3];
+
+/**
+ * Polaris Build is a credit total, not a class, so it is logged rather than
+ * enrolled in: add credits as the project earns them, and mark them still
+ * under way until they are granted.
+ */
+export function BuildLog({
+  log,
+  onAdd,
+  onRemove,
+  onToggle,
+  alsoOnTranscript,
+}: {
+  log: BuildEntry[];
+  onAdd: (credits: number, label: string) => void;
+  onRemove: (index: number) => void;
+  onToggle: (index: number) => void;
+  /** True when the course record already reports Build credit of its own. */
+  alsoOnTranscript: boolean;
+}) {
+  const [credits, setCredits] = useState("");
+  const [label, setLabel] = useState("");
+
+  const add = (amount: number) => {
+    if (!Number.isFinite(amount) || amount <= 0) return;
+    onAdd(amount, label.trim());
+    setCredits("");
+    setLabel("");
+  };
+
+  const earned = log.filter((e) => e.status === "completed").reduce((n, e) => n + e.credits, 0);
+  const pending = log.filter((e) => e.status === "in-progress").reduce((n, e) => n + e.credits, 0);
+
+  return (
+    <div className="build-log">
+      <p className="eyebrow">Build log</p>
+
+      <div className="build-add">
+        <input
+          className="build-credits"
+          type="number"
+          min="0"
+          step="0.5"
+          inputMode="decimal"
+          placeholder="cr"
+          aria-label="Credits to log"
+          value={credits}
+          onChange={(e) => setCredits(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") add(Number(credits));
+          }}
+        />
+        <input
+          className="build-label"
+          type="text"
+          placeholder="What the credits were for (optional)"
+          aria-label="What the credits were for"
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") add(Number(credits));
+          }}
+        />
+        <button type="button" className="btn btn-primary" onClick={() => add(Number(credits))} disabled={!credits}>
+          Log
+        </button>
+      </div>
+
+      <div className="btn-row build-steps">
+        {BUILD_STEPS.map((step) => (
+          <button key={step} type="button" className="btn" onClick={() => add(step)}>
+            + {fmt(step)} cr
+          </button>
+        ))}
+      </div>
+
+      {log.length > 0 && (
+        <>
+          <div className="build-entries">
+            {log.map((entry, i) => (
+              <div key={i} className={`slot-row is-${entry.status === "completed" ? "done" : "pending"}`}>
+                <button
+                  type="button"
+                  className="tick tick-btn"
+                  aria-label={
+                    entry.status === "completed" ? "Mark as still under way" : "Mark as granted"
+                  }
+                  onClick={() => onToggle(i)}
+                >
+                  {entry.status === "completed" ? MARK.done : MARK.pending}
+                </button>
+                <span className="slot-body">
+                  <span className="slot-label">{entry.label || "Polaris Build"}</span>
+                  <span className="slot-codes mono">
+                    {fmt(entry.credits)} cr
+                    {entry.status === "in-progress" && " · under way"}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  className="build-remove"
+                  aria-label={`Remove ${fmt(entry.credits)} credits`}
+                  onClick={() => onRemove(i)}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+          <p className="build-total mono">
+            {[earned > 0 && `${fmt(earned)} cr logged`, pending > 0 && `${fmt(pending)} cr under way`]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        </>
+      )}
+
+      {alsoOnTranscript && (
+        <p className="group-note build-warn">
+          Your course record already reports Build credit of its own. Logged credits add on top of it, so drop an entry
+          here once the same work shows up on your transcript.
+        </p>
+      )}
+    </div>
+  );
 }

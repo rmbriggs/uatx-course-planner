@@ -1348,3 +1348,97 @@ button, input, select {
   align-items: center;
   gap: 0.25rem 0.5rem;
 }
+
+/* ---------------------------------------------------------------------------
+   Build log: Polaris Build is a credit total rather than a class, so it is
+   logged in whatever amounts the work is granted.
+   --------------------------------------------------------------------------- */
+.build-log {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.build-add {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.build-credits,
+.build-label {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: #fbfcfd;
+  font: inherit;
+  font-size: var(--step--1);
+  min-width: 0;
+}
+
+.build-credits {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-align: right;
+}
+
+.build-steps {
+  margin-top: 0.4rem;
+}
+
+.build-entries {
+  margin-top: 0.7rem;
+}
+
+/* The tick doubles as the granted / still-under-way switch. */
+.tick-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* .slot-row is a flex row, so the body takes the slack and pushes the
+   remove control to the right edge. */
+.build-entries .slot-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.build-remove {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--slate-light);
+  cursor: pointer;
+}
+
+.build-remove:hover {
+  color: var(--warn);
+}
+
+.build-total {
+  margin: 0.5rem 0 0;
+  font-size: var(--step--1);
+  color: var(--slate);
+}
+
+.build-warn {
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 560px) {
+  .build-add {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+  }
+
+  .build-add .btn {
+    grid-column: 1 / -1;
+  }
+}

@@ -222,6 +222,19 @@ export type Interest = "committed" | "considering";
 /** The Centers and concentrations a student is aiming at, by id. */
 export type Targets = Record<string, Interest>;
 
+/**
+ * Project work logged toward Polaris Build. Build is a credit total rather
+ * than a class, so it accrues in whatever amounts the work is granted, and it
+ * is kept apart from the course record so that re-uploading a transcript
+ * cannot wipe a term's worth of logging.
+ */
+export interface BuildEntry {
+  credits: number;
+  /** What the credits were for, in the student's own words. */
+  label?: string;
+  status: "completed" | "in-progress";
+}
+
 /** A course the student has on their record. */
 export interface TakenCourse {
   code: string;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { auditDegree, pacing, suggestNextCourses } from "./audit";
+import { auditDegree, buildLogAsCourses, pacing, suggestNextCourses } from "./audit";
 import { normalizeRecord } from "./equivalency";
 import { decodeState, emptyState, encodeState } from "./storage";
 import { parseTranscript } from "./transcript";
@@ -398,6 +398,41 @@ describe("planning helpers", () => {
     expect(fromCenter).toHaveLength(0);
     const considered = next.find((n) => n.tier === "considering");
     expect(considered).toBeDefined();
+  });
+
+  it("accrues logged Build credit toward Polaris", () => {
+    const log = [
+      { credits: 3, label: "term 1", status: "completed" as const },
+      { credits: 1.5, label: "term 2", status: "completed" as const },
+      { credits: 3, label: "under way", status: "in-progress" as const },
+    ];
+    const a = auditDegree(buildLogAsCourses(log));
+    expect(a.polaris.buildCreditsEarned).toBe(4.5);
+    expect(a.polaris.creditsInProgress).toBe(3);
+    // Credits come from the entry, so the total matches what was logged.
+    expect(a.totals.earned).toBe(4.5);
+  });
+
+  it("counts logged Build only up to the Build requirement", () => {
+    // 24 logged against a 21-credit Build: the pillar stops at 21 while the
+    // credits themselves still exist on the record.
+    const log = Array.from({ length: 8 }, () => ({ credits: 3, status: "completed" as const }));
+    const a = auditDegree(buildLogAsCourses(log));
+    expect(a.polaris.buildCreditsEarned).toBe(24);
+    expect(a.polaris.creditsEarned).toBe(21);
+    expect(a.totals.earned).toBe(24);
+  });
+
+  it("logs Build under whichever program's Build course applies", () => {
+    const log = [{ credits: 3, status: "completed" as const }];
+    expect(buildLogAsCourses(log, "2026-2027")[0].code).toBe("POLR 310");
+    expect(buildLogAsCourses(log, "2024-2025")[0].code).toBe("POL 3110");
+    const legacy = auditDegree(buildLogAsCourses(log, "2024-2025"), { program: "2024-2025" });
+    expect(legacy.polaris.buildCreditsEarned).toBe(3);
+  });
+
+  it("ignores a logged entry worth nothing", () => {
+    expect(buildLogAsCourses([{ credits: 0, status: "completed" }])).toHaveLength(0);
   });
 
   it("spreads the remaining credits over the terms left", () => {

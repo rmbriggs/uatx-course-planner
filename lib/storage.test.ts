@@ -23,6 +23,33 @@ describe("shared links", () => {
     expect(decodeState(encodeState(base))!.targets).toEqual({});
   });
 
+  it("carries a build log through a round trip", () => {
+    const buildLog = [
+      { credits: 3, label: "parser: term 1", status: "completed" as const },
+      { credits: 1.5, status: "in-progress" as const },
+    ];
+    expect(decodeState(encodeState({ ...base, buildLog }))!.buildLog).toEqual([
+      { credits: 3, label: "parser: term 1", status: "completed" },
+      { credits: 1.5, label: undefined, status: "in-progress" },
+    ]);
+  });
+
+  it("survives a label containing the separators", () => {
+    const buildLog = [{ credits: 3, label: "a, b: c. d", status: "completed" as const }];
+    expect(decodeState(encodeState({ ...base, buildLog }))!.buildLog[0].label).toBe("a, b: c. d");
+  });
+
+  it("drops a build entry with no usable credit", () => {
+    expect(decodeState("c=MATH210:3:c&b=0:c:nothing,abc:c:junk,3:c:real")!.buildLog).toEqual([
+      { credits: 3, label: "real", status: "completed" },
+    ]);
+  });
+
+  it("leaves the build parameter out when nothing is logged", () => {
+    expect(encodeState(base)).not.toContain("b=");
+    expect(decodeState(encodeState(base))!.buildLog).toEqual([]);
+  });
+
   it("keeps a Center and a concentration apart in one key space", () => {
     const targets = { "center-science-technology-engineering-and-mathematics": "committed" as const };
     expect(decodeState(encodeState({ ...base, targets }))!.targets).toEqual(targets);

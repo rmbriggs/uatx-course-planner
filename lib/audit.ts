@@ -13,6 +13,7 @@ import {
   type Slot,
   type TakenCourse,
   type Targets,
+  type BuildEntry,
 } from "./types";
 
 export interface AuditOptions extends NormalizeOptions {
@@ -904,6 +905,25 @@ export function suggestNextCourses(audit: AuditResult, targets: Targets = {}, li
   return [...doubleDuty, ...interleave(required, plan), ...tail]
     .slice(0, limit)
     .map((e) => ({ ...e, title: titleOf(e.code), credits: creditsOf(e.code), level: levelOf(e.code) }));
+}
+
+/**
+ * Logged Build work in the form the audit reads. The credits come from the
+ * entry and the requirement it satisfies comes from the code — the same
+ * division the rest of the audit follows — so the code is taken from the
+ * program's own Build course rather than written down here.
+ */
+export function buildLogAsCourses(log: BuildEntry[], program: ProgramId = "2026-2027"): TakenCourse[] {
+  const code = getRequirements(program).polaris.buildCourses[0];
+  if (!code) return [];
+  return log
+    .filter((e) => e.credits > 0)
+    .map((e) => ({
+      code,
+      credits: e.credits,
+      title: e.label?.trim() || "Polaris Build",
+      status: e.status,
+    }));
 }
 
 export function pacing(audit: AuditResult, termsRemaining: number) {

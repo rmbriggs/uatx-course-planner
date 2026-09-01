@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
-import { CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
-import { auditDegree, pacing, suggestNextCourses, type SuggestionTier } from "@/lib/audit";
+import { BuildLog, CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
+import { auditDegree, buildLogAsCourses, pacing, suggestNextCourses, type SuggestionTier } from "@/lib/audit";
 import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
@@ -43,8 +43,45 @@ export default function Page() {
   const requirements = getRequirements(state.program);
   const isLegacyProgram = state.program === "2024-2025";
 
+  const record = useMemo(
+    () => [...state.taken, ...buildLogAsCourses(state.buildLog, state.program)],
+    [state.taken, state.buildLog, state.program],
+  );
+
   const audit = useMemo(
-    () => auditDegree(state.taken, { useInferred: state.useInferred, program: state.program }),
+    () => auditDegree(record, { useInferred: state.useInferred, program: state.program }),
+    [record, state.useInferred, state.program],
+  );
+
+  const addBuild = useCallback((credits: number, label: string) => {
+    setState((prev) => ({
+      ...prev,
+      buildLog: [...prev.buildLog, { credits, label: label || undefined, status: "completed" }],
+    }));
+  }, []);
+
+  const removeBuild = useCallback((index: number) => {
+    setState((prev) => ({ ...prev, buildLog: prev.buildLog.filter((_, i) => i !== index) }));
+  }, []);
+
+  const toggleBuild = useCallback((index: number) => {
+    setState((prev) => ({
+      ...prev,
+      buildLog: prev.buildLog.map((e, i) =>
+        i === index ? { ...e, status: e.status === "completed" ? "in-progress" : "completed" } : e,
+      ),
+    }));
+  }, []);
+
+  // Build credit the course record earns on its own, which logged credits are
+  // then counted on top of. Asking the audit rather than matching course codes
+  // is what catches the mapped cases: an old POL 1110 arrives as Build credit
+  // through the equivalencies without ever naming a Build course.
+  const buildOnTranscript = useMemo(
+    () =>
+      state.taken.length > 0 &&
+      auditDegree(state.taken, { useInferred: state.useInferred, program: state.program }).polaris
+        .buildCreditsEarned > 0,
     [state.taken, state.useInferred, state.program],
   );
 
@@ -185,7 +222,7 @@ export default function Page() {
   const pace = pacing(audit, state.termsRemaining);
   const mappings = mappedGrants(audit.normalization);
   const inferredCount = mappings.filter((m) => m.via === "inferred").length;
-  const hasCourses = state.taken.length > 0;
+  const hasCourses = record.length > 0;
 
   return (
     <main className="shell">
@@ -528,6 +565,13 @@ export default function Page() {
                   <p className="group-note" style={{ marginTop: "0.6rem" }}>
                     {audit.polaris.note}
                   </p>
+                  <BuildLog
+                    log={state.buildLog}
+                    onAdd={addBuild}
+                    onRemove={removeBuild}
+                    onToggle={toggleBuild}
+                    alsoOnTranscript={buildOnTranscript}
+                  />
                 </PillarBlock>
 
                 <div className="note" style={{ marginTop: "0.8rem" }}>

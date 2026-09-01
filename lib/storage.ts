@@ -1,6 +1,6 @@
 import { normalizeCode } from "./catalog";
 import { isAmbiguousCode } from "./equivalency";
-import type { CourseStatus, Interest, ProgramId, TakenCourse, Targets } from "./types";
+import type { BuildEntry, CourseStatus, Interest, ProgramId, TakenCourse, Targets } from "./types";
 
 const KEY = "uatx-degree-audit.v1";
 
@@ -27,6 +27,9 @@ export interface SavedState {
   useInferred: boolean;
   /** Centers and concentrations being pursued, and how seriously. */
   targets: Targets;
+  /** Polaris Build credits logged by hand, kept out of `taken` so that a
+   *  transcript upload, which replaces the course record, leaves them alone. */
+  buildLog: BuildEntry[];
   /** Course Score Average, read from an uploaded transcript. */
   csa?: number;
   /** Which catalog to measure against. */
@@ -38,6 +41,7 @@ export const emptyState: SavedState = {
   termsRemaining: 9,
   useInferred: true,
   targets: {},
+  buildLog: [],
   program: "2026-2027",
 };
 
@@ -90,6 +94,16 @@ export function encodeState(state: SavedState): string {
   if (state.program !== emptyState.program) params.set("p", state.program);
   const targets = Object.entries(state.targets).map(([id, tier]) => `${id}~${INTEREST_CODE[tier]}`);
   if (targets.length) params.set("f", targets.join("."));
+  if (state.buildLog.length) {
+    params.set(
+      "b",
+      state.buildLog
+        .map((e) =>
+          [e.credits, STATUS_CODE[e.status], e.label ? encodeURIComponent(e.label.slice(0, 60)) : ""].join(":"),
+        )
+        .join(","),
+    );
+  }
   return params.toString();
 }
 
@@ -117,6 +131,7 @@ export function decodeState(search: string): SavedState | null {
     termsRemaining: Number(params.get("t") ?? emptyState.termsRemaining) || emptyState.termsRemaining,
     useInferred: params.get("i") !== "0",
     targets: parseTargets(params.get("f")),
+    buildLog: parseBuildLog(params.get("b")),
     csa: params.get("g") ? Number(params.get("g")) : undefined,
     program: params.get("p") === "2024-2025" ? "2024-2025" : "2026-2027",
   };
@@ -134,6 +149,23 @@ function parseTargets(raw: string | null): Targets {
     const [id, code] = chunk.split("~");
     if (!id) continue;
     out[id] = CODE_INTEREST[code] ?? "committed";
+  }
+  return out;
+}
+
+/** `credits:status:label`, one entry per comma. */
+function parseBuildLog(raw: string | null): BuildEntry[] {
+  const out: BuildEntry[] = [];
+  for (const chunk of (raw ?? "").split(",")) {
+    if (!chunk.trim()) continue;
+    const [credits, status, label] = chunk.split(":");
+    const amount = Number(credits);
+    if (!Number.isFinite(amount) || amount <= 0) continue;
+    out.push({
+      credits: amount,
+      status: CODE_STATUS[status] === "in-progress" ? "in-progress" : "completed",
+      label: label ? decodeURIComponent(label) : undefined,
+    });
   }
   return out;
 }
