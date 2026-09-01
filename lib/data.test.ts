@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { allCourses, currentCourses, equivalencies, getCourse, legacyCourses, levelOf, requirements } from "./catalog";
+import {
+  allCourses,
+  currentCourses,
+  equivalencies,
+  getCourse,
+  getRequirements,
+  grading,
+  legacyCourses,
+  levelOf,
+  requirements,
+} from "./catalog";
+import { auditDegree } from "./audit";
 
 describe("extracted catalog", () => {
   it("has both catalogs", () => {
@@ -73,7 +84,11 @@ describe("requirements", () => {
     for (const c of requirements.concentrations) {
       for (const g of c.groups) {
         const codes =
-          g.type === "pick" ? g.pool : g.type === "oneOf" ? g.pools.flatMap((p) => p.pool) : g.slots.flatMap((s) => s.options.flat());
+          g.type === "pick" || g.type === "credits"
+            ? g.pool
+            : g.type === "oneOf"
+              ? g.pools.flatMap((p) => p.pool)
+              : g.slots.flatMap((s) => s.options.flat());
         for (const code of codes) expect(getCourse(code), `${c.name}: ${code}`).toBeDefined();
         if (g.id.includes("upper")) {
           for (const code of codes) expect(levelOf(code), `${c.name}: ${code}`).toBeGreaterThanOrEqual(300);
@@ -92,5 +107,44 @@ describe("requirements", () => {
       total += (g.choose ? values.slice(0, g.choose) : values).reduce((n, v) => n + v, 0);
     }
     expect(total).toBe(requirements.intellectualFoundations.credits);
+  });
+});
+
+describe("both programs", () => {
+  it("audits without missing anything the page reads", () => {
+    for (const program of ["2026-2027", "2024-2025"] as const) {
+      const req = getRequirements(program);
+      expect(req.program, program).toBe(program);
+      expect(req.pillars.reduce((n, p) => n + p.credits, 0), program).toBe(180);
+      expect(req.concentrations.length, program).toBeGreaterThan(0);
+      expect(req.polaris.buildCourses.length, program).toBeGreaterThan(0);
+
+      const audit = auditDegree([{ code: "INF 1100", status: "completed" }], { program });
+      expect(audit.program).toBe(program);
+      expect(audit.pillars).toHaveLength(3);
+      // Pillar names come from the program, not hard-coded.
+      expect(audit.pillars.map((p) => p.name)).toEqual(req.pillars.map((p) => p.name));
+      for (const c of audit.concentrations) {
+        expect(c.groups.every((g) => g.unit === "courses" || g.unit === "credits"), c.name).toBe(true);
+      }
+    }
+  });
+
+  it("keeps grading policy available whichever program is chosen", () => {
+    expect(grading.passingScore).toBe(60);
+    expect(grading.minimumCsa).toBe(73);
+    expect(grading.retake.length).toBeGreaterThan(10);
+  });
+
+  it("measures the 2024-2025 program in its own course codes", () => {
+    // No equivalency translation: STM 2102 is a Center Core course as it stands.
+    const a = auditDegree([{ code: "STM 2102", status: "completed" }], { program: "2024-2025" });
+    const cds = a.concentrations.find((c) => c.id === "computing-data-science")!;
+    expect(cds.groups.find((g) => g.id === "cds-core")!.completed).toBe(1);
+    expect(a.normalization.holdings[0].satisfies).toEqual(["STM 2102"]);
+  });
+
+  it("makes every 2024-2025 concentration 81 credits", () => {
+    for (const c of getRequirements("2024-2025").concentrations) expect(c.credits, c.name).toBe(81);
   });
 });

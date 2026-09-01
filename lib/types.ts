@@ -47,6 +47,8 @@ export interface Slot {
   options: string[][];
 }
 
+export type ProgramId = "2026-2027" | "2024-2025";
+
 export type RequirementGroup =
   | { id: string; name: string; type: "slots"; slots: Slot[]; choose?: number; page?: number; note?: string }
   | { id: string; name: string; type: "pick"; pool: string[]; choose: number; page?: number; note?: string }
@@ -58,7 +60,9 @@ export type RequirementGroup =
       choose: number;
       page?: number;
       note?: string;
-    };
+    }
+  /** "Complete N credits from this pool", used by the 2024-2025 program. */
+  | { id: string; name: string; type: "credits"; minCredits: number; pool: string[]; page?: number; note?: string };
 
 export interface Prerequisite {
   label: string;
@@ -91,8 +95,12 @@ export interface GradingPolicy {
 }
 
 export interface Requirements {
-  program: string;
+  program: ProgramId;
+  /** Short name for the catalog, shown on the program switch. */
+  label?: string;
   grading: GradingPolicy;
+  corrections?: Record<string, { code: string; note: string }>;
+  electives?: { credits: number; note: string };
   source: string;
   totalCredits: number;
   pillars: { id: string; name: string; credits: number }[];

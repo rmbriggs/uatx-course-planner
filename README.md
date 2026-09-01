@@ -13,6 +13,11 @@ then edit their own copy.
 - **Reads your transcript.** Drop the PDF in and it is parsed in the browser —
   nothing is uploaded. You can also paste transcript text or a list of course
   codes, or search the catalog and add courses one at a time.
+- **Audits against either catalog.** A switch at the top chooses between the
+  2026-2027 program (Liberal Studies major with academic concentrations) and the
+  2024-2025 one (elect a Center, then its Foundations and Core). The old program
+  shows its three Centers and their four concentrations. Its requirements are
+  written in old course codes, so nothing is translated when auditing against it.
 - **Speaks both catalogs.** Old codes (`ALT 1010`, `STM 2102`, `EPH 1300`) are
   translated into their 2026-2027 counterparts using the university's
   equivalency tables, including the combined cases (`ALT 1100` + `ALT 1120`
@@ -47,14 +52,15 @@ produced by OCR and is committed to `data/`. The site never reads the PDFs.
 | --- | --- |
 | `data/courses.json` | 506 current + 231 legacy courses: code, title, credits, prerequisites |
 | `data/equivalencies.json` | 109 rules from the equivalency tables, plus 4 clearly labelled inferred ones |
-| `data/requirements.json` | Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
+| `data/requirements.json` | 2026-2027: Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
+| `data/requirements-2024.json` | 2024-2025: Intellectual Foundations, 3 Centers, 4 concentrations, Polaris |
 
 Regenerate with `npm run data`, which runs three scripts in `scripts/`:
 
 1. `extract_courses.py` parses the OCR text of both catalogs.
 2. `extract_equivalencies.py` turns the equivalency `.docx` tables into rules.
-3. `build_requirements.py` emits the degree requirements and checks every
-   course code it names actually exists.
+3. `build_requirements.py` and `build_requirements_2024.py` emit the two
+   programs' requirements and check every course code they name actually exists.
 
 The OCR itself (`scripts/ocr.swift`, `scripts/reflow.py`) used Apple's Vision
 framework across all 335 pages, keeping bounding boxes so the multi-column
@@ -84,6 +90,11 @@ two catalogs but not stated in the equivalency document — for example the
 catalog's own `Prerequisite: AMCV 200 or INF 2121` implies those two are
 interchangeable. They are on by default, labelled "Provisional" wherever they
 affect a result, and can be switched off.
+
+The 2024-2025 catalog contradicts itself in a few places, naming courses by
+numbers its own description section does not use (`EPH 1610`, `EPH 1810`,
+`POL 3150`). Those are matched by title in `build_requirements_2024.py`, and
+each correction is recorded on the requirement that uses it.
 
 Two codes in the equivalency document do not exist in the 2026-2027 catalog and
 are corrected in `extract_equivalencies.py`, with the correction recorded on the

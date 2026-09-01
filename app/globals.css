@@ -410,6 +410,56 @@ button, input, select {
   gap: 0.4rem;
 }
 
+.masthead-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Which catalog the audit is measured against. */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.segment {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--step--1);
+  cursor: pointer;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.segment + .segment {
+  border-left: 1px solid var(--line-strong);
+}
+
+.segment:hover {
+  background: #f3f6f8;
+  color: var(--ink);
+}
+
+.segment[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+}
+
+.center-block + .center-block {
+  margin-top: 1.5rem;
+}
+
+.center-name {
+  margin-bottom: 0.5rem;
+  color: var(--slate);
+}
+
 /* ------------------------------------------------------------- record list */
 .dropzone {
   border: 1px dashed var(--line-strong);

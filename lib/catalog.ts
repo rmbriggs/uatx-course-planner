@@ -1,11 +1,28 @@
 import coursesFile from "@/data/courses.json";
 import equivalenciesFile from "@/data/equivalencies.json";
 import requirementsFile from "@/data/requirements.json";
-import type { Course, CoursesFile, EquivalenciesFile, Requirements } from "./types";
+import requirements2024File from "@/data/requirements-2024.json";
+import type { Course, CoursesFile, EquivalenciesFile, ProgramId, Requirements } from "./types";
 
 export const courses = coursesFile as CoursesFile;
 export const equivalencies = equivalenciesFile as EquivalenciesFile;
 export const requirements = requirementsFile as unknown as Requirements;
+const requirements2024 = requirements2024File as unknown as Requirements;
+
+export const PROGRAMS: { id: ProgramId; label: string; blurb: string }[] = [
+  { id: "2026-2027", label: "2026-2027 catalog", blurb: "Liberal Studies major with academic concentrations" },
+  { id: "2024-2025", label: "2024-2025 catalog", blurb: "Elect a Center, then its Foundations and Core" },
+];
+
+/**
+ * Grading is a university-wide policy, not part of a program's requirements,
+ * so it is read from the current catalog whichever program is being audited.
+ */
+export const grading = requirements.grading;
+
+export function getRequirements(program: ProgramId): Requirements {
+  return program === "2024-2025" ? requirements2024 : requirements;
+}
 
 export const currentCourses: Course[] = courses.courses;
 export const legacyCourses: Course[] = courses.legacyCourses;
@@ -59,7 +76,7 @@ export function titleOf(code: string): string {
  * Every course code the 2026-2027 requirements name. A legacy course whose own
  * code appears here is accepted directly and needs no equivalency rule.
  */
-export const requirementCodes: Set<string> = (() => {
+function collectCodes(source: Requirements): Set<string> {
   const out = new Set<string>();
   const walk = (node: unknown): void => {
     if (Array.isArray(node)) {
@@ -68,7 +85,7 @@ export const requirementCodes: Set<string> = (() => {
     }
     if (!node || typeof node !== "object") return;
     const obj = node as Record<string, unknown>;
-    if (obj.type === "pick") (obj.pool as string[]).forEach((c) => out.add(c));
+    if (obj.type === "pick" || obj.type === "credits") (obj.pool as string[]).forEach((c) => out.add(c));
     if (obj.type === "oneOf")
       (obj.pools as { pool: string[] }[]).forEach((p) => p.pool.forEach((c) => out.add(c)));
     for (const [key, value] of Object.entries(obj)) {
@@ -79,11 +96,20 @@ export const requirementCodes: Set<string> = (() => {
       } else walk(value);
     }
   };
-  walk(requirements);
-  for (const c of requirements.polaris.buildCourses) out.add(c);
-  for (const c of requirements.polaris.buildEquivalents) out.add(c);
+  walk(source);
+  for (const c of source.polaris.buildCourses) out.add(c);
+  for (const c of source.polaris.buildEquivalents) out.add(c);
   return out;
-})();
+}
+
+const codesByProgram: Record<ProgramId, Set<string>> = {
+  "2026-2027": collectCodes(requirements),
+  "2024-2025": collectCodes(requirements2024),
+};
+
+export function requirementCodesFor(program: ProgramId): Set<string> {
+  return codesByProgram[program];
+}
 
 /** Comparable form of a course title, for matching transcript rows to rules. */
 export function titleKey(title: string): string {

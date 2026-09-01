@@ -36,6 +36,15 @@ MERGED_ROW = re.compile(
     r"(?P<subj2>[A-Z]{3,4})\s?(?P<num2>\d{3,4}[A-Z]?)\s+(?P<t2>\S.*)$"
 )
 
+# The 2024-2025 catalog sometimes prints a tall wrapped title, with the credit
+# value, on the line ABOVE its own course code:
+#     The Changing Structure of Civilization: Tribes, City States, ...  3 credit hours
+#     EPH 2600   Nations
+OLD_TITLE_FIRST = re.compile(
+    r"^\s*(?P<title>\S.*?)\s{2,}(?P<cr>\d+(?:[.,]\d+)?)\s*credit\s*[Hh]ours?\s*$"
+)
+OLD_CODE_REST = re.compile(r"^\s*(?P<subj>[A-Z]{3})\s?(?P<num>\d{4}[A-Z]?)\s+(?P<rest>\S.*?)\s*$")
+
 # a code+title with no credits on the line (title wrapped in OCR)
 BARE_RE = re.compile(r"^\s*(?P<subj>[A-Z]{3,4})\s?(?P<num>\d{3,4}[A-Z]?)\s+(?P<title>\S.*?)\s*$")
 PREREQ_RE = re.compile(r"^\s*Prerequisites?:\s*(?P<p>.+?)\s*$")
@@ -125,9 +134,35 @@ def scan(path: Path, lo: int, hi: int, rx, catalog: str, records: dict, wrapped_
             continue
         last = None
         pending_title = None  # title line OCR'd above its own code line
-        for line in lines:
+        carried = None  # (title, credits) printed above its own code line
+        for raw_line in lines:
+            # Vision reads some all-caps codes with Cyrillic homoglyphs, which
+            # no [A-Z] pattern can match, so normalise before matching.
+            line = raw_line.translate(CYRILLIC)
             if NOISE.search(line):
                 continue
+
+            if carried:
+                cm = OLD_CODE_REST.match(line)
+                if cm and not rx.match(line):
+                    code = f"{cm.group('subj')} {cm.group('num')}"
+                    code = CODE_FIXES.get(code, code)
+                    subject, number = code.split(" ", 1)
+                    records.setdefault(code, {
+                        "code": code, "subject": subject, "number": number,
+                        "title": fix_title(f"{carried[0]} {cm.group('rest')}"),
+                        "credits": carried[1], "catalog": catalog, "page": pageno,
+                    })
+                    last = code
+                    carried = None
+                    continue
+                carried = None
+
+            if wrapped_titles and not rx.match(line):
+                tm = OLD_TITLE_FIRST.match(line)
+                if tm and not OLD_CODE_REST.match(line):
+                    carried = (clean(tm.group("title")), credits(tm.group("cr")))
+                    continue
             m = rx.match(line)
             if m:
                 code = f"{m.group('subj')} {m.group('num')}".translate(CYRILLIC)

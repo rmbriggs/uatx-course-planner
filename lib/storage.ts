@@ -1,6 +1,6 @@
 import { normalizeCode } from "./catalog";
 import { isAmbiguousCode } from "./equivalency";
-import type { CourseStatus, TakenCourse } from "./types";
+import type { CourseStatus, ProgramId, TakenCourse } from "./types";
 
 const KEY = "uatx-degree-audit.v1";
 
@@ -24,6 +24,8 @@ export interface SavedState {
   focus: string[];
   /** Course Score Average, read from an uploaded transcript. */
   csa?: number;
+  /** Which catalog to measure against. */
+  program: ProgramId;
 }
 
 export const emptyState: SavedState = {
@@ -31,6 +33,7 @@ export const emptyState: SavedState = {
   termsRemaining: 9,
   useInferred: true,
   focus: [],
+  program: "2026-2027",
 };
 
 export function loadLocal(): SavedState | null {
@@ -71,6 +74,7 @@ export function encodeState(state: SavedState): string {
   if (state.termsRemaining !== emptyState.termsRemaining) params.set("t", String(state.termsRemaining));
   if (!state.useInferred) params.set("i", "0");
   if (state.csa !== undefined) params.set("g", String(state.csa));
+  if (state.program !== emptyState.program) params.set("p", state.program);
   if (state.focus.length) params.set("f", state.focus.join("."));
   return params.toString();
 }
@@ -100,5 +104,6 @@ export function decodeState(search: string): SavedState | null {
     useInferred: params.get("i") !== "0",
     focus: (params.get("f") ?? "").split(".").filter(Boolean),
     csa: params.get("g") ? Number(params.get("g")) : undefined,
+    program: params.get("p") === "2024-2025" ? "2024-2025" : "2026-2027",
   };
 }

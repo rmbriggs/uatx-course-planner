@@ -1,4 +1,4 @@
-import { creditsOf, levelOf, requirementCodes, requirements, titleOf } from "./catalog";
+import { creditsOf, getRequirements, levelOf, requirementCodesFor, titleOf } from "./catalog";
 import { normalizeRecord, type Holding, type NormalizeOptions, type NormalizeResult } from "./equivalency";
 import {
   earnsCredit,
@@ -7,9 +7,14 @@ import {
   type Concentration,
   type CourseStatus,
   type RequirementGroup,
+  type ProgramId,
   type Slot,
   type TakenCourse,
 } from "./types";
+
+export interface AuditOptions extends NormalizeOptions {
+  program?: ProgramId;
+}
 
 /** A requirement, and the course of the student's that filled it. */
 export interface SlotFillSource {
@@ -51,6 +56,8 @@ export interface GroupResult {
   options?: string[];
   /** For oneOf groups, the pool currently doing best. */
   chosenPool?: string;
+  /** Whether `required`/`completed` count courses or credits. */
+  unit: "courses" | "credits";
 }
 
 export interface ConcentrationResult {
@@ -80,6 +87,7 @@ export interface PillarResult {
 }
 
 export interface AuditResult {
+  program: ProgramId;
   normalization: NormalizeResult;
   /** Courses that cannot count as they stand, and why. */
   excluded: Holding[];
@@ -256,6 +264,7 @@ function slotsToGroupResult(
     satisfied: done >= required,
     slots: results,
     options: results.filter((r) => !r.filled).flatMap((r) => r.options.flat()),
+    unit: "courses",
   };
 }
 
@@ -268,6 +277,27 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
     // Non-consuming: one holding may legitimately fill more than one slot when
     // it maps to several courses at once (STM 2102 is MATH 230 *and* MATH 231).
     return slotsToGroupResult(g, fillSlots(g.slots, holdings, g.choose, false).results);
+  }
+
+  if (g.type === "credits") {
+    // Credits come from the holdings themselves, so a repeatable course such as
+    // Writing Studio counts each time it was taken.
+    const inPool = (h: Holding) => h.satisfies.some((c) => g.pool.includes(c));
+    const earned = holdings.filter((h) => inPool(h) && earnsCredit(h.status)).reduce((n, h) => n + h.credits, 0);
+    const pendingCredits = holdings.filter((h) => inPool(h) && isPending(h.status)).reduce((n, h) => n + h.credits, 0);
+    return {
+      id: g.id,
+      name: g.name,
+      note: g.note,
+      page: g.page,
+      required: g.minCredits,
+      completed: Math.min(earned, g.minCredits),
+      inProgress: Math.min(pendingCredits, Math.max(0, g.minCredits - earned)),
+      satisfied: earned >= g.minCredits,
+      held: g.pool.filter((c) => done.has(c) || pendingSet.has(c)),
+      options: g.pool.filter((c) => !done.has(c) && !pendingSet.has(c)),
+      unit: "credits",
+    };
   }
 
   if (g.type === "pick") {
@@ -284,6 +314,7 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
       satisfied: held.length >= g.choose,
       held: [...held, ...pendingHeld],
       options: g.pool.filter((c) => !done.has(c) && !pendingSet.has(c)),
+      unit: "courses",
     };
   }
 
@@ -303,16 +334,23 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
       held: [...held, ...pendingHeld],
       options: p.pool.filter((c) => !done.has(c) && !pendingSet.has(c)),
       chosenPool: p.name,
+      unit: "courses",
     };
     if (!best || candidate.completed + candidate.inProgress > best.completed + best.inProgress) best = candidate;
   }
   return best!;
 }
 
-export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): AuditResult {
-  const normalization = normalizeRecord(taken, opts);
+export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): AuditResult {
+  const program: ProgramId = opts.program ?? "2026-2027";
+  const req = getRequirements(program);
+  // The 2024-2025 requirements are written in old course codes, so a course
+  // there stands for itself rather than for its 2026-2027 counterpart.
+  const normalization = normalizeRecord(taken, {
+    ...opts,
+    applyEquivalencies: opts.applyEquivalencies ?? program === "2026-2027",
+  });
   const holdings = normalization.holdings;
-  const req = requirements;
 
   // Intellectual Foundations and Polaris claim coursework before the major,
   // because the major is defined as 96 credits *outside* those two pillars.
@@ -408,6 +446,9 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
           if (s.pendingOnly) pending += value;
           else earned += value;
         }
+      } else if (g.unit === "credits") {
+        earned += g.completed;
+        pending += g.inProgress;
       } else {
         for (const code of (g.held ?? []).slice(0, g.required)) {
           if (completedCodes.has(code)) earned += creditsOf(code);
@@ -446,12 +487,16 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   const retakeNeeded = holdings.filter((h) => needsRetake(h.status));
   // A course the new requirements name by its own code is accepted directly,
   // so it is not lacking an equivalent even though no rule mentions it.
+  const requirementCodes = requirementCodesFor(program);
   const noEquivalent = normalization.unmapped.filter((h) => !requirementCodes.has(h.code));
+
+  const pillarName = (id: string, fallback: string) =>
+    req.pillars.find((p) => p.id === id)?.name ?? fallback;
 
   const pillars: PillarResult[] = [
     {
       id: "if",
-      name: "Intellectual Foundations",
+      name: pillarName("if", "Intellectual Foundations"),
       creditsRequired: req.intellectualFoundations.credits,
       creditsEarned: ifEarned,
       creditsInProgress: ifPending,
@@ -459,7 +504,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
     },
     {
       id: "major",
-      name: "Liberal Studies Major",
+      name: pillarName("major", "Liberal Studies Major"),
       creditsRequired: req.major.credits,
       creditsEarned: majorEarned,
       creditsInProgress: majorPending,
@@ -467,7 +512,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
     },
     {
       id: "polaris",
-      name: "Polaris",
+      name: pillarName("polaris", "Polaris"),
       creditsRequired: req.polaris.credits,
       creditsEarned: polarisEarned,
       creditsInProgress: polarisPending,
@@ -476,6 +521,7 @@ export function auditDegree(taken: TakenCourse[], opts: NormalizeOptions = {}): 
   ];
 
   return {
+    program,
     normalization,
     excluded,
     retakeNeeded,

@@ -1,0 +1,1173 @@
+{
+  "program": "2024-2025",
+  "label": "2024-2025 catalog",
+  "source": "UATX 2024-2025 Academic Catalog, pp. 30-42",
+  "totalCredits": 180,
+  "corrections": {
+    "EPH 1610": {
+      "code": "EPH 3040",
+      "note": "Listed as EPH 1610 in the Center for Arts and Letters requirements; the description section numbers 'Introduction to World Economic and Political History' as EPH 3040."
+    },
+    "EPH 1810": {
+      "code": "EPH 1500",
+      "note": "Listed as EPH 1810 in the Center for Arts and Letters requirements; the description section numbers 'History, Historiography and the Philosophy of History' as EPH 1500."
+    },
+    "POL 3150": {
+      "code": "POL 3110",
+      "note": "Listed as POL 3150 in the Polaris curriculum; the description section numbers Polaris Build as POL 3110."
+    },
+    "EPH 3110/core": {
+      "code": "EPH 3160",
+      "note": "The Core lists EPH 3110 'Advanced Topics in American Economic History', but that title belongs to EPH 3160; EPH 3110 is American Political History and appears in the concentration list."
+    }
+  },
+  "pillars": [
+    {
+      "id": "if",
+      "name": "Intellectual Foundations",
+      "credits": 54
+    },
+    {
+      "id": "major",
+      "name": "Center Foundations, Core, Concentration, Electives",
+      "credits": 105
+    },
+    {
+      "id": "polaris",
+      "name": "Polaris",
+      "credits": 21
+    }
+  ],
+  "intellectualFoundations": {
+    "credits": 54,
+    "groups": [
+      {
+        "id": "if-0",
+        "name": "Humanities and Fine Arts",
+        "type": "slots",
+        "slots": [
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1100"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1200"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1210"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1300"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2210"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "if-1",
+        "name": "Natural Sciences, Mathematics and Technology",
+        "type": "slots",
+        "slots": [
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1110"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1130"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1220"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1330"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2100"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2110"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "if-2",
+        "name": "Social and Behavioral Sciences",
+        "type": "slots",
+        "slots": [
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 1320"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2120"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2200"
+              ]
+            ]
+          },
+          {
+            "label": null,
+            "options": [
+              [
+                "INF 2300"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "inferredOptions": {},
+    "legacyProvision": {
+      "note": "",
+      "legacyCourses": [],
+      "additionalCredits": 0
+    }
+  },
+  "major": {
+    "credits": 105,
+    "page": 30,
+    "rules": [],
+    "note": "Center Foundations, Core and Concentration come to 81 credits, with 24 elective credits alongside. A student who does not complete a concentration takes 51 elective credits instead."
+  },
+  "polaris": {
+    "credits": 21,
+    "page": 41,
+    "required": [
+      {
+        "label": "Polaris Ideas (year 1)",
+        "options": [
+          [
+            "POL 1110"
+          ]
+        ]
+      },
+      {
+        "label": "Polaris Inspirations (year 2)",
+        "options": [
+          [
+            "POL 2100"
+          ]
+        ]
+      },
+      {
+        "label": "Polaris Frame (year 2)",
+        "options": [
+          [
+            "POL 2110"
+          ]
+        ]
+      },
+      {
+        "label": "Polaris Pitch (year 3)",
+        "options": [
+          [
+            "POL 3100"
+          ]
+        ]
+      },
+      {
+        "label": "Polaris Launch (year 4)",
+        "options": [
+          [
+            "POL 4150"
+          ]
+        ]
+      }
+    ],
+    "buildCredits": 6,
+    "buildCourses": [
+      "POL 3110"
+    ],
+    "buildEquivalents": [],
+    "buildEquivalentCap": 0,
+    "note": "All Polaris courses total 21 credits. A Polaris Retreat in year 1 carries no credit. Polaris Build is repeatable across years 3 and 4."
+  },
+  "concentrations": [
+    {
+      "id": "lit-creative-writing",
+      "name": "Literature and Creative Writing",
+      "center": "Arts and Letters",
+      "kind": "concentration",
+      "credits": 81,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "lcw-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1160"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1180"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lcw-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1240"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1260"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1400"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1500"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1600"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1800"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1900"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1950"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3330"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lcw-writing-studio",
+          "name": "Writing Studio (at least 6 credits)",
+          "type": "credits",
+          "minCredits": 6,
+          "pool": [
+            "ALT 4000"
+          ],
+          "note": "Available to juniors and seniors in 3-credit increments and repeatable. Up to 18 credits may be taken, of which up to 12 count toward the concentration."
+        },
+        {
+          "id": "lcw-pre-1800",
+          "name": "At least 6 credits from before 1800",
+          "type": "credits",
+          "minCredits": 6,
+          "pool": [
+            "ALT 3160",
+            "ALT 3200",
+            "ALT 3310",
+            "ALT 3315",
+            "ALT 3320",
+            "ALT 3340",
+            "ALT 3360",
+            "ALT 3400",
+            "ALT 4100",
+            "ALT 4110",
+            "ALT 4300",
+            "ALT 4310"
+          ],
+          "note": "These credits are part of the 15-21 chosen below, not additional to them."
+        },
+        {
+          "id": "lcw-choice",
+          "name": "15-21 further credits from the concentration lists",
+          "type": "credits",
+          "minCredits": 15,
+          "pool": [
+            "ALT 3160",
+            "ALT 3200",
+            "ALT 3310",
+            "ALT 3315",
+            "ALT 3320",
+            "ALT 3340",
+            "ALT 3360",
+            "ALT 3400",
+            "ALT 4100",
+            "ALT 4110",
+            "ALT 4300",
+            "ALT 4310",
+            "ALT 3500",
+            "ALT 3720",
+            "ALT 3740",
+            "ALT 3760",
+            "ALT 3780",
+            "ALT 3900",
+            "ALT 4200",
+            "ALT 4210",
+            "ALT 4400",
+            "ALT 4410"
+          ],
+          "note": "Writing Studio plus these come to 27 concentration credits."
+        }
+      ],
+      "page": 32
+    },
+    {
+      "id": "ethics-politics",
+      "name": "Ethics and Politics",
+      "center": "Arts and Letters",
+      "kind": "concentration",
+      "credits": 81,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "ep-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1120"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3000"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1500"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ep-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1040"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2000"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2600"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2700"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3340"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3360"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ep-concentration",
+          "name": "Concentration (27 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1220"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 1260"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2400"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 2500"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3200"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3600"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3620"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3700"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3720"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3760"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3780"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3800"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "ALT 3850"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "page": 35
+    },
+    {
+      "id": "econ-politics-history",
+      "name": "Economics, Politics, and History",
+      "center": "Economics, Politics, and History",
+      "kind": "concentration",
+      "credits": 81,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "eph-foundations-core",
+          "name": "Center Foundations - required",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1100"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3040"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eph-foundations-choice",
+          "name": "Center Foundations - choose 3 of 5 (9 credits)",
+          "type": "pick",
+          "choose": 3,
+          "pool": [
+            "EPH 1300",
+            "EPH 1400",
+            "EPH 2000",
+            "EPH 2200",
+            "EPH 3010"
+          ]
+        },
+        {
+          "id": "eph-core",
+          "name": "Center Core (37.5 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 1500"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2010"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 2400"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3020"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3030"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3050"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3060"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3160"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "EPH 3230"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eph-core-remainder",
+          "name": "Center Core - the two not taken in Foundations",
+          "type": "pick",
+          "choose": 2,
+          "pool": [
+            "EPH 1300",
+            "EPH 1400",
+            "EPH 2000",
+            "EPH 2200",
+            "EPH 3010"
+          ],
+          "note": "Whichever of the five are not used for Foundations must be taken here."
+        },
+        {
+          "id": "eph-conc-methods",
+          "name": "Concentration - choose 1",
+          "type": "pick",
+          "choose": 1,
+          "pool": [
+            "EPH 3070",
+            "EPH 3080"
+          ]
+        },
+        {
+          "id": "eph-conc-topics",
+          "name": "Concentration - choose 8 (24 credits)",
+          "type": "pick",
+          "choose": 8,
+          "pool": [
+            "EPH 2600",
+            "EPH 3090",
+            "EPH 3100",
+            "EPH 3110",
+            "EPH 3120",
+            "EPH 3130",
+            "EPH 3140",
+            "EPH 3150",
+            "EPH 3170",
+            "EPH 3180",
+            "EPH 3190",
+            "EPH 3200",
+            "EPH 3210",
+            "EPH 3220",
+            "EPH 3240",
+            "EPH 3250"
+          ]
+        }
+      ],
+      "page": 37
+    },
+    {
+      "id": "computing-data-science",
+      "name": "Computing and Data Science",
+      "center": "Science, Technology, Engineering, and Mathematics",
+      "kind": "concentration",
+      "credits": 81,
+      "prerequisites": [],
+      "groups": [
+        {
+          "id": "cds-foundations",
+          "name": "Center Foundations (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1001"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1002"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1004"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 1005"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cds-core",
+          "name": "Center Core (36 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2101"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2102"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2103"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2104"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2300"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2301"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2501"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2502"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cds-concentration",
+          "name": "Concentration - required (18 credits)",
+          "type": "slots",
+          "slots": [
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 2302"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 3301"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 3302"
+                ]
+              ]
+            },
+            {
+              "label": null,
+              "options": [
+                [
+                  "STM 3303"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cds-concentration-electives",
+          "name": "Concentration - 9 further credits",
+          "type": "credits",
+          "minCredits": 9,
+          "pool": [
+            "STM 3304",
+            "STM 4101",
+            "STM 4102",
+            "STM 4301",
+            "STM 4302"
+          ],
+          "note": "The catalog lists 18 credits of required concentration courses against a 27-credit concentration, so 9 credits come from the courses it lists as electives. Confirm with your advisor."
+        }
+      ],
+      "page": 39
+    }
+  ],
+  "electives": {
+    "credits": 24,
+    "note": "To be discussed with your academic advisor."
+  }
+}

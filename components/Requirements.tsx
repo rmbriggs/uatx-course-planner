@@ -84,6 +84,7 @@ export function GroupBlock({ group }: { group: GroupResult }) {
         <span className="group-name">{group.name}</span>
         <span className="group-count mono">
           {group.completed}/{group.required}
+          {group.unit === "credits" ? " cr" : ""}
           {group.inProgress > 0 && <span className="pending-note"> +{group.inProgress} under way</span>}
         </span>
       </div>
@@ -109,7 +110,9 @@ export function GroupBlock({ group }: { group: GroupResult }) {
           {!group.satisfied && (
             <details>
               <summary className="more">
-                {remaining} more to choose, from {group.options?.length ?? 0} courses
+                {group.unit === "credits"
+                  ? `${remaining} more credits, from ${group.options?.length ?? 0} courses`
+                  : `${remaining} more to choose, from ${group.options?.length ?? 0} courses`}
               </summary>
               <CourseList codes={group.options ?? []} />
             </details>

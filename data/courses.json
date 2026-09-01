@@ -5656,7 +5656,7 @@
       "title": "Analytical Tools for Economics and Political Science",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 52
+      "page": 173
     },
     {
       "code": "EPH 1200",
@@ -5665,7 +5665,7 @@
       "title": "Introduction to American Politics",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 52
+      "page": 174
     },
     {
       "code": "EPH 1300",
@@ -5779,6 +5779,15 @@
       "page": 177
     },
     {
+      "code": "EPH 2352",
+      "subject": "EPH",
+      "number": "2352",
+      "title": "Applied Politics and Policy: U.S. Housing and Homelessness",
+      "credits": 1.5,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
       "code": "EPH 2353",
       "subject": "EPH",
       "number": "2353",
@@ -5801,6 +5810,15 @@
       "subject": "EPH",
       "number": "2400",
       "title": "Philosophers of Political Economy",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 177
+    },
+    {
+      "code": "EPH 2600",
+      "subject": "EPH",
+      "number": "2600",
+      "title": "The Changing Structure of Civilization: Tribes, City States, Empires, and",
       "credits": 3.0,
       "catalog": "legacy",
       "page": 177
@@ -5917,10 +5935,10 @@
       "code": "EPH 2910",
       "subject": "EPH",
       "number": "2910",
-      "title": "On Capitalism",
+      "title": "Special Topics",
       "credits": 1.5,
       "catalog": "legacy",
-      "source": "equivalency document"
+      "page": 178
     },
     {
       "code": "EPH 2910A",
@@ -5965,17 +5983,16 @@
       "title": "Special Topics",
       "credits": 4.5,
       "catalog": "legacy",
-      "page": 178,
-      "prerequisite": "EPH 1300"
+      "page": 178
     },
     {
       "code": "EPH 3010",
       "subject": "EPH",
       "number": "3010",
-      "title": "Foundations of Microeconomics II",
+      "title": "Foundations of Micro- economics II",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 55,
+      "page": 178,
       "prerequisite": "EPH 1300"
     },
     {
@@ -6023,7 +6040,7 @@
       "credits": 3.0,
       "catalog": "legacy",
       "page": 179,
-      "prerequisite": "\u0415\u0420H 2000, \u0415PH 2010"
+      "prerequisite": "EPH 2000, EPH 2010"
     },
     {
       "code": "EPH 3070",
@@ -6053,7 +6070,7 @@
       "credits": 3.0,
       "catalog": "legacy",
       "page": 179,
-      "prerequisite": "\u0415\u0420H 2000, \u0415\u0420H 2300, \u0415\u0420\u041d 3010, \u0415\u0420\u041d 3020, \u0415\u0420\u041d 3030"
+      "prerequisite": "EPH 2000, EPH 2300, EPH 3010, EPH 3020, EPH 3030"
     },
     {
       "code": "EPH 3100",
@@ -6063,16 +6080,16 @@
       "credits": 3.0,
       "catalog": "legacy",
       "page": 180,
-      "prerequisite": "\u0415\u0420\u041d 2000, \u0415\u0420\u041d 2300, \u0415\u0420\u041d 3010, \u0415\u0420\u041d 3020, \u0415\u0420\u041d 3040"
+      "prerequisite": "EPH 2000, EPH 2300, EPH 3010, EPH 3020, EPH 3040"
     },
     {
       "code": "EPH 3110",
       "subject": "EPH",
       "number": "3110",
-      "title": "Advanced Topics in American Political History",
+      "title": "Advanced Topics in American",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 56
+      "page": 180
     },
     {
       "code": "EPH 3120",
@@ -6090,8 +6107,8 @@
       "title": "Business Structures and Governance",
       "credits": 3.0,
       "catalog": "legacy",
-      "page": 56,
-      "prerequisite": "\u0415PH 1110, \u0415PH 1120, \u0415PH 1210, \u0415PH 1220, EPH 1310, EPH"
+      "page": 180,
+      "prerequisite": "EPH 1110, EPH 1120, EPH 1210, EPH 1220, EPH 1310, EPH"
     },
     {
       "code": "EPH 3140",
@@ -6110,7 +6127,7 @@
       "credits": 3.0,
       "catalog": "legacy",
       "page": 180,
-      "prerequisite": "\u0415\u0420H 1610, \u0415\u0420H 1710, EPH 1810"
+      "prerequisite": "EPH 1610, EPH 1710, EPH 1810"
     },
     {
       "code": "EPH 3160",
@@ -6120,7 +6137,7 @@
       "credits": 3.0,
       "catalog": "legacy",
       "page": 180,
-      "prerequisite": "\u0415\u0420H 1500"
+      "prerequisite": "EPH 1500"
     },
     {
       "code": "EPH 3170",
@@ -6131,6 +6148,15 @@
       "catalog": "legacy",
       "page": 181,
       "prerequisite": "EPH 1500"
+    },
+    {
+      "code": "EPH 3180",
+      "subject": "EPH",
+      "number": "3180",
+      "title": "Property Rights and Their Economic and Political Consequences",
+      "credits": 3.0,
+      "catalog": "legacy",
+      "page": 181
     },
     {
       "code": "EPH 3190",
@@ -6228,6 +6254,15 @@
       "number": "4910",
       "title": "Special Topics",
       "credits": 1.5,
+      "catalog": "legacy",
+      "page": 182
+    },
+    {
+      "code": "EPH 4920",
+      "subject": "EPH",
+      "number": "4920",
+      "title": "Special Topics",
+      "credits": 4.5,
       "catalog": "legacy",
       "page": 182
     },

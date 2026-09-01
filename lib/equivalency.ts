@@ -2,6 +2,12 @@ import { creditsOf, equivalencies, getCourse, isCurrentCourse, levelOf, normaliz
 import type { CourseStatus, EquivalencyRule, TakenCourse } from "./types";
 
 export interface NormalizeOptions {
+  /**
+   * Translate old codes into their 2026-2027 counterparts. Off when auditing
+   * against the 2024-2025 program, whose requirements are written in old codes
+   * already, so a course should stand for itself.
+   */
+  applyEquivalencies?: boolean;
   /** Include the provisional mappings the equivalency document does not state. */
   useInferred?: boolean;
   /** ruleKey -> index into that rule's `grants`, when a rule offers a choice. */
@@ -56,7 +62,7 @@ function sameCodeRuleCount(code: string): number {
 }
 
 export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {}): NormalizeResult {
-  const { useInferred = true, choices = {} } = opts;
+  const { useInferred = true, choices = {}, applyEquivalencies = true } = opts;
 
   const holdings: Holding[] = taken.map((t, i) => {
     const code = normalizeCode(t.code);
@@ -79,7 +85,9 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
   const notes: string[] = [];
   const claimed = new Set<number>(holdings.filter((h) => h.via === "direct").map((h) => h.id));
 
-  const rules = equivalencies.rules.filter((r) => useInferred || !r.inferred);
+  const rules = applyEquivalencies
+    ? equivalencies.rules.filter((r) => useInferred || !r.inferred)
+    : [];
   // Longest `from` first so combined rules win; official rules ahead of inferred.
   const ordered = [...rules].sort((a, b) => {
     if (b.from.length !== a.from.length) return b.from.length - a.from.length;

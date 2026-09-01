@@ -5,7 +5,7 @@ import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
 import { ConcentrationDetail, PillarBlock } from "@/components/Requirements";
 import { auditDegree, pacing, suggestNextCourses } from "@/lib/audit";
-import { requirements } from "@/lib/catalog";
+import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
 import type { CourseStatus, TakenCourse } from "@/lib/types";
@@ -39,9 +39,12 @@ export default function Page() {
     [update],
   );
 
+  const requirements = getRequirements(state.program);
+  const isLegacyProgram = state.program === "2024-2025";
+
   const audit = useMemo(
-    () => auditDegree(state.taken, { useInferred: state.useInferred }),
-    [state.taken, state.useInferred],
+    () => auditDegree(state.taken, { useInferred: state.useInferred, program: state.program }),
+    [state.taken, state.useInferred, state.program],
   );
 
   const ranked = useMemo(
@@ -49,11 +52,56 @@ export default function Page() {
     [audit],
   );
 
+  // The 2024-2025 program requires electing a Center, so its concentrations are
+  // grouped by the Center that offers them rather than shown as a flat list.
+  const byCenter = useMemo(() => {
+    const map = new Map<string, typeof ranked>();
+    for (const c of ranked) {
+      const list = map.get(c.center) ?? [];
+      list.push(c);
+      map.set(c.center, list);
+    }
+    return [...map.entries()];
+  }, [ranked]);
+
   const next = useMemo(
     () => suggestNextCourses(audit, state.focus, 10),
     [audit, state.focus],
   );
 
+  const renderCard = (c: (typeof ranked)[number]) => (
+    <button
+      key={c.id}
+      type="button"
+      className="conc"
+      data-open={open === c.id}
+      aria-expanded={open === c.id}
+      onClick={() => setOpen(open === c.id ? null : c.id)}
+    >
+      <div className="conc-top">
+        <span className="conc-name">{c.name}</span>
+        <span className="conc-pct" data-zero={c.percent === 0}>
+          {c.percent}%
+        </span>
+      </div>
+      <div className="bar">
+        <i className="earned" style={{ width: `${(c.creditsEarned / c.creditsRequired) * 100}%` }} />
+        <i className="progress" style={{ width: `${(c.creditsInProgress / c.creditsRequired) * 100}%` }} />
+      </div>
+      <div className="conc-meta">
+        <span className="mono">
+          {fmt(c.creditsEarned)}/{c.creditsRequired} cr
+        </span>
+        <span>
+          {c.satisfied
+            ? "Complete"
+            : `${c.remainingCourseCount} ${c.remainingCourseCount === 1 ? "course" : "courses"} left`}
+        </span>
+      </div>
+    </button>
+  );
+
+  const pillarName = (id: string) => audit.pillars.find((p) => p.id === id)?.name ?? id;
   const pace = pacing(audit, state.termsRemaining);
   const mappings = mappedGrants(audit.normalization);
   const inferredCount = mappings.filter((m) => m.via === "inferred").length;
@@ -65,11 +113,26 @@ export default function Page() {
         <div>
           <h1>UATX Degree Audit</h1>
           <p className="sub">
-            Bachelor of Arts in Liberal Studies, {requirements.program} catalog. Old-catalog courses count through the
-            published equivalencies.
+            {isLegacyProgram
+              ? "Bachelor of Arts in Liberal Studies, 2024-2025 catalog. Elect a Center, then complete its Foundations and Core."
+              : "Bachelor of Arts in Liberal Studies, 2026-2027 catalog. Old-catalog courses count through the published equivalencies."}
           </p>
         </div>
-        <div className="btn-row">
+        <div className="masthead-actions">
+          <div className="segmented" role="group" aria-label="Which catalog to measure against">
+            {PROGRAMS.map((prog) => (
+              <button
+                key={prog.id}
+                type="button"
+                className="segment"
+                aria-pressed={state.program === prog.id}
+                title={prog.blurb}
+                onClick={() => update({ program: prog.id })}
+              >
+                {prog.label}
+              </button>
+            ))}
+          </div>
           <button
             type="button"
             className="btn"
@@ -125,6 +188,7 @@ export default function Page() {
                   : " — within the normal 15-credit load."}
               </p>
 
+              {!isLegacyProgram && (
               <label className="switch" style={{ marginTop: "0.9rem" }}>
                 <input
                   type="checkbox"
@@ -133,11 +197,19 @@ export default function Page() {
                 />
                 Use proposed equivalencies
               </label>
-              <p style={{ margin: "0.3rem 0 0", fontSize: "0.78rem", color: "var(--slate-light)" }}>
-                The equivalency document has no table for INF courses, so these are read from the two catalogs&rsquo;
-                own course descriptions. Each says why on the mapping table below.
-                {inferredCount > 0 ? ` ${inferredCount} of your courses rely on one.` : ""}
-              </p>
+              )}
+              {!isLegacyProgram ? (
+                <p style={{ margin: "0.3rem 0 0", fontSize: "0.78rem", color: "var(--slate-light)" }}>
+                  The equivalency document has no table for INF courses, so these are read from the two catalogs&rsquo;
+                  own course descriptions. Each says why on the mapping table below.
+                  {inferredCount > 0 ? ` ${inferredCount} of your courses rely on one.` : ""}
+                </p>
+              ) : (
+                <p style={{ marginTop: "0.9rem", fontSize: "0.78rem", color: "var(--slate-light)" }}>
+                  The 2024-2025 requirements are written in the course codes you took, so no equivalencies are applied
+                  here.
+                </p>
+              )}
             </div>
           </div>
         </aside>
@@ -156,39 +228,22 @@ export default function Page() {
               <section className="section">
                 <div className="section-head">
                   <h2>Where you stand</h2>
-                  <span className="aside">36 credits each · sorted by how close you are</span>
+                  <span className="aside">
+                    {isLegacyProgram
+                      ? "Foundations, Core and Concentration - 81 credits within one Center"
+                      : "36 credits each · sorted by how close you are"}
+                  </span>
                 </div>
-                <div className="conc-grid">
-                  {ranked.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      className="conc"
-                      data-open={open === c.id}
-                      aria-expanded={open === c.id}
-                      onClick={() => setOpen(open === c.id ? null : c.id)}
-                    >
-                      <div className="conc-top">
-                        <span className="conc-name">{c.name}</span>
-                        <span className="conc-pct" data-zero={c.percent === 0}>{c.percent}%</span>
-                      </div>
-                      <div className="bar">
-                        <i className="earned" style={{ width: `${(c.creditsEarned / c.creditsRequired) * 100}%` }} />
-                        <i className="progress" style={{ width: `${(c.creditsInProgress / c.creditsRequired) * 100}%` }} />
-                      </div>
-                      <div className="conc-meta">
-                        <span className="mono">
-                          {fmt(c.creditsEarned)}/{c.creditsRequired} cr
-                        </span>
-                        <span>
-                          {c.satisfied
-                            ? "Complete"
-                            : `${c.remainingCourseCount} ${c.remainingCourseCount === 1 ? "course" : "courses"} left`}
-                        </span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                {isLegacyProgram ? (
+                  byCenter.map(([center, list]) => (
+                    <div key={center} className="center-block">
+                      <p className="eyebrow center-name">Center for {center}</p>
+                      <div className="conc-grid">{list.map(renderCard)}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="conc-grid">{ranked.map(renderCard)}</div>
+                )}
                 {open && <ConcentrationDetail conc={ranked.find((c) => c.id === open)!} />}
               </section>
 
@@ -251,7 +306,7 @@ export default function Page() {
                 </div>
 
                 <PillarBlock
-                  name="Intellectual Foundations"
+                  name={pillarName("if")}
                   creditsEarned={audit.intellectualFoundations.creditsEarned}
                   creditsRequired={audit.intellectualFoundations.creditsRequired}
                   creditsInProgress={audit.intellectualFoundations.creditsInProgress}
@@ -268,14 +323,15 @@ export default function Page() {
                 </PillarBlock>
 
                 <PillarBlock
-                  name="Liberal Studies Major"
+                  name={pillarName("major")}
                   creditsEarned={audit.major.creditsEarned}
                   creditsRequired={audit.major.creditsRequired}
                   creditsInProgress={audit.major.creditsInProgress}
                   counted={audit.major.countedCourses}
                 >
                   <p className="group-note" style={{ marginTop: "0.7rem" }}>
-                    Credits outside Foundations and Polaris. {audit.major.note}
+                    {isLegacyProgram ? "" : "Credits outside Foundations and Polaris. "}
+                    {audit.major.note}
                   </p>
                   {audit.major.rules.map((r) => (
                     <div key={r.id} className={`slot-row is-${r.satisfied ? "done" : r.inProgress > 0 ? "pending" : "open"}`}>
@@ -292,7 +348,7 @@ export default function Page() {
                 </PillarBlock>
 
                 <PillarBlock
-                  name="Polaris"
+                  name={pillarName("polaris")}
                   creditsEarned={audit.polaris.creditsEarned}
                   creditsRequired={audit.polaris.creditsRequired}
                   creditsInProgress={audit.polaris.creditsInProgress}
@@ -340,10 +396,10 @@ export default function Page() {
                 <div className="note" style={{ marginTop: "0.8rem" }}>
                   <strong>Course Score Average</strong> —{" "}
                   {state.csa === undefined
-                    ? `graduation needs a cumulative CSA of at least ${requirements.grading.minimumCsa}. Upload a transcript and yours is read automatically.`
-                    : state.csa >= requirements.grading.minimumCsa
-                      ? `yours is ${state.csa}, above the ${requirements.grading.minimumCsa} needed to graduate.`
-                      : `yours is ${state.csa}, below the ${requirements.grading.minimumCsa} needed to graduate.`}
+                    ? `graduation needs a cumulative CSA of at least ${grading.minimumCsa}. Upload a transcript and yours is read automatically.`
+                    : state.csa >= grading.minimumCsa
+                      ? `yours is ${state.csa}, above the ${grading.minimumCsa} needed to graduate.`
+                      : `yours is ${state.csa}, below the ${grading.minimumCsa} needed to graduate.`}
                 </div>
               </section>
 
@@ -368,7 +424,7 @@ export default function Page() {
                   </ul>
                   {audit.retakeNeeded.length > 0 && (
                     <p className="note note-warn" style={{ marginTop: "0.7rem" }}>
-                      {requirements.grading.retake} These are not filling any requirement above.
+                      {grading.retake} These are not filling any requirement above.
                     </p>
                   )}
                 </section>
