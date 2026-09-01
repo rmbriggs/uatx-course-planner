@@ -1,5 +1,5 @@
 import { creditsOf, equivalencies, getCourse, isCurrentCourse, levelOf, normalizeCode, titleSimilarity } from "./catalog";
-import type { CourseStatus, EquivalencyRule, TakenCourse } from "./types";
+import { isWaived, type CourseStatus, type EquivalencyRule, type TakenCourse } from "./types";
 
 export interface NormalizeOptions {
   /**
@@ -25,7 +25,10 @@ export interface Holding {
   id: number;
   code: string;
   title: string;
+  /** Credits this holding contributes. Always 0 for waived work. */
   credits: number;
+  /** What the course is worth in the catalog, whether or not it was earned. */
+  nominalCredits: number;
   status: CourseStatus;
   /** 2026-2027 course codes this holding can fill, including its own if current. */
   satisfies: string[];
@@ -68,16 +71,24 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
     const code = normalizeCode(t.code);
     const known = getCourse(code);
     const current = isCurrentCourse(code);
+    const nominalCredits = t.credits ?? known?.credits ?? 3;
     return {
       id: i,
       code,
       title: t.title ?? known?.title ?? code,
-      credits: t.credits ?? known?.credits ?? 3,
+      // A waiver excuses the requirement, not the credit, so it contributes
+      // nothing to any total and the 180 has to be reached some other way.
+      credits: isWaived(t.status) ? 0 : nominalCredits,
+      nominalCredits,
       status: t.status,
       satisfies: current ? [code] : [code],
       level: levelOf(code),
       via: current ? "direct" : "unmapped",
-      explanation: current ? "2026-2027 catalog course." : "No stated 2026-2027 equivalent; counted as elective credit.",
+      explanation: isWaived(t.status)
+        ? "Waived. Fills its requirement without earning credit."
+        : current
+          ? "2026-2027 catalog course."
+          : "No stated 2026-2027 equivalent; counted as elective credit.",
     };
   });
 

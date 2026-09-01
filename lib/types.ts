@@ -137,6 +137,8 @@ export interface Requirements {
  *   failed      - scored below 60, or graded U; must be retaken to count
  *   withdrawn   - graded W; no credit, no CSA impact
  *   audit       - graded AU; participated without earning credit
+ *   waived      - excused from taking it; the requirement is closed, but it
+ *                 earns no credit, so the 180 must still be reached elsewhere
  */
 export type CourseStatus =
   | "completed"
@@ -144,7 +146,8 @@ export type CourseStatus =
   | "incomplete"
   | "failed"
   | "withdrawn"
-  | "audit";
+  | "audit"
+  | "waived";
 
 /** Only completed work earns credit toward the 180. */
 export function earnsCredit(status: CourseStatus): boolean {
@@ -159,6 +162,21 @@ export function isPending(status: CourseStatus): boolean {
 /** Work that cannot count as it stands. */
 export function needsRetake(status: CourseStatus): boolean {
   return status === "failed";
+}
+
+/**
+ * A requirement the student was excused from. It closes the requirement
+ * without earning credit, which is exactly what makes it different from
+ * completed work: the course stops being listed as still required, and the
+ * credits it would have carried have to come from somewhere else.
+ */
+export function isWaived(status: CourseStatus): boolean {
+  return status === "waived";
+}
+
+/** Work that can fill a requirement: earned, still under way, or waived. */
+export function fillsRequirement(status: CourseStatus): boolean {
+  return earnsCredit(status) || isPending(status) || isWaived(status);
 }
 
 /** A course the student has on their record. */

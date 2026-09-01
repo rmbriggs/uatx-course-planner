@@ -430,6 +430,33 @@ export default function Page() {
                 </section>
               )}
 
+              {audit.waived.courses.length > 0 && (
+                <section className="section">
+                  <div className="section-head">
+                    <h2>Waived</h2>
+                    <span className="aside">
+                      {audit.waived.courses.length}{" "}
+                      {audit.waived.courses.length === 1 ? "requirement" : "requirements"} ·{" "}
+                      {fmt(audit.waived.creditsToReplace)} credits to replace
+                    </span>
+                  </div>
+                  <ul className="excluded-list">
+                    {audit.waived.courses.map((h, i) => (
+                      <li key={`${h.code}-${i}`}>
+                        <span className="mono">{h.code}</span>
+                        <span style={{ color: "var(--slate)" }}>{h.title}</span>
+                        <span className="mark mark-waived">Waived</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="note" style={{ marginTop: "0.7rem" }}>
+                    These no longer show as required above. A waiver excuses the course, not its credits, so the{" "}
+                    {fmt(audit.waived.creditsToReplace)} credits they would have carried still have to come from other
+                    courses to reach {audit.totals.required}.
+                  </p>
+                </section>
+              )}
+
               {mappings.length > 0 && (
                 <section className="section">
                   <div className="section-head">
@@ -494,10 +521,11 @@ function fmt(n: number) {
   return Number.isInteger(n) ? String(n) : n.toFixed(1);
 }
 
-/** Cycle the three statuses someone would set by hand. */
+/** Cycle the statuses someone would set by hand. */
 function nextStatus(status: CourseStatus): CourseStatus {
   if (status === "completed") return "in-progress";
   if (status === "in-progress") return "failed";
+  if (status === "failed") return "waived";
   return "completed";
 }
 
@@ -511,6 +539,8 @@ function statusLabel(status: string) {
       return "Audited";
     case "incomplete":
       return "Incomplete";
+    case "waived":
+      return "Waived";
     default:
       return status;
   }

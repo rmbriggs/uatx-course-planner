@@ -12,6 +12,7 @@ const STATUS_CODE: Record<CourseStatus, string> = {
   failed: "f",
   withdrawn: "w",
   audit: "a",
+  waived: "v",
 };
 const CODE_STATUS: Record<string, CourseStatus> = Object.fromEntries(
   Object.entries(STATUS_CODE).map(([k, v]) => [v, k as CourseStatus]),

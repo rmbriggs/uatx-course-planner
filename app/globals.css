@@ -508,13 +508,25 @@ textarea {
   border-radius: var(--radius);
 }
 
+.results li {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-right: 0.4rem;
+}
+
 .results li + li {
   border-top: 1px solid var(--line);
 }
 
+.waive-btn {
+  flex: none;
+}
+
 .result-btn {
   display: block;
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   text-align: left;
   border: 0;
   background: none;
@@ -816,6 +828,10 @@ textarea {
   color: var(--marine);
 }
 
+.slot-row.is-waived .tick {
+  color: var(--slate);
+}
+
 .slot-body {
   display: flex;
   flex-wrap: wrap;
@@ -1007,6 +1023,13 @@ textarea {
 .mark-neutral {
   border-color: var(--line-strong);
   color: var(--slate-light);
+}
+
+/* A waiver is settled but hollow: the dashes say "closed, nothing behind it". */
+.mark-waived {
+  border-style: dashed;
+  border-color: var(--slate-light);
+  color: var(--slate);
 }
 
 /* --------------------------------------------------------------- next table */

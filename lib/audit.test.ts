@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { auditDegree, pacing, suggestNextCourses } from "./audit";
 import { normalizeRecord } from "./equivalency";
+import { decodeState, emptyState, encodeState } from "./storage";
 import { parseTranscript } from "./transcript";
 import { SAMPLE_TRANSCRIPT } from "./__fixtures__/sample-transcript";
 import type { TakenCourse } from "./types";
@@ -228,5 +229,111 @@ describe("planning helpers", () => {
     expect(a.totals.earned).toBe(0);
     expect(a.totals.remaining).toBe(180);
     expect(a.concentrations.every((c) => c.percent === 0)).toBe(true);
+  });
+});
+
+describe("waived requirements", () => {
+  const waive = (code: string): TakenCourse => ({ code, status: "waived" });
+
+  it("closes the requirement it stands for", () => {
+    const a = auditDegree([waive("LITR 102")]);
+    const humanities = a.intellectualFoundations.groups.find((g) => g.id === "if-humanities")!;
+    const epic = humanities.slots!.find((s) => s.label === "Epic and Tragedy")!;
+    expect(epic.filled).toBe(true);
+    expect(epic.waived).toBe(true);
+    expect(humanities.completed).toBe(1);
+  });
+
+  it("stops the course being listed as still required", () => {
+    const before = auditDegree([]);
+    const after = auditDegree([waive("LITR 102")]);
+    const optionsOf = (a: typeof before) =>
+      a.intellectualFoundations.groups.find((g) => g.id === "if-humanities")!.options ?? [];
+    expect(optionsOf(before)).toContain("LITR 102");
+    expect(optionsOf(after)).not.toContain("LITR 102");
+  });
+
+  it("brings no credit to the pillar it closes", () => {
+    const waived = auditDegree([waive("LITR 102")]);
+    const taken = auditDegree([done("LITR 102")]);
+    expect(taken.intellectualFoundations.creditsEarned).toBe(3);
+    expect(waived.intellectualFoundations.creditsEarned).toBe(0);
+    expect(waived.intellectualFoundations.creditsInProgress).toBe(0);
+  });
+
+  it("leaves the 180-credit total untouched", () => {
+    const a = auditDegree([waive("LITR 102"), waive("PHIL 210")]);
+    expect(a.totals.earned).toBe(0);
+    expect(a.totals.inProgress).toBe(0);
+    expect(a.totals.remaining).toBe(180);
+  });
+
+  it("reports the credits that must now come from elsewhere", () => {
+    const a = auditDegree([waive("LITR 102"), waive("PHIL 210")]);
+    expect(a.waived.courses.map((h) => h.code).sort()).toEqual(["LITR 102", "PHIL 210"]);
+    expect(a.waived.creditsToReplace).toBe(6);
+  });
+
+  it("is not filed with work that failed to count", () => {
+    const a = auditDegree([waive("LITR 102"), { code: "MATH 210", status: "failed" }]);
+    expect(a.excluded.map((h) => h.code)).toEqual(["MATH 210"]);
+    expect(a.retakeNeeded.map((h) => h.code)).toEqual(["MATH 210"]);
+  });
+
+  it("satisfies a concentration slot without paying for it", () => {
+    const phil = (a: ReturnType<typeof auditDegree>) => a.concentrations.find((c) => c.id === "philosophy")!;
+    const waived = phil(auditDegree([waive("PHIL 210")]));
+    const taken = phil(auditDegree([done("PHIL 210")]));
+    const coreOf = (c: typeof waived) => c.groups.find((g) => g.id === "phil-core")!;
+    expect(coreOf(waived).completed).toBe(coreOf(taken).completed);
+    expect(taken.creditsEarned).toBe(3);
+    expect(waived.creditsEarned).toBe(0);
+  });
+
+  it("satisfies a choose-one group without paying for it", () => {
+    const phil = (a: ReturnType<typeof auditDegree>) => a.concentrations.find((c) => c.id === "philosophy")!;
+    const waived = phil(auditDegree([waive("LITR 220")]));
+    const group = waived.groups.find((g) => g.id === "phil-lower-choice")!;
+    expect(group.satisfied).toBe(true);
+    expect(group.held).toContain("LITR 220");
+    expect(group.options).not.toContain("LITR 220");
+    expect(waived.creditsEarned).toBe(0);
+  });
+
+  it("is never suggested as a course still to take", () => {
+    const a = auditDegree([waive("LITR 102")]);
+    expect(suggestNextCourses(a, [], 40).map((n) => n.code)).not.toContain("LITR 102");
+  });
+
+  it("carries no credits of its own", () => {
+    // The zero is the invariant every credit total leans on: a waiver that kept
+    // its catalog credits would quietly inflate whichever sum forgot to ask.
+    const h = normalizeRecord([waive("LITR 102")]).holdings[0];
+    expect(h.credits).toBe(0);
+    expect(h.nominalCredits).toBe(3);
+  });
+
+  it("does not leak credit into the major when it fills nothing else", () => {
+    // PHIL 310 sits outside Foundations and Polaris, so an unclaimed waiver
+    // would otherwise fall through to the major's credit count.
+    const a = auditDegree([waive("PHIL 310")]);
+    expect(a.major.creditsEarned).toBe(0);
+    expect(a.major.countedCourses.map((h) => h.code)).not.toContain("PHIL 310");
+  });
+
+  it("survives a round trip through a shared link", () => {
+    const encoded = encodeState({ ...emptyState, taken: [waive("LITR 102"), done("MATH 210")] });
+    const back = decodeState(encoded)!;
+    expect(back.taken.map((t) => t.status)).toEqual(["waived", "completed"]);
+    expect(auditDegree(back.taken).waived.creditsToReplace).toBe(3);
+  });
+
+  it("prefers real coursework over a waiver for the same requirement", () => {
+    const a = auditDegree([waive("LITR 102"), done("LITR 102")]);
+    const epic = a.intellectualFoundations.groups
+      .find((g) => g.id === "if-humanities")!
+      .slots!.find((s) => s.label === "Epic and Tragedy")!;
+    expect(epic.waived).toBe(false);
+    expect(a.intellectualFoundations.creditsEarned).toBe(3);
   });
 });

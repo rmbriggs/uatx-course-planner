@@ -191,6 +191,9 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
               <label htmlFor="course-search" style={{ display: "block", marginBottom: "0.35rem" }}>
                 Search the 2026-2027 catalog and the old one.
               </label>
+              <p className="group-note" style={{ margin: "0 0 0.5rem" }}>
+                Add a course you have taken, or waive one you have been excused from.
+              </p>
               <input
                 id="course-search"
                 className="search-input"
@@ -215,6 +218,17 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
                         <span style={{ color: "var(--slate-light)" }}>
                           {c.credits} cr{c.catalog === "legacy" ? " · old catalog" : ""}
                         </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-quiet waive-btn"
+                        title={`Waive ${c.code}. It stops being required and earns no credit.`}
+                        onClick={() => {
+                          onAdd({ code: c.code, title: c.title, credits: c.credits, status: "waived" });
+                          setQuery("");
+                        }}
+                      >
+                        Waive
                       </button>
                     </li>
                   ))}
@@ -254,6 +268,7 @@ const STATUS_DISPLAY: Record<CourseStatus, { label: string; className: string }>
   failed: { label: "Failed", className: " mark-failed" },
   withdrawn: { label: "Withdrawn", className: " mark-neutral" },
   audit: { label: "Audited", className: " mark-neutral" },
+  waived: { label: "Waived", className: " mark-waived" },
 };
 
 function RecordList({
@@ -278,12 +293,16 @@ function RecordList({
   const totalEarned = taken
     .filter((t) => t.status === "completed")
     .reduce((n, t) => n + (t.credits ?? getCourse(t.code)?.credits ?? 3), 0);
-  const notCounting = taken.filter((t) => t.status !== "completed" && !isPending(t.status)).length;
+  const waived = taken.filter((t) => t.status === "waived").length;
+  const notCounting = taken.filter(
+    (t) => t.status !== "completed" && t.status !== "waived" && !isPending(t.status),
+  ).length;
 
   return (
     <div style={{ marginTop: "1.4rem" }}>
       <p className="eyebrow" style={{ marginBottom: "0.2rem" }}>
         {taken.length} courses · {totalEarned} credits earned
+        {waived > 0 ? ` · ${waived} waived` : ""}
         {notCounting > 0 ? ` · ${notCounting} not counting` : ""}
       </p>
       {[...groups.entries()].map(([term, rows]) => (
@@ -305,7 +324,7 @@ function RecordList({
                     title={
                       course.grade
                         ? `Grade ${course.grade}. Click to change how this counts.`
-                        : "Click to cycle: done, in progress, failed"
+                        : "Click to cycle: done, in progress, failed, waived"
                     }
                   >
                     {STATUS_DISPLAY[course.status].label}

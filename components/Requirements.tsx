@@ -4,7 +4,10 @@ import { titleOf } from "@/lib/catalog";
 import type { ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
 import type { Holding } from "@/lib/equivalency";
 
-const MARK = { done: "●", pending: "◐", open: "○" } as const;
+// Filled, half, empty - and struck through for a requirement excused rather
+// than earned. A dotted circle was indistinguishable from an open one at this
+// size, which left waived rows still reading as outstanding.
+const MARK = { done: "●", pending: "◐", waived: "⊘", open: "○" } as const;
 
 /** Code and course name together, so a bare "MATH 220" never stands alone. */
 function CourseList({ codes, done }: { codes: string[]; done?: boolean }) {
@@ -39,7 +42,7 @@ function displayName(slot: SlotResult): string {
 }
 
 function SlotRow({ slot }: { slot: SlotResult }) {
-  const state = slot.filled ? (slot.pendingOnly ? "pending" : "done") : "open";
+  const state = slot.filled ? (slot.pendingOnly ? "pending" : slot.waived ? "waived" : "done") : "open";
   const sources = [...new Set(slot.filledBy.filter((f) => f.source !== f.requirement).map((f) => f.source))];
   const provisional = slot.filledBy.some((f) => f.via === "inferred");
 
@@ -69,6 +72,7 @@ function SlotRow({ slot }: { slot: SlotResult }) {
             from your <span className="mono">{sources.join(", ")}</span>
           </span>
         )}
+        {slot.waived && <span className="mark mark-waived">Waived</span>}
         {provisional && <span className="mark mark-inferred">Proposed</span>}
       </span>
     </div>
@@ -143,6 +147,7 @@ export function PillarBlock({
 }) {
   const met = groups?.reduce((n, g) => n + g.completed, 0);
   const total = groups?.reduce((n, g) => n + g.required, 0);
+  const waivedHere = counted?.filter((h) => h.status === "waived").length ?? 0;
 
   return (
     <section className="pillar">
@@ -164,6 +169,7 @@ export function PillarBlock({
         <details className="counted">
           <summary className="more">
             The {counted.length} {counted.length === 1 ? "course" : "courses"} making up {fmt(creditsEarned + creditsInProgress)} credits here
+            {waivedHere > 0 && `, ${waivedHere} of them waived and so worth none`}
           </summary>
           <ul className="counted-list">
             {counted.map((h, i) => (
@@ -171,7 +177,7 @@ export function PillarBlock({
                 <span className="mono">{h.code}</span>
                 <span className="counted-title">{h.title}</span>
                 <span className="mono counted-cr">
-                  {h.credits} cr · {h.level}-level
+                  {h.status === "waived" ? "waived · no credit" : `${h.credits} cr · ${h.level}-level`}
                 </span>
               </li>
             ))}

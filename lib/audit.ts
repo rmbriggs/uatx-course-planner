@@ -2,7 +2,9 @@ import { creditsOf, getRequirements, levelOf, requirementCodesFor, titleOf } fro
 import { normalizeRecord, type Holding, type NormalizeOptions, type NormalizeResult } from "./equivalency";
 import {
   earnsCredit,
+  fillsRequirement,
   isPending,
+  isWaived,
   needsRetake,
   type Concentration,
   type CourseStatus,
@@ -26,9 +28,9 @@ export interface SlotFillSource {
   status: CourseStatus;
 }
 
-/** Work that can still count: passed, or not finished yet. */
+/** Work that can fill a requirement: passed, not finished yet, or waived. */
 function canCount(h: Holding): boolean {
-  return earnsCredit(h.status) || isPending(h.status);
+  return fillsRequirement(h.status);
 }
 
 export interface SlotResult {
@@ -37,6 +39,8 @@ export interface SlotResult {
   filled: boolean;
   /** True when only unfinished coursework fills it. */
   pendingOnly: boolean;
+  /** True when a waiver closes it, so it costs no credit. */
+  waived: boolean;
   filledBy: SlotFillSource[];
 }
 
@@ -93,6 +97,11 @@ export interface AuditResult {
   excluded: Holding[];
   /** Failed courses; required ones must be retaken. */
   retakeNeeded: Holding[];
+  /**
+   * Requirements the student was excused from. They close their requirement
+   * but earn nothing, so `creditsToReplace` still has to come from elsewhere.
+   */
+  waived: { courses: Holding[]; creditsToReplace: number };
   /** Legacy courses with no equivalent and no place in the new curriculum. */
   noEquivalent: Holding[];
   intellectualFoundations: {
@@ -179,7 +188,9 @@ function fillOption(option: string[], available: Holding[]): { code: string; hol
     );
     if (!candidates.length) return null;
     candidates.sort((a, b) => {
-      const byStatus = Number(isPending(a.status)) - Number(isPending(b.status));
+      // Real earned coursework first, then a waiver, then unfinished work.
+      const rank = (h: Holding) => (isPending(h.status) ? 2 : isWaived(h.status) ? 1 : 0);
+      const byStatus = rank(a) - rank(b);
       if (byStatus) return byStatus;
       const cov = (h: Holding) => option.filter((c) => h.satisfies.includes(c)).length;
       return cov(b) - cov(a);
@@ -210,20 +221,22 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
 
   const results = slots.map<SlotResult>((s) => {
     if (filledCount >= limit) {
-      return { label: s.label, options: s.options, filled: false, pendingOnly: false, filledBy: [] };
+      return { label: s.label, options: s.options, filled: false, pendingOnly: false, waived: false, filledBy: [] };
     }
     for (const option of s.options) {
       const picks = fillOption(option, pool);
       if (!picks) continue;
       const used = [...new Set(picks.map((p) => p.holding))];
       const pendingOnly = used.some((h) => isPending(h.status));
+      const waived = used.some((h) => isWaived(h.status));
       if (consume) {
         for (const h of used) {
           if (spent.has(h)) continue;
           spent.add(h);
           consumed.push(h);
+          // Waived work carries no credits, so it lands in neither total.
           if (earnsCredit(h.status)) creditsEarned += h.credits;
-          else creditsInProgress += h.credits;
+          else if (isPending(h.status)) creditsInProgress += h.credits;
         }
       }
       filledCount++;
@@ -232,6 +245,7 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
         options: s.options,
         filled: true,
         pendingOnly,
+        waived,
         filledBy: picks.map((p) => ({
           requirement: p.code,
           source: p.holding.code,
@@ -240,7 +254,7 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
         })),
       };
     }
-    return { label: s.label, options: s.options, filled: false, pendingOnly: false, filledBy: [] };
+    return { label: s.label, options: s.options, filled: false, pendingOnly: false, waived: false, filledBy: [] };
   });
 
   return { results, consumed, creditsEarned, creditsInProgress };
@@ -270,8 +284,12 @@ function slotsToGroupResult(
 
 /** Non-destructive evaluation, used for concentrations. */
 function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
-  const done = coveredCodes(holdings, (h) => earnsCredit(h.status));
+  const earnedSet = coveredCodes(holdings, (h) => earnsCredit(h.status));
+  const waivedSet = coveredCodes(holdings, (h) => isWaived(h.status));
   const pendingSet = coveredCodes(holdings, (h) => isPending(h.status));
+  // A waiver closes the requirement, so the course stops being listed as still
+  // needed even though it brought no credit with it.
+  const done = new Set([...earnedSet, ...waivedSet]);
 
   if (g.type === "slots") {
     // Non-consuming: one holding may legitimately fill more than one slot when
@@ -294,8 +312,10 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
       completed: Math.min(earned, g.minCredits),
       inProgress: Math.min(pendingCredits, Math.max(0, g.minCredits - earned)),
       satisfied: earned >= g.minCredits,
-      held: g.pool.filter((c) => done.has(c) || pendingSet.has(c)),
-      options: g.pool.filter((c) => !done.has(c) && !pendingSet.has(c)),
+      // Credits cannot be waived, only courses can, so a waiver neither counts
+      // here nor removes a course from the pool still available to fill it.
+      held: g.pool.filter((c) => earnedSet.has(c) || pendingSet.has(c)),
+      options: g.pool.filter((c) => !earnedSet.has(c) && !pendingSet.has(c)),
       unit: "credits",
     };
   }
@@ -407,8 +427,9 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     polarisFill.results.every((s) => s.filled && !s.pendingOnly) && buildEarned >= req.polaris.buildCredits;
 
   // Everything still unclaimed counts toward the 96-credit major.
-  // Failed, withdrawn and audited work never reaches the major's credit count.
-  const majorPool = available.filter(canCount);
+  // Failed, withdrawn and audited work never reaches the major's credit count,
+  // and neither does a waiver, which brings no credit to contribute.
+  const majorPool = available.filter((h) => canCount(h) && !isWaived(h.status));
   const sumBy = (keep: (h: Holding) => boolean, levels?: number[]) =>
     majorPool
       .filter((h) => keep(h) && (!levels || levels.includes(h.level)))
@@ -426,6 +447,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   // Concentrations describe part of the major, so they are scored against the
   // whole record rather than against what the pillars already claimed.
   const completedCodes = coveredCodes(holdings, (h) => earnsCredit(h.status));
+  const waivedCodes = coveredCodes(holdings, (h) => isWaived(h.status));
   const concentrations: ConcentrationResult[] = req.concentrations.map((c) => {
     const groups = c.groups.map((g) => evaluateGroup(g, holdings));
     const prerequisites = c.prerequisites.map((pre, i) => {
@@ -442,7 +464,12 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       if (g.slots) {
         for (const s of g.slots) {
           if (!s.filled) continue;
-          const value = s.filledBy.reduce((n, f) => n + creditsOf(f.requirement), 0);
+          // A waived requirement is closed but paid for by nobody, so it adds
+          // no credit to the concentration it sits in.
+          const value = s.filledBy.reduce(
+            (n, f) => n + (isWaived(f.status) ? 0 : creditsOf(f.requirement)),
+            0,
+          );
           if (s.pendingOnly) pending += value;
           else earned += value;
         }
@@ -452,6 +479,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       } else {
         for (const code of (g.held ?? []).slice(0, g.required)) {
           if (completedCodes.has(code)) earned += creditsOf(code);
+          else if (waivedCodes.has(code)) continue;
           else pending += creditsOf(code);
         }
       }
@@ -485,6 +513,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   const totalPending = holdings.filter((h) => isPending(h.status)).reduce((n, h) => n + h.credits, 0);
   const excluded = holdings.filter((h) => !canCount(h));
   const retakeNeeded = holdings.filter((h) => needsRetake(h.status));
+  const waivedHoldings = holdings.filter((h) => isWaived(h.status));
   // A course the new requirements name by its own code is accepted directly,
   // so it is not lacking an equivalent even though no rule mentions it.
   const requirementCodes = requirementCodesFor(program);
@@ -525,6 +554,10 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     normalization,
     excluded,
     retakeNeeded,
+    waived: {
+      courses: waivedHoldings,
+      creditsToReplace: waivedHoldings.reduce((n, h) => n + h.nominalCredits, 0),
+    },
     noEquivalent,
     intellectualFoundations: {
       groups: ifGroups,
