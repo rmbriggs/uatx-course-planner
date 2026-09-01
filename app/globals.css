@@ -1152,3 +1152,89 @@ textarea {
     animation: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Hint: a disclosure that also opens on hover. Used for the Populi export
+   path, which is a click sequence, so the steps are numbered.
+   --------------------------------------------------------------------------- */
+.hint {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.55rem;
+}
+
+.hint-trigger {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.76rem;
+  color: var(--marine);
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.hint-trigger:hover {
+  color: var(--ink);
+}
+
+.hint-bubble {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  z-index: 5;
+  width: 14.5rem;
+  max-width: 76vw;
+  padding: 0.55rem 0.7rem 0.6rem;
+  text-align: left;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(16, 23, 32, 0.24);
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -0.2rem);
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms;
+}
+
+.hint:hover .hint-bubble,
+.hint:focus-within .hint-bubble,
+.hint.is-pinned .hint-bubble {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.hint-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-bottom-color: var(--ink);
+}
+
+.hint-title {
+  display: block;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-light);
+  margin-bottom: 0.35rem;
+}
+
+.hint-steps {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--paper);
+}
+
+.hint-steps li::marker {
+  color: var(--slate-light);
+}

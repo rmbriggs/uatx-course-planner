@@ -144,6 +144,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
               <p style={{ margin: "0.7rem 0 0", fontSize: "0.76rem" }}>
                 Read in your browser. Nothing is uploaded anywhere.
               </p>
+              <TranscriptHint />
             </div>
           )}
 
@@ -344,6 +345,39 @@ function RecordList({
           </ul>
         </div>
       ))}
+    </div>
+  );
+}
+
+/**
+ * Where the file comes from. Populi buries the export five clicks deep, and
+ * the path is the one thing a first-time visitor is missing, so it opens on
+ * hover; the button underneath keeps it reachable by keyboard and by touch,
+ * where hover never happens.
+ */
+const POPULI_PATH = ["My Profile", "Student", "Transcript", "Transcript Actions", "Export Transcript"];
+
+function TranscriptHint() {
+  const [pinned, setPinned] = useState(false);
+
+  return (
+    <div className={`hint${pinned ? " is-pinned" : ""}`}>
+      <button
+        type="button"
+        className="hint-trigger"
+        aria-expanded={pinned}
+        onClick={() => setPinned((open) => !open)}
+      >
+        Where do I find it?
+      </button>
+      <div className="hint-bubble" role="note">
+        <span className="hint-title">In Populi</span>
+        <ol className="hint-steps">
+          {POPULI_PATH.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
