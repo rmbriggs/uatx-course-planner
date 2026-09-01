@@ -133,6 +133,7 @@ export function PillarBlock({
   creditsEarned,
   creditsRequired,
   creditsInProgress,
+  adjustment,
   groups,
   counted,
   children,
@@ -141,6 +142,8 @@ export function PillarBlock({
   creditsEarned: number;
   creditsRequired: number;
   creditsInProgress: number;
+  /** Why this pillar's target is not its catalog figure, when a waiver moved it. */
+  adjustment?: string;
   groups?: GroupResult[];
   counted?: Holding[];
   children?: React.ReactNode;
@@ -156,6 +159,7 @@ export function PillarBlock({
         <span className="pillar-count mono">
           {fmt(creditsEarned)}/{creditsRequired} credits
           {creditsInProgress > 0 && <span className="pending-note"> +{fmt(creditsInProgress)} under way</span>}
+          {adjustment && <span className="pillar-sub"> · {adjustment}</span>}
           {total !== undefined && (
             <span className="pillar-sub"> · {met} of {total} requirements met</span>
           )}

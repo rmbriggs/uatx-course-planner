@@ -268,10 +268,69 @@ describe("waived requirements", () => {
     expect(a.totals.remaining).toBe(180);
   });
 
-  it("reports the credits that must now come from elsewhere", () => {
+  it("lists every waiver, and reports the credits that moved", () => {
+    // PHIL 210 belongs to a concentration, which already sits inside the major,
+    // so waiving it moves no credit between pillars. LITR 102 does.
     const a = auditDegree([waive("LITR 102"), waive("PHIL 210")]);
     expect(a.waived.courses.map((h) => h.code).sort()).toEqual(["LITR 102", "PHIL 210"]);
-    expect(a.waived.creditsToReplace).toBe(6);
+    expect(a.waived.creditsToReplace).toBe(3);
+  });
+
+  it("stops asking the pillar for credits it waived", () => {
+    // 22.5/57 can never close once a requirement is waived out of the 57.
+    const a = auditDegree([waive("LITR 102")]);
+    expect(a.intellectualFoundations.creditsRequired).toBe(54);
+    expect(a.intellectualFoundations.creditsWaived).toBe(3);
+  });
+
+  it("makes the credits up in the major, leaving the degree at 180", () => {
+    const a = auditDegree([waive("LITR 102")]);
+    expect(a.major.creditsRequired).toBe(99);
+    expect(a.major.creditsAdded).toBe(3);
+    expect(a.pillars.reduce((n, p) => n + p.creditsRequired, 0)).toBe(a.totals.required);
+  });
+
+  it("takes off both requirements when one waiver closes two", () => {
+    // INF 1100 stands for LITR 102 and LITR 103, worth 3 credits each, so the
+    // pillar drops by the two slots rather than by the one course.
+    const a = auditDegree([waive("INF 1100")]);
+    expect(a.intellectualFoundations.creditsWaived).toBe(6);
+    expect(a.intellectualFoundations.creditsRequired).toBe(51);
+    expect(a.major.creditsRequired).toBe(102);
+    expect(a.pillars.reduce((n, p) => n + p.creditsRequired, 0)).toBe(180);
+  });
+
+  it("comes off Polaris the same way", () => {
+    const a = auditDegree([waive("POLR 110")]);
+    expect(a.polaris.creditsRequired).toBe(24);
+    expect(a.major.creditsRequired).toBe(99);
+    expect(a.pillars.reduce((n, p) => n + p.creditsRequired, 0)).toBe(180);
+  });
+
+  it("cannot be used against a bare credit total", () => {
+    // Polaris Build asks for 21 credits, not for named courses, so a waiver has
+    // nothing to close there and must not quietly count toward it.
+    const a = auditDegree([waive("POLR 210")]);
+    expect(a.polaris.buildCreditsEarned).toBe(0);
+    expect(a.polaris.creditsRequired).toBe(27);
+  });
+
+  it("stops a concentration asking for what it waived", () => {
+    const conc = (a: ReturnType<typeof auditDegree>) => a.concentrations.find((c) => c.id === "philosophy")!;
+    expect(conc(auditDegree([])).creditsRequired).toBe(36);
+    const waived = conc(auditDegree([waive("PHIL 210")]));
+    expect(waived.creditsRequired).toBe(33);
+    expect(waived.creditsWaived).toBe(3);
+  });
+
+  it("reads as complete when every requirement is waived", () => {
+    const codes = auditDegree([]).intellectualFoundations.groups.flatMap((g) =>
+      (g.slots ?? []).map((s) => s.options[0][0]),
+    );
+    const a = auditDegree(codes.map(waive));
+    expect(a.intellectualFoundations.satisfied).toBe(true);
+    expect(a.intellectualFoundations.creditsRequired).toBe(0);
+    expect(a.intellectualFoundations.creditsEarned).toBe(0);
   });
 
   it("is not filed with work that failed to count", () => {

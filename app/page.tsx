@@ -310,6 +310,11 @@ export default function Page() {
                   creditsEarned={audit.intellectualFoundations.creditsEarned}
                   creditsRequired={audit.intellectualFoundations.creditsRequired}
                   creditsInProgress={audit.intellectualFoundations.creditsInProgress}
+                  adjustment={
+                    audit.intellectualFoundations.creditsWaived > 0
+                      ? `${fmt(audit.intellectualFoundations.creditsWaived)} waived, down from ${requirements.intellectualFoundations.credits}`
+                      : undefined
+                  }
                   groups={audit.intellectualFoundations.groups}
                   counted={audit.intellectualFoundations.countedCourses}
                 >
@@ -327,6 +332,11 @@ export default function Page() {
                   creditsEarned={audit.major.creditsEarned}
                   creditsRequired={audit.major.creditsRequired}
                   creditsInProgress={audit.major.creditsInProgress}
+                  adjustment={
+                    audit.major.creditsAdded > 0
+                      ? `${fmt(audit.major.creditsAdded)} replacing waived requirements`
+                      : undefined
+                  }
                   counted={audit.major.countedCourses}
                 >
                   <p className="group-note" style={{ marginTop: "0.7rem" }}>
@@ -352,6 +362,11 @@ export default function Page() {
                   creditsEarned={audit.polaris.creditsEarned}
                   creditsRequired={audit.polaris.creditsRequired}
                   creditsInProgress={audit.polaris.creditsInProgress}
+                  adjustment={
+                    audit.polaris.creditsWaived > 0
+                      ? `${fmt(audit.polaris.creditsWaived)} waived, down from ${requirements.polaris.credits}`
+                      : undefined
+                  }
                   counted={audit.polaris.countedCourses}
                 >
                   <div style={{ marginTop: "0.7rem" }}>
@@ -450,9 +465,18 @@ export default function Page() {
                     ))}
                   </ul>
                   <p className="note" style={{ marginTop: "0.7rem" }}>
-                    These no longer show as required above. A waiver excuses the course, not its credits, so the{" "}
-                    {fmt(audit.waived.creditsToReplace)} credits they would have carried still have to come from other
-                    courses to reach {audit.totals.required}.
+                    These no longer show as required above. A waiver excuses the course, not its credits, so{" "}
+                    {audit.waived.creditsToReplace > 0 ? (
+                      <>
+                        {fmt(audit.waived.creditsToReplace)} credits move into {pillarName("major")}, where you make
+                        them up as electives. The degree still comes to {audit.totals.required}.
+                      </>
+                    ) : (
+                      <>
+                        the courses you take instead count as electives toward the same{" "}
+                        {audit.totals.required}. No pillar total changes.
+                      </>
+                    )}
                   </p>
                 </section>
               )}

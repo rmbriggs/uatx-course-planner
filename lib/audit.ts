@@ -69,7 +69,10 @@ export interface ConcentrationResult {
   name: string;
   center: string;
   kind: Concentration["kind"];
+  /** What the concentration still asks for, after any waivers came off it. */
   creditsRequired: number;
+  /** Credits the concentration no longer asks for, because they were waived. */
+  creditsWaived: number;
   creditsEarned: number;
   creditsInProgress: number;
   percent: number;
@@ -84,9 +87,12 @@ export interface ConcentrationResult {
 export interface PillarResult {
   id: string;
   name: string;
+  /** What this pillar still asks for, after any waivers came off it. */
   creditsRequired: number;
   creditsEarned: number;
   creditsInProgress: number;
+  /** Credits waived out of this pillar, or moved into it to replace them. */
+  creditsWaived: number;
   satisfied: boolean;
 }
 
@@ -98,8 +104,9 @@ export interface AuditResult {
   /** Failed courses; required ones must be retaken. */
   retakeNeeded: Holding[];
   /**
-   * Requirements the student was excused from. They close their requirement
-   * but earn nothing, so `creditsToReplace` still has to come from elsewhere.
+   * Requirements the student was excused from. `creditsToReplace` is what those
+   * waivers took off the named pillars and moved into elective credit, so the
+   * degree still comes to its full total.
    */
   waived: { courses: Holding[]; creditsToReplace: number };
   /** Legacy courses with no equivalent and no place in the new curriculum. */
@@ -107,6 +114,8 @@ export interface AuditResult {
   intellectualFoundations: {
     groups: GroupResult[];
     creditsRequired: number;
+    /** Credits this pillar no longer asks for, because they were waived. */
+    creditsWaived: number;
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
@@ -116,6 +125,7 @@ export interface AuditResult {
   };
   polaris: {
     creditsRequired: number;
+    creditsWaived: number;
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
@@ -129,6 +139,8 @@ export interface AuditResult {
   };
   major: {
     creditsRequired: number;
+    /** Credits moved here from requirements a waiver closed elsewhere. */
+    creditsAdded: number;
     creditsEarned: number;
     creditsInProgress: number;
     satisfied: boolean;
@@ -206,6 +218,8 @@ interface SlotFill {
   consumed: Holding[];
   creditsEarned: number;
   creditsInProgress: number;
+  /** Credits these slots no longer ask for, because a waiver closed them. */
+  creditsWaived: number;
 }
 
 function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume = true): SlotFill {
@@ -218,6 +232,7 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
   let filledCount = 0;
   let creditsEarned = 0;
   let creditsInProgress = 0;
+  let creditsWaived = 0;
 
   const results = slots.map<SlotResult>((s) => {
     if (filledCount >= limit) {
@@ -238,6 +253,13 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
           if (earnsCredit(h.status)) creditsEarned += h.credits;
           else if (isPending(h.status)) creditsInProgress += h.credits;
         }
+        // What the pillar stops asking for is the slot's own value, not the
+        // waived course's: it is the requirement that goes away. One waiver
+        // closing two slots therefore removes both slots' credits.
+        creditsWaived += picks.reduce(
+          (n, pick) => n + (isWaived(pick.holding.status) ? creditsOf(pick.code) : 0),
+          0,
+        );
       }
       filledCount++;
       return {
@@ -257,7 +279,7 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
     return { label: s.label, options: s.options, filled: false, pendingOnly: false, waived: false, filledBy: [] };
   });
 
-  return { results, consumed, creditsEarned, creditsInProgress };
+  return { results, consumed, creditsEarned, creditsInProgress, creditsWaived };
 }
 
 function slotsToGroupResult(
@@ -383,6 +405,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   const ifCounted: Holding[] = [];
   let ifEarned = 0;
   let ifPending = 0;
+  let ifWaived = 0;
   for (const g of req.intellectualFoundations.groups) {
     if (g.type !== "slots") continue;
     const fill = fillSlots(g.slots, available, g.choose);
@@ -391,7 +414,11 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     ifGroups.push(slotsToGroupResult(g, fill.results));
     ifEarned += fill.creditsEarned;
     ifPending += fill.creditsInProgress;
+    ifWaived += fill.creditsWaived;
   }
+  // A waived requirement is one this pillar no longer asks for, so its target
+  // comes down. Leaving it at 57 would show a fraction that can never close.
+  const ifRequired = Math.max(0, req.intellectualFoundations.credits - ifWaived);
 
   const takenCodes = new Set(holdings.map((h) => h.code));
   const legacyIf = req.intellectualFoundations.legacyProvision;
@@ -407,7 +434,9 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   const takeBuild = (codes: string[], cap?: number) => {
     for (const code of codes) {
       for (;;) {
-        const h = available.find((x) => canCount(x) && x.satisfies.includes(code));
+        // Build is a credit total rather than a named course, and a credit
+        // total cannot be waived, so only real coursework counts here.
+        const h = available.find((x) => canCount(x) && !isWaived(x.status) && x.satisfies.includes(code));
         if (!h) break;
         if (cap !== undefined && equivalentUsed + h.credits > cap) break;
         claim([h]);
@@ -421,10 +450,16 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   takeBuild(req.polaris.buildCourses);
   takeBuild(req.polaris.buildEquivalents, req.polaris.buildEquivalentCap);
 
+  const polarisWaived = polarisFill.creditsWaived;
+  const polarisRequired = Math.max(0, req.polaris.credits - polarisWaived);
   const polarisEarned = polarisFill.creditsEarned + Math.min(buildEarned, req.polaris.buildCredits);
   const polarisPending = polarisFill.creditsInProgress + buildPending;
   const polarisSatisfied =
     polarisFill.results.every((s) => s.filled && !s.pendingOnly) && buildEarned >= req.polaris.buildCredits;
+  // The 180 does not move, so credits a waiver freed from a named requirement
+  // reappear as electives, which is what the major pillar counts.
+  const displacedCredits = ifWaived + polarisWaived;
+  const majorRequired = req.major.credits + displacedCredits;
 
   // Everything still unclaimed counts toward the 96-credit major.
   // Failed, withdrawn and audited work never reaches the major's credit count,
@@ -442,7 +477,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     const inProgress = sumBy((h) => isPending(h.status), r.levels);
     return { ...r, earned, inProgress, satisfied: earned >= r.minCredits };
   });
-  const majorSatisfied = majorEarned >= req.major.credits && majorRules.every((r) => r.satisfied);
+  const majorSatisfied = majorEarned >= majorRequired && majorRules.every((r) => r.satisfied);
 
   // Concentrations describe part of the major, so they are scored against the
   // whole record rather than against what the pillars already claimed.
@@ -460,16 +495,18 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
 
     let earned = 0;
     let pending = 0;
+    let waivedCredits = 0;
     for (const g of groups) {
       if (g.slots) {
         for (const s of g.slots) {
           if (!s.filled) continue;
-          // A waived requirement is closed but paid for by nobody, so it adds
-          // no credit to the concentration it sits in.
-          const value = s.filledBy.reduce(
-            (n, f) => n + (isWaived(f.status) ? 0 : creditsOf(f.requirement)),
-            0,
-          );
+          // A waived requirement is closed but paid for by nobody. It adds no
+          // credit, and the concentration stops asking for it.
+          let value = 0;
+          for (const f of s.filledBy) {
+            if (isWaived(f.status)) waivedCredits += creditsOf(f.requirement);
+            else value += creditsOf(f.requirement);
+          }
           if (s.pendingOnly) pending += value;
           else earned += value;
         }
@@ -479,13 +516,14 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       } else {
         for (const code of (g.held ?? []).slice(0, g.required)) {
           if (completedCodes.has(code)) earned += creditsOf(code);
-          else if (waivedCodes.has(code)) continue;
+          else if (waivedCodes.has(code)) waivedCredits += creditsOf(code);
           else pending += creditsOf(code);
         }
       }
     }
-    earned = Math.min(earned, c.credits);
-    pending = Math.min(pending, Math.max(0, c.credits - earned));
+    const creditsRequired = Math.max(0, c.credits - waivedCredits);
+    earned = Math.min(earned, creditsRequired);
+    pending = Math.min(pending, Math.max(0, creditsRequired - earned));
 
     const openGroups = groups.filter((g) => !g.satisfied);
     const remainingOptions = [...new Set(openGroups.flatMap((g) => g.options ?? []))];
@@ -496,10 +534,11 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       name: c.name,
       center: c.center,
       kind: c.kind,
-      creditsRequired: c.credits,
+      creditsRequired,
+      creditsWaived: waivedCredits,
       creditsEarned: earned,
       creditsInProgress: pending,
-      percent: Math.round((earned / c.credits) * 100),
+      percent: creditsRequired > 0 ? Math.round((earned / creditsRequired) * 100) : 100,
       satisfied: groups.every((g) => g.satisfied),
       groups,
       prerequisites,
@@ -526,25 +565,28 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     {
       id: "if",
       name: pillarName("if", "Intellectual Foundations"),
-      creditsRequired: req.intellectualFoundations.credits,
+      creditsRequired: ifRequired,
       creditsEarned: ifEarned,
       creditsInProgress: ifPending,
+      creditsWaived: ifWaived,
       satisfied: ifGroups.every((g) => g.satisfied),
     },
     {
       id: "major",
       name: pillarName("major", "Liberal Studies Major"),
-      creditsRequired: req.major.credits,
+      creditsRequired: majorRequired,
       creditsEarned: majorEarned,
       creditsInProgress: majorPending,
+      creditsWaived: -displacedCredits,
       satisfied: majorSatisfied,
     },
     {
       id: "polaris",
       name: pillarName("polaris", "Polaris"),
-      creditsRequired: req.polaris.credits,
+      creditsRequired: polarisRequired,
       creditsEarned: polarisEarned,
       creditsInProgress: polarisPending,
+      creditsWaived: polarisWaived,
       satisfied: polarisSatisfied,
     },
   ];
@@ -554,14 +596,12 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
     normalization,
     excluded,
     retakeNeeded,
-    waived: {
-      courses: waivedHoldings,
-      creditsToReplace: waivedHoldings.reduce((n, h) => n + h.nominalCredits, 0),
-    },
+    waived: { courses: waivedHoldings, creditsToReplace: displacedCredits },
     noEquivalent,
     intellectualFoundations: {
       groups: ifGroups,
-      creditsRequired: req.intellectualFoundations.credits,
+      creditsRequired: ifRequired,
+      creditsWaived: ifWaived,
       creditsEarned: ifEarned,
       creditsInProgress: ifPending,
       satisfied: ifGroups.every((g) => g.satisfied),
@@ -573,7 +613,8 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       },
     },
     polaris: {
-      creditsRequired: req.polaris.credits,
+      creditsRequired: polarisRequired,
+      creditsWaived: polarisWaived,
       creditsEarned: polarisEarned,
       creditsInProgress: polarisPending,
       satisfied: polarisSatisfied,
@@ -586,7 +627,8 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       note: req.polaris.note,
     },
     major: {
-      creditsRequired: req.major.credits,
+      creditsRequired: majorRequired,
+      creditsAdded: displacedCredits,
       creditsEarned: majorEarned,
       creditsInProgress: majorPending,
       satisfied: majorSatisfied,
