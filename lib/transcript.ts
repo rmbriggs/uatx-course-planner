@@ -78,8 +78,8 @@ function cleanName(s: string): string {
 }
 
 /**
- * Parse the text of a UATX (Populi) transcript. Also accepts loosely pasted
- * text, since the same anchor works when the column layout collapses.
+ * Parse the text of a UATX (Populi) transcript. The row anchor works whether
+ * the columns survive extraction or collapse into a single run of text.
  */
 export function parseTranscript(text: string): TranscriptParseResult {
   const lines = text.split(/\r?\n/);
@@ -187,19 +187,4 @@ export function parseTranscript(text: string): TranscriptParseResult {
   }
 
   return { rows, terms, reportedEarnedCredits, cumulativeCsa, warnings };
-}
-
-/** Accepts "INF 1100, ALT 1010; STM 2102" and newline-separated lists. */
-export function parseCodeList(text: string): TakenCourse[] {
-  const out: TakenCourse[] = [];
-  const seen = new Set<string>();
-  const re = /([A-Z]{2,5})\s*[- ]?\s*(\d{3,4}[A-Z]?)/gi;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(text))) {
-    const code = normalizeCode(`${m[1]} ${m[2]}`);
-    if (seen.has(code) || !getCourse(code)) continue;
-    seen.add(code);
-    out.push({ code, status: "completed", credits: getCourse(code)?.credits });
-  }
-  return out;
 }

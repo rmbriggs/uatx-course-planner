@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseTranscript, parseCodeList } from "./transcript";
+import { parseTranscript } from "./transcript";
 import { SAMPLE_TRANSCRIPT } from "./__fixtures__/sample-transcript";
 
 describe("parseTranscript", () => {
@@ -41,16 +41,5 @@ describe("parseTranscript", () => {
 
   it("recognizes every code against the catalog", () => {
     expect(parsed.rows.filter((r) => !r.recognized)).toHaveLength(0);
-  });
-});
-
-describe("parseCodeList", () => {
-  it("reads separators loosely and drops unknown codes", () => {
-    const out = parseCodeList("INF 1100, ALT 1010; stm2102\nMATH 210  ZZZ 999");
-    expect(out.map((c) => c.code)).toEqual(["INF 1100", "ALT 1010", "STM 2102", "MATH 210"]);
-  });
-
-  it("does not repeat a course", () => {
-    expect(parseCodeList("MATH 210 MATH 210")).toHaveLength(1);
   });
 });

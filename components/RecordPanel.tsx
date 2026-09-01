@@ -3,10 +3,10 @@
 import { useMemo, useRef, useState } from "react";
 import { allCourses, getCourse } from "@/lib/catalog";
 import { extractPdfText } from "@/lib/pdf";
-import { parseCodeList, parseTranscript } from "@/lib/transcript";
+import { parseTranscript } from "@/lib/transcript";
 import { isPending, type CourseStatus, type TakenCourse } from "@/lib/types";
 
-type Mode = "upload" | "paste" | "search";
+type Mode = "upload" | "search";
 
 interface Props {
   taken: TakenCourse[];
@@ -19,7 +19,6 @@ interface Props {
 export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus }: Props) {
   const [mode, setMode] = useState<Mode>("upload");
   const [query, setQuery] = useState("");
-  const [pasted, setPasted] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ tone: "ok" | "warn"; text: string } | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -46,7 +45,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
     } catch {
       setMessage({
         tone: "warn",
-        text: "Could not read that file. Open the PDF, copy the text, and paste it instead.",
+        text: "Could not read that file. You can add your courses with Search instead.",
       });
     } finally {
       setBusy(false);
@@ -91,7 +90,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
       <div className="panel-body">
         <p className="eyebrow">Your record</p>
         <div className="btn-row" role="tablist" aria-label="How to add courses">
-          {(["upload", "paste", "search"] as Mode[]).map((m) => (
+          {(["upload", "search"] as Mode[]).map((m) => (
             <button
               key={m}
               type="button"
@@ -103,7 +102,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
                 setMessage(null);
               }}
             >
-              {m === "upload" ? "Upload transcript" : m === "paste" ? "Paste" : "Search"}
+              {m === "upload" ? "Upload transcript" : "Search"}
             </button>
           ))}
         </div>
@@ -145,45 +144,6 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
                 Read in your browser. Nothing is uploaded anywhere.
               </p>
               <TranscriptHint />
-            </div>
-          )}
-
-          {mode === "paste" && (
-            <div>
-              <label htmlFor="paste-box" style={{ display: "block", marginBottom: "0.35rem" }}>
-                Paste transcript text, or a list of course codes.
-              </label>
-              <textarea
-                id="paste-box"
-                value={pasted}
-                onChange={(e) => setPasted(e.target.value)}
-                placeholder={"INF 1100, ALT 1010, STM 2102\n\n…or the full text copied out of your transcript."}
-              />
-              <div className="btn-row" style={{ marginTop: "0.5rem" }}>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => {
-                    const asTranscript = parseTranscript(pasted);
-                    if (asTranscript.rows.length) {
-                      applyTranscript(pasted);
-                      return;
-                    }
-                    const codes = parseCodeList(pasted);
-                    if (!codes.length) {
-                      setMessage({ tone: "warn", text: "No course codes recognized in that text." });
-                      return;
-                    }
-                    onReplace(codes);
-                    setMessage({ tone: "ok", text: `Added ${codes.length} courses.` });
-                  }}
-                >
-                  Read these courses
-                </button>
-                <button type="button" className="btn" onClick={() => setPasted("")}>
-                  Clear
-                </button>
-              </div>
             </div>
           )}
 

@@ -478,18 +478,6 @@ button, input, select {
   color: var(--ink);
 }
 
-textarea {
-  width: 100%;
-  min-height: 9rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  padding: 0.6rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  resize: vertical;
-  background: #fbfcfd;
-}
-
 .search-input {
   width: 100%;
   padding: 0.5rem 0.65rem;
