@@ -33,6 +33,13 @@ export interface EquivalencyRule {
   note?: string;
   inferred?: boolean;
   /**
+   * Which program this rule belongs to. Absent means the old-catalog-to-new
+   * mapping the equivalency document is about. "2024-2025" marks a rule that
+   * holds inside the old catalog, between a special-topics number and the
+   * numbered course whose content it delivered.
+   */
+  scope?: ProgramId;
+  /**
    * Key of the official rule this one extends, when it adds a course to that
    * rule's outcome rather than standing on its own.
    */
@@ -79,6 +86,10 @@ export interface Concentration {
   id: string;
   name: string;
   center: string;
+  /** The Center block whose Foundations and Core this sits inside, if any. */
+  centerId?: string;
+  /** What the catalog declares for Center plus concentration together. */
+  declaredWithCenter?: number;
   kind: "concentration" | "applied track";
   credits: number;
   lowerCredits: number;

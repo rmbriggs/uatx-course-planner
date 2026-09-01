@@ -1702,6 +1702,60 @@
     },
     {
       "from": [
+        "STM 3910B"
+      ],
+      "grants": [
+        [
+          "STM 2301"
+        ]
+      ],
+      "center": "STEM",
+      "title": "Intro/Accelerated Intro to Programming",
+      "confidence": "moderate",
+      "reason": "Reported by a student who took it: the course delivered under this special-topics number was Programming I - the introduction plus the first half of Data Structures. The official table already treats STM 3910B and STM 3910C as the same course. Note it carries 3 credits against Programming I's 4.5, so it fills the requirement without closing the credit gap.",
+      "kind": "satisfies",
+      "scope": "2024-2025",
+      "inferred": true,
+      "raw": "Reported by a student who took it: the course delivered under this special-topics number was Programming I - the introduction plus the first half of Data Structures. The official table already treats STM 3910B and STM 3910C as the same course. Note it carries 3 credits against Programming I's 4.5, so it fills the requirement without closing the credit gap."
+    },
+    {
+      "from": [
+        "STM 3910C"
+      ],
+      "grants": [
+        [
+          "STM 2301"
+        ]
+      ],
+      "center": "STEM",
+      "title": "Intro/Accelerated Intro to Programming",
+      "confidence": "moderate",
+      "reason": "Reported by a student who took it: the course delivered under this special-topics number was Programming I - the introduction plus the first half of Data Structures. Note it carries 3 credits against Programming I's 4.5, so it fills the requirement without closing the credit gap.",
+      "kind": "satisfies",
+      "scope": "2024-2025",
+      "inferred": true,
+      "raw": "Reported by a student who took it: the course delivered under this special-topics number was Programming I - the introduction plus the first half of Data Structures. Note it carries 3 credits against Programming I's 4.5, so it fills the requirement without closing the credit gap."
+    },
+    {
+      "from": [
+        "STM 3912B"
+      ],
+      "grants": [
+        [
+          "STM 2302"
+        ]
+      ],
+      "center": "STEM",
+      "title": "Software Engineering",
+      "confidence": "moderate",
+      "reason": "Reported by a student who took it: the course delivered under this special-topics number was Programming II - the second half of Data Structures followed by software engineering. Note it carries 3 credits against Programming II's 4.5, so it fills the requirement without closing the credit gap.",
+      "kind": "satisfies",
+      "scope": "2024-2025",
+      "inferred": true,
+      "raw": "Reported by a student who took it: the course delivered under this special-topics number was Programming II - the second half of Data Structures followed by software engineering. Note it carries 3 credits against Programming II's 4.5, so it fills the requirement without closing the credit gap."
+    },
+    {
+      "from": [
         "ALT 4500"
       ],
       "title": "Political Theology (1.5)",

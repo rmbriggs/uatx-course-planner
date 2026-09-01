@@ -181,6 +181,7 @@ def center_blocks(concs, credit):
                        "publishedUnder": [c["name"]], "page": c["page"]})
 
     out = []
+    center_of = {}
     for b in blocks:
         same = [x for x in blocks if x["name"] == b["name"]]
         base = "center-" + slug(b["name"])
@@ -195,17 +196,37 @@ def center_blocks(concs, credit):
         if len(same) > 1:
             entry["note"] = (
                 "The catalog prints this Center's Foundations and Core under each Area of "
-                f"Concentration, and the listings differ. This is the one printed under "
-                f"{b['publishedUnder'][0]}."
+                "Concentration, and for this Center the listings differ. This is the one printed "
+                f"under {b['publishedUnder'][0]}. Both routes come to 54 credits and both require "
+                "ALT 1010-1060, the six-part survey from Ancient Rome to the Great War; beyond "
+                "that they share nothing, so the route you follow is the one for the concentration "
+                "you elect."
             )
+        for name in b["publishedUnder"]:
+            center_of[name] = entry["id"]
         out.append(entry)
-    return out
+    return out, center_of
 
 
 def main():
     courses = json.loads((OUT / "courses.json").read_text())
     known = {c["code"] for c in courses["courses"]} | {c["code"] for c in courses["legacyCourses"]}
     credit = {c["code"]: c["credits"] for c in courses["courses"] + courses["legacyCourses"]}
+
+    centers, center_of = center_blocks(CONCENTRATIONS, credit)
+    # The Center's Foundations and Core are shown on their own, so a
+    # concentration carries only the work that is its own: the catalog's 81
+    # credits less the 54 the Center already accounts for.
+    concentrations = []
+    for c in CONCENTRATIONS:
+        own = [g for g in c["groups"] if not g["name"].startswith("Center ")]
+        concentrations.append({
+            **c,
+            "groups": own,
+            "credits": sum(group_credits(g, credit) for g in own),
+            "centerId": center_of[c["name"]],
+            "declaredWithCenter": c["credits"],
+        })
 
     payload = {
         "program": "2024-2025",
@@ -235,8 +256,8 @@ def main():
                      "elective credits instead."),
         },
         "polaris": POLARIS,
-        "centers": center_blocks(CONCENTRATIONS, credit),
-        "concentrations": CONCENTRATIONS,
+        "centers": centers,
+        "concentrations": concentrations,
         "electives": {"credits": 24, "note": "To be discussed with your academic advisor."},
     }
 
@@ -270,17 +291,21 @@ def main():
     print(f"referenced course codes: {len(referenced)}")
     print(f"concentrations: {len(payload['concentrations'])}")
     print(f"Intellectual Foundations: {sum(credit[c] for _, codes in IF_COURSES for c in codes)} credits")
-    for c in CONCENTRATIONS:
+    for c in payload["concentrations"]:
         parts = []
         for g in c["groups"]:
-            if g["type"] == "slots":
-                parts.append(sum(credit[s["options"][0][0]] for s in g["slots"]))
-            elif g["type"] == "pick":
-                vals = sorted(credit[x] for x in g["pool"])
-                parts.append(sum(vals[: g["choose"]]))
-            else:
-                parts.append(g["minCredits"])
+            parts.append(group_credits(g, credit))
         print(f"  {c['name']:34} {parts} -> {sum(parts)} (declared {c['credits']})")
+    split_bad = []
+    for c in payload["concentrations"]:
+        centre = next(b for b in payload["centers"] if b["id"] == c["centerId"])
+        if centre["credits"] + c["credits"] != c["declaredWithCenter"]:
+            split_bad.append(
+                f"{c['id']}: {centre['credits']} + {c['credits']} != {c['declaredWithCenter']}"
+            )
+    if split_bad:
+        print("\nCENTER/CONCENTRATION SPLIT DOES NOT RECONCILE: " + "; ".join(split_bad))
+        return 1
     print(f"centers: {len(payload['centers'])}")
     bad = []
     for b in payload["centers"]:

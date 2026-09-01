@@ -82,6 +82,45 @@ OVERRIDES = {
 # mapping stands, and this refines it.
 #
 # `title` must match the official rule's title exactly, which is checked below.
+# Mappings that hold *within* the 2024-2025 catalog, between the special-topics
+# numbers a course was recorded under and the numbered course whose content it
+# actually delivered. The equivalency document is old-catalog-to-new only, so it
+# has nothing to say here. These apply solely when auditing against the
+# 2024-2025 program, where requirements are written in old codes.
+LEGACY_INTERNAL = [
+    {
+        "from": ["STM 3910B"], "grants": [["STM 2301"]], "center": "STEM",
+        "title": "Intro/Accelerated Intro to Programming", "confidence": "moderate",
+        "reason": (
+            "Reported by a student who took it: the course delivered under this special-topics "
+            "number was Programming I - the introduction plus the first half of Data Structures. "
+            "The official table already treats STM 3910B and STM 3910C as the same course. Note it "
+            "carries 3 credits against Programming I's 4.5, so it fills the requirement without "
+            "closing the credit gap."
+        ),
+    },
+    {
+        "from": ["STM 3910C"], "grants": [["STM 2301"]], "center": "STEM",
+        "title": "Intro/Accelerated Intro to Programming", "confidence": "moderate",
+        "reason": (
+            "Reported by a student who took it: the course delivered under this special-topics "
+            "number was Programming I - the introduction plus the first half of Data Structures. "
+            "Note it carries 3 credits against Programming I's 4.5, so it fills the requirement "
+            "without closing the credit gap."
+        ),
+    },
+    {
+        "from": ["STM 3912B"], "grants": [["STM 2302"]], "center": "STEM",
+        "title": "Software Engineering", "confidence": "moderate",
+        "reason": (
+            "Reported by a student who took it: the course delivered under this special-topics "
+            "number was Programming II - the second half of Data Structures followed by software "
+            "engineering. Note it carries 3 credits against Programming II's 4.5, so it fills the "
+            "requirement without closing the credit gap."
+        ),
+    },
+]
+
 REFINEMENTS = [
     {
         "from": ["ALT 4500"], "title": "Political Theology (1.5)", "adds": ["AMCV 360"],
@@ -294,6 +333,10 @@ def main():
 
     for spec in INFERRED:
         rules.append({**spec, "inferred": True, "raw": spec["reason"]})
+
+    for spec in LEGACY_INTERNAL:
+        rules.append({**spec, "kind": "satisfies", "scope": "2024-2025",
+                      "inferred": True, "raw": spec["reason"]})
 
     # Refinements name the official rule they extend, so that rule must exist.
     official = {"+".join(r["from"]) + "|" + r["title"] for r in rules if not r.get("inferred")}

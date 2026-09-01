@@ -1,5 +1,5 @@
 import { creditsOf, equivalencies, getCourse, isCurrentCourse, levelOf, normalizeCode, titleSimilarity } from "./catalog";
-import { isWaived, type CourseStatus, type EquivalencyRule, type TakenCourse } from "./types";
+import { isWaived, type CourseStatus, type EquivalencyRule, type ProgramId, type TakenCourse } from "./types";
 
 export interface NormalizeOptions {
   /**
@@ -12,6 +12,12 @@ export interface NormalizeOptions {
   useInferred?: boolean;
   /** ruleKey -> index into that rule's `grants`, when a rule offers a choice. */
   choices?: Record<string, number>;
+  /**
+   * Which program is being audited. Rules are scoped to one: the equivalency
+   * document's old-to-new mappings for 2026-2027, and the within-catalog
+   * special-topics mappings for 2024-2025.
+   */
+  program?: ProgramId;
 }
 
 /**
@@ -53,19 +59,22 @@ export function ruleKey(rule: EquivalencyRule): string {
   return `${rule.from.join("+")}|${rule.title}`;
 }
 
-let sameCodeCounts: Map<string, number> | null = null;
-function sameCodeRuleCount(code: string): number {
-  if (!sameCodeCounts) {
-    sameCodeCounts = new Map();
-    for (const r of equivalencies.rules) {
-      for (const c of r.from) sameCodeCounts.set(c, (sameCodeCounts.get(c) ?? 0) + 1);
-    }
+function countByCode(rules: EquivalencyRule[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const r of rules) {
+    for (const c of r.from) counts.set(c, (counts.get(c) ?? 0) + 1);
   }
-  return sameCodeCounts.get(code) ?? 0;
+  return counts;
+}
+
+let allCodeCounts: Map<string, number> | null = null;
+function sameCodeRuleCount(code: string): number {
+  allCodeCounts ??= countByCode(equivalencies.rules);
+  return allCodeCounts.get(code) ?? 0;
 }
 
 export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {}): NormalizeResult {
-  const { useInferred = true, choices = {}, applyEquivalencies = true } = opts;
+  const { useInferred = true, choices = {}, applyEquivalencies = true, program = "2026-2027" } = opts;
 
   const holdings: Holding[] = taken.map((t, i) => {
     const code = normalizeCode(t.code);
@@ -97,8 +106,13 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
   const claimed = new Set<number>(holdings.filter((h) => h.via === "direct").map((h) => h.id));
 
   const allRules = applyEquivalencies
-    ? equivalencies.rules.filter((r) => useInferred || !r.inferred)
+    ? equivalencies.rules.filter(
+        (r) => (r.scope ?? "2026-2027") === program && (useInferred || !r.inferred),
+      )
     : [];
+  // Whether a code is ambiguous depends on the rules actually in play, so a
+  // rule added for one program cannot start gating matches in the other.
+  const activeCounts = countByCode(allRules);
   // A refinement extends an official rule's outcome rather than claiming a
   // course of its own, so it is applied after the main pass.
   const rules = allRules.filter((r) => !r.refines);
@@ -121,7 +135,7 @@ export function normalizeRecord(taken: TakenCourse[], opts: NormalizeOptions = {
       const best = candidates[0];
       // Where one legacy code covers several different courses (ALT 4500), a
       // titled row that clearly describes a different one must not be captured.
-      if (sameCodeRuleCount(code) > 1 && titleSimilarity(best.title, rule.title) < 0.34) {
+      if ((activeCounts.get(code) ?? 0) > 1 && titleSimilarity(best.title, rule.title) < 0.34) {
         picked.length = 0;
         break;
       }

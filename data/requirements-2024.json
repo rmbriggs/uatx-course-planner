@@ -442,7 +442,7 @@
         "Literature and Creative Writing"
       ],
       "page": 32,
-      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and the listings differ. This is the one printed under Literature and Creative Writing."
+      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and for this Center the listings differ. This is the one printed under Literature and Creative Writing. Both routes come to 54 credits and both require ALT 1010-1060, the six-part survey from Ancient Rome to the Great War; beyond that they share nothing, so the route you follow is the one for the concentration you elect."
     },
     {
       "id": "center-arts-and-letters-ethics-and-politics",
@@ -636,7 +636,7 @@
         "Ethics and Politics"
       ],
       "page": 35,
-      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and the listings differ. This is the one printed under Ethics and Politics."
+      "note": "The catalog prints this Center's Foundations and Core under each Area of Concentration, and for this Center the listings differ. This is the one printed under Ethics and Politics. Both routes come to 54 credits and both require ALT 1010-1060, the six-part survey from Ancient Rome to the Great War; beyond that they share nothing, so the route you follow is the one for the concentration you elect."
     },
     {
       "id": "center-economics-politics-and-history",
@@ -914,191 +914,9 @@
       "name": "Literature and Creative Writing",
       "center": "Arts and Letters",
       "kind": "concentration",
-      "credits": 81,
+      "credits": 27,
       "prerequisites": [],
       "groups": [
-        {
-          "id": "lcw-foundations",
-          "name": "Center Foundations (18 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1010"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1020"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1030"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1040"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1050"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1160"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1180"
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "id": "lcw-core",
-          "name": "Center Core (36 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1060"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1200"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1220"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1240"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1260"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1300"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1400"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1500"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1600"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1800"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1900"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1950"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3300"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3330"
-                ]
-              ]
-            }
-          ]
-        },
         {
           "id": "lcw-writing-studio",
           "name": "Writing Studio (at least 6 credits)",
@@ -1162,198 +980,18 @@
           "note": "Writing Studio plus these come to 27 concentration credits."
         }
       ],
-      "page": 32
+      "page": 32,
+      "centerId": "center-arts-and-letters-literature-and-creative-writing",
+      "declaredWithCenter": 81
     },
     {
       "id": "ethics-politics",
       "name": "Ethics and Politics",
       "center": "Arts and Letters",
       "kind": "concentration",
-      "credits": 81,
+      "credits": 27.0,
       "prerequisites": [],
       "groups": [
-        {
-          "id": "ep-foundations",
-          "name": "Center Foundations (18 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1010"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1020"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1100"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1120"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3000"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3040"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 1500"
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "id": "ep-core",
-          "name": "Center Core (36 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1030"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1040"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1050"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 1060"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2000"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2020"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2100"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2200"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2300"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2600"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 2700"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3220"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3340"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "ALT 3360"
-                ]
-              ]
-            }
-          ]
-        },
         {
           "id": "ep-concentration",
           "name": "Concentration (27 credits)",
@@ -1466,153 +1104,18 @@
           ]
         }
       ],
-      "page": 35
+      "page": 35,
+      "centerId": "center-arts-and-letters-ethics-and-politics",
+      "declaredWithCenter": 81
     },
     {
       "id": "econ-politics-history",
       "name": "Economics, Politics, and History",
       "center": "Economics, Politics, and History",
       "kind": "concentration",
-      "credits": 81,
+      "credits": 27.0,
       "prerequisites": [],
       "groups": [
-        {
-          "id": "eph-foundations-core",
-          "name": "Center Foundations - required",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 1100"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3040"
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "id": "eph-foundations-choice",
-          "name": "Center Foundations - choose 3 of 5 (9 credits)",
-          "type": "pick",
-          "choose": 3,
-          "pool": [
-            "EPH 1300",
-            "EPH 1400",
-            "EPH 2000",
-            "EPH 2200",
-            "EPH 3010"
-          ]
-        },
-        {
-          "id": "eph-core",
-          "name": "Center Core (37.5 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 1500"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 2010"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 2300"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 2400"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3020"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3030"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3050"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3060"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3160"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "EPH 3230"
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "id": "eph-core-remainder",
-          "name": "Center Core - the two not taken in Foundations",
-          "type": "pick",
-          "choose": 2,
-          "pool": [
-            "EPH 1300",
-            "EPH 1400",
-            "EPH 2000",
-            "EPH 2200",
-            "EPH 3010"
-          ],
-          "note": "Whichever of the five are not used for Foundations must be taken here."
-        },
         {
           "id": "eph-conc-methods",
           "name": "Concentration - choose 1",
@@ -1648,126 +1151,18 @@
           ]
         }
       ],
-      "page": 37
+      "page": 37,
+      "centerId": "center-economics-politics-and-history",
+      "declaredWithCenter": 81
     },
     {
       "id": "computing-data-science",
       "name": "Computing and Data Science",
       "center": "Science, Technology, Engineering, and Mathematics",
       "kind": "concentration",
-      "credits": 81,
+      "credits": 27.0,
       "prerequisites": [],
       "groups": [
-        {
-          "id": "cds-foundations",
-          "name": "Center Foundations (18 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 1001"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 1002"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 1004"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 1005"
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "id": "cds-core",
-          "name": "Center Core (36 credits)",
-          "type": "slots",
-          "slots": [
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2101"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2102"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2103"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2104"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2300"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2301"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2501"
-                ]
-              ]
-            },
-            {
-              "label": null,
-              "options": [
-                [
-                  "STM 2502"
-                ]
-              ]
-            }
-          ]
-        },
         {
           "id": "cds-concentration",
           "name": "Concentration - required (18 credits)",
@@ -1822,7 +1217,9 @@
           "note": "The catalog lists 18 credits of required concentration courses against a 27-credit concentration, so 9 credits come from the courses it lists as electives. Confirm with your advisor."
         }
       ],
-      "page": 39
+      "page": 39,
+      "centerId": "center-science-technology-engineering-and-mathematics",
+      "declaredWithCenter": 81
     }
   ],
   "electives": {

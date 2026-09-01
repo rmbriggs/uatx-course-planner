@@ -66,6 +66,30 @@ describe("equivalency mapping", () => {
     expect(upper.completed).toBe(1);
   });
 
+  it("credits the course the student took, not the one it stands in for", () => {
+    // ALT 4500 Political Theology is 1.5 credits; AMCV 360, the course it now
+    // stands in for, is 3. The transcript is what the student earned.
+    const a = auditDegree([done("ALT 4500", "Political Theology", 1.5)]);
+    const amcv = a.concentrations.find((c) => c.id === "american-civilization")!;
+    expect(amcv.creditsEarned).toBe(1.5);
+    expect(amcv.groups.find((g) => g.id === "amcv-upper")!.completed).toBe(1);
+  });
+
+  it("counts one course once when it fills two requirements", () => {
+    // STM 2102 is 4.5 credits and stands in for MATH 230 and MATH 231, which
+    // are 3 credits each. Charging the requirements would invent 1.5 credits.
+    const a = auditDegree([done("STM 2102", undefined, 4.5)]);
+    const maths = a.concentrations.find((c) => c.id === "mathematics")!;
+    expect(maths.creditsEarned).toBe(4.5);
+  });
+
+  it("never lets a concentration claim more than the record shows", () => {
+    const taken = [done("ALT 4500", "Political Theology", 1.5), done("STM 2102", undefined, 4.5)];
+    const a = auditDegree(taken);
+    const recordTotal = taken.reduce((n, t) => n + (t.credits ?? 0), 0);
+    for (const c of a.concentrations) expect(c.creditsEarned).toBeLessThanOrEqual(recordTotal);
+  });
+
   it("leaves a special topic alone when no named course matches it", () => {
     // Data-based Weather Forecasting has no counterpart in the new catalog, so
     // the Special Topic placeholder is the right answer and must stay.
@@ -477,3 +501,69 @@ describe("2024-2025 Centers", () => {
     expect(auditDegree([], { program: "2026-2027" }).centers).toEqual([]);
   });
 });
+
+describe("old-catalog special topics", () => {
+  const oldProg = (taken: TakenCourse[], useInferred = true) =>
+    auditDegree(taken, { program: "2024-2025", useInferred });
+
+  it("counts a programming special topic as the course it delivered", () => {
+    // STM 3910C was Programming I - the introduction plus the first half of
+    // Data Structures - and STM 3912B was Programming II.
+    const a = oldProg([done("STM 3910C"), done("STM 3912B")]);
+    const stem = a.centers.find((b) => b.name.startsWith("Science"))!;
+    const core = stem.groups.find((g) => g.name.startsWith("Center Core"))!;
+    const filled = core.slots!.filter((s) => s.filled).flatMap((s) => s.filledBy.map((f) => f.requirement));
+    expect(filled).toContain("STM 2301");
+
+    const cds = a.concentrations.find((c) => c.id === "computing-data-science")!;
+    const required = cds.groups.find((g) => g.id === "cds-concentration")!;
+    expect(required.slots!.filter((s) => s.filled).flatMap((s) => s.filledBy.map((f) => f.requirement))).toContain(
+      "STM 2302",
+    );
+  });
+
+  it("credits the 3 the student took, not Programming I's 4.5", () => {
+    const a = oldProg([done("STM 3910C", undefined, 3)]);
+    const stem = a.centers.find((b) => b.name.startsWith("Science"))!;
+    expect(stem.creditsEarned).toBe(3);
+  });
+
+  it("leaves it as a bare special topic when proposals are off", () => {
+    const a = oldProg([done("STM 3910C"), done("STM 3912B")], false);
+    const stem = a.centers.find((b) => b.name.startsWith("Science"))!;
+    expect(stem.creditsEarned).toBe(0);
+    expect(a.normalization.holdings[0].satisfies).toEqual(["STM 3910C"]);
+  });
+
+  it("does not disturb the 2026-2027 mapping for the same course", () => {
+    // The new-catalog audit must still send it to CSAI 110, not STM 2301.
+    const h = normalizeRecord([done("STM 3910C")], { program: "2026-2027" }).holdings[0];
+    expect(h.satisfies).toEqual(["CSAI 110"]);
+  });
+
+  it("keeps old-to-new equivalencies out of the old program", () => {
+    const h = normalizeRecord([done("ALT 1010")], { program: "2024-2025" }).holdings[0];
+    expect(h.satisfies).toEqual(["ALT 1010"]);
+  });
+});
+
+describe("what is left to do", () => {
+  it("counts credit-based groups in credits, not in courses", () => {
+    // Literature and Creative Writing is entirely credit-based: Writing Studio,
+    // pre-1800 credits, and further credits from the concentration lists.
+    const lcw = auditDegree([], { program: "2024-2025" }).concentrations.find(
+      (c) => c.id === "lit-creative-writing",
+    )!;
+    expect(lcw.remainingCourseCount).toBe(0);
+    expect(lcw.remainingCredits).toBe(27);
+  });
+
+  it("splits a mixed block into its courses and its credits", () => {
+    // Computing and Data Science asks for 4 named courses plus 9 free credits.
+    const cds = auditDegree([], { program: "2024-2025" }).concentrations.find(
+      (c) => c.id === "computing-data-science",
+    )!;
+    expect(cds.remainingCourseCount).toBe(4);
+    expect(cds.remainingCredits).toBe(9);
+  });
+})

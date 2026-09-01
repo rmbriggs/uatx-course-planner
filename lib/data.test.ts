@@ -137,14 +137,28 @@ describe("both programs", () => {
   });
 
   it("measures the 2024-2025 program in its own course codes", () => {
-    // No equivalency translation: STM 2102 is a Center Core course as it stands.
+    // No old-to-new translation: STM 2102 is a Center Core course as it stands.
     const a = auditDegree([{ code: "STM 2102", status: "completed" }], { program: "2024-2025" });
-    const cds = a.concentrations.find((c) => c.id === "computing-data-science")!;
-    expect(cds.groups.find((g) => g.id === "cds-core")!.completed).toBe(1);
+    const stem = a.centers.find((b) => b.name.startsWith("Science"))!;
+    expect(stem.groups.find((g) => g.name.startsWith("Center Core"))!.completed).toBe(1);
     expect(a.normalization.holdings[0].satisfies).toEqual(["STM 2102"]);
   });
 
-  it("makes every 2024-2025 concentration 81 credits", () => {
-    for (const c of getRequirements("2024-2025").concentrations) expect(c.credits, c.name).toBe(81);
+  it("splits the catalog's 81 credits into a 54-credit Center and a 27-credit concentration", () => {
+    // The Center's Foundations and Core are required on their own, so they are
+    // scored on their own; the concentration carries only its own work.
+    const req = getRequirements("2024-2025");
+    for (const c of req.concentrations) {
+      const centre = req.centers!.find((b) => b.id === c.centerId)!;
+      expect(c.credits, c.name).toBe(27);
+      expect(centre.credits + c.credits, c.name).toBe(c.declaredWithCenter);
+    }
+  });
+
+  it("keeps Center requirements off the concentration that sits in it", () => {
+    const req = getRequirements("2024-2025");
+    for (const c of req.concentrations) {
+      expect(c.groups.some((g) => g.name.startsWith("Center ")), c.name).toBe(false);
+    }
   });
 });

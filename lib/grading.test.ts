@@ -107,7 +107,7 @@ describe("failed work in the audit", () => {
       .find((g) => g.id === "if-humanities")!
       .slots!.find((s) => s.label === "Ancient Rome")!;
     expect(rome.filledBy).toEqual([
-      { requirement: "HIST 115", source: "ALT 1010", via: "equivalency", status: "completed" },
+      { requirement: "HIST 115", source: "ALT 1010", holdingId: 0, via: "equivalency", status: "completed" },
     ]);
   });
 });

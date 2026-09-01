@@ -93,11 +93,7 @@ export default function Page() {
         <span className="mono">
           {fmt(c.creditsEarned)}/{c.creditsRequired} cr
         </span>
-        <span>
-          {c.satisfied
-            ? "Complete"
-            : `${c.remainingCourseCount} ${c.remainingCourseCount === 1 ? "course" : "courses"} left`}
-        </span>
+        <span>{c.satisfied ? "Complete" : remainingLabel(c)}</span>
       </div>
     </button>
   );
@@ -125,15 +121,21 @@ export default function Page() {
         <span className="mono">
           {fmt(b.creditsEarned)}/{b.creditsRequired} cr
         </span>
-        <span>
-          {b.satisfied
-            ? "Complete"
-            : `${b.remainingCourseCount} ${b.remainingCourseCount === 1 ? "course" : "courses"} left`}
-        </span>
+        <span>{b.satisfied ? "Complete" : remainingLabel(b)}</span>
       </div>
       {b.note && <span className="conc-variant">as printed under {b.publishedUnder[0]}</span>}
     </button>
   );
+
+  // A block can ask for courses, for credits, or for both, and saying "courses"
+  // for a credit total is simply wrong.
+  const remainingLabel = (b: { remainingCourseCount: number; remainingCredits: number }) => {
+    const parts: string[] = [];
+    if (b.remainingCourseCount > 0)
+      parts.push(`${b.remainingCourseCount} ${b.remainingCourseCount === 1 ? "course" : "courses"}`);
+    if (b.remainingCredits > 0) parts.push(`${fmt(b.remainingCredits)} credits`);
+    return parts.length ? `${parts.join(" + ")} left` : "Nothing left";
+  };
 
   const pillarName = (id: string) => audit.pillars.find((p) => p.id === id)?.name ?? id;
   const pace = pacing(audit, state.termsRemaining);
@@ -222,7 +224,6 @@ export default function Page() {
                   : " — within the normal 15-credit load."}
               </p>
 
-              {!isLegacyProgram && (
               <label className="switch" style={{ marginTop: "0.9rem" }}>
                 <input
                   type="checkbox"
@@ -231,7 +232,6 @@ export default function Page() {
                 />
                 Use proposed equivalencies
               </label>
-              )}
               {!isLegacyProgram ? (
                 <p style={{ margin: "0.3rem 0 0", fontSize: "0.78rem", color: "var(--slate-light)" }}>
                   The equivalency document has no table for INF courses, so these are read from the two catalogs&rsquo;
@@ -239,9 +239,11 @@ export default function Page() {
                   {inferredCount > 0 ? ` ${inferredCount} of your courses rely on one.` : ""}
                 </p>
               ) : (
-                <p style={{ marginTop: "0.9rem", fontSize: "0.78rem", color: "var(--slate-light)" }}>
-                  The 2024-2025 requirements are written in the course codes you took, so no equivalencies are applied
-                  here.
+                <p style={{ margin: "0.3rem 0 0", fontSize: "0.78rem", color: "var(--slate-light)" }}>
+                  The 2024-2025 requirements are written in the course codes you took, so the old-to-new equivalencies
+                  are not applied. The proposals here are the ones that hold inside the old catalog, between a
+                  special-topics number and the course whose content it delivered.
+                  {inferredCount > 0 ? ` ${inferredCount} of your courses rely on one.` : ""}
                 </p>
               )}
             </div>
@@ -281,10 +283,16 @@ export default function Page() {
                   <h2>{isLegacyProgram ? "Concentrations (optional)" : "Where you stand"}</h2>
                   <span className="aside">
                     {isLegacyProgram
-                      ? "Foundations, Core and Concentration - 81 credits within one Center"
+                      ? "27 credits each, on top of the Center they sit in"
                       : "36 credits each · sorted by how close you are"}
                   </span>
                 </div>
+                {isLegacyProgram && (
+                  <p className="note" style={{ marginBottom: "0.7rem" }}>
+                    These are the concentration&rsquo;s own courses only. The Foundations and Core of the Center each
+                    one sits in are counted above, and together they come to the 81 credits the catalog declares.
+                  </p>
+                )}
                 {isLegacyProgram ? (
                   byCenter.map(([center, list]) => (
                     <div key={center} className="center-block">

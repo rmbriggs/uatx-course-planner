@@ -24,6 +24,8 @@ export interface SlotFillSource {
   requirement: string;
   /** The course on the student's record that provided it. */
   source: string;
+  /** Which holding it was, so one course filling two slots is charged once. */
+  holdingId: number;
   via: Holding["via"];
   status: CourseStatus;
 }
@@ -68,6 +70,8 @@ export interface ConcentrationResult {
   id: string;
   name: string;
   center: string;
+  /** The Center whose Foundations and Core this sits inside, scored separately. */
+  centerId?: string;
   kind: Concentration["kind"];
   /** What the concentration still asks for, after any waivers came off it. */
   creditsRequired: number;
@@ -81,7 +85,10 @@ export interface ConcentrationResult {
   prerequisites: GroupResult[];
   /** Distinct courses that would close a still-open requirement. */
   remainingOptions: string[];
+  /** Courses still to choose, from the groups counted in courses. */
   remainingCourseCount: number;
+  /** Credits still to earn, from the groups counted in credits. */
+  remainingCredits: number;
 }
 
 /** A Center's Foundations and Core, scored on their own. */
@@ -98,6 +105,7 @@ export interface CenterResult {
   satisfied: boolean;
   groups: GroupResult[];
   remainingCourseCount: number;
+  remainingCredits: number;
 }
 
 export interface PillarResult {
@@ -292,6 +300,7 @@ function fillSlots(slots: Slot[], available: Holding[], choose?: number, consume
         filledBy: picks.map((p) => ({
           requirement: p.code,
           source: p.holding.code,
+          holdingId: p.holding.id,
           via: p.holding.via,
           status: p.holding.status,
         })),
@@ -407,60 +416,83 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
 /**
  * Credits a set of already-evaluated groups is worth, against what it declares.
  *
- * Credits come from the requirement rather than from the student's course,
- * because a block like a concentration is defined as a list of courses with
- * catalog values. A waiver contributes nothing and takes its requirement off
- * the declared total, so the fraction stays reachable.
+ * Credits are the student's own, never the requirement's. A 1.5-credit special
+ * topic that stands in for a 3-credit course is worth 1.5, and one course
+ * filling two requirements is counted once - the same rule the pillars use, so
+ * a concentration can never claim credit the transcript does not show.
+ *
+ * A waiver is the exception on the other side: it earns nothing, and it takes
+ * the requirement's own value off the declared total, so the fraction stays
+ * reachable.
  */
 function scoreGroups(
   groups: GroupResult[],
   declaredCredits: number,
-  codes: { completedCodes: Set<string>; waivedCodes: Set<string> },
+  ctx: {
+    byId: Map<number, Holding>;
+    coverage: Map<string, Holding[]>;
+    waivedCodes: Set<string>;
+  },
 ) {
   let earned = 0;
   let pending = 0;
   let waivedCredits = 0;
+  // One course can satisfy requirements in more than one group; its credits
+  // still only exist once.
+  const spent = new Set<number>();
+
+  const charge = (h: Holding | undefined) => {
+    if (!h || spent.has(h.id)) return;
+    spent.add(h.id);
+    if (earnsCredit(h.status)) earned += h.credits;
+    else if (isPending(h.status)) pending += h.credits;
+  };
+
+  // Real coursework before unfinished work, so a code covered by both is
+  // charged as earned rather than as pending.
+  const holdingFor = (code: string) => {
+    const all = ctx.coverage.get(code) ?? [];
+    return all.find((h) => earnsCredit(h.status)) ?? all.find((h) => isPending(h.status));
+  };
+
   for (const g of groups) {
     if (g.slots) {
       for (const s of g.slots) {
         if (!s.filled) continue;
-        let value = 0;
         for (const f of s.filledBy) {
           if (isWaived(f.status)) waivedCredits += creditsOf(f.requirement);
-          else value += creditsOf(f.requirement);
+          else charge(ctx.byId.get(f.holdingId));
         }
-        if (s.pendingOnly) pending += value;
-        else earned += value;
       }
     } else if (g.unit === "credits") {
+      // Already counted from the holdings themselves.
       earned += g.completed;
       pending += g.inProgress;
     } else {
       for (const code of (g.held ?? []).slice(0, g.required)) {
-        if (codes.completedCodes.has(code)) earned += creditsOf(code);
-        else if (codes.waivedCodes.has(code)) waivedCredits += creditsOf(code);
-        else pending += creditsOf(code);
+        if (ctx.waivedCodes.has(code)) waivedCredits += creditsOf(code);
+        else charge(holdingFor(code));
       }
     }
   }
+
   const creditsRequired = Math.max(0, declaredCredits - waivedCredits);
+  const cappedEarned = Math.min(earned, creditsRequired);
   return {
     waivedCredits,
     creditsRequired,
-    earned: Math.min(earned, creditsRequired),
-    pending: Math.min(pending, Math.max(0, creditsRequired - Math.min(earned, creditsRequired))),
+    earned: cappedEarned,
+    pending: Math.min(pending, Math.max(0, creditsRequired - cappedEarned)),
   };
 }
 
 export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): AuditResult {
   const program: ProgramId = opts.program ?? "2026-2027";
   const req = getRequirements(program);
-  // The 2024-2025 requirements are written in old course codes, so a course
-  // there stands for itself rather than for its 2026-2027 counterpart.
-  const normalization = normalizeRecord(taken, {
-    ...opts,
-    applyEquivalencies: opts.applyEquivalencies ?? program === "2026-2027",
-  });
+  // Rules are scoped by program: the equivalency document's old-to-new mappings
+  // for 2026-2027, and the within-catalog special-topics mappings for
+  // 2024-2025, whose requirements are written in old codes already.
+  const normalization = normalizeRecord(taken, { ...opts, program });
   const holdings = normalization.holdings;
 
   // Intellectual Foundations and Polaris claim coursework before the major,
@@ -552,6 +584,11 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   // whole record rather than against what the pillars already claimed.
   const completedCodes = coveredCodes(holdings, (h) => earnsCredit(h.status));
   const waivedCodes = coveredCodes(holdings, (h) => isWaived(h.status));
+  const scoreCtx = {
+    byId: new Map(holdings.map((h) => [h.id, h])),
+    coverage: coverage(holdings),
+    waivedCodes,
+  };
   const concentrations: ConcentrationResult[] = req.concentrations.map((c) => {
     const groups = c.groups.map((g) => evaluateGroup(g, holdings));
     const prerequisites = c.prerequisites.map((pre, i) => {
@@ -562,19 +599,19 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       );
     });
 
-    const { earned, pending, waivedCredits, creditsRequired } = scoreGroups(groups, c.credits, {
-      completedCodes,
-      waivedCodes,
-    });
+    const { earned, pending, waivedCredits, creditsRequired } = scoreGroups(groups, c.credits, scoreCtx);
 
     const openGroups = groups.filter((g) => !g.satisfied);
     const remainingOptions = [...new Set(openGroups.flatMap((g) => g.options ?? []))];
-    const remainingCourseCount = openGroups.reduce((n, g) => n + Math.max(0, g.required - g.completed), 0);
+    const shortfall = (g: GroupResult) => Math.max(0, g.required - g.completed);
+    const remainingCourseCount = openGroups.filter((g) => g.unit === "courses").reduce((n, g) => n + shortfall(g), 0);
+    const remainingCredits = openGroups.filter((g) => g.unit === "credits").reduce((n, g) => n + shortfall(g), 0);
 
     return {
       id: c.id,
       name: c.name,
       center: c.center,
+      centerId: c.centerId,
       kind: c.kind,
       creditsRequired,
       creditsWaived: waivedCredits,
@@ -586,6 +623,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       prerequisites,
       remainingOptions,
       remainingCourseCount,
+      remainingCredits,
     };
   });
 
@@ -604,7 +642,7 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
   // inside the Center is optional, so the Center is scored on its own.
   const centers: CenterResult[] = (req.centers ?? []).map((b) => {
     const groups = b.groups.map((g) => evaluateGroup(g, holdings));
-    const scored = scoreGroups(groups, b.credits, { completedCodes, waivedCodes });
+    const scored = scoreGroups(groups, b.credits, scoreCtx);
     const openGroups = groups.filter((g) => !g.satisfied);
     return {
       id: b.id,
@@ -618,7 +656,12 @@ export function auditDegree(taken: TakenCourse[], opts: AuditOptions = {}): Audi
       percent: scored.creditsRequired > 0 ? Math.round((scored.earned / scored.creditsRequired) * 100) : 100,
       satisfied: groups.every((g) => g.satisfied),
       groups,
-      remainingCourseCount: openGroups.reduce((n, g) => n + Math.max(0, g.required - g.completed), 0),
+      remainingCourseCount: openGroups
+        .filter((g) => g.unit === "courses")
+        .reduce((n, g) => n + Math.max(0, g.required - g.completed), 0),
+      remainingCredits: openGroups
+        .filter((g) => g.unit === "credits")
+        .reduce((n, g) => n + Math.max(0, g.required - g.completed), 0),
     };
   });
 
@@ -741,6 +784,20 @@ export function suggestNextCourses(audit: AuditResult, concentrationIds: string[
       entry.required = true; // everyone must finish Foundations
       entry.forWhat.unshift(`Intellectual Foundations: ${g.name}`);
       score.set(code, entry);
+    }
+  }
+  // A Center's Foundations and Core are required too; the concentration inside
+  // it is the optional part.
+  for (const b of audit.centers) {
+    for (const g of b.groups) {
+      if (g.satisfied) continue;
+      for (const code of g.options ?? []) {
+        const entry = score.get(code) ?? { code, count: 0, forWhat: [], required: false };
+        entry.count++;
+        entry.required = true;
+        entry.forWhat.unshift(`${b.name}: ${g.name}`);
+        score.set(code, entry);
+      }
     }
   }
 
