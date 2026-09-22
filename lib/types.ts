@@ -269,3 +269,51 @@ export interface ElectiveCredit {
   status: CourseStatus;
   mapped: boolean;
 }
+
+/** A term the app has an offerings list for. */
+export interface Term {
+  id: string;
+  name: string;
+  /** Chronological position; 1 is the term nearest to now. */
+  order: number;
+}
+
+/** One course as a term actually offers it. */
+export interface Offering {
+  term: string;
+  /** The code as printed, including a special topic's letter. */
+  code: string;
+  /**
+   * The catalog code this delivers, which is what requirements are written
+   * in. Null where the catalog does not list the course at all: it still
+   * counts toward the term's credits but fills no named requirement.
+   */
+  catalogCode: string | null;
+  title: string;
+  credits: number;
+  /** Empty where the term lists the faculty as TBD. */
+  faculty: string[];
+  department: string;
+  /** A restriction or eligibility note printed with the description. */
+  note: string | null;
+  /**
+   * Meeting times and seats, which the course descriptions do not carry.
+   * Always empty from that source; a Populi section export would fill it.
+   */
+  sections: unknown[];
+}
+
+export interface OfferingsFile {
+  source: string;
+  terms: Term[];
+  offerings: Offering[];
+}
+
+/**
+ * How firmly a course is in next term's plan. Definitely is the plan and is
+ * projected forward; maybe and considering are shown but never displace it.
+ */
+export type PlanTier = "definitely" | "maybe" | "considering";
+
+/** Planned courses, keyed "termId:CODE" so one course can sit in two terms. */
+export type Plan = Record<string, PlanTier>;
