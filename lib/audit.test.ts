@@ -727,3 +727,39 @@ describe("what is left to do", () => {
     expect(cds.remainingCredits).toBe(9);
   });
 })
+
+describe("suggesting only what is offered", () => {
+  const record: TakenCourse[] = [{ code: "PHIL 120", credits: 3, status: "completed" }];
+
+  it("suggests across the catalog when given no filter", () => {
+    expect(suggestNextCourses(auditDegree(record), {}, 50).length).toBeGreaterThan(0);
+  });
+
+  it("keeps only offered courses when given a filter", () => {
+    const offered = new Set(["PHIL 220", "MATH 210"]);
+    const out = suggestNextCourses(auditDegree(record), {}, 50, offered);
+    expect(out.length).toBeGreaterThan(0);
+    for (const s of out) expect(offered.has(s.code), s.code).toBe(true);
+  });
+
+  it("does not reorder what survives the filter", () => {
+    const audit = auditDegree(record);
+    const all = suggestNextCourses(audit, {}, 500);
+    const offered = new Set(all.slice(0, 20).map((s) => s.code));
+    const filtered = suggestNextCourses(audit, {}, 500, offered);
+    expect(filtered.map((s) => s.code)).toEqual(all.filter((s) => offered.has(s.code)).map((s) => s.code));
+  });
+
+  it("fills the limit from what is offered rather than truncating first", () => {
+    // Filtering after ranking but before the limit means a short offered list
+    // still returns as many as it can, not just those inside the top 12.
+    const audit = auditDegree(record);
+    const all = suggestNextCourses(audit, {}, 500);
+    const deep = new Set(all.slice(-3).map((s) => s.code));
+    expect(suggestNextCourses(audit, {}, 12, deep)).toHaveLength(3);
+  });
+
+  it("returns nothing when nothing offered helps", () => {
+    expect(suggestNextCourses(auditDegree(record), {}, 50, new Set(["ZZZZ 999"]))).toEqual([]);
+  });
+});
