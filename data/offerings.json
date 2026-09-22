@@ -1,0 +1,848 @@
+{
+  "source": "Winter and D-Term 26/27 Course Descriptions, retrieved 2026-09-21",
+  "terms": [
+    {
+      "id": "winter-2627",
+      "name": "Winter 26/27",
+      "order": 1
+    },
+    {
+      "id": "dterm-2627",
+      "name": "D-Term 26/27",
+      "order": 2
+    }
+  ],
+  "offerings": [
+    {
+      "term": "winter-2627",
+      "code": "AMCV 200",
+      "catalogCode": "AMCV 200",
+      "title": "The American Founding",
+      "credits": 3.0,
+      "faculty": [
+        "Wolf",
+        "Reznick",
+        "Hoffpauir"
+      ],
+      "department": "American Civilization",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "AMCV 345",
+      "catalogCode": "AMCV 345",
+      "title": "The Legacy of Slavery",
+      "credits": 3.0,
+      "faculty": [
+        "Hughes"
+      ],
+      "department": "American Civilization",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "AMCV 365",
+      "catalogCode": "AMCV 365",
+      "title": "Philosophers of Political Economy",
+      "credits": 3.0,
+      "faculty": [
+        "Scheall"
+      ],
+      "department": "American Civilization",
+      "note": "Not available to students who have taken INF 1320 Intellectual Foundations of Economics with Professor Scheall.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "AMCV 415",
+      "catalogCode": "AMCV 415",
+      "title": "Great Events of American History: The Vietnam War",
+      "credits": 3.0,
+      "faculty": [
+        "Scheall"
+      ],
+      "department": "American Civilization",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "BUSI 285A",
+      "catalogCode": "BUSI 285",
+      "title": "Special topic: Business Law Foundations",
+      "credits": 3.0,
+      "faculty": [],
+      "department": "Business Track",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "CSAI 210",
+      "catalogCode": "CSAI 210",
+      "title": "Data Structures",
+      "credits": 3.0,
+      "faculty": [
+        "Scott"
+      ],
+      "department": "Business Track",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "CSAI 380",
+      "catalogCode": "CSAI 380",
+      "title": "Transformers and Diffusion Models",
+      "credits": 3.0,
+      "faculty": [
+        "Staley"
+      ],
+      "department": "Business Track",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 102",
+      "catalogCode": "ECON 102",
+      "title": "Applied Issues and Perspectives in Economics II",
+      "credits": 3.0,
+      "faculty": [
+        "Cooper",
+        "Pretnar",
+        "TBD"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 112",
+      "catalogCode": "ECON 112",
+      "title": "Accelerated Applied Economics II",
+      "credits": 3.0,
+      "faculty": [
+        "Pretnar"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 203",
+      "catalogCode": "ECON 203",
+      "title": "Microeconomic Theory II",
+      "credits": 3.0,
+      "faculty": [
+        "Bastos"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 300",
+      "catalogCode": "ECON 300",
+      "title": "Public Choice",
+      "credits": 3.0,
+      "faculty": [
+        "Kling"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 301",
+      "catalogCode": "ECON 301",
+      "title": "Topics in Microeconomics: AI and the Economy",
+      "credits": 3.0,
+      "faculty": [
+        "Kling"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 361",
+      "catalogCode": "ECON 361",
+      "title": "Entrepreneurship and Entrepreneurial Finance",
+      "credits": 3.0,
+      "faculty": [
+        "Wright"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 362",
+      "catalogCode": "ECON 362",
+      "title": "Household Finance: Money and Your Life",
+      "credits": 3.0,
+      "faculty": [
+        "Puelz",
+        "R."
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 380A",
+      "catalogCode": "ECON 380",
+      "title": "Special Topic: Human Progress: How the Modern World Was Made",
+      "credits": 1.5,
+      "faculty": [
+        "Tupy"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 421",
+      "catalogCode": "ECON 421",
+      "title": "Causality",
+      "credits": 3.0,
+      "faculty": [
+        "Bastos"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "EDUC 280A",
+      "catalogCode": "EDUC 280",
+      "title": "Special topic: Pedagogy Survey",
+      "credits": 1.5,
+      "faculty": [
+        "Valdez"
+      ],
+      "department": "Education",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 110",
+      "catalogCode": "HIST 110",
+      "title": "Ancient Greece",
+      "credits": 3.0,
+      "faculty": [
+        "Bay",
+        "Levy",
+        "Allison",
+        "Priou"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 111",
+      "catalogCode": "HIST 111",
+      "title": "Ideological Experiments of the 20th Century",
+      "credits": 3.0,
+      "faculty": [
+        "Yudelman",
+        "Rotner"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 115",
+      "catalogCode": "HIST 115",
+      "title": "Ancient Rome",
+      "credits": 3.0,
+      "faculty": [
+        "Bove"
+      ],
+      "department": "History",
+      "note": "Required for the Concentration in History.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 355",
+      "catalogCode": "HIST 355",
+      "title": "Modern Judaism",
+      "credits": 3.0,
+      "faculty": [
+        "Kimche"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 375",
+      "catalogCode": "HIST 375",
+      "title": "The Changing Structure of Civilization",
+      "credits": 3.0,
+      "faculty": [
+        "Deadman"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 385A",
+      "catalogCode": "HIST 385",
+      "title": "Special Topic in History: Education",
+      "credits": 3.0,
+      "faculty": [
+        "Wright"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 385B",
+      "catalogCode": "HIST 385",
+      "title": "Special Topic in History: Journalism",
+      "credits": 3.0,
+      "faculty": [
+        "Wright"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LANG 319",
+      "catalogCode": "LANG 319",
+      "title": "Directed Readings in Ancient Greek",
+      "credits": 3.0,
+      "faculty": [
+        "Reinhardt"
+      ],
+      "department": "Language",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LANG 321",
+      "catalogCode": "LANG 321",
+      "title": "Latin II",
+      "credits": 3.0,
+      "faculty": [
+        "Bay"
+      ],
+      "department": "Language",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LANG 331",
+      "catalogCode": "LANG 331",
+      "title": "German II",
+      "credits": 3.0,
+      "faculty": [
+        "Lofton"
+      ],
+      "department": "Language",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LAWS 280A",
+      "catalogCode": "LAWS 280",
+      "title": "Special topic: Equality Jurisprudence",
+      "credits": 1.5,
+      "faculty": [
+        "Liu"
+      ],
+      "department": "Law",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LITR 210",
+      "catalogCode": "LITR 210",
+      "title": "Medieval Literature",
+      "credits": 3.0,
+      "faculty": [
+        "Katz"
+      ],
+      "department": "Literature",
+      "note": "Required for the Concentration in Literature.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LITR 225",
+      "catalogCode": "LITR 225",
+      "title": "Eighteenth-Century Literature",
+      "credits": 3.0,
+      "faculty": [
+        "Herlin"
+      ],
+      "department": "Literature",
+      "note": "Required for the Concentration in Literature. Not available to students who have taken ALT 1800 Romantic and Victorian Literature. ALT 1800 fulfills this requirement for the Concentration in Literature.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LITR 355",
+      "catalogCode": "LITR 355",
+      "title": "Early Modern Literature",
+      "credits": 3.0,
+      "faculty": [
+        "Wolfe"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LITR 415",
+      "catalogCode": "LITR 415",
+      "title": "The Novel: Dostoyevsky, Brothers Karamazov",
+      "credits": 3.0,
+      "faculty": [
+        "Fishman"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "LITR 480A",
+      "catalogCode": "LITR 480",
+      "title": "Special Topic In Literature: Acting Studio",
+      "credits": 1.5,
+      "faculty": [
+        "Hilboldt"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 101",
+      "catalogCode": "MATH 101",
+      "title": "Single-Variable Calculus",
+      "credits": 3.0,
+      "faculty": [
+        "Puelz"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 200",
+      "catalogCode": "MATH 200",
+      "title": "Mathematical Reasoning & Proof",
+      "credits": 3.0,
+      "faculty": [
+        "Kolpakov"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 210",
+      "catalogCode": "MATH 210",
+      "title": "Linear Algebra",
+      "credits": 3.0,
+      "faculty": [
+        "Staley"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 220",
+      "catalogCode": "MATH 220",
+      "title": "Probability",
+      "credits": 3.0,
+      "faculty": [
+        "Puelz"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 320",
+      "catalogCode": "MATH 320",
+      "title": "Intermediate Linear Algebra",
+      "credits": 3.0,
+      "faculty": [
+        "Kolpakov"
+      ],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "SCIM 110",
+      "catalogCode": "SCIM 110",
+      "title": "Introduction to Physics",
+      "credits": 3.0,
+      "faculty": [],
+      "department": "Literature",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 220",
+      "catalogCode": "PHIL 220",
+      "title": "Early Modern Philosophy",
+      "credits": 3.0,
+      "faculty": [
+        "Kimche",
+        "Levy",
+        "David"
+      ],
+      "department": "Philosophy",
+      "note": "Required for the Concentration in Philosophy. Prerequisite for PHIL 225 German Idealism and PHIL 230 Twentieth-Century Philosophy, which are also required for the Concentration in Philosophy.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 310",
+      "catalogCode": "PHIL 310",
+      "title": "Plato's Dialogues I",
+      "credits": 3.0,
+      "faculty": [
+        "Levy",
+        "David"
+      ],
+      "department": "Philosophy",
+      "note": "Available to students who have taken ALT 4500 Special Topics in Ethics and Politics: Socrates, which covered a different selection of Plato’s dialogues. Prerequisite for PHIL 315 Plato’s Dialogues II.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 325",
+      "catalogCode": "PHIL 325",
+      "title": "Classical Political Philosophy",
+      "credits": 3.0,
+      "faculty": [
+        "Hoffpauir"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 330",
+      "catalogCode": "PHIL 330",
+      "title": "Early Modern Political Philosophy",
+      "credits": 3.0,
+      "faculty": [
+        "Yudelman"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 380A",
+      "catalogCode": "PHIL 380",
+      "title": "Special Topic in Philosophy: Intellectual Origins of Antizionism",
+      "credits": 1.5,
+      "faculty": [
+        "Pessin"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 385A",
+      "catalogCode": "PHIL 385",
+      "title": "Special Topic in Philosophy: Atlas Shrugged as Literature and Philosophy",
+      "credits": 3.0,
+      "faculty": [
+        "Salmieri"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 410",
+      "catalogCode": "PHIL 410",
+      "title": "Great Philosophers: Introduction to Leo Strauss",
+      "credits": 1.5,
+      "faculty": [
+        "Rotner"
+      ],
+      "department": "Philosophy",
+      "note": "The catalog gives Great Philosophers 3 credits; this term runs Introduction to Leo Strauss at 1.5.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 415",
+      "catalogCode": "PHIL 415",
+      "title": "Great Theologians: Maximus the Confessor",
+      "credits": 3.0,
+      "faculty": [
+        "Constas"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHIL 425",
+      "catalogCode": "PHIL 425",
+      "title": "Applied Ethics: Design-Thinking Surveillance, Empire, and Consent",
+      "credits": 3.0,
+      "faculty": [
+        "Erdman"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHYS 101",
+      "catalogCode": "PHYS 101",
+      "title": "Physics - Mechanics",
+      "credits": 3.0,
+      "faculty": [
+        "Wilkinson"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "PHYS 201",
+      "catalogCode": "PHYS 201",
+      "title": "Advanced Physics Survey",
+      "credits": 3.0,
+      "faculty": [],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "POLR 310",
+      "catalogCode": "POLR 310",
+      "title": "Polaris Build",
+      "credits": 1.5,
+      "faculty": [
+        "Phil Greenwald"
+      ],
+      "department": "Polaris",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "POLR 311",
+      "catalogCode": "POLR 311",
+      "title": "Polaris Build",
+      "credits": 3.0,
+      "faculty": [
+        "Phil Greenwald"
+      ],
+      "department": "Polaris",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "POLR 380A",
+      "catalogCode": null,
+      "title": "Special Topic: Go To Market",
+      "credits": 3.0,
+      "faculty": [
+        "Phil Greenwald"
+      ],
+      "department": "Polaris",
+      "note": "The catalog's POLR numbering stops at 313 before Polaris Gateway (490), so this cannot be matched to a requirement. It still counts toward the term's credits.",
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "WRIT 120",
+      "catalogCode": "WRIT 120",
+      "title": "Writing and the English Language",
+      "credits": 3.0,
+      "faculty": [
+        "Reznick",
+        "Keeperman",
+        "J",
+        "Keeperman",
+        "T"
+      ],
+      "department": "Writing",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "WRIT 380A",
+      "catalogCode": "WRIT 380",
+      "title": "Special Topic in Writing: Advanced Film Studio",
+      "credits": 1.5,
+      "faculty": [
+        "Webman"
+      ],
+      "department": "Writing",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "WRIT 380B",
+      "catalogCode": "WRIT 380",
+      "title": "Special Topic in Writing: Publishing Studio",
+      "credits": 1.5,
+      "faculty": [
+        "Keeperman",
+        "J"
+      ],
+      "department": "Writing",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "WRIT 385B",
+      "catalogCode": "WRIT 385",
+      "title": "Special Topic in Writing: Publishing Studio",
+      "credits": 3.0,
+      "faculty": [
+        "Keeperman",
+        "J"
+      ],
+      "department": "Writing",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "WRIT 410",
+      "catalogCode": "WRIT 410",
+      "title": "Writing Studio",
+      "credits": 3.0,
+      "faculty": [
+        "Fishman"
+      ],
+      "department": "Writing",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "dterm-2627",
+      "code": "AMCV 380A",
+      "catalogCode": "AMCV 380",
+      "title": "Special Topic in American Civilization: The Making of the Modern",
+      "credits": 1.5,
+      "faculty": [
+        "Nichter"
+      ],
+      "department": "American Civilization",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "dterm-2627",
+      "code": "LITR 380A",
+      "catalogCode": "LITR 380",
+      "title": "Special Topic in Literature: Techno-Babel: The Science Fiction of C.S. Lewis",
+      "credits": 1.5,
+      "faculty": [
+        "Klavan"
+      ],
+      "department": "American Civilization",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "dterm-2627",
+      "code": "LEAD 380A",
+      "catalogCode": null,
+      "title": "Special Topic in Leadership in Action: Experiential Practicum",
+      "credits": 1.5,
+      "faculty": [
+        "Williford"
+      ],
+      "department": "Leadership",
+      "note": "The catalog lists no LEAD subject, so this cannot be matched to a requirement. It still counts toward the term's credits.",
+      "sections": []
+    },
+    {
+      "term": "dterm-2627",
+      "code": "POLR 210",
+      "catalogCode": "POLR 210",
+      "title": "Vibecoding Hardware",
+      "credits": 3.0,
+      "faculty": [
+        "Phil Greenwald"
+      ],
+      "department": "Polaris",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "dterm-2627",
+      "code": "WRIT 385A",
+      "catalogCode": "WRIT 385",
+      "title": "Special Topic in Writing: Film Studio",
+      "credits": 3.0,
+      "faculty": [
+        "Webman"
+      ],
+      "department": "Polaris",
+      "note": null,
+      "sections": []
+    }
+  ]
+}

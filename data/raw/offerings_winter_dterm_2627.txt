@@ -1,0 +1,884 @@
+                   Winter and D-Term 26/27
+                               Course Descriptions
+
+
+                                           Winter
+
+
+                                 American Civilization
+
+AMCV 200: The American Founding
+
+(3 Credits; Faculty: Wolf, Reznick, Hoffpauir)
+
+Course Description:
+REQUIRED FOR ALL SOPHOMORES. This course examines the intellectual, political,
+religious, and cultural origins of the American republic from the colonial period through the
+Founding. Students engage directly with primary sources and in particular The Federalist
+Papers as they study the principles, institutions, and debates that emerged in Puritan New
+England, developed during the colonial era, and culminated in the American Revolution and the
+ratification of the U.S. Constitution. Through careful examination of political and religious
+writings as well as historical documents, literature, and visual art students consider the complex
+relationship between ideals, institutions, and culture that produced one of history's most
+distinctive and enduring achievements in constitutional self-government.
+
+
+AMCV 345: The Legacy of Slavery
+
+(3 Credits; Faculty: Hughes)
+
+Course Description:
+The “legacy of slavery” is a phrase we have all heard in history classrooms, on cable news, and
+even in presidential speeches. But what does it mean? And why does it matter? For the
+purposes of this class, we will define the “legacy of slavery” as the long-term consequences of
+American slavery that can still be seen, felt, or measured today. This definition may not be
+controversial. The controversy comes when people claim that specific features of modern
+American society fall under this definition. For instance, is America’s national wealth the result of
+slavery? How about mass incarceration or racial inequality? Students will become acquainted
+with two broad schools of thought on the legacy of slavery. The maximalist school sees the
+fingerprints of slavery in many aspects of American society, while the minimalist school argues
+the opposite: America’s modern problems have little to do with the legacy of slavery.
+
+
+AMCV 365: Philosophers of Political Economy
+
+(3 Credits; Faculty: Scheall)
+
+Course Description:
+This course reviews the history of the development of economic and political ideas, with special
+emphasis on contributions from 1700 to 1950.
+
+       Not available to students who have taken INF 1320 Intellectual Foundations of
+       Economics with Professor Scheall.
+
+
+AMCV 415: Great Events of American History: The Vietnam War
+
+(3 Credits; Faculty: Scheall)
+
+Course Description:
+This course examines the decisions of Western policymakers that led to the First Indochina War
+between France and the Viet Minh in the immediate wake of World War II, and, later, to the
+more famous Vietnam War between North Vietnam and (with varying kinds and degrees of
+American assistance) South Vietnam. The course traces the historical progression of the two
+wars from France’s failed efforts to reconquer Indochina, the Kennedy administration's various
+missteps, the escalation of the war under the Johnson Administration, the disaster of the Tet
+Offensive, Nixon and Kissinger's several errors of strategy and diplomacy, through to the final
+fall of Saigon. Students will analyze primary sources and consider historical episodes to explore
+how limited knowledge, a technocratic approach to military engagement, and political hubris
+shaped the war's trajectory.
+
+
+                                    Business Track
+
+BUSI 285A: Special topic: Business Law Foundations
+
+(3 Credits; Faculty: TBD)
+
+Course Description:
+                                Computer Science and AI
+
+CSAI 210: Data Structures
+
+(3 Credits; Faculty: Scott)
+
+Course Description:
+Review of major data structures as a vehicle for learning dynamic memory structures,
+elementary OO and functional software design, intuitive algorithmic complexity analysis,
+recursion, and state space searching AI
+
+
+CSAI 380: Transformers and Diffusion Models
+
+(3 Credits; Faculty: Staley)
+
+Course Description:
+Deep review of transformers and diffusion models, extending on the overview in Intro to M.
+
+
+
+
+                                       Economics
+
+ECON 102: Applied Issues and Perspectives in Economics II
+
+(3 Credits; Faculty: Cooper, Pretnar, TBD)
+
+Course Description:
+
+
+
+
+ECON 112: Accelerated Applied Economics II
+
+(3 Credits; Faculty: Pretnar)
+
+Course Description:
+This course is a version of ECON 102 intended for those concentrating in Economics.
+ECON 202: Macroeconomic Theory I
+
+(3 Credits; Faculty: Pretnar)
+
+Course Description:
+This is an advanced course in macroEconomics. It covers dynamic choices by households and
+firms. It introduces dynamic general equilibrium theory as a framework for analysis.
+
+
+ECON 203: Microeconomic Theory II
+
+(3 Credits; Faculty: Bastos)
+
+Course Description:
+This advanced course in microEconomics covers advanced topics such as the fundamental
+welfare theorems. The course covers deviations from perfect competition, such as market power
+and externalities, to consider the inefficiencies they can create, and the regulatory policies that
+have been developed to mitigate or prevent these deviations.
+
+
+ECON 300: Public Choice
+
+(3 Credits; Faculty: Kling)
+
+Course Description:
+This course integrates Economic and political theory to analyze how choices about public policy
+are made by voters, candidates, legislators, bureaucrats, and the institutions in which they
+operate.
+
+
+ECON 301: Topics in Microeconomics: AI and the Economy
+
+(3 Credits; Faculty: Kling)
+
+Course Description:
+This course studies advanced topics in microEconomics such as general equilibrium theory,
+incentives and mechanism design. Offered subject to sufficient student interest.
+ECON 353: Comparative Economic Systems
+
+(3 Credits; Faculty: Bastos)
+
+Course Description:
+Comparative Economic Systems examines how different Economies—from market-based to
+centrally planned, and the many hybrids in between—organize production, allocate resources,
+and distribute income. Students compare the historical performance of these systems, using
+real-world cases to understand the trade-offs between markets, government, and different
+approaches to property and coordination.
+
+
+ECON 361: Entrepreneurship and Entrepreneurial Finance
+
+(3 Credits; Faculty: Wright)
+
+Course Description:
+This course analyzes how entrepreneurs originate and fund business ideas, with special
+emphasis on understanding the role of venture capital in business formation and growth.
+
+
+ECON 362: Household Finance: Money and Your Life
+
+(3 Credits; Faculty: Puelz, R.)
+
+Course Description:
+This course studies household choices regarding consumption, saving, and portfolio choice. A
+basic model of household optimal behavior is formulated and then used as a framework for
+interpreting financial outcomes. The course combines theory and evidence.
+
+
+ECON 380A: Special Topic: Human Progress: How the Modern World Was Made
+
+(1.5 Credits; Faculty: Tupy)
+
+Course Description:
+ECON 396: Law and Economics
+
+(3 Credits; Faculty: Wright)
+
+Course Description:
+Law and Economics applies Economic reasoning to the analysis of legal rules and institutions,
+examining how laws governing property, contracts, and torts shape incentives and behavior.
+Students learn to evaluate legal rules in terms of efficiency and consider how the law can be
+designed to promote better Economic outcomes.
+
+
+ECON 421: Causality
+
+(3 Credits; Faculty: Bastos)
+
+Course Description:
+This course introduces the modern toolkit for estimating causal effects from observational and
+experimental data. Students will learn the potential outcomes framework and the main
+identification strategies used in empirical research today, such as difference-in-differences,
+synthetic control methods, regression discontinuity design, and matching.
+
+
+
+
+                                          Education
+
+EDUC 280A: Special topic: Pedagogy Survey
+
+(1.5 Credits; Faculty: Valdez)
+
+Course Description:
+
+
+
+
+                                            History
+
+HIST 110: Ancient Greece
+
+(3 Credits; Faculty: Bay, Levy, Allison, Priou)
+
+Course Description:
+REQUIRED FOR ALL FRESHMEN. This course immerses students in the history and thought
+of the Classical Greek world. By engaging with the most influential ancient Greek historians,
+dramatists, and philosophers, students gain an appreciation for one of the ancient foundations
+of modern civilization. Readings include Aeschylus’ Persians, portions of the histories of
+Herodotus and Thucydides, passages from the Presocratic philosophers, Sophocles’ Oedipus
+the King and Antigone, and Plato’s Protagoras and Apology. This survey of Hellenic culture and
+literature, which includes attention to historical context and the formative reception of these texts
+and authors, prepares students to recognize the contributions made by ancient Greece and
+Athens in particular to the Western tradition and human culture writ large.
+
+
+HIST 111: Ideological Experiments of the 20th Century
+
+(3 Credits; Faculty: Yudelman, Rotner)
+
+Course Description:
+REQUIRED FOR ALL SOPHOMORES NOT TAKING ANCIENT ROME THIS WINTER TERM.
+This course examines the historical context, intellectual origins, and practical consequences of
+the most influential ideological alternatives to liberalism in the twentieth century, with particular
+attention to Soviet Russia, Nazi Germany, Fascist Italy, and Communist China. What economic,
+social, and cultural conditions made communism, Nazism, and fascism seem appealing? How
+did these radical political innovations play out in practice? Students read influential primary
+sources such as Marx and Engels’ Communist Manifesto, Gentile and Mussolini’s Doctrine of
+Fascism, and Mao’s “Sixteen Points” alongside narrative accounts of historical events such as
+the Russian Revolution, the Nazi takeover of Germany, and the Chinese Cultural Revolution.
+
+
+HIST 115: Ancient Rome
+
+(3 Credits; Faculty: Bove)
+
+Course Description:
+REQUIRED FOR ALL SOPHOMORES WHO HAVE NOT ALREADY TAKEN ANCIENT ROME.
+This course is a general introduction to the cultural and intellectual history of ancient Rome from
+its founding to the high Empire. Why was ancient Rome able to conquer and rule most of the
+Mediterranean world? What did Ancient Romans believe? What kind of debates did they have?
+What is distinctive about ancient Roman culture, and how did it change over time? Through
+independent reading, guided reading, lectures, and in-class discussion of Livy, Cicero, Virgil,
+Seneca, Plutarch, and other canonical Roman authors, students in this course acquire a
+substantial introductory knowledge of the cultural, intellectual, and political history of ancient
+Rome. Students also examine pivotal events such as the expulsion of the Tarquins, the Conflict
+of the Orders, the Punic Wars, and the Roman Civil Wars.
+HIST 220: Decadence, Modernism, and the Great War
+
+(3 Credits; Faculty: Deadman)
+
+Course Description:
+How are twentieth-century political movements such as anarchism, Marxism, fascism, and
+Futurism related to each other? What prompted early twentieth-century experiments in art and
+architecture such as Dada, Surrealism, Cubism, Art Nouveau, and Art Deco? How did the film
+industry begin? This course is a general introduction to the turbulent intellectual, cultural, and
+political landscape of England, Europe, and Russia at the end of the nineteenth century and the
+beginning of the twentieth century. What led to the end of the Belle Époque? Students
+investigate how unprecedented prosperity, hopes for a lasting peace, and fin-de-siècle
+decadence gave way to the “Great War” we now know as World War I, as well as the Russian
+Revolution and the Spanish Civil War.
+
+       Required for the Concentration in History.
+
+
+HIST 355: Modern Judaism
+
+(3 Credits; Faculty: Kimche)
+
+Course Description:
+This course examines the major movements, debates, and crises that have shaped modern
+Judaism from the eighteenth century to our present time. Beginning with the Jewish
+Enlightenment and Hasidism, it traces the emergence of Jewish responses to emancipation,
+secularization, nationalism, philosophy, religious reform, and modern politics. Students explore
+the development of modern religious philosophy and analyze how major Jewish thinkers
+engaged with concepts such as reason, tradition, ethics, revelation, and collective identity. The
+course concludes with the theological and intellectual aftermath of the Holocaust and the
+creation of the State of Israel. Through sustained engagement with primary texts, students
+explore the various ways modern Jews have sought to reinterpret an ancient tradition under the
+pressures of modernity.
+
+
+HIST 375: The Changing Structure of Civilization
+
+(3 Credits; Faculty: Deadman)
+
+Course Description:
+This course examines nineteenth- and twentieth-century theories of civilization that reject the
+modernization thesis: the view that history advances through a rational process of development
+culminating in secular, liberal, post-ethnonational societies. The thinkers studied here instead
+understand civilizations as historically particular forms shaped by ethnos, religion, tradition,
+class and elite formation, and cultural “style.” Some are profoundly pessimistic, diagnosing
+inevitable cycles of rise and decline; others seek the renewal of the West through the
+establishing of “alternative” modernities. By situating these thinkers within a continuous tradition
+of Counter-Enlightenment thought, the course asks whether modernity represents progress or
+exhaustion and whether Enlightenment universalism marks the culmination of European
+civilization or its dissolution. Students learn to historicize twentieth-century radical and
+revolutionary movements, reconstruct the civilizational diagnoses from which they emerged, and
+explain their appeal to contemporaries.
+
+HIST 385A: Special Topic in History: Education
+
+(3 credits; Faculty: Wright)
+
+We will start with a candidate assessment of education in America today, from K-12 to
+undergraduate and graduate higher education, with apprenticeships and AI autodidactism
+layered on. Then we ask how we got to this state of affairs and answer it by going back to the
+beginning, tracing both literacy and numeracy acquisition from the ancient civilizations to the
+modern period, when we hone in on Anglo-American educational institutions, pedagogies, and
+traditions until in the final weeks concentrating our gaze upon the U.S.A. in the 19th, 20th, and
+21st centuries. With visiting professor Bob Wright.
+
+HIST 385B: Special Topic in History: Journalism
+
+(3 credits: Faculty: Wright)
+
+We will start with a candidate assessment of journalism today. Then we ask how we got to this
+state of affairs and answer it by going back to the beginning, to ancient forms of information
+dissemination. We'll hit all the major mileposts, like movable type, the rise of financial markets,
+the telegraph, and digital telecomm, while focusing on how institutional change shifted economic
+incentives and hence the contours of what differentiates news of "record" from "fake news." With
+visiting professor Bob Wright.
+
+
+
+                               Intellectual Foundations
+INF 1104: Bible II
+
+(1.5 Credits; Faculty: Constas, Bove)
+
+Course Description:
+REQUIRED FOR ALL FRESHMEN WHO HAVE TAKEN WRITING AND THE ENGLISH
+LANGUAGE.
+The New Testament.
+INF 2210: Mortality and Meaning in Art and Music
+
+(3 Credits; Faculty: Wolfe)
+
+Course Description:
+REQUIRED FOR ALL JUNIORS WHO TOOK USES AND ABUSES OF TECHNOLOGY LAST
+SPRING.
+Does death negate the meaning of a human life? Or can mortality and death give life meaning?
+This seminar explores the relationship between mortality and meaning through the study of
+works of art from different historical periods and cultures and in various genres and media,
+including painting, sculpture, and music.
+
+
+
+                                         Language
+
+LANG 319: Directed Readings in Ancient Greek
+
+(3 Credits; Faculty: Reinhardt)
+
+Course Description:
+This course builds upon skills learned in Ancient Greek I, II, and III and immerses students in
+ancient Greek literature, whether prose or poetry. This course assumes a basic command of
+Greek grammar and syntax and a vocabulary sufficient to sustain continued linguistic
+development.
+
+
+LANG 321: Latin II
+
+(3 Credits; Faculty: Bay)
+
+Course Description:
+This course continues the introduction to the basics of ancient Latin. This course is the second
+part of a year-long introductory curriculum. Prerequisite: Latin I or equivalent proficiency.
+
+LANG 331: German II
+
+(3 Credits; Faculty: Lofton)
+
+Course Description:
+A continuation of German I, emphasizing increased proficiency in oral and written
+communication through expanded vocabulary, more advanced grammatical structures, and
+authentic cultural materials. Students develop confidence in understanding and producing
+connected discourse while deepening their knowledge of German-speaking cultures.
+Prerequisite: German I or equivalent placement.
+
+
+
+
+                                              Law
+
+LAWS 280A: Special topic: Equality Jurisprudence
+
+(1.5 Credits; Faculty: Liu)
+
+Course Description:
+
+
+
+
+                                         Literature
+
+LITR 210: Medieval Literature
+
+(3 Credits; Faculty: Katz)
+
+Course Description:
+This course introduces students to acclaimed and influential works of literature written in the
+Middle Ages. Students encounter genres such as epic, romance, lyric, allegory, and dream
+vision while exploring the worlds of chivalry, courtly love, pilgrimage, and Christian devotion.
+Authors may include Chaucer, Marie de France, the Pearl Poet, Dante, and Malory, as well as
+selections from Old English and Norse literature. With visiting professor Joshua Katz.
+
+       Required for the Concentration in Literature.
+
+
+
+
+LITR 225: Eighteenth-Century Literature
+
+(3 Credits; Faculty: Herlin)
+
+Course Description:
+This course introduces students to acclaimed and influential works of literature written in the
+Long Eighteenth Century, from the Restoration through the Regency era, including the rise of
+Romanticism. Students explore the emergence of satire, the novel, lyric poetry, and literary
+criticism alongside debates about reason, sentiment, imagination, and political liberty. Authors
+may include Dryden, Swift, Pope, Johnson, Burney, Blake, Wordsworth, Coleridge, Austen, and
+Keats, among others.
+
+        Required for the Concentration in Literature. Not available to students who have taken
+        ALT 1800 Romantic and Victorian Literature. ALT 1800 fulfills this requirement for the
+        Concentration in Literature.
+
+
+LITR 355: Early Modern Literature
+
+(3 Credits; Faculty: Wolfe)
+
+Course Description:
+Why and how did literature flourish in Renaissance Europe? This course introduces students to
+acclaimed and influential works of literature written in the sixteenth and seventeenth centuries.
+Students read major works of poetry, drama, and prose while examining the rise of the theater
+and the influence of early modern skepticism, religious conflict, and political revolution. Authors
+may include Sidney, Spenser, Shakespeare, Donne, Herbert, and Marvell, among others.
+
+
+LITR 415: The Novel: Dostoyevsky, Brothers Karamazov
+
+(3 Credits; Faculty: Fishman)
+
+Course Description:
+The Brothers Karamazov is the crowning achievement of Fyodor Dostoevsky’s exalted and
+tormented life as one of Russia’s two greatest novelists, the culmination of his transformation
+from a gothic Romantic and a political progressive to a conservative radical: A defender of
+Russia’s destiny as the redeemer of a Western world fallen to self-interest, forged in the image
+of Christ’s love and forgiveness beyond church authority. In this class, we will read the novel
+closely, investigate the author’s life in the context of the literary and historical details of the time,
+and challenge our understanding of the material through several analytical papers.
+
+
+
+
+LITR 480A: Special Topic In Literature: Acting Studio
+
+(1.5 Credits; Faculty: Hilboldt)
+
+Course Description:
+Details to be confirmed. Sections will be broken up into small groups of 6-8 students. Can be
+taken again for credit if you have taken it before. Tbc depending on student interest.
+                                         Mathematics
+
+MATH 101: Single-Variable Calculus
+
+(3 Credits; Faculty: Puelz)
+
+Course Description:
+Intuitive/practical overview of differential and integral calculus, with applications relevant to
+science and engineering. This course fulfills the calculus requirement for Sciences
+concentrations, as normally expected of incoming freshmen, and is open to students seeking a
+Sciences concentration who need a freshman course to meet that expectation.
+
+
+MATH 200: Mathematical Reasoning & Proof
+
+(3 Credits; Faculty: Kolpakov)
+
+Course Description:
+Propositional and predicate logic; sets, functions, and relations; proof by induction,
+contradiction, and construction; cardinality and the infinite; first algebraic structures.
+
+
+MATH 210: Linear Algebra
+
+(3 Credits; Faculty: Staley)
+
+Course Description:
+Intuitive/practical overview of linear algebra, using matrices and finite-dimensional linear
+transforms. Vector and matrix basics, decomposition of matrices by Gauss-Jordan elimination,
+four subspaces, projections, eigenvalues/vectors, PSD matrices, SVD. Applications in science
+and engineering.
+
+
+MATH 220: Probability
+
+(3 Credits; Faculty: Puelz)
+
+Course Description:
+Practical survey of basic probability for Sciences. Continuous and discrete random variables,
+combinatorics and counting, info entropy, Bayes theorem.
+MATH 311: Complex Analysis
+
+(3 Credits; Faculty: Kolpakov)
+
+Course Description:
+Topics include topology of the complex plane, analytic and harmonic functions, elementary
+complex functions, complex integration, Cauchy’s Integral Theorem and Formula, residue
+calculus, conformal mapping, and physical applications.
+
+
+MATH 320: Intermediate Linear Algebra
+
+(3 Credits; Faculty: Kolpakov)
+
+Course Description:
+A deeper study of topics from MATH 210. Topics include vectors and vector spaces; matrices as
+linear maps; eigenvalues, eigenvectors, and singular value decomposition; orthogonality, inner
+products, and least squares; with applications in data, graphics, and networks.
+
+
+SCIM 110: Introduction to Physics
+
+(3 Credits; Faculty: TBD)
+
+Course Description:
+Rapid introduction to classical physics, including mechanics, thermal physics, and electricity and
+magnetism.
+
+
+
+
+                                        Philosophy
+PHIL 220: Early Modern Philosophy
+
+(3 Credits; Faculty: Kimche, Levy, David)
+
+Course Description:
+This course surveys the philosophical traditions of seventeenth- and eighteenth-century Europe,
+organized around the contrast between continental rationalism and British empiricism. Topics
+include the nature and scope of knowledge, the relationship between mind and body, and
+substance and causation, and may extend to others such as the foundations of science and
+morality. Students engage closely with primary texts from major figures including Descartes,
+Spinoza, and Leibniz as representative rationalists and Locke, Berkeley, and Hume as
+representative empiricists.
+
+       Required for the Concentration in Philosophy. Prerequisite for PHIL 225 German
+       Idealism and PHIL 230 Twentieth-Century Philosophy, which are also required for the
+       Concentration in Philosophy.
+
+PHIL 310: Plato's Dialogues I
+
+(3 Credits; Faculty: Levy, David)
+
+Course Description:
+What is justice? Can virtue be taught? What is the nature of knowledge? Building on students’
+initial encounter with Plato in the Intellectual Foundations sequence, this course explores a
+selection of Plato’s introductory and intermediate dialogues through careful reading and
+discussion, including his Meno and Gorgias. Students examine the philosophical arguments,
+literary artistry, and historical context of these works while engaging the questions that
+established Plato as one of the foundational thinkers of the Western tradition.
+
+       Available to students who have taken ALT 4500 Special Topics in Ethics and Politics:
+       Socrates, which covered a different selection of Plato’s dialogues. Prerequisite for PHIL
+       315 Plato’s Dialogues II.
+
+PHIL 325: Classical Political Philosophy
+
+(3 Credits; Faculty: Hoffpauir)
+
+Course Description:
+What is the blueprint for a just society? What are the responsibilities of a citizen? This course
+traces the evolution of classical political thought beyond Plato and Aristotle as it adapted to
+shifting empires and global transformations. What happened when Greek theory met Roman
+reality? How did the advent of Christianity affect normative reasoning? Students engage with a
+dynamic lineage that includes Cicero and Augustine, as well as other political thinkers such as
+Aristophanes, Xenophon, Polybius, and Plutarch.
+
+
+
+
+PHIL 330: Early Modern Political Philosophy
+
+(3 Credits; Faculty: Yudelman)
+Course Description:
+This course examines early modern political philosophy. Topics may include the state of nature,
+the grounds and limits of political authority, republicanism, natural rights, property, liberty, and
+sovereignty, among others. Students engage closely with primary texts from major figures such
+as Machiavelli, Hobbes, Locke, and Montesquieu.
+
+
+PHIL 380A: Special Topic in Philosophy: Intellectual Origins of Antizionism
+
+(1.5 Credits; Faculty: Pessin)
+
+Course Description:
+This course examines the origins, evolution, and contemporary manifestations of antizionism.
+Students trace continuities and changes in antizionist ideology through primary sources from
+Nazi Germany, the Soviet Union, the Arab-Islamic world, and today's western progressivism.
+Students also explore how present-day antizionism draws upon contested conceptual
+frameworks such as communism, race realism, Islamism, Foucauldian postmodernism,
+postcolonial theory, and critical race theory. Readings may include such works as The Protocols
+of the Elders of Zion; Marx, On the Jewish Question; Ivanov, Beware! Zionism; Said, The
+Question of Palestine; and Khalidi, The 100-Years War on Palestine. With visiting professor
+Andrew Pessin (Connecticut College).
+
+Intensive course. Meets Monday, Wednesday, and Thursday for 3 weeks in January.
+
+
+PHIL 385A: Special Topic in Philosophy: Atlas Shrugged as Literature and Philosophy
+
+(3 Credits; Faculty: Salmieri)
+
+Course Description:
+With visiting professor Greg Salmieri (UT-Austin).
+
+
+PHIL 410: Great Philosophers: Introduction to Leo Strauss
+
+(1.5 Credits; Faculty: Rotner)
+
+Course Description:
+An intensive introduction to the thought of Leo Strauss by way of a complete reading of his most
+influential book. Natural Right and History opens with the Declaration of Independence and a
+question the Declaration cannot answer for itself: are its truths self-evident, or are they the
+ideals of one nation at one moment in history? Is there a standard of right by which societies,
+our own included, may be judged — or is every such standard the creature of the society that
+holds it? What happens to political life, and to political science, when the answer is thought to
+be “no”? Strauss argues that modern thought has arrived at that no along two roads —
+historicism and the distinction between facts and values — and that the consequence is not
+liberation but a peculiar helplessness before the very questions that matter most. The course
+follows his argument from the crisis backward to its origins: the discovery of nature by the first
+philosophers, the classic doctrine of natural right and its account of the best regime, the decisive
+break made by Hobbes and completed by Locke, and the crisis of modern natural right as it
+appears in Rousseau and Burke.
+
+
+PHIL 415: Great Theologians: Maximus the Confessor
+
+(3 Credits; Faculty: Constas)
+
+Course Description:
+This course is designed to introduce students to major themes in the thought and theology of
+Maximos the Confessor, a late-antique ascetic, mystic, and theological writer considered one of
+the greatest theological thinkers in the entire Christian tradition. Our primary focus will be on the
+Confessor’s two most important works, the Ambigua to John and the Responses to Thalassios.
+The former is a series of questions and answers on difficult (or “ambiguous”) passages in the
+writings of the Church Fathers; the latter is a similar series of questions and answers on difficult
+passages in sacred Scripture. Themes under consideration include Maximos’ transformation of
+the Alexandrian spiritual tradition (primarily Origen and Evagrius); theological anthropology;
+moral psychology (the life of virtue, the passions); the anagogical exegesis of Scripture;
+asceticism; and spirituality.
+
+
+PHIL 425: Applied Ethics: Design-Thinking Surveillance, Empire, and Consent
+
+(3 Credits; Faculty: Erdman)
+
+Course Description:
+Using design-thinking as an analytical and practical framework, this course invites students to
+critically examine contemporary technology surveillance as an outcome of over two centuries of
+free-enterprise systems and empire-building. It situates current digital practices within longer
+histories of resource extraction, debt regimes, and the commodification of data, connecting
+events from the Opium Wars to Web 3.0. Grounded in the writings of Ray Dalio, Shoshana
+Zuboff, Edward Bernays, Marshall McLuhan, and others, the course reveals how economic,
+political, and technological forces intersect to shape modern digital life. Each week integrates
+seminar-style historical and theoretical discussion with structured, hands-on design activities
+developed by IDEO, Frog, and McKinsey Design. By the end of the course, students will be able
+to analyze technology surveillance through historical and systemic lenses, articulate the ethical
+and social implications of data-driven business models, and design concept-level interventions
+that foreground human agency and digital sovereignty.With visiting professor Charles Erdman.
+                                           Physics
+
+PHYS 101: Physics - Mechanics
+
+(3 Credits; Faculty: Wilkinson)
+
+Course Description:
+Calculus based Physics covering mechanics.
+
+
+PHYS 201: Advanced Physics Survey
+
+(3 Credits; Faculty: TBD)
+
+Course Description:
+Survey of topics for PHYS, ENGR and possible future STEM majors, building on basics from
+PHYS 1 and 2.
+
+
+                                            Polaris
+
+POLR 310: Polaris Build
+
+(1.5 Credits; Faculty: Phil Greenwald)
+
+Course Description:
+In this independent study course, students build their projects. Repeatable for credit.
+
+
+POLR 311: Polaris Build
+
+(3 Credits; Faculty: Phil Greenwald)
+
+Course Description:
+In this independent study course, students build their projects. Repeatable for credit.
+
+
+
+
+POLR 380A: Special Topic: Go To Market
+
+(3 Credits; Faculty: Phil Greenwald)
+
+Course Description:
+This course is for students who have already built an app, web app, or other startup product that
+is ready to go to market or has recently launched. Students work directly on launching and
+growing their products, attracting users, and testing ways to generate revenue. Instruction,
+applied assignments, and regular progress reviews guide their work on positioning, pricing,
+marketing, and sales. Throughout the course, students respond to customer feedback and
+market results by adjusting their products and go-to-market strategies.
+
+
+
+
+                                           Writing
+
+WRIT 120: Writing and the English Language
+
+(3 Credits; Faculty: Reznick, Keeperman, J, Keeperman, T)
+
+Course Description:
+REQUIRED FOR ALL FRESHMEN WHO HAVE NOT TAKEN WRITING AND THE ENGLISH
+LANGUAGE.
+This seminar aims to increase our appreciation for the English language and to make us better
+writers and more perceptive readers. What can great poems, plays, speeches, letters,
+autobiographies, short stories, and essays teach us about the depth and range of the English
+language and the uses of language as such? How can good reading promote good writing—and
+vice-versa?
+
+
+WRIT 380A: Special Topic in Writing: Advanced Film Studio
+
+(1.5 Credits; Faculty: Webman)
+
+Course Description:
+This course introduces students to modern filmmaking and digital media in an era defined by
+rapid technological change. Through hands-on exercises, visual analysis, and short creative
+projects, students will learn the fundamentals of storytelling, cinematography, editing, and
+directing, while critically engaging emerging AI tools that are reshaping creative workflows. The
+course emphasizes adaptability, aesthetic clarity, collaborative discipline, and the enduring value
+of human creativity. Students should have already completed a D-term course in filmmaking last
+year or this year or provide evidence of commensurate experience. Tbc depending on student
+interest.
+
+
+WRIT 380B: Special Topic in Writing: Publishing Studio
+
+(1.5 Credits; Faculty: Keeperman, J)
+Course Description:
+Tbc. With visiting Professor of Practice Jonathan Keeperman (AKA @L0m3z), founder of
+Passage Press, cohost of Rufo & Lomez. Details tbd.
+
+
+WRIT 385B: Special Topic in Writing: Publishing Studio
+
+(3 Credits; Faculty: Keeperman, J)
+
+Course Description:
+Tbc. With visiting Professor of Practice Jonathan Keeperman (AKA @L0m3z), founder of
+Passage Press, cohost of Rufo & Lomez. Details tbd.
+
+
+WRIT 410: Writing Studio
+
+(3 Credits; Faculty: Fishman)
+
+Course Description:
+Students undertake individual projects in creative writing under the guidance of an experienced
+mentor. Can be taken again for credit if you have taken it before.
+
+
+                                         D-term
+
+                                  American Civilization
+
+AMCV 380A: Special Topic in American Civilization: The Making of the Modern
+Presidency
+
+(1.5 Credits; Faculty: Nichter)
+
+Course Description:
+Modern American government — an activist president, a contested global role, a federal hand in
+social life, and a citizenry that doubts all of it — took shape under Lyndon Johnson. This
+two-week seminar reads the Johnson era as the making of the modern executive, pairing Luke
+A. Nichter's The Year That Broke Politics with primary sources from the period. Includes a day
+at the LBJ Presidential Library working with original documents and the people who keep them.
+With visiting professor Luke Nichter (Chapman University).
+                                           Literature
+
+LITR 380A: Special Topic in Literature: Techno-Babel: The Science Fiction of C.S. Lewis
+
+(1.5 Credits; Faculty: Klavan)
+
+Course Description:
+"This is a 'tall story' about devilry," writes C.S. Lewis in the preface to That Hideous Strength, his
+most accomplished work of science fiction, "though it has behind it a serious 'point.'" Part
+Arthurian legend, part interplanetary adventure, and part cautionary tale about the imminent
+dangers of technological overreach, That Hideous Strength is an outlandish work of fiction that
+can nevertheless seem chillingly close to the reality of the 21st century. At its heart, wrote
+George Orwell in his appreciative review of the book, is a company of scientists who have
+"destroyed in themselves all human feeling, all notion of good and evil." Students will discuss
+and debate the plausibility of Lewis's dark vision, reading That Hideous Strength alongside
+excerpts from his other fictional and non-fictional works. No previous knowledge of Lewis is
+required.
+
+
+                                         Leadership
+
+LEAD 380A: Special Topic in Leadership in Action: Experiential Practicum
+
+(1.5 credits; Williford)
+
+Course Description:
+
+
+                                             Polaris
+
+POLR 210: Vibecoding Hardware
+
+(3 Credits; Faculty: Phil Greenwald)
+
+Course Description:
+Introduces the use of artificial intelligence tools to design, program, and build functional physical
+systems. Students work with microcontrollers, single-board computers, sensors, motors, and
+other electronic components while using AI to generate code, troubleshoot problems, and
+accelerate prototyping. The course emphasizes learning how hardware and software interact,
+evaluating AI-generated work critically, and moving from an idea to a functioning device.
+                                           Writing
+
+WRIT 385A: Special Topic in Writing: Film Studio
+
+(3 Credits; Faculty: Webman)
+
+Course Description:
+This course introduces students to modern filmmaking and digital media in an era defined by
+rapid technological change. Through hands-on exercises, visual analysis, and short creative
+projects, students will learn the fundamentals of storytelling, cinematography, editing, and
+directing, while critically engaging emerging AI tools that are reshaping creative workflows. The
+course emphasizes adaptability, aesthetic clarity, collaborative discipline, and the enduring value
+of human creativity. As a two-week intensive course, the pace is accelerated. Students will be
+creating and iterating daily. Students who took this course for 1.5 credits last year may take it
+again this year.
+
