@@ -37,6 +37,14 @@ then edit their own copy.
   "what to take next" — each suggestion says which tier put it there.
   Committing to a concentration also elects the Center it sits in, which is
   what decides whose Core you owe.
+- **Plans next term.** Skip ahead a term and the audit assumes you pass what
+  you are taking now, then ranks what to take next against the courses that
+  term actually runs rather than the whole catalog. File each one under
+  Definitely, Maybe or Considering. Definitely carries forward, so a Winter
+  choice counts when you plan D-Term; Maybe and Considering are shown but
+  never close anything. A course whose prerequisite you will not hold is
+  flagged, and one the catalog states in prose is quoted rather than guessed
+  at.
 - **Logs Polaris Build.** Build is a credit total rather than a class, so it is
   logged instead of enrolled in: add credits in whatever amounts the work is
   granted, label them, and mark them still under way until they are. The log is
@@ -51,7 +59,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 138 tests
+npm test        # 201 tests
 npm run build
 ```
 
@@ -79,19 +87,40 @@ produced by OCR and is committed to `data/`. The site never reads the PDFs.
 | `data/equivalencies.json` | 123 rules: the equivalency tables, 14 clearly labelled inferred ones, 3 that refine an official rule, and 3 scoped to the old catalog alone |
 | `data/requirements.json` | 2026-2027: Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
 | `data/requirements-2024.json` | 2024-2025: Intellectual Foundations, 3 Centers, 4 concentrations, Polaris |
+| `data/offerings.json` | 63 courses Winter 26/27 and D-Term 26/27 actually run: the code the catalog knows each by, credits, faculty, department |
 
 Regenerate with `npm run data` (once: `pip install -r scripts/requirements.txt`),
-which runs four scripts in `scripts/`:
+which runs five scripts in `scripts/`:
 
 1. `extract_courses.py` parses the OCR text of both catalogs.
 2. `extract_equivalencies.py` turns the equivalency `.docx` tables into rules.
 3. `build_requirements.py` and `build_requirements_2024.py` emit the two
    programs' requirements and check every course code they name actually exists.
+4. `extract_offerings.py` parses the term's course descriptions into the
+   offerings file, and checks each code against the catalog.
 
 The output is reproducible: regenerating from the committed sources produces
 `data/` byte for byte, and CI fails if it ever stops doing so. So a hand-edit to
 a generated file works and deploys, but is lost the next time anyone regenerates
 — a correction that needs to survive belongs in the script's `OVERRIDES` table.
+
+The term's offerings come from a different kind of source. *Winter and D-Term
+26/27 Course Descriptions* has a real text layer, so no OCR is needed, but
+turning the PDF into `data/raw/offerings_winter_dterm_2627.txt` is a manual
+step and `npm run data` does not do it:
+
+```bash
+pdftotext -layout "Winter and D-Term 2026 - Course Descriptions.pdf" \
+  data/raw/offerings_winter_dterm_2627.txt
+```
+
+`extract_offerings.py` then parses that dump, and declares its exceptions
+rather than smoothing them over. Two of the 63 courses, `LEAD 380A` and
+`POLR 380A`, are in no catalog at all: they stay plannable and count toward
+the term's credits, but fill no named requirement, and each says why.
+`PHIL 410` runs at 1.5 credits where the catalog gives Great Philosophers 3,
+which is recorded the same way. A code in neither the catalog nor those
+tables fails the build instead of being guessed at.
 
 The OCR itself (`scripts/ocr.swift`, `scripts/reflow.py`) used Apple's Vision
 framework across all 335 pages, keeping bounding boxes so the multi-column
