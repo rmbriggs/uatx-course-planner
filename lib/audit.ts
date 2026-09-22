@@ -812,7 +812,18 @@ function interleave(a: Suggestion[], b: Suggestion[]): Suggestion[] {
  * a committed Center or concentration decides what counts as the plan, and
  * anything only being considered ranks below it.
  */
-export function suggestNextCourses(audit: AuditResult, targets: Targets = {}, limit = 12) {
+export function suggestNextCourses(
+  audit: AuditResult,
+  targets: Targets = {},
+  limit = 12,
+  /**
+   * Catalog codes a term actually offers. Null suggests across the whole
+   * catalog, which is what the page does when you are not planning a term.
+   * Filtering happens after ranking, so being offered decides who is
+   * eligible and never who wins.
+   */
+  offered: Set<string> | null = null,
+) {
   const score = new Map<string, Suggestion>();
 
   const add = (code: string, label: string, tier: SuggestionTier, foundations = false) => {
@@ -902,7 +913,10 @@ export function suggestNextCourses(audit: AuditResult, targets: Targets = {}, li
   const plan = committed.length ? committed : untargeted;
   const tail = committed.length ? [...considering, ...untargeted] : considering;
 
-  return [...doubleDuty, ...interleave(required, plan), ...tail]
+  const ranked = [...doubleDuty, ...interleave(required, plan), ...tail];
+  const eligible = offered ? ranked.filter((e) => offered.has(e.code)) : ranked;
+
+  return eligible
     .slice(0, limit)
     .map((e) => ({ ...e, title: titleOf(e.code), credits: creditsOf(e.code), level: levelOf(e.code) }));
 }
