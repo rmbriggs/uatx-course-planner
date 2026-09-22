@@ -1442,3 +1442,82 @@ button, input, select {
     grid-column: 1 / -1;
   }
 }
+
+/* Planning a term: how firmly a course is in the plan. */
+.tier-buttons {
+  display: inline-flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.tier-button {
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--slate);
+  cursor: pointer;
+}
+
+.tier-button:hover {
+  border-color: var(--slate);
+  color: var(--ink);
+}
+
+.tier-button[aria-pressed="true"][data-tier="definitely"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tier-button[aria-pressed="true"][data-tier="maybe"] {
+  border-color: var(--brass);
+  background: var(--brass-soft);
+  color: #6b4a10;
+}
+
+.tier-button[aria-pressed="true"][data-tier="considering"] {
+  border-color: var(--marine);
+  background: var(--marine-soft);
+  color: var(--ink);
+}
+
+.tier-chip[data-tier="definitely"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tier-chip[data-tier="maybe"] {
+  border-color: var(--brass);
+  background: var(--brass-soft);
+  color: #6b4a10;
+}
+
+.plan-group {
+  margin-top: 0.9rem;
+}
+
+.note-projecting {
+  border-left: 3px solid var(--marine);
+  padding-left: 0.6rem;
+  color: var(--slate);
+}
+
+.browse-offerings {
+  margin-top: 1rem;
+}
+
+.browse-offerings summary {
+  cursor: pointer;
+  font-size: var(--step--1);
+  color: var(--slate);
+  padding: 0.4rem 0;
+}
+
+.browse-offerings summary:hover {
+  color: var(--ink);
+}

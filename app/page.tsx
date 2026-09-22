@@ -4,11 +4,15 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
 import { BuildLog, CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
+import { BrowseOfferings, PlanPanel, TierButtons } from "@/components/PlanPanel";
 import { auditDegree, buildLogAsCourses, pacing, suggestNextCourses, type SuggestionTier } from "@/lib/audit";
 import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
+import { offeredCatalogCodes, offeringKey, offeringsFor, terms, termName } from "@/lib/offerings";
+import { projectFor } from "@/lib/plan";
+import { heldCodes } from "@/lib/prereq";
 import { mappedGrants } from "@/lib/equivalency";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
-import type { CourseStatus, Interest, TakenCourse } from "@/lib/types";
+import type { CourseStatus, Interest, PlanTier, TakenCourse } from "@/lib/types";
 
 export default function Page() {
   const [state, setState] = useState<SavedState>(emptyState);
@@ -48,10 +52,62 @@ export default function Page() {
     [state.taken, state.buildLog, state.program],
   );
 
-  const audit = useMemo(
+  const trueAudit = useMemo(
     () => auditDegree(record, { useInferred: state.useInferred, program: state.program }),
     [record, state.useInferred, state.program],
   );
+
+  const planningTerm = state.planningTerm;
+
+  /** The record as it will stand when the term being planned begins. */
+  const projectedRecord = useMemo(
+    () => (planningTerm ? projectFor(record, state.plan, planningTerm) : record),
+    [record, state.plan, planningTerm],
+  );
+
+  /**
+   * Everything that measures the degree reads this, so the whole page moves
+   * together rather than half of it projecting and half of it not. The record
+   * panel is driven by state.taken, so what you actually took stays truthful
+   * either way, and a banner says when this is a projection.
+   */
+  const audit = useMemo(
+    () =>
+      planningTerm
+        ? auditDegree(projectedRecord, { useInferred: state.useInferred, program: state.program })
+        : trueAudit,
+    [planningTerm, projectedRecord, state.useInferred, state.program, trueAudit],
+  );
+
+  /** Only what the term runs is worth suggesting while planning it. */
+  const offered = useMemo(
+    () => (planningTerm ? offeredCatalogCodes(planningTerm) : null),
+    [planningTerm],
+  );
+
+  const held = useMemo(() => heldCodes(projectedRecord), [projectedRecord]);
+
+  /**
+   * Suggestions are named in the code a requirement is written in, but the
+   * term runs a special topic under a lettered one — a "PHIL 380" suggestion
+   * is this term's "PHIL 380A". The plan is keyed by what the term prints.
+   */
+  const printedCode = useMemo(() => {
+    const map = new Map<string, string>();
+    if (!planningTerm) return map;
+    for (const o of offeringsFor(planningTerm)) if (o.catalogCode) map.set(o.catalogCode, o.code);
+    return map;
+  }, [planningTerm]);
+
+  /** Pressing the tier a course already has takes it out of the plan. */
+  const setPlanTier = useCallback((key: string, tier: PlanTier | null) => {
+    setState((prev) => {
+      const plan = { ...prev.plan };
+      if (tier === null || plan[key] === tier) delete plan[key];
+      else plan[key] = tier;
+      return { ...prev, plan };
+    });
+  }, []);
 
   const addBuild = useCallback((credits: number, label: string) => {
     setState((prev) => ({
@@ -110,7 +166,10 @@ export default function Page() {
     return [...map.entries()];
   }, [ranked]);
 
-  const next = useMemo(() => suggestNextCourses(audit, state.targets, 10), [audit, state.targets]);
+  const next = useMemo(
+    () => suggestNextCourses(audit, state.targets, 10, offered),
+    [audit, state.targets, offered],
+  );
 
   /** Pressing the tier a target already has clears it. */
   const setTarget = useCallback((id: string, tier: Interest) => {
@@ -298,6 +357,31 @@ export default function Page() {
                   onChange={(e) => update({ termsRemaining: Math.max(1, Number(e.target.value) || 1) })}
                 />
               </div>
+              <div className="field-row" style={{ marginTop: "0.9rem" }}>
+                <label htmlFor="planning">Show me</label>
+                <select
+                  id="planning"
+                  value={planningTerm ?? ""}
+                  onChange={(e) => update({ planningTerm: e.target.value || null })}
+                >
+                  <option value="">Where you stand today</option>
+                  {terms.map((term) => (
+                    <option key={term.id} value={term.id}>
+                      Planning {term.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {planningTerm && (
+                <p className="note" style={{ marginTop: "0.5rem" }}>
+                  Assuming you pass everything you are taking now
+                  {terms.findIndex((term) => term.id === planningTerm) > 0
+                    ? ", and everything you have marked Definitely for an earlier term"
+                    : ""}
+                  .
+                </p>
+              )}
+
               <p style={{ marginTop: "0.5rem", fontSize: "0.82rem", color: "var(--slate)" }}>
                 {pace.creditsRemaining} credits left, so {fmt(pace.creditsPerTerm)} a term
                 {pace.creditsPerTerm > pace.typicalLoad
@@ -436,6 +520,7 @@ export default function Page() {
                         <th>Title</th>
                         <th style={{ width: "4rem" }}>Credits</th>
                         <th>Counts toward</th>
+                        {planningTerm && <th style={{ width: "12rem" }}>Plan it</th>}
                       </tr>
                     </thead>
                     <tbody>
@@ -451,6 +536,23 @@ export default function Page() {
                             {c.forWhat.slice(0, 3).join("; ")}
                             {c.forWhat.length > 3 ? ` +${c.forWhat.length - 3} more` : ""}
                           </td>
+                          {planningTerm && (
+                            <td>
+                              <TierButtons
+                                value={
+                                  state.plan[
+                                    offeringKey(planningTerm, printedCode.get(c.code) ?? c.code)
+                                  ] ?? null
+                                }
+                                onChange={(tier) =>
+                                  setPlanTier(
+                                    offeringKey(planningTerm, printedCode.get(c.code) ?? c.code),
+                                    tier,
+                                  )
+                                }
+                              />
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -458,11 +560,29 @@ export default function Page() {
                 )}
               </section>
 
+              {planningTerm && (
+                <>
+                  <PlanPanel
+                    termId={planningTerm}
+                    plan={state.plan}
+                    held={held}
+                    onChange={setPlanTier}
+                  />
+                  <BrowseOfferings termId={planningTerm} plan={state.plan} onChange={setPlanTier} />
+                </>
+              )}
+
               <section className="section">
                 <div className="section-head">
                   <h2>Degree requirements</h2>
                   <span className="aside">180 credits across three pillars</span>
                 </div>
+                {planningTerm && (
+                  <p className="note note-projecting">
+                    Projected to the start of {termName(planningTerm)} — this is not where you stand today.
+                  </p>
+                )}
+
 
                 <PillarBlock
                   name={pillarName("if")}
