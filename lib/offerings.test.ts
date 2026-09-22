@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { findOffering, offeredCatalogCodes, offeringKey, offeringsFor, terms } from "./offerings";
+import {
+  findOffering,
+  offeredCatalogCodes,
+  offeredTerms,
+  offeringKey,
+  offeringsFor,
+  terms,
+} from "./offerings";
 
 describe("offerings", () => {
   it("lists the terms nearest first", () => {
@@ -34,5 +41,31 @@ describe("offerings", () => {
   it("keys an offering by term and code", () => {
     expect(offeringKey("winter-2627", "PHIL 220")).toBe("winter-2627:PHIL 220");
     expect(offeringKey("winter-2627", "phil220")).toBe("winter-2627:PHIL 220");
+  });
+});
+
+describe("offeredTerms", () => {
+  it("names the term that runs a course", () => {
+    expect(offeredTerms("PHIL 220").map((t) => t.name)).toEqual(["Winter 26/27"]);
+  });
+
+  it("answers for a special topic under its base code", () => {
+    // The term prints PHIL 380A; a requirement is written in PHIL 380.
+    expect(offeredTerms("PHIL 380").map((t) => t.id)).toEqual(["winter-2627"]);
+    expect(offeredTerms("PHIL 380A").map((t) => t.id)).toEqual(["winter-2627"]);
+  });
+
+  it("lists both terms when both run it, soonest first", () => {
+    // WRIT 385 runs as 385B in Winter and 385A in D-Term.
+    expect(offeredTerms("WRIT 385").map((t) => t.id)).toEqual(["winter-2627", "dterm-2627"]);
+  });
+
+  it("says nothing about a course no term on file runs", () => {
+    // The Hebrew Bible is in the catalog but neither term runs it.
+    expect(offeredTerms("HIST 310")).toEqual([]);
+  });
+
+  it("shrugs at a code that does not exist", () => {
+    expect(offeredTerms("ZZZZ 999")).toEqual([]);
   });
 });

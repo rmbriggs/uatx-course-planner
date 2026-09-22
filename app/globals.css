@@ -1521,3 +1521,23 @@ button, input, select {
 .browse-offerings summary:hover {
   color: var(--ink);
 }
+
+/* A course one of the terms on file actually runs soon. */
+.offered-chip {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.04rem 0.3rem;
+  margin-left: 0.3rem;
+  border: 1px solid var(--good);
+  border-radius: 2px;
+  color: var(--good);
+  background: var(--surface);
+  white-space: nowrap;
+  vertical-align: 0.05em;
+}
+
+.course-list.is-done .offered-chip {
+  display: none;
+}

@@ -5,6 +5,7 @@ import { Meridian } from "@/components/Meridian";
 import { RecordPanel } from "@/components/RecordPanel";
 import { BuildLog, CenterDetail, ConcentrationDetail, PillarBlock } from "@/components/Requirements";
 import { BrowseOfferings, PlanPanel, TierButtons } from "@/components/PlanPanel";
+import { OfferedChip } from "@/components/OfferedChip";
 import { auditDegree, buildLogAsCourses, pacing, suggestNextCourses, type SuggestionTier } from "@/lib/audit";
 import { getRequirements, grading, PROGRAMS } from "@/lib/catalog";
 import { offeredCatalogCodes, offeringKey, offeringsFor, terms, termName } from "@/lib/offerings";
@@ -527,7 +528,9 @@ export default function Page() {
                       {next.map((c) => (
                         <tr key={c.code}>
                           <td className="mono">{c.code}</td>
-                          <td>{c.title}</td>
+                          <td>
+                            {c.title} <OfferedChip code={c.code} />
+                          </td>
                           <td className="mono">{c.credits}</td>
                           <td className="why">
                             <span className="tier-chip" data-tier={c.tier}>
