@@ -1541,3 +1541,21 @@ button, input, select {
 .course-list.is-done .offered-chip {
   display: none;
 }
+
+/* Looking a course up while planning a term. */
+.plan-search {
+  margin: 0.4rem 0 1rem;
+}
+
+.plan-search .eyebrow {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.plan-search-results {
+  margin-top: 0.6rem;
+}
+
+.plan-search-results .is-unoffered td {
+  color: var(--slate-light);
+}

@@ -1,6 +1,7 @@
 "use client";
 
-import { findOffering, offeringKey, offeringsFor, termName } from "@/lib/offerings";
+import { useState } from "react";
+import { findOffering, offeringKey, offeringsFor, searchTerm, termName } from "@/lib/offerings";
 import { plannedAt, plannedCredits } from "@/lib/plan";
 import { checkPrerequisite, type PrereqCheck } from "@/lib/prereq";
 import type { Offering, Plan, PlanTier } from "@/lib/types";
@@ -65,6 +66,100 @@ export function offeringFor(termId: string, catalogCode: string): Offering | und
   );
 }
 
+/**
+ * What a search turns up, kept apart from the input so it can be rendered
+ * and tested without one.
+ */
+export function PlanSearchResults({
+  termId,
+  query,
+  plan,
+  held,
+  onChange,
+}: {
+  termId: string;
+  query: string;
+  plan: Plan;
+  held: Set<string>;
+  onChange: (key: string, tier: PlanTier | null) => void;
+}) {
+  if (query.trim().length < 2) return null;
+  const { offered, elsewhere } = searchTerm(termId, query);
+
+  if (!offered.length && !elsewhere.length) {
+    return <p className="note">Nothing in the catalog matches &ldquo;{query.trim()}&rdquo;.</p>;
+  }
+
+  return (
+    <table className="next-table plan-search-results">
+      <tbody>
+        {offered.map((o) => {
+          const check: PrereqCheck = o.catalogCode ? checkPrerequisite(o.catalogCode, held) : { state: "none" };
+          return (
+            <tr key={o.code}>
+              <td className="mono">{o.code}</td>
+              <td>
+                {o.title}
+                {o.faculty.length > 0 && <span className="aside"> &middot; {o.faculty.join(", ")}</span>}
+                {o.catalogCode && held.has(o.catalogCode) && <p className="note">Already on your record.</p>}
+                <PrereqWarning check={check} />
+                {!o.catalogCode && <p className="note">Not in the catalog, so it fills no named requirement.</p>}
+              </td>
+              <td className="mono">{o.credits}</td>
+              <td>
+                <TierButtons
+                  value={plan[offeringKey(termId, o.code)] ?? null}
+                  onChange={(tier) => onChange(offeringKey(termId, o.code), tier)}
+                />
+              </td>
+            </tr>
+          );
+        })}
+        {elsewhere.map(({ course, terms }) => (
+          <tr key={course.code} className="is-unoffered">
+            <td className="mono">{course.code}</td>
+            <td>
+              {course.title}
+              <p className="note">
+                Not offered {termName(termId)}
+                {terms.length > 0 ? ` — runs ${terms.map((x) => x.name).join(" and ")}` : ""}.
+              </p>
+            </td>
+            <td className="mono">{course.credits}</td>
+            <td />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+export function PlanSearch(props: {
+  termId: string;
+  plan: Plan;
+  held: Set<string>;
+  onChange: (key: string, tier: PlanTier | null) => void;
+}) {
+  const [query, setQuery] = useState("");
+  return (
+    <div className="plan-search">
+      <label htmlFor="plan-search" className="eyebrow">
+        Look up a course
+      </label>
+      <input
+        id="plan-search"
+        className="search-input"
+        type="search"
+        placeholder="Code, title, or professor — e.g. PHIL 220, linear algebra, Scheall"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        autoComplete="off"
+      />
+      <PlanSearchResults {...props} query={query} />
+    </div>
+  );
+}
+
 export function PlanPanel({
   termId,
   plan,
@@ -88,10 +183,12 @@ export function PlanPanel({
         <span className="aside">{definite} credits marked Definitely</span>
       </div>
 
+      <PlanSearch termId={termId} plan={plan} held={held} onChange={onChange} />
+
       {!anything ? (
         <p className="note">
-          Nothing planned yet. Mark a course Definitely, Maybe or Considering in the list above, or browse
-          everything the term runs.
+          Nothing planned yet. Look a course up above, mark one from what to take next, or browse everything
+          the term runs.
         </p>
       ) : (
         rows

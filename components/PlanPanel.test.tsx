@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { BrowseOfferings, PlanPanel, TierButtons } from "./PlanPanel";
+import { BrowseOfferings, PlanPanel, PlanSearchResults, TierButtons } from "./PlanPanel";
 import { offeringKey } from "@/lib/offerings";
 import { heldCodes } from "@/lib/prereq";
 import type { Plan, TakenCourse } from "@/lib/types";
@@ -109,5 +109,59 @@ describe("TierButtons", () => {
     expect(text(markup)).toContain("Considering");
     expect(markup).toContain('data-tier="maybe" aria-pressed="true"');
     expect(markup).toContain('data-tier="definitely" aria-pressed="false"');
+  });
+});
+
+describe("looking a course up while planning", () => {
+  const results = (query: string, plan: Plan = {}, h = held) =>
+    renderToStaticMarkup(
+      <PlanSearchResults termId="winter-2627" query={query} plan={plan} held={h} onChange={noop} />,
+    );
+
+  it("puts a search box at the top of the plan", () => {
+    const markup = renderToStaticMarkup(<PlanPanel termId="winter-2627" plan={{}} held={held} onChange={noop} />);
+    expect(markup).toContain('id="plan-search"');
+    expect(text(markup)).toContain("Look up a course");
+  });
+
+  it("offers the three tiers on a course the term runs", () => {
+    const markup = results("linear algebra");
+    expect(text(markup)).toContain("MATH 210");
+    expect(text(markup)).toContain("Definitely");
+    expect(text(markup)).toContain("Maybe");
+    expect(text(markup)).toContain("Considering");
+  });
+
+  it("shows the tier a course already has", () => {
+    const plan: Plan = { [offeringKey("winter-2627", "MATH 210")]: "maybe" };
+    expect(results("MATH 210", plan)).toContain('data-tier="maybe" aria-pressed="true"');
+  });
+
+  it("says when a course is not offered, and offers nothing to press", () => {
+    const markup = results("hebrew bible");
+    expect(text(markup)).toContain("HIST 310");
+    expect(text(markup)).toContain("Not offered Winter 26/27");
+    expect(markup).not.toContain("tier-button");
+  });
+
+  it("points at the term that does run it", () => {
+    expect(text(results("vibecoding"))).toContain("Not offered Winter 26/27 — runs D-Term 26/27");
+  });
+
+  it("flags a course already on your record", () => {
+    expect(text(results("writing and the english", {}, new Set(["WRIT 120"])))).toContain("Already on your record");
+  });
+
+  it("carries the prerequisite warning into search", () => {
+    expect(text(results("intermediate linear"))).toContain("Wants MATH 210");
+  });
+
+  it("says so when nothing matches", () => {
+    expect(text(results("zzzzqq"))).toContain("Nothing in the catalog matches");
+  });
+
+  it("stays quiet until there is something to search", () => {
+    expect(results("")).toBe("");
+    expect(results("m")).toBe("");
   });
 });
