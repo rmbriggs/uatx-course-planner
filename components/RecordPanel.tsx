@@ -5,6 +5,7 @@ import { allCourses, getCourse } from "@/lib/catalog";
 import { extractPdfText } from "@/lib/pdf";
 import { parseTranscript } from "@/lib/transcript";
 import { isPending, type CourseStatus, type TakenCourse } from "@/lib/types";
+import { OfferedChip } from "./OfferedChip";
 
 type Mode = "upload" | "search";
 
@@ -176,6 +177,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
                         }}
                       >
                         <span className="mono">{c.code}</span> {c.title}{" "}
+                        <OfferedChip code={c.code} />{" "}
                         <span style={{ color: "var(--slate-light)" }}>
                           {c.credits} cr{c.catalog === "legacy" ? " · old catalog" : ""}
                         </span>

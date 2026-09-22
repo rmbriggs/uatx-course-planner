@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { titleOf } from "@/lib/catalog";
+import { OfferedChip } from "./OfferedChip";
 import type { CenterResult, ConcentrationResult, GroupResult, SlotResult } from "@/lib/audit";
 import type { Holding } from "@/lib/equivalency";
 import type { BuildEntry } from "@/lib/types";
@@ -18,7 +19,12 @@ function CourseList({ codes, done }: { codes: string[]; done?: boolean }) {
       {codes.map((c) => (
         <li key={c}>
           <span className="mono course-code">{c}</span>
-          <span className="course-name">{titleOf(c)}</span>
+          <span className="course-name">
+            {titleOf(c)}
+            {/* Only on what is still open: a course you have taken does not
+                become more interesting for running again. */}
+            {!done && <OfferedChip code={c} />}
+          </span>
         </li>
       ))}
     </ul>
@@ -48,6 +54,9 @@ function SlotRow({ slot }: { slot: SlotResult }) {
   const sources = [...new Set(slot.filledBy.filter((f) => f.source !== f.requirement).map((f) => f.source))];
   const provisional = slot.filledBy.some((f) => f.via === "inferred");
 
+  // Kept as arrays alongside their display form, so an option can be asked
+  // whether the coming terms run it.
+  const options = slot.filled ? [] : slot.options;
   const codes = slot.filled
     ? [slot.filledBy.map((f) => f.requirement).join(" + ")]
     : slot.options.map((opt) => opt.join(" + "));
@@ -64,6 +73,7 @@ function SlotRow({ slot }: { slot: SlotResult }) {
           <span key={i}>
             {i > 0 && <span className="slot-or"> or </span>}
             {c}
+            {options[i] && <OfferedChip code={options[i]} />}
           </span>
         ))}
       </span>

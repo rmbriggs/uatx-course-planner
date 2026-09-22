@@ -39,6 +39,23 @@ export function offeredCatalogCodes(termId: string): Set<string> {
   return out;
 }
 
+/**
+ * Which terms run a course, by the code a requirement is written in. A
+ * lettered special topic answers under its base code, so asking about
+ * "PHIL 380" finds this term's "PHIL 380A".
+ *
+ * Returned in term order, so a caller can name the soonest one first. Empty
+ * for a course no term on file runs, which is most of the catalog.
+ */
+export function offeredTerms(catalogCode: string): Term[] {
+  const want = normalizeCode(catalogCode);
+  const hits = new Set<string>();
+  for (const o of file.offerings) {
+    if (o.catalogCode === want || o.code === want) hits.add(o.term);
+  }
+  return terms.filter((t) => hits.has(t.id));
+}
+
 export function termName(termId: string): string {
   return terms.find((t) => t.id === termId)?.name ?? termId;
 }

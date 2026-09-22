@@ -37,6 +37,13 @@ then edit their own copy.
   "what to take next" — each suggestion says which tier put it there.
   Committing to a concentration also elects the Center it sits in, which is
   what decides whose Core you owe.
+- **Marks what is on offer soon.** Any course one of the terms on file runs
+  carries a small *Winter* or *D-Term* badge wherever it is named — in the
+  requirement lists, in course search, and in what to take next — so a
+  requirement you could close this coming term is visible without switching
+  into planning. Where a requirement can be met several ways, the badge sits
+  on the route that is actually open: "SCIM 101 or INF 1130 or *MATH 101
+  Winter*".
 - **Plans next term.** Skip ahead a term and the audit assumes you pass what
   you are taking now, then ranks what to take next against the courses that
   term actually runs rather than the whole catalog. File each one under
@@ -59,7 +66,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 201 tests
+npm test        # 215 tests
 npm run build
 ```
 
