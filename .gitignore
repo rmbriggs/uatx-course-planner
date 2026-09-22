@@ -8,3 +8,6 @@ next-env.d.ts
 
 # Personal academic records used for local parser testing. Never committed.
 .local/
+
+# Worktrees created for isolated feature work.
+.claude/
