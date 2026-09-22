@@ -55,3 +55,51 @@ describe("shared links", () => {
     expect(decodeState(encodeState({ ...base, targets }))!.targets).toEqual(targets);
   });
 });
+
+describe("the plan in a link", () => {
+  it("survives a round trip", () => {
+    const plan = {
+      "winter-2627:PHIL 220": "definitely" as const,
+      "winter-2627:MATH 220": "maybe" as const,
+      "dterm-2627:POLR 210": "considering" as const,
+    };
+    expect(decodeState(encodeState({ ...base, plan }))!.plan).toEqual(plan);
+  });
+
+  it("does not share which term you were looking at", () => {
+    // The projection is the receiver's own; a link carries record and plan.
+    expect(decodeState(encodeState({ ...base, planningTerm: "winter-2627" }))!.planningTerm).toBeNull();
+  });
+
+  it("leaves an empty plan out of the link", () => {
+    expect(encodeState(base)).not.toContain("pl=");
+    expect(decodeState(encodeState(base))!.plan).toEqual({});
+  });
+
+  it("still reads a link written before plans existed", () => {
+    const back = decodeState("c=PHIL120:3:c")!;
+    expect(back.plan).toEqual({});
+    expect(back.taken).toHaveLength(1);
+  });
+
+  it("drops an entry whose tier it does not recognise", () => {
+    expect(decodeState("c=PHIL120:3:c&pl=winter-2627:PHIL220~z")!.plan).toEqual({});
+  });
+
+  it("drops an entry with no term or no course", () => {
+    expect(decodeState("c=PHIL120:3:c&pl=PHIL220~d.winter-2627:nonsense~d")!.plan).toEqual({});
+  });
+
+  it("keeps the plan's letters apart from the targets' letters", () => {
+    // 'c' is considering in a plan and committed in a target; one link
+    // carrying both must not confuse them.
+    const state = {
+      ...base,
+      plan: { "winter-2627:PHIL 220": "considering" as const },
+      targets: { philosophy: "committed" as const },
+    };
+    const back = decodeState(encodeState(state))!;
+    expect(back.plan).toEqual({ "winter-2627:PHIL 220": "considering" });
+    expect(back.targets).toEqual({ philosophy: "committed" });
+  });
+});

@@ -1,6 +1,15 @@
 import { normalizeCode } from "./catalog";
 import { isAmbiguousCode } from "./equivalency";
-import type { BuildEntry, CourseStatus, Interest, ProgramId, TakenCourse, Targets } from "./types";
+import type {
+  BuildEntry,
+  CourseStatus,
+  Interest,
+  Plan,
+  PlanTier,
+  ProgramId,
+  TakenCourse,
+  Targets,
+} from "./types";
 
 const KEY = "uatx-degree-audit.v1";
 
@@ -21,6 +30,12 @@ const CODE_STATUS: Record<string, CourseStatus> = Object.fromEntries(
 const INTEREST_CODE: Record<Interest, string> = { committed: "c", considering: "s" };
 const CODE_INTEREST: Record<string, Interest> = { c: "committed", s: "considering" };
 
+// The plan's own letters. Deliberately not the c/s that targets use: a course
+// you will take and a concentration you are aiming at are not one scale, and
+// a link can carry both at once.
+const PLAN_CODE: Record<PlanTier, string> = { definitely: "d", maybe: "m", considering: "c" };
+const CODE_PLAN: Record<string, PlanTier> = { d: "definitely", m: "maybe", c: "considering" };
+
 export interface SavedState {
   taken: TakenCourse[];
   termsRemaining: number;
@@ -34,6 +49,14 @@ export interface SavedState {
   csa?: number;
   /** Which catalog to measure against. */
   program: ProgramId;
+  /** Courses picked for a term, keyed "termId:CODE". */
+  plan: Plan;
+  /**
+   * The term being planned, or null for "where you stand today". Saved
+   * locally but never shared: a link carries what is true and what is
+   * planned, and the receiver projects from their own record.
+   */
+  planningTerm: string | null;
 }
 
 export const emptyState: SavedState = {
@@ -43,6 +66,8 @@ export const emptyState: SavedState = {
   targets: {},
   buildLog: [],
   program: "2026-2027",
+  plan: {},
+  planningTerm: null,
 };
 
 export function loadLocal(): SavedState | null {
@@ -94,6 +119,10 @@ export function encodeState(state: SavedState): string {
   if (state.program !== emptyState.program) params.set("p", state.program);
   const targets = Object.entries(state.targets).map(([id, tier]) => `${id}~${INTEREST_CODE[tier]}`);
   if (targets.length) params.set("f", targets.join("."));
+  const planned = Object.entries(state.plan).map(
+    ([key, tier]) => `${key.replace(/\s+/g, "")}~${PLAN_CODE[tier]}`,
+  );
+  if (planned.length) params.set("pl", planned.join("."));
   if (state.buildLog.length) {
     params.set(
       "b",
@@ -134,7 +163,31 @@ export function decodeState(search: string): SavedState | null {
     buildLog: parseBuildLog(params.get("b")),
     csa: params.get("g") ? Number(params.get("g")) : undefined,
     program: params.get("p") === "2024-2025" ? "2024-2025" : "2026-2027",
+    plan: parsePlan(params.get("pl")),
+    planningTerm: null,
   };
+}
+
+/**
+ * `termId:CODE~tier`, one entry per dot. An entry whose tier letter or course
+ * code is not one of ours is dropped rather than guessed at, the same as a
+ * malformed course in `c=`.
+ */
+function parsePlan(raw: string | null): Plan {
+  const out: Plan = {};
+  for (const chunk of (raw ?? "").split(".")) {
+    if (!chunk) continue;
+    const [key, code] = chunk.split("~");
+    if (!key || !code) continue;
+    const at = key.indexOf(":");
+    if (at <= 0) continue;
+    const tier = CODE_PLAN[code];
+    if (!tier) continue;
+    const normalized = normalizeCode(key.slice(at + 1));
+    if (!/^[A-Z]{2,5} \d{3,4}[A-Z]?$/.test(normalized)) continue;
+    out[`${key.slice(0, at)}:${normalized}`] = tier;
+  }
+  return out;
 }
 
 /**
