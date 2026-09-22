@@ -5,6 +5,7 @@ import {
   offeredTerms,
   offeringKey,
   offeringsFor,
+  searchTerm,
   terms,
 } from "./offerings";
 
@@ -67,5 +68,56 @@ describe("offeredTerms", () => {
 
   it("shrugs at a code that does not exist", () => {
     expect(offeredTerms("ZZZZ 999")).toEqual([]);
+  });
+});
+
+describe("searchTerm", () => {
+  it("finds a course by code, with or without the space", () => {
+    expect(searchTerm("winter-2627", "PHIL 220").offered.map((o) => o.code)).toContain("PHIL 220");
+    expect(searchTerm("winter-2627", "phil220").offered.map((o) => o.code)).toContain("PHIL 220");
+  });
+
+  it("finds a special topic by its base code", () => {
+    expect(searchTerm("winter-2627", "phil 380").offered.map((o) => o.code)).toContain("PHIL 380A");
+  });
+
+  it("finds a course by a word in its title, ignoring case", () => {
+    expect(searchTerm("winter-2627", "linear algebra").offered.map((o) => o.code)).toEqual(
+      expect.arrayContaining(["MATH 210", "MATH 320"]),
+    );
+  });
+
+  it("finds a course by who teaches it", () => {
+    const codes = searchTerm("winter-2627", "scheall").offered.map((o) => o.code);
+    expect(codes).toEqual(expect.arrayContaining(["AMCV 365", "AMCV 415"]));
+  });
+
+  it("only offers the term's own courses as plannable", () => {
+    // POLR 210 runs in D-Term, not Winter.
+    expect(searchTerm("winter-2627", "vibecoding").offered).toEqual([]);
+    expect(searchTerm("dterm-2627", "vibecoding").offered.map((o) => o.code)).toEqual(["POLR 210"]);
+  });
+
+  it("says where a catalog course is when this term does not run it", () => {
+    const out = searchTerm("winter-2627", "hebrew bible");
+    expect(out.offered).toEqual([]);
+    const hit = out.elsewhere.find((e) => e.course.code === "HIST 310");
+    expect(hit).toBeDefined();
+    expect(hit!.terms).toEqual([]);
+  });
+
+  it("points at the other term when that one runs it", () => {
+    const hit = searchTerm("winter-2627", "vibecoding").elsewhere.find((e) => e.course.code === "POLR 210");
+    expect(hit?.terms.map((t) => t.id)).toEqual(["dterm-2627"]);
+  });
+
+  it("does not repeat an offered course among the ones that are not", () => {
+    const out = searchTerm("winter-2627", "phil 380");
+    expect(out.elsewhere.map((e) => e.course.code)).not.toContain("PHIL 380");
+  });
+
+  it("returns nothing for a query too short to mean anything", () => {
+    expect(searchTerm("winter-2627", "p")).toEqual({ offered: [], elsewhere: [] });
+    expect(searchTerm("winter-2627", "  ")).toEqual({ offered: [], elsewhere: [] });
   });
 });

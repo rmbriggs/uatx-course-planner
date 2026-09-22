@@ -46,8 +46,10 @@ then edit their own copy.
   Winter*".
 - **Plans next term.** Skip ahead a term and the audit assumes you pass what
   you are taking now, then ranks what to take next against the courses that
-  term actually runs rather than the whole catalog. File each one under
-  Definitely, Maybe or Considering. Definitely carries forward, so a Winter
+  term actually runs rather than the whole catalog, or look any course up by
+  code, title or professor. File each one under Definitely, Maybe or
+  Considering; a course the term does not run says so, and names the term
+  that does. Definitely carries forward, so a Winter
   choice counts when you plan D-Term; Maybe and Considering are shown but
   never close anything. A course whose prerequisite you will not hold is
   flagged, and one the catalog states in prose is quoted rather than guessed
@@ -66,7 +68,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 215 tests
+npm test        # 233 tests
 npm run build
 ```
 
