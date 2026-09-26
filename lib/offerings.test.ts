@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   findOffering,
+  knownTerm,
   offeredCatalogCodes,
   offeredTerms,
   offeringKey,
@@ -119,5 +120,17 @@ describe("searchTerm", () => {
   it("returns nothing for a query too short to mean anything", () => {
     expect(searchTerm("winter-2627", "p")).toEqual({ offered: [], elsewhere: [] });
     expect(searchTerm("winter-2627", "  ")).toEqual({ offered: [], elsewhere: [] });
+  });
+});
+
+describe("knownTerm", () => {
+  it("keeps a term that is on file", () => {
+    expect(knownTerm("winter-2627")).toBe("winter-2627");
+  });
+
+  it("drops a term that is no longer on file, so the page opens on where you stand", () => {
+    expect(knownTerm("spring-2526")).toBeNull();
+    expect(knownTerm(null)).toBeNull();
+    expect(knownTerm(undefined)).toBeNull();
   });
 });

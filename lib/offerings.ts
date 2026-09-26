@@ -97,3 +97,12 @@ export function searchTerm(termId: string, query: string, limit = 12) {
 
   return { offered: offered.slice(0, limit), elsewhere };
 }
+
+/**
+ * The term to plan, if it is still on file. Saved state can outlive the
+ * offerings it was planned against, and a term that has gone should drop the
+ * page back to where you stand rather than open an empty plan.
+ */
+export function knownTerm(id: string | null | undefined): string | null {
+  return id && terms.some((t) => t.id === id) ? id : null;
+}
