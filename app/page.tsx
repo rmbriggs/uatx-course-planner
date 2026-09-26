@@ -201,7 +201,7 @@ export default function Page() {
           aria-pressed={state.targets[id] === tier}
           onClick={() => setTarget(id, tier)}
         >
-          {tier === "committed" ? "Committed" : "Considering"}
+          {tier === "committed" ? "Committed" : "Exploring"}
         </button>
       ))}
     </div>
@@ -496,7 +496,7 @@ export default function Page() {
                     {aiming.considering.length > 0 && (
                       <span>
                         <span className="tier-chip" data-tier="considering">
-                          Considering
+                          Exploring
                         </span>{" "}
                         {aiming.considering.join(", ")}.{" "}
                       </span>
@@ -507,7 +507,7 @@ export default function Page() {
                   </p>
                 ) : (
                   <p className="note" style={{ marginBottom: "0.7rem" }}>
-                    Every concentration counts equally here. Mark one Committed or Considering above and this list
+                    Every concentration counts equally here. Mark one Committed or Exploring above and this list
                     follows it &mdash; committing also settles which Center&rsquo;s Core you need.
                   </p>
                 )}
@@ -836,7 +836,7 @@ const INTEREST_ORDER: Record<string, number> = { committed: 0, considering: 1, n
 const TIER_LABEL: Record<SuggestionTier, string> = {
   required: "Required",
   committed: "Committed",
-  considering: "Considering",
+  considering: "Exploring",
   open: "Optional",
 };
 

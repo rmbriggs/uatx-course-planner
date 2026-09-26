@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { BrowseOfferings, PlanPanel, PlanSearchResults, TierButtons } from "./PlanPanel";
+import { BrowseOfferings, PlanPanel, PlanSearch, PlanSearchResults, TierButtons } from "./PlanPanel";
 import { offeringKey } from "@/lib/offerings";
 import { heldCodes } from "@/lib/prereq";
 import type { Plan, TakenCourse } from "@/lib/types";
@@ -106,9 +106,16 @@ describe("TierButtons", () => {
     const markup = renderToStaticMarkup(<TierButtons value="maybe" onChange={noop} />);
     expect(text(markup)).toContain("Definitely");
     expect(text(markup)).toContain("Maybe");
-    expect(text(markup)).toContain("Considering");
+    expect(text(markup)).toContain("Backup");
+    expect(text(markup)).not.toContain("Considering");
     expect(markup).toContain('data-tier="maybe" aria-pressed="true"');
     expect(markup).toContain('data-tier="definitely" aria-pressed="false"');
+  });
+
+  it("shows a plan saved before the relabel as Backup", () => {
+    // Saved state and old share links still hold "considering".
+    const markup = renderToStaticMarkup(<TierButtons value="considering" onChange={noop} />);
+    expect(markup).toMatch(/data-tier="considering" aria-pressed="true"[^>]*>Backup</);
   });
 });
 
@@ -118,10 +125,12 @@ describe("looking a course up while planning", () => {
       <PlanSearchResults termId="winter-2627" query={query} plan={plan} held={h} onChange={noop} />,
     );
 
-  it("puts a search box at the top of the plan", () => {
-    const markup = renderToStaticMarkup(<PlanPanel termId="winter-2627" plan={{}} held={held} onChange={noop} />);
+  it("labels the search with the term it searches", () => {
+    const markup = renderToStaticMarkup(
+      <PlanSearch termId="winter-2627" plan={{}} held={held} onChange={noop} />,
+    );
     expect(markup).toContain('id="plan-search"');
-    expect(text(markup)).toContain("Look up a course");
+    expect(text(markup)).toContain("Find a course for Winter 26/27");
   });
 
   it("offers the three tiers on a course the term runs", () => {
@@ -129,7 +138,7 @@ describe("looking a course up while planning", () => {
     expect(text(markup)).toContain("MATH 210");
     expect(text(markup)).toContain("Definitely");
     expect(text(markup)).toContain("Maybe");
-    expect(text(markup)).toContain("Considering");
+    expect(text(markup)).toContain("Backup");
   });
 
   it("shows the tier a course already has", () => {

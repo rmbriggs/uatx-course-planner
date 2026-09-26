@@ -32,8 +32,8 @@ then edit their own copy.
   are handled too. Your cumulative CSA is checked against the 73 needed to
   graduate.
 - **Follows what you are aiming at.** Mark any Center or concentration
-  *Committed* or *Considering*. Committed work weighs as much as a graduation
-  requirement, considering counts but never displaces it, and both reorder
+  *Committed* or *Exploring*. Committed work weighs as much as a graduation
+  requirement, exploring counts but never displaces it, and both reorder
   "what to take next" — each suggestion says which tier put it there.
   Committing to a concentration also elects the Center it sits in, which is
   what decides whose Core you owe.
@@ -48,9 +48,9 @@ then edit their own copy.
   you are taking now, then ranks what to take next against the courses that
   term actually runs rather than the whole catalog, or look any course up by
   code, title or professor. File each one under Definitely, Maybe or
-  Considering; a course the term does not run says so, and names the term
+  Backup; a course the term does not run says so, and names the term
   that does. Definitely carries forward, so a Winter
-  choice counts when you plan D-Term; Maybe and Considering are shown but
+  choice counts when you plan D-Term; Maybe and Backup are shown but
   never close anything. A course whose prerequisite you will not hold is
   flagged, and one the catalog states in prose is quoted rather than guessed
   at.

@@ -6,10 +6,13 @@ import { plannedAt, plannedCredits } from "@/lib/plan";
 import { checkPrerequisite, type PrereqCheck } from "@/lib/prereq";
 import type { Offering, Plan, PlanTier } from "@/lib/types";
 
+// "considering" is still the stored value, so plans saved and links shared
+// before the relabel keep working; only what the button says changed, to stop
+// it colliding with Exploring a concentration.
 const TIERS: { id: PlanTier; label: string }[] = [
   { id: "definitely", label: "Definitely" },
   { id: "maybe", label: "Maybe" },
-  { id: "considering", label: "Considering" },
+  { id: "considering", label: "Backup" },
 ];
 
 export function TierButtons({
@@ -144,7 +147,7 @@ export function PlanSearch(props: {
   return (
     <div className="plan-search">
       <label htmlFor="plan-search" className="eyebrow">
-        Look up a course
+        Find a course for {termName(props.termId)}
       </label>
       <input
         id="plan-search"
@@ -187,8 +190,8 @@ export function PlanPanel({
 
       {!anything ? (
         <p className="note">
-          Nothing planned yet. Look a course up above, mark one from what to take next, or browse everything
-          the term runs.
+          Nothing planned yet. Find a course below, mark one from the suggestions, or browse everything the
+          term runs.
         </p>
       ) : (
         rows
