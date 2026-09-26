@@ -6,6 +6,7 @@ import { extractPdfText } from "@/lib/pdf";
 import { parseTranscript } from "@/lib/transcript";
 import { isPending, type CourseStatus, type TakenCourse } from "@/lib/types";
 import { OfferedChip } from "./OfferedChip";
+import { BuildLog } from "./Requirements";
 
 type Mode = "upload" | "search";
 
@@ -14,10 +15,12 @@ interface Props {
   onReplace: (courses: TakenCourse[], meta?: { csa?: number }) => void;
   onAdd: (course: TakenCourse) => void;
   onRemove: (index: number) => void;
-  onToggleStatus: (index: number) => void;
+  onSetStatus: (index: number, status: CourseStatus) => void;
+  /** Build is logged, not enrolled in, but it is still something you record. */
+  build: React.ComponentProps<typeof BuildLog>;
 }
 
-export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus }: Props) {
+export function RecordPanel({ taken, onReplace, onAdd, onRemove, onSetStatus, build }: Props) {
   const [mode, setMode] = useState<Mode>("upload");
   const [query, setQuery] = useState("");
   const [busy, setBusy] = useState(false);
@@ -46,7 +49,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
     } catch {
       setMessage({
         tone: "warn",
-        text: "Could not read that file. You can add your courses with Search instead.",
+        text: "Could not read that file. You can add your courses one at a time instead.",
       });
     } finally {
       setBusy(false);
@@ -87,6 +90,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
   }
 
   return (
+    <>
     <div className="panel">
       <div className="panel-body">
         <p className="eyebrow">Your record</p>
@@ -103,7 +107,7 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
                 setMessage(null);
               }}
             >
-              {m === "upload" ? "Upload transcript" : "Search"}
+              {m === "upload" ? "Upload transcript" : "Add a course you’ve taken"}
             </button>
           ))}
         </div>
@@ -210,17 +214,30 @@ export function RecordPanel({ taken, onReplace, onAdd, onRemove, onToggleStatus 
           </p>
         )}
 
-        <RecordList taken={taken} onRemove={onRemove} onToggleStatus={onToggleStatus} />
+        <RecordList taken={taken} onRemove={onRemove} onSetStatus={onSetStatus} />
 
         {taken.length > 0 && (
           <div className="btn-row" style={{ marginTop: "1rem" }}>
-            <button type="button" className="btn btn-quiet" onClick={() => onReplace([])}>
+            <button
+              type="button"
+              className="btn btn-quiet"
+              onClick={() => {
+                if (window.confirm(`Remove all ${taken.length} courses from your record?`)) onReplace([]);
+              }}
+            >
               Remove all courses
             </button>
           </div>
         )}
       </div>
     </div>
+
+    <div className="panel" id="build-log" style={{ marginTop: "1rem" }}>
+      <div className="panel-body">
+        <BuildLog {...build} />
+      </div>
+    </div>
+    </>
   );
 }
 
@@ -234,14 +251,19 @@ const STATUS_DISPLAY: Record<CourseStatus, { label: string; className: string }>
   waived: { label: "Waived", className: " mark-waived" },
 };
 
+/** What someone would set by hand. The transcript can also say Incomplete,
+ *  Withdrawn or Audited, and a row holding one of those keeps it as an option
+ *  rather than being silently turned into Done. */
+const SETTABLE: CourseStatus[] = ["completed", "in-progress", "failed", "waived"];
+
 function RecordList({
   taken,
   onRemove,
-  onToggleStatus,
+  onSetStatus,
 }: {
   taken: TakenCourse[];
   onRemove: (i: number) => void;
-  onToggleStatus: (i: number) => void;
+  onSetStatus: (i: number, status: CourseStatus) => void;
 }) {
   if (!taken.length) return null;
 
@@ -279,20 +301,19 @@ function RecordList({
                   <span className="name">{course.title ?? getCourse(course.code)?.title ?? ""}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
-                  <button
-                    type="button"
-                    className={`mark${STATUS_DISPLAY[course.status].className}`}
-                    style={{ cursor: "pointer", background: "none" }}
-                    onClick={() => onToggleStatus(index)}
-                    title={
-                      course.grade
-                        ? `Grade ${course.grade}. Click to change how this counts.`
-                        : "Click to cycle: done, in progress, failed, waived"
-                    }
+                  <select
+                    className={`mark status-select${STATUS_DISPLAY[course.status].className}`}
+                    aria-label={`How ${course.code} counts`}
+                    value={course.status}
+                    onChange={(e) => onSetStatus(index, e.target.value as CourseStatus)}
                   >
-                    {STATUS_DISPLAY[course.status].label}
-                    {course.grade && course.grade !== "IP" ? ` ${course.grade}` : ""}
-                  </button>
+                    {(SETTABLE.includes(course.status) ? SETTABLE : [course.status, ...SETTABLE]).map((s) => (
+                      <option key={s} value={s}>
+                        {STATUS_DISPLAY[s].label}
+                      </option>
+                    ))}
+                  </select>
+                  {course.grade && course.grade !== "IP" && <span className="mono grade">{course.grade}</span>}
                   <button
                     type="button"
                     className="btn btn-quiet"
