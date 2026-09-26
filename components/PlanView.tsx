@@ -1,8 +1,9 @@
 "use client";
 
-import { BrowseOfferings, offeringFor, PlanPanel, PlanSearch, TierButtons } from "./PlanPanel";
+import { useMemo } from "react";
+import { BrowseOfferings, PlanPanel, PlanSearch, TierButtons } from "./PlanPanel";
 import { SuggestionTable, type Suggested } from "./Suggestions";
-import { offeringKey, termName } from "@/lib/offerings";
+import { offeringKey, offeringsFor, termName } from "@/lib/offerings";
 import type { Plan, PlanTier } from "@/lib/types";
 
 /**
@@ -29,8 +30,15 @@ export function PlanView({
 }) {
   const name = termName(termId);
   // A suggestion names "PHIL 380"; the term runs it as "PHIL 380A", and the
-  // plan is keyed by what the term prints.
-  const keyFor = (code: string) => offeringKey(termId, offeringFor(termId, code)?.code ?? code);
+  // plan is keyed by what the term prints. Where a term runs two letters of one
+  // course the last one wins, as it always has, so plans already saved against
+  // it still line up.
+  const printed = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const o of offeringsFor(termId)) if (o.catalogCode) map.set(o.catalogCode, o.code);
+    return map;
+  }, [termId]);
+  const keyFor = (code: string) => offeringKey(termId, printed.get(code) ?? code);
 
   return (
     <div className="stack">

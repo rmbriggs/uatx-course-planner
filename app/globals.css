@@ -1640,6 +1640,24 @@ button, input, select {
   box-shadow: 0 8px 24px rgba(16, 23, 32, 0.12);
 }
 
+/* On a phone the masthead wraps and Settings lands on the left, so a panel
+   anchored to its right edge would open off-screen. Anchor it to the start of
+   the button row instead. */
+@media (max-width: 640px) {
+  .masthead-actions {
+    position: relative;
+  }
+
+  .settings {
+    position: static;
+  }
+
+  .settings-body {
+    left: 0;
+    right: auto;
+  }
+}
+
 .settings-note {
   margin: 0.35rem 0 0;
   font-size: var(--step--1);

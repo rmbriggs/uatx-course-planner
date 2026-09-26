@@ -47,3 +47,23 @@ describe("PlanView", () => {
     expect(markup).not.toContain("jump-bar");
   });
 });
+
+describe("a suggestion the term runs under more than one letter", () => {
+  it("files it where the page always has, so an existing plan still shows as pressed", () => {
+    // Winter runs HIST 385 as both 385A and 385B; the page has always keyed a
+    // "HIST 385" suggestion to the last of them.
+    const suggestion = { code: "HIST 385", title: "Special Topics", credits: 3, forWhat: ["History"], tier: "open" };
+    const out = renderToStaticMarkup(
+      <PlanView
+        termId="winter-2627"
+        plan={{ "winter-2627:HIST 385B": "definitely" }}
+        held={heldCodes([])}
+        next={[suggestion] as unknown as Parameters<typeof PlanView>[0]["next"]}
+        aiming={false}
+        onPlan={noop}
+      />,
+    );
+    const suggested = out.slice(out.indexOf("Suggested for"), out.indexOf("Browse all"));
+    expect(suggested).toMatch(/HIST 385[\s\S]*?data-tier="definitely" aria-pressed="true"/);
+  });
+});

@@ -142,8 +142,11 @@ export default function Page() {
     [state.taken, state.useInferred, state.program],
   );
 
+  // Leaving a term remembers it, so Plan a term comes back to the term you
+  // were on, including one restored from a previous visit.
   const changeMode = (termId: string | null) => {
-    if (termId) setLastTerm(termId);
+    const remembered = termId ?? planningTerm;
+    if (remembered) setLastTerm(remembered);
     update({ planningTerm: termId });
   };
 
