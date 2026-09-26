@@ -27,7 +27,10 @@ export function SuggestionTable({
 }) {
   if (next.length === 0) return <p className="note">{empty}</p>;
 
+  // The plan column makes the table wider than a phone; let it scroll on its
+  // own rather than dragging the whole page sideways.
   return (
+    <div className="table-scroll">
     <table className="next-table">
       <thead>
         <tr>
@@ -58,5 +61,6 @@ export function SuggestionTable({
         ))}
       </tbody>
     </table>
+    </div>
   );
 }

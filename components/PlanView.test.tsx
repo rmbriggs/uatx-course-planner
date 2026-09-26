@@ -37,6 +37,10 @@ describe("PlanView", () => {
     expect(text(markup)).toContain("Plan it");
   });
 
+  it("lets a narrow screen scroll the suggestions rather than the whole page", () => {
+    expect(markup).toMatch(/<div class="table-scroll"><table class="next-table">/);
+  });
+
   it("leaves out everything that belongs to where you stand", () => {
     expect(markup).not.toContain('id="progress"');
     expect(markup).not.toContain('id="concentrations"');

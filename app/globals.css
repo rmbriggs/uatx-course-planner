@@ -99,7 +99,6 @@ button, input, select {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 1.6rem 0 1.1rem;
-  border-bottom: 1px solid var(--line-strong);
 }
 
 .masthead h1 {
@@ -1558,4 +1557,169 @@ button, input, select {
 
 .plan-search-results .is-unoffered td {
   color: var(--slate-light);
+}
+
+/* ------------------------------------------------------------- mode switch */
+/* Two modes, not two settings: tabs with a brass underline, the way the
+   meridian marks credit earned. */
+.mode-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.mode-tabs-top {
+  display: flex;
+}
+
+.mode-tab {
+  appearance: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  padding: 0.7rem 1rem 0.6rem;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: var(--step-1);
+  color: var(--slate);
+  cursor: pointer;
+}
+
+.mode-tab:first-child {
+  padding-left: 0;
+}
+
+.mode-tab:hover {
+  color: var(--ink);
+}
+
+.mode-tab[aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--brass);
+}
+
+.mode-term {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--step--1);
+}
+
+.note-projecting {
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------- settings */
+.settings {
+  position: relative;
+}
+
+.settings > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.settings > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings[open] > summary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.settings-body {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.4rem);
+  z-index: 20;
+  width: min(24rem, calc(100vw - 2rem));
+  box-shadow: 0 8px 24px rgba(16, 23, 32, 0.12);
+}
+
+.settings-note {
+  margin: 0.35rem 0 0;
+  font-size: var(--step--1);
+  color: var(--slate-light);
+}
+
+/* ---------------------------------------------------------------- jump bar */
+.stack > * + * {
+  margin-top: 2.6rem;
+}
+
+.jump-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  padding: 0.65rem 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+}
+
+.jump-bar a {
+  color: var(--slate);
+  text-decoration: none;
+}
+
+.jump-bar a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* Land below the sticky bar rather than under it. */
+.stand [id],
+#build-log {
+  scroll-margin-top: 3.5rem;
+}
+
+.stack > .jump-bar + * {
+  margin-top: 1.4rem;
+}
+
+.subsection + .subsection {
+  margin-top: 1.8rem;
+}
+
+.section-head h3 {
+  font-size: var(--step-1);
+}
+
+.build-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+
+/* ----------------------------------------------------------- record status */
+/* A small caret, so the status reads as something you can change. */
+.status-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 1.1rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%2377879a'/%3E%3C/svg%3E")
+    no-repeat right 0.35rem center;
+}
+
+/* In the sidebar the log has a panel of its own, so it needs no rule above. */
+#build-log .build-log {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.grade {
+  font-size: var(--step--1);
+  color: var(--slate);
 }
