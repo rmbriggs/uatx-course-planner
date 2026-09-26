@@ -17,6 +17,11 @@ const text = (markup: string) =>
   markup.replace(/<!--.*?-->/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 
 describe("PlanPanel", () => {
+  it("leaves the search to the view around it", () => {
+    const markup = renderToStaticMarkup(<PlanPanel termId="winter-2627" plan={{}} held={held} onChange={noop} />);
+    expect(markup).not.toContain('id="plan-search"');
+  });
+
   it("says so when nothing is planned", () => {
     const out = text(
       renderToStaticMarkup(<PlanPanel termId="winter-2627" plan={{}} held={held} onChange={noop} />),

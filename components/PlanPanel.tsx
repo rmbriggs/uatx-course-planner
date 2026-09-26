@@ -186,8 +186,6 @@ export function PlanPanel({
         <span className="aside">{definite} credits marked Definitely</span>
       </div>
 
-      <PlanSearch termId={termId} plan={plan} held={held} onChange={onChange} />
-
       {!anything ? (
         <p className="note">
           Nothing planned yet. Find a course below, mark one from the suggestions, or browse everything the
