@@ -885,6 +885,70 @@ button, input, select {
   color: var(--ink);
 }
 
+/* Planning a term: each open requirement, and what the term runs for it. */
+.coverage + .coverage {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.coverage .tier-chip,
+.impact-table .tier-chip {
+  margin-left: 0.5rem;
+}
+
+.impact-delta {
+  color: var(--brass);
+  font-weight: 600;
+}
+
+.impact-tier {
+  color: var(--slate-light);
+}
+
+/* Concentrations the plan does not touch stay listed, but recede. */
+.impact-table tr.is-unmoved td {
+  color: var(--slate-light);
+}
+
+.coverage-gap {
+  padding: 0.45rem 0;
+  border-top: 1px solid #f0f3f6;
+  font-size: var(--step--1);
+}
+
+.coverage-gap-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.coverage-gap .group-note {
+  margin: 0.2rem 0 0;
+}
+
+/* One course per line, so the plan buttons sit at a common right edge. */
+.coverage-gap .course-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.course-list li.coverage-course {
+  grid-template-columns: 4.8rem minmax(0, 1fr) auto;
+  align-items: baseline;
+}
+
+@media (max-width: 560px) {
+  .course-list li.coverage-course {
+    grid-template-columns: 4.8rem minmax(0, 1fr);
+  }
+
+  .course-list li.coverage-course .tier-buttons {
+    grid-column: 1 / -1;
+  }
+}
+
 .slot-label {
   font-weight: 500;
 }

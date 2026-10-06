@@ -115,6 +115,9 @@ export function GroupBlock({ group }: { group: GroupResult }) {
       ) : (
         <>
           {group.chosenPool && <p className="group-note">Counting your {group.chosenPool} courses.</p>}
+          {group.openPools && (
+            <p className="group-note">No subtopic chosen yet: {group.openPools.map((p) => p.name).join(" or ")}.</p>
+          )}
           {(group.held ?? []).length > 0 ? (
             <>
               <p className="group-note">You have taken:</p>

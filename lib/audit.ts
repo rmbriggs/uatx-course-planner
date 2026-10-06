@@ -64,6 +64,8 @@ export interface GroupResult {
   options?: string[];
   /** For oneOf groups, the pool currently doing best. */
   chosenPool?: string;
+  /** For oneOf groups with no pool ahead yet, every pool still in the running. */
+  openPools?: { name: string; options: string[] }[];
   /** Whether `required`/`completed` count courses or credits. */
   unit: "courses" | "credits";
 }
@@ -393,6 +395,7 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
   }
 
   let best: GroupResult | null = null;
+  const progress = new Map<string, number>();
   for (const p of g.pools) {
     const held = p.pool.filter((c) => done.has(c));
     const pendingHeld = p.pool.filter((c) => !done.has(c) && pendingSet.has(c));
@@ -410,7 +413,23 @@ function evaluateGroup(g: RequirementGroup, holdings: Holding[]): GroupResult {
       chosenPool: p.name,
       unit: "courses",
     };
+    progress.set(p.name, candidate.completed + candidate.inProgress);
     if (!best || candidate.completed + candidate.inProgress > best.completed + best.inProgress) best = candidate;
+  }
+
+  // Until one pool pulls ahead, every pool tied for the lead is still a live
+  // choice, so its courses are still worth suggesting. Offering only the first
+  // pool hid a whole subtopic from anyone who had not started either.
+  const lead = best!.completed + best!.inProgress;
+  const live = g.pools.filter((p) => progress.get(p.name) === lead);
+  if (live.length > 1 && !best!.satisfied) {
+    const taken = (c: string) => done.has(c) || pendingSet.has(c);
+    return {
+      ...best!,
+      options: [...new Set(live.flatMap((p) => p.pool.filter((c) => !taken(c))))],
+      chosenPool: undefined,
+      openPools: live.map((p) => ({ name: p.name, options: p.pool.filter((c) => !taken(c)) })),
+    };
   }
   return best!;
 }

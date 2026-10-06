@@ -240,6 +240,18 @@ describe("requirement evaluation", () => {
     const g = a.concentrations.find((c) => c.id === "csai")!.groups.find((x) => x.id === "csai-subtopic")!;
     expect(g.chosenPool).toBe("Machine Learning");
     expect(g.completed).toBe(2);
+    expect(g.openPools).toBeUndefined();
+    expect(g.options).not.toContain("CSAI 310");
+  });
+
+  it("keeps every subtopic open until one pulls ahead", () => {
+    const a = auditDegree([done("CSAI 300")]);
+    const g = a.concentrations.find((c) => c.id === "csai")!.groups.find((x) => x.id === "csai-subtopic")!;
+    expect(g.chosenPool).toBeUndefined();
+    expect(g.openPools?.map((p) => p.name)).toEqual(["Computer Science and Systems", "Machine Learning"]);
+    // Machine Learning used to vanish here, because the first pool won ties.
+    expect(g.options).toContain("CSAI 310");
+    expect(g.options).toContain("CSAI 380");
   });
 
   it("completes a concentration when every group is met", () => {

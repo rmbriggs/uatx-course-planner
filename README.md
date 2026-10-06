@@ -54,6 +54,15 @@ then edit their own copy.
   never close anything. A course whose prerequisite you will not hold is
   flagged, and one the catalog states in prose is quoted rather than guessed
   at.
+- **Shows what a term does for you.** While planning, a table lists every
+  concentration with how far along it is before the term, with your
+  Definitely picks, and with your Maybes too, and names which of your planned
+  courses count toward each. A course picked for one concentration that also
+  moves another shows up in both. Below it, each concentration you are aiming
+  at is walked requirement by requirement: what is still open, and what the
+  term runs toward it, or that it runs nothing ("Upper Division: 4 to go,
+  Winter runs CSAI 380 (Machine Learning)"). A pick-one-subtopic requirement
+  offers every subtopic until you have started one.
 - **Logs Polaris Build.** Build is a credit total rather than a class, so it is
   logged instead of enrolled in: add credits in whatever amounts the work is
   granted, label them, and mark them still under way until they are. The log is
@@ -68,7 +77,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 233 tests
+npm test        # 268 tests
 npm run build
 ```
 
