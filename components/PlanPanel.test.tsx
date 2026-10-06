@@ -93,7 +93,7 @@ describe("PlanPanel", () => {
 describe("BrowseOfferings", () => {
   it("lists every course the term runs, by department", () => {
     const out = text(renderToStaticMarkup(<BrowseOfferings termId="winter-2627" plan={{}} onChange={noop} />));
-    expect(out).toContain("Browse all 58 courses Winter 26/27 runs");
+    expect(out).toContain("Browse all 63 courses Winter 26/27 runs");
     expect(out).toContain("American Civilization");
     expect(out).toContain("Philosophy");
     expect(out).toContain("The American Founding");

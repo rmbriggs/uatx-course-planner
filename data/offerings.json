@@ -1,5 +1,5 @@
 {
-  "source": "Winter and D-Term 26/27 Course Descriptions, retrieved 2026-09-21",
+  "source": "Winter and D-Term 26/27 Course Descriptions, retrieved 2026-10-06",
   "terms": [
     {
       "id": "winter-2627",
@@ -69,10 +69,10 @@
     },
     {
       "term": "winter-2627",
-      "code": "BUSI 285A",
-      "catalogCode": "BUSI 285",
+      "code": "BUSI 280A",
+      "catalogCode": "BUSI 280",
       "title": "Special topic: Business Law Foundations",
-      "credits": 3.0,
+      "credits": 1.5,
       "faculty": [],
       "department": "Business Track",
       "note": null,
@@ -87,7 +87,7 @@
       "faculty": [
         "Scott"
       ],
-      "department": "Business Track",
+      "department": "Computer Science and AI",
       "note": null,
       "sections": []
     },
@@ -100,7 +100,7 @@
       "faculty": [
         "Staley"
       ],
-      "department": "Business Track",
+      "department": "Computer Science and AI",
       "note": null,
       "sections": []
     },
@@ -124,6 +124,19 @@
       "code": "ECON 112",
       "catalogCode": "ECON 112",
       "title": "Accelerated Applied Economics II",
+      "credits": 3.0,
+      "faculty": [
+        "Pretnar"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 202",
+      "catalogCode": "ECON 202",
+      "title": "Macroeconomic Theory I",
       "credits": 3.0,
       "faculty": [
         "Pretnar"
@@ -173,6 +186,19 @@
     },
     {
       "term": "winter-2627",
+      "code": "ECON 353",
+      "catalogCode": "ECON 353",
+      "title": "Comparative Economic Systems",
+      "credits": 3.0,
+      "faculty": [
+        "Bastos"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
       "code": "ECON 361",
       "catalogCode": "ECON 361",
       "title": "Entrepreneurship and Entrepreneurial Finance",
@@ -206,6 +232,19 @@
       "credits": 1.5,
       "faculty": [
         "Tupy"
+      ],
+      "department": "Economics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "ECON 396",
+      "catalogCode": "ECON 396",
+      "title": "Law and Economics",
+      "credits": 3.0,
+      "faculty": [
+        "Wright"
       ],
       "department": "Economics",
       "note": null,
@@ -275,6 +314,19 @@
       "credits": 3.0,
       "faculty": [
         "Bove"
+      ],
+      "department": "History",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "HIST 220",
+      "catalogCode": "HIST 220",
+      "title": "Decadence, Modernism, and the Great War",
+      "credits": 3.0,
+      "faculty": [
+        "Deadman"
       ],
       "department": "History",
       "note": "Required for the Concentration in History.",
@@ -378,7 +430,7 @@
       "title": "Special topic: Equality Jurisprudence",
       "credits": 1.5,
       "faculty": [
-        "Liu"
+        "Hon. Cory Liu"
       ],
       "department": "Law",
       "note": null,
@@ -458,7 +510,7 @@
       "faculty": [
         "Puelz"
       ],
-      "department": "Literature",
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -471,7 +523,7 @@
       "faculty": [
         "Kolpakov"
       ],
-      "department": "Literature",
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -484,7 +536,7 @@
       "faculty": [
         "Staley"
       ],
-      "department": "Literature",
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -497,7 +549,20 @@
       "faculty": [
         "Puelz"
       ],
-      "department": "Literature",
+      "department": "Mathematics",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
+      "code": "MATH 311",
+      "catalogCode": "MATH 311",
+      "title": "Complex Analysis",
+      "credits": 3.0,
+      "faculty": [
+        "Kolpakov"
+      ],
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -510,7 +575,7 @@
       "faculty": [
         "Kolpakov"
       ],
-      "department": "Literature",
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -521,7 +586,7 @@
       "title": "Introduction to Physics",
       "credits": 3.0,
       "faculty": [],
-      "department": "Literature",
+      "department": "Mathematics",
       "note": null,
       "sections": []
     },
@@ -595,6 +660,19 @@
     },
     {
       "term": "winter-2627",
+      "code": "PHIL 380B",
+      "catalogCode": "PHIL 380",
+      "title": "Special Topic in Philosophy: Introduction to Leo Strauss",
+      "credits": 1.5,
+      "faculty": [
+        "Rotner"
+      ],
+      "department": "Philosophy",
+      "note": null,
+      "sections": []
+    },
+    {
+      "term": "winter-2627",
       "code": "PHIL 385A",
       "catalogCode": "PHIL 385",
       "title": "Special Topic in Philosophy: Atlas Shrugged as Literature and Philosophy",
@@ -604,19 +682,6 @@
       ],
       "department": "Philosophy",
       "note": null,
-      "sections": []
-    },
-    {
-      "term": "winter-2627",
-      "code": "PHIL 410",
-      "catalogCode": "PHIL 410",
-      "title": "Great Philosophers: Introduction to Leo Strauss",
-      "credits": 1.5,
-      "faculty": [
-        "Rotner"
-      ],
-      "department": "Philosophy",
-      "note": "The catalog gives Great Philosophers 3 credits; this term runs Introduction to Leo Strauss at 1.5.",
       "sections": []
     },
     {
@@ -654,7 +719,7 @@
       "faculty": [
         "Wilkinson"
       ],
-      "department": "Philosophy",
+      "department": "Physics",
       "note": null,
       "sections": []
     },
@@ -665,7 +730,7 @@
       "title": "Advanced Physics Survey",
       "credits": 3.0,
       "faculty": [],
-      "department": "Philosophy",
+      "department": "Physics",
       "note": null,
       "sections": []
     },
@@ -801,16 +866,16 @@
       "faculty": [
         "Klavan"
       ],
-      "department": "American Civilization",
+      "department": "Literature",
       "note": null,
       "sections": []
     },
     {
       "term": "dterm-2627",
-      "code": "LEAD 380A",
+      "code": "LEAD 385A",
       "catalogCode": null,
       "title": "Special Topic in Leadership in Action: Experiential Practicum",
-      "credits": 1.5,
+      "credits": 3.0,
       "faculty": [
         "Williford"
       ],
@@ -840,7 +905,7 @@
       "faculty": [
         "Webman"
       ],
-      "department": "Polaris",
+      "department": "Writing",
       "note": null,
       "sections": []
     }

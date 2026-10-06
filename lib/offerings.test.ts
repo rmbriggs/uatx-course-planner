@@ -16,7 +16,7 @@ describe("offerings", () => {
   });
 
   it("returns a term's own offerings", () => {
-    expect(offeringsFor("winter-2627")).toHaveLength(58);
+    expect(offeringsFor("winter-2627")).toHaveLength(63);
     expect(offeringsFor("dterm-2627")).toHaveLength(5);
     expect(offeringsFor("nope")).toHaveLength(0);
   });
@@ -27,7 +27,7 @@ describe("offerings", () => {
   });
 
   it("leaves an uncatalogued offering without a catalog code", () => {
-    expect(findOffering("dterm-2627", "LEAD 380A")?.catalogCode).toBeNull();
+    expect(findOffering("dterm-2627", "LEAD 385A")?.catalogCode).toBeNull();
   });
 
   it("collects the catalog codes a term can fill", () => {
