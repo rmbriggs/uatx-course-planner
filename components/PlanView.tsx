@@ -3,6 +3,9 @@
 import { useMemo } from "react";
 import { BrowseOfferings, PlanPanel, PlanSearch, TierButtons } from "./PlanPanel";
 import { SuggestionTable, type Suggested } from "./Suggestions";
+import { PlanImpact } from "./PlanImpact";
+import { TermCoverage } from "./TermCoverage";
+import type { PlanImpactRow, TermCoverage as Coverage } from "@/lib/plan";
 import { offeringKey, offeringsFor, termName } from "@/lib/offerings";
 import type { Plan, PlanTier } from "@/lib/types";
 
@@ -16,6 +19,8 @@ export function PlanView({
   plan,
   held,
   next,
+  coverage,
+  impact,
   aiming,
   onPlan,
 }: {
@@ -24,6 +29,10 @@ export function PlanView({
   /** Codes held once the record is projected to the start of this term. */
   held: Set<string>;
   next: Suggested[];
+  /** Open requirements in the concentrations being aimed at, and what this term runs for each. */
+  coverage: Coverage[];
+  /** What this term's plan does to every concentration. */
+  impact: PlanImpactRow[];
   /** Whether any Center or concentration is marked, which reorders suggestions. */
   aiming: boolean;
   onPlan: (key: string, tier: PlanTier | null) => void;
@@ -39,14 +48,26 @@ export function PlanView({
     return map;
   }, [termId]);
   const keyFor = (code: string) => offeringKey(termId, printed.get(code) ?? code);
+  const hasPlan = Object.entries(plan).some(([key, tier]) => key.startsWith(`${termId}:`) && tier !== "considering");
 
   return (
     <div className="stack">
       <PlanPanel termId={termId} plan={plan} held={held} onChange={onPlan} />
 
+      <PlanImpact rows={impact} termName={name} hasPlan={hasPlan} />
+
       <section className="section">
         <PlanSearch termId={termId} plan={plan} held={held} onChange={onPlan} />
       </section>
+
+      <TermCoverage
+        coverage={coverage}
+        termName={name}
+        aiming={aiming}
+        planCell={(code) => (
+          <TierButtons value={plan[keyFor(code)] ?? null} onChange={(tier) => onPlan(keyFor(code), tier)} />
+        )}
+      />
 
       <section className="section">
         <div className="section-head">

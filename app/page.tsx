@@ -11,7 +11,7 @@ import { auditDegree, buildLogAsCourses, pacing, suggestNextCourses } from "@/li
 import { getRequirements } from "@/lib/catalog";
 import { mappedGrants } from "@/lib/equivalency";
 import { knownTerm, offeredCatalogCodes, terms, termName } from "@/lib/offerings";
-import { projectFor } from "@/lib/plan";
+import { planImpact, projectFor, termCoverage } from "@/lib/plan";
 import { heldCodes } from "@/lib/prereq";
 import { decodeState, emptyState, encodeState, loadLocal, saveLocal, type SavedState } from "@/lib/storage";
 import type { Interest, PlanTier, TakenCourse } from "@/lib/types";
@@ -87,6 +87,19 @@ export default function Page() {
   const held = useMemo(() => heldCodes(projectedRecord), [projectedRecord]);
   const next = useMemo(
     () => suggestNextCourses(audit, state.targets, 10, offered),
+    [audit, state.targets, offered],
+  );
+  const impact = useMemo(
+    () =>
+      planningTerm
+        ? planImpact(record, state.plan, planningTerm, state.targets, (r) =>
+            auditDegree(r, { useInferred: state.useInferred, program: state.program }),
+          )
+        : [],
+    [planningTerm, record, state.plan, state.targets, state.useInferred, state.program],
+  );
+  const coverage = useMemo(
+    () => (offered ? termCoverage(audit, state.targets, offered) : []),
     [audit, state.targets, offered],
   );
 
@@ -237,6 +250,8 @@ export default function Page() {
               plan={state.plan}
               held={held}
               next={next}
+              coverage={coverage}
+              impact={impact}
               aiming={Object.keys(state.targets).length > 0}
               onPlan={setPlanTier}
             />
