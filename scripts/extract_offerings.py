@@ -17,7 +17,7 @@ from pathlib import Path
 RAW = Path(__file__).resolve().parent.parent / "data" / "raw"
 OUT = Path(__file__).resolve().parent.parent / "data"
 SOURCE = "offerings_winter_dterm_2627.txt"
-LABEL = "Winter and D-Term 26/27 Course Descriptions, retrieved 2026-09-21"
+LABEL = "Winter and D-Term 26/27 Course Descriptions, retrieved 2026-10-06"
 
 # "AMCV 200: The American Founding", always at column 0.
 CODE_RE = re.compile(r"^(?P<subj>[A-Z]{2,5}) (?P<num>\d{3}[A-Z]?): (?P<title>\S.*?)\s*$")
@@ -45,7 +45,7 @@ FURNITURE = {"course descriptions"}
 # says so. A new code appearing here fails the build until someone decides
 # which of the two it is.
 UNCATALOGUED = {
-    "LEAD 380A": "The catalog lists no LEAD subject, so this cannot be matched to a "
+    "LEAD 385A": "The catalog lists no LEAD subject, so this cannot be matched to a "
                  "requirement. It still counts toward the term's credits.",
     "POLR 380A": "The catalog's POLR numbering stops at 313 before Polaris Gateway "
                  "(490), so this cannot be matched to a requirement. It still counts "
@@ -56,10 +56,7 @@ UNCATALOGUED = {
 # topic is worth, verified against the dump. A divergence that is NOT listed
 # here is far more likely to be a misread credits line than a real change, so
 # it fails the build.
-VARIABLE_CREDIT = {
-    "PHIL 410": "The catalog gives Great Philosophers 3 credits; this term runs "
-                "Introduction to Leo Strauss at 1.5.",
-}
+VARIABLE_CREDIT: dict[str, str] = {}
 
 # A lettered special topic is delivered under its base code's requirement:
 # PHIL 380A is a PHIL 380. This mirrors getCourse()'s own fallback in lib.
@@ -97,6 +94,10 @@ def parse(text: str) -> list[dict]:
     out: list[dict] = []
 
     for raw in text.split("\n"):
+        # pdftotext marks each new page with a form feed at the start of its
+        # first line. Left in, it pushes a heading off its indent and a course
+        # code off column 0, so whatever opens a page is silently dropped.
+        raw = raw.replace("\f", "")
         s = raw.strip()
         if not s:
             continue

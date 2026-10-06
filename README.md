@@ -77,7 +77,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 268 tests
+npm test        # 270 tests
 npm run build
 ```
 
@@ -133,12 +133,17 @@ pdftotext -layout "Winter and D-Term 2026 - Course Descriptions.pdf" \
 ```
 
 `extract_offerings.py` then parses that dump, and declares its exceptions
-rather than smoothing them over. Two of the 63 courses, `LEAD 380A` and
+rather than smoothing them over. Two of the 68 courses, `LEAD 385A` and
 `POLR 380A`, are in no catalog at all: they stay plannable and count toward
-the term's credits, but fill no named requirement, and each says why.
-`PHIL 410` runs at 1.5 credits where the catalog gives Great Philosophers 3,
-which is recorded the same way. A code in neither the catalog nor those
+the term's credits, but fill no named requirement, and each says why. A
+course that runs at a different weight than the catalog gives it is recorded
+the same way, in `VARIABLE_CREDIT`. A code in neither the catalog nor those
 tables fails the build instead of being guessed at.
+
+The descriptions get reissued, so when a new copy comes out, re-run the
+`pdftotext` step over it and regenerate. The October 6 copy renumbered three
+courses (the Leo Strauss course went from `PHIL 410` to `PHIL 380B`) and
+added five. A plan saved against a code that no longer runs simply drops it.
 
 The OCR itself (`scripts/ocr.swift`, `scripts/reflow.py`) used Apple's Vision
 framework across all 335 pages, keeping bounding boxes so the multi-column

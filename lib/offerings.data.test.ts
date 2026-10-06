@@ -19,9 +19,9 @@ describe("term offerings", () => {
   });
 
   it("carries every course the descriptions list", () => {
-    expect(file.offerings.length).toBe(63);
+    expect(file.offerings.length).toBe(68);
     const byTerm = (id: string) => file.offerings.filter((o) => o.term === id).length;
-    expect(byTerm("winter-2627")).toBe(58);
+    expect(byTerm("winter-2627")).toBe(63);
     expect(byTerm("dterm-2627")).toBe(5);
   });
 
@@ -46,7 +46,7 @@ describe("term offerings", () => {
 
   it("names exactly the two offerings the catalog does not list", () => {
     const orphans = file.offerings.filter((o) => o.catalogCode === null).map((o) => o.code);
-    expect(orphans.sort()).toEqual(["LEAD 380A", "POLR 380A"]);
+    expect(orphans.sort()).toEqual(["LEAD 385A", "POLR 380A"]);
   });
 
   it("explains every uncatalogued offering", () => {
@@ -69,11 +69,26 @@ describe("term offerings", () => {
     }
   });
 
-  it("flags Great Philosophers running lighter than the catalog says", () => {
-    // The catalog gives PHIL 410 three credits; this term's Leo Strauss run
-    // is 1.5. Verified against the dump, not a parsing artefact.
-    const o = file.offerings.find((x) => x.code === "PHIL 410");
+  it("keeps a course that opens a new page of the PDF", () => {
+    // pdftotext puts a form feed in front of each page's first line, and
+    // these three each open a page. They were silently dropped before.
+    for (const code of ["HIST 355", "MATH 200", "PHIL 385A"]) {
+      expect(file.offerings.some((o) => o.code === code), code).toBe(true);
+    }
+  });
+
+  it("files each course under its own department, across page breaks", () => {
+    const dept = (code: string) => file.offerings.find((o) => o.code === code)?.department;
+    expect(dept("MATH 101")).toBe("Mathematics");
+    expect(dept("PHYS 101")).toBe("Physics");
+    expect(dept("LITR 210")).toBe("Literature");
+  });
+
+  it("runs Leo Strauss as a philosophy special topic, not Great Philosophers", () => {
+    // Listed as PHIL 410 in the September descriptions, renumbered in October.
+    const o = file.offerings.find((x) => x.code === "PHIL 380B");
+    expect(o?.catalogCode).toBe("PHIL 380");
     expect(o?.credits).toBe(1.5);
-    expect(o?.note).toMatch(/Great Philosophers/);
+    expect(file.offerings.some((x) => x.code === "PHIL 410")).toBe(false);
   });
 });
