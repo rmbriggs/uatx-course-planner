@@ -77,7 +77,7 @@ then edit their own copy.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm test        # 270 tests
+npm test        # 271 tests
 npm run build
 ```
 
@@ -102,7 +102,7 @@ produced by OCR and is committed to `data/`. The site never reads the PDFs.
 | File | Contents |
 | --- | --- |
 | `data/courses.json` | 506 current + 235 legacy courses: code, title, credits, prerequisites |
-| `data/equivalencies.json` | 123 rules: the equivalency tables, 14 clearly labelled inferred ones, 3 that refine an official rule, and 3 scoped to the old catalog alone |
+| `data/equivalencies.json` | 123 rules: the equivalency tables, 1 confirmed directly by administration, 13 clearly labelled inferred ones, 3 that refine an official rule, and 3 scoped to the old catalog alone |
 | `data/requirements.json` | 2026-2027: Intellectual Foundations, the major's credit floors, 8 concentrations, Polaris |
 | `data/requirements-2024.json` | 2024-2025: Intellectual Foundations, 3 Centers, 4 concentrations, Polaris |
 | `data/offerings.json` | 63 courses Winter 26/27 and D-Term 26/27 actually run: the code the catalog knows each by, credits, faculty, department |
@@ -168,11 +168,17 @@ against the catalog's scale (pp. 19-20), not from the credit column. A D
 (60-72) is "poor" by the catalog's own descriptor but still passes, so it is
 not treated as a failure.
 
-**Inferred mappings are marked and optional.** Fourteen mappings are implied by the
+**Inferred mappings are marked and optional.** Thirteen mappings are implied by the
 two catalogs but not stated in the equivalency document — for example the
 catalog's own `Prerequisite: AMCV 200 or INF 2121` implies those two are
 interchangeable. They are on by default, labelled "Provisional" wherever they
 affect a result, and can be switched off.
+
+A mapping administration confirms directly is a different thing: it is
+settled even though the document does not list it, so it lives in the
+script's `CONFIRMED` table with a note saying who confirmed it and when, and
+is never marked provisional. The first is The Beginning of Politics (`INF
+1200`) fulfilling Ancient Greece (`HIST 110`), confirmed 2026-10-07.
 
 The 2024-2025 catalog contradicts itself in a few places, naming courses by
 numbers its own description section does not use (`EPH 1610`, `EPH 1810`,

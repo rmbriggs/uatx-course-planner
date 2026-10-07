@@ -1565,6 +1565,21 @@
     },
     {
       "from": [
+        "INF 1200"
+      ],
+      "grants": [
+        [
+          "HIST 110"
+        ]
+      ],
+      "kind": "satisfies",
+      "center": "IF",
+      "title": "The Beginning of Politics",
+      "note": "Fulfills HIST 110 Ancient Greece. Confirmed by UATX administration on 2026-10-07; the equivalency document does not list it. This replaces an earlier guess that it covered PHIL 120 Plato and Aristotle.",
+      "raw": "Fulfills HIST 110 Ancient Greece. Confirmed by UATX administration on 2026-10-07; the equivalency document does not list it. This replaces an earlier guess that it covered PHIL 120 Plato and Aristotle."
+    },
+    {
+      "from": [
         "INF 1100"
       ],
       "grants": [
@@ -1648,23 +1663,6 @@
       "reason": "Same title, and both study the philosophical roots and practical consequences of Nazism and Soviet Communism.",
       "inferred": true,
       "raw": "Same title, and both study the philosophical roots and practical consequences of Nazism and Soviet Communism."
-    },
-    {
-      "from": [
-        "INF 1200"
-      ],
-      "grants": [
-        [
-          "PHIL 120"
-        ]
-      ],
-      "kind": "satisfies",
-      "center": "IF",
-      "title": "The Beginning of Politics",
-      "confidence": "strong",
-      "reason": "INF 1200 asks 'are human beings political animals?', which is the question of Aristotle's Politics, and compares 'Greek and biblical understandings of politics and leadership'. PHIL 120 reads Plato's Republic and selections from Aristotle's Nicomachean Ethics and Politics. A student who took the course reports it covered Plato and the New Testament.",
-      "inferred": true,
-      "raw": "INF 1200 asks 'are human beings political animals?', which is the question of Aristotle's Politics, and compares 'Greek and biblical understandings of politics and leadership'. PHIL 120 reads Plato's Republic and selections from Aristotle's Nicomachean Ethics and Politics. A student who took the course reports it covered Plato and the New Testament."
     },
     {
       "from": [

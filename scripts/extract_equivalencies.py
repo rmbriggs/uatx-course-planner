@@ -151,6 +151,22 @@ REFINEMENTS = [
     },
 ]
 
+# Mappings the equivalency document does not state but UATX administration has
+# confirmed directly. They are settled policy, so unlike INFERRED they are not
+# marked provisional and cannot be switched off. Each note says who confirmed
+# it and when, since the document itself cannot be pointed to.
+CONFIRMED = [
+    {
+        "from": ["INF 1200"], "grants": [["HIST 110"]], "kind": "satisfies", "center": "IF",
+        "title": "The Beginning of Politics",
+        "note": (
+            "Fulfills HIST 110 Ancient Greece. Confirmed by UATX administration on 2026-10-07; "
+            "the equivalency document does not list it. This replaces an earlier guess that it "
+            "covered PHIL 120 Plato and Aristotle."
+        ),
+    },
+]
+
 INFERRED = [
     # --- Intellectual Foundations -------------------------------------------
     # The equivalency document has tables for CAL, CEPH, STEM and Polaris but
@@ -203,16 +219,6 @@ INFERRED = [
         "reason": (
             "Same title, and both study the philosophical roots and practical consequences of Nazism "
             "and Soviet Communism."
-        ),
-    },
-    {
-        "from": ["INF 1200"], "grants": [["PHIL 120"]], "kind": "satisfies", "center": "IF",
-        "title": "The Beginning of Politics", "confidence": "strong",
-        "reason": (
-            "INF 1200 asks 'are human beings political animals?', which is the question of Aristotle's "
-            "Politics, and compares 'Greek and biblical understandings of politics and leadership'. "
-            "PHIL 120 reads Plato's Republic and selections from Aristotle's Nicomachean Ethics and "
-            "Politics. A student who took the course reports it covered Plato and the New Testament."
         ),
     },
     {
@@ -330,6 +336,9 @@ def main():
             if notes:
                 rule["note"] = " ".join(notes)
             rules.append(rule)
+
+    for spec in CONFIRMED:
+        rules.append({**spec, "raw": spec["note"]})
 
     for spec in INFERRED:
         rules.append({**spec, "inferred": True, "raw": spec["reason"]})

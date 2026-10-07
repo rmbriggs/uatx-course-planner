@@ -124,10 +124,10 @@ describe("equivalency mapping", () => {
     expect(a.totals.earned).toBe(4.5);
   });
 
-  it("fills a slot once when two old courses both map to it", () => {
-    // INF 1200 and INF 1110 both map to PHIL 120. One fills the requirement;
-    // the other is not wasted, it counts toward the major.
-    const a = auditDegree([done("INF 1200"), done("INF 1110")]);
+  it("fills a slot once when two courses both map to it", () => {
+    // INF 1110 maps to PHIL 120, and PHIL 120 was also taken. One fills the
+    // requirement; the other is not wasted, it counts toward the major.
+    const a = auditDegree([{ ...done("PHIL 120"), credits: 4.5 }, done("INF 1110")]);
     const plato = a.intellectualFoundations.groups
       .find((g) => g.id === "if-humanities")!
       .slots!.find((s) => s.label === "Plato and Aristotle")!;
@@ -136,6 +136,19 @@ describe("equivalency mapping", () => {
     expect(a.intellectualFoundations.creditsEarned).toBe(4.5);
     expect(a.major.creditsEarned).toBe(4.5);
     expect(a.totals.earned).toBe(9);
+  });
+
+  it("counts The Beginning of Politics as Ancient Greece, as administration confirmed", () => {
+    const a = auditDegree([done("INF 1200")]);
+    const humanities = a.intellectualFoundations.groups.find((g) => g.id === "if-humanities")!;
+    const greece = humanities.slots!.find((s) => s.label === "Ancient Greece")!;
+    expect(greece.filled).toBe(true);
+    // Confirmed, not proposed: it holds even with inferred mappings switched off.
+    expect(greece.filledBy.every((f) => f.via !== "inferred")).toBe(true);
+    expect(auditDegree([done("INF 1200")], { useInferred: false }).intellectualFoundations.groups
+      .find((g) => g.id === "if-humanities")!.slots!.find((s) => s.label === "Ancient Greece")!.filled).toBe(true);
+    // And it no longer stands in for Plato and Aristotle.
+    expect(humanities.slots!.find((s) => s.label === "Plato and Aristotle")!.filled).toBe(false);
   });
 
   it("reads one big old seminar as covering two of the new courses", () => {
